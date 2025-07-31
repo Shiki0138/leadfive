@@ -1,0 +1,62 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>{{ site.company.name }}</h3>
+        <p>{{ site.description }}</p>
+        <div class="social-links">
+          <a href="https://twitter.com/{{ site.twitter.username }}" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/leadfive" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/leadfive" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>サービス</h4>
+        <ul class="footer-links">
+          <li><a href="{{ '/services/ai-marketing/' | relative_url }}">広告・マーケティングサポート</a></li>
+          <li><a href="{{ '/services/ai-prompt/' | relative_url }}">AIプロンプトエンジニアリング</a></li>
+          <li><a href="{{ '/services/engineering/' | relative_url }}">エンジニアリングサポート</a></li>
+          <li><a href="{{ '/services/consulting/' | relative_url }}">戦略コンサルティング</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>会社情報</h4>
+        <ul class="footer-links">
+          <li><a href="{{ '/company/' | relative_url }}">会社概要</a></li>
+          <li><a href="{{ '/company/#mission' | relative_url }}">ミッション</a></li>
+          <li><a href="{{ '/company/#access' | relative_url }}">アクセス</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}">お問い合わせ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>リソース</h4>
+        <ul class="footer-links">
+          <li><a href="{{ '/blog/' | relative_url }}">ブログ</a></li>
+          <li><a href="{{ '/case-studies/' | relative_url }}">導入事例</a></li>
+          <li><a href="{{ '/resources/whitepaper/' | relative_url }}">ホワイトペーパー</a></li>
+          <li><a href="{{ '/privacy/' | relative_url }}">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ site.company.name }}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

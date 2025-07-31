@@ -1,0 +1,120 @@
+---
+layout: default
+title: ページが見つかりません | LeadFive
+permalink: /404.html
+---
+
+<section class="error-page">
+  <div class="container">
+    <div class="error-content">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-message">ページが見つかりません</h2>
+      <p class="error-description">
+        お探しのページは移動または削除された可能性があります。<br>
+        URLをご確認いただくか、以下のリンクからお探しください。
+      </p>
+      
+      <div class="error-actions">
+        <a href="{{ '/' | relative_url }}" class="btn btn-primary">
+          トップページへ
+        </a>
+        <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary">
+          お問い合わせ
+        </a>
+      </div>
+      
+      <div class="helpful-links">
+        <h3>よく見られているページ</h3>
+        <ul>
+          <li><a href="{{ '/#services' | relative_url }}">サービス一覧</a></li>
+          <li><a href="{{ '/blog/' | relative_url }}">ブログ</a></li>
+          <li><a href="{{ '/company/' | relative_url }}">会社概要</a></li>
+          <li><a href="{{ '/case-studies/beauty-salon/' | relative_url }}">導入事例</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.error-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.error-message {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.error-description {
+  font-size: 1.125rem;
+  color: #d1d5db;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 640px) {
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.helpful-links {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+.helpful-links h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.helpful-links ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.helpful-links a {
+  color: #8b5cf6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.helpful-links a:hover {
+  color: #ec4899;
+  text-decoration: underline;
+}
+</style>

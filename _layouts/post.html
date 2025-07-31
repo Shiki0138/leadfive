@@ -1,0 +1,348 @@
+---
+layout: default
+---
+
+<article class="blog-post">
+  <header class="post-header">
+    <div class="container">
+      <div class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%Y年%m月%d日" }}
+        </time>
+        {% if page.categories %}
+        <span class="categories">
+          {% for category in page.categories %}
+          <a href="/blog/category/{{ category | slugify }}/">{{ category }}</a>
+          {% endfor %}
+        </span>
+        {% endif %}
+      </div>
+      <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.excerpt %}
+      <p class="post-excerpt">{{ page.excerpt }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-content">
+    <div class="container">
+      <div class="content-wrapper">
+        {{ content }}
+      </div>
+      
+      <div class="post-footer">
+        <div class="share-buttons">
+          <h4>この記事をシェア</h4>
+          <div class="share-links">
+            <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener" class="share-link twitter">
+              Twitter
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener" class="share-link facebook">
+              Facebook
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener" class="share-link linkedin">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        
+        {% if page.tags %}
+        <div class="post-tags">
+          <h4>タグ</h4>
+          <div class="tags">
+            {% for tag in page.tags %}
+            <a href="/blog/tag/{{ tag | slugify }}/" class="tag">#{{ tag }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="post-navigation">
+        {% if page.previous %}
+        <a href="{{ page.previous.url | relative_url }}" class="nav-link prev">
+          <span>← 前の記事</span>
+          <strong>{{ page.previous.title }}</strong>
+        </a>
+        {% endif %}
+        
+        {% if page.next %}
+        <a href="{{ page.next.url | relative_url }}" class="nav-link next">
+          <span>次の記事 →</span>
+          <strong>{{ page.next.title }}</strong>
+        </a>
+        {% endif %}
+      </div>
+      
+      <div class="cta-section glass-card">
+        <h3>AI×心理学マーケティングに興味がありますか？</h3>
+        <p>無料診断で、あなたのビジネスの可能性を発見しましょう。</p>
+        <a href="/contact/" class="btn btn-primary">無料診断を受ける</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+.blog-post {
+  padding-top: 6rem;
+}
+
+.post-header {
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.1), transparent);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.post-meta {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.post-meta time {
+  margin-right: 1rem;
+}
+
+.categories a {
+  color: #8b5cf6;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+.categories a:hover {
+  text-decoration: underline;
+}
+
+.post-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .post-title {
+    font-size: 2rem;
+  }
+}
+
+.post-excerpt {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-content {
+  padding: 4rem 0;
+}
+
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.content-wrapper h2 {
+  font-size: 2rem;
+  margin: 3rem 0 1.5rem;
+}
+
+.content-wrapper h3 {
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem;
+}
+
+.content-wrapper p {
+  margin-bottom: 1.5rem;
+  color: #e5e7eb;
+}
+
+.content-wrapper ul,
+.content-wrapper ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.content-wrapper li {
+  margin-bottom: 0.5rem;
+  color: #e5e7eb;
+}
+
+.content-wrapper blockquote {
+  border-left: 4px solid #8b5cf6;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #d1d5db;
+}
+
+.content-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+.content-wrapper code {
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.content-wrapper pre {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.content-wrapper pre code {
+  background: none;
+  padding: 0;
+}
+
+.post-footer {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.share-buttons {
+  margin-bottom: 2rem;
+}
+
+.share-buttons h4 {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.share-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.share-link {
+  padding: 0.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.share-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.share-link.twitter:hover {
+  border-color: #1DA1F2;
+  color: #1DA1F2;
+}
+
+.share-link.facebook:hover {
+  border-color: #1877F2;
+  color: #1877F2;
+}
+
+.share-link.linkedin:hover {
+  border-color: #0A66C2;
+  color: #0A66C2;
+}
+
+.post-tags {
+  margin-bottom: 2rem;
+}
+
+.post-tags h4 {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 9999px;
+  color: #8b5cf6;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background: rgba(139, 92, 246, 0.2);
+}
+
+.post-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 4rem 0;
+}
+
+.nav-link {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.nav-link span {
+  display: block;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.nav-link strong {
+  display: block;
+  font-size: 1.125rem;
+}
+
+.nav-link.prev {
+  text-align: left;
+}
+
+.nav-link.next {
+  text-align: right;
+  grid-column: 2;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 3rem;
+  margin-top: 4rem;
+}
+
+.cta-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  color: #d1d5db;
+  margin-bottom: 2rem;
+}
+</style>

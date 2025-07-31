@@ -1,0 +1,401 @@
+---
+layout: default
+---
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-background">
+    <canvas id="neural-network-canvas"></canvas>
+  </div>
+  
+  <div class="container hero-content">
+    <div class="empathy-message">
+      <p>深夜、売上レポートを見つめるあなたへ。</p>
+    </div>
+    
+    <h1 class="hero-title">
+      <span class="gradient-text">AI × 人間心理</span>で<br>
+      売上を<span class="highlight">科学</span>する
+    </h1>
+    
+    <p class="hero-subtitle">
+      人間の8つの本能を理解し、AIで最適化。<br>
+      あなたのビジネスに、予測可能な成長を。
+    </p>
+    
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="openAIAnalysis()">
+        無料でAI分析を受ける
+      </button>
+      <button class="btn btn-secondary" onclick="scrollToSection('services')">
+        サービスを見る
+      </button>
+    </div>
+    
+    <div class="success-preview">
+      <p class="preview-title">6ヶ月後のあなた</p>
+      <div class="preview-metrics">
+        <div class="metric">
+          <span class="value">2.2x</span>
+          <span class="label">売上成長</span>
+        </div>
+        <div class="metric">
+          <span class="value">267%</span>
+          <span class="label">CV率向上</span>
+        </div>
+        <div class="metric">
+          <span class="value">42%</span>
+          <span class="label">コスト削減</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section id="problem" class="problem-section">
+  <div class="container">
+    <h2 class="section-title">なぜ今、多くのビジネスが<span class="text-danger">停滞</span>するのか？</h2>
+    
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">😰</div>
+        <h3>広告費は増えるのに売上は横ばい</h3>
+        <p>競合が増え、広告単価は上昇。でも成果は...</p>
+      </div>
+      
+      <div class="problem-card">
+        <div class="problem-icon">🤖</div>
+        <h3>AIツールを導入したが使いこなせない</h3>
+        <p>「とりあえずChatGPT」では競合と差がつかない</p>
+      </div>
+      
+      <div class="problem-card">
+        <div class="problem-icon">📊</div>
+        <h3>データはあるが、次の一手が見えない</h3>
+        <p>分析ツールの数値を眺めるだけの日々</p>
+      </div>
+    </div>
+    
+    <div class="truth-reveal">
+      <h3>真実：<span class="gradient-text">人間の購買行動の95%は無意識</span></h3>
+      <p>データやロジックだけでは、人は動かない。<br>
+      必要なのは、8つの本能に訴えかける科学的アプローチ。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy Section -->
+<section id="philosophy" class="philosophy-section">
+  <div class="container">
+    <h2 class="section-title">
+      人間の<span class="gradient-text">8つの本能</span>を理解すれば<br>
+      ビジネスは驚くほどシンプルになる
+    </h2>
+    
+    <div class="philosophy-content">
+      <div class="philosophy-text">
+        <p class="lead">
+          私たちは20年以上、人間心理とマーケティングの関係を研究してきました。
+        </p>
+        <p>
+          その結果たどり着いたのが、人間の行動を支配する「8つの本能」という考え方。
+          これらの本能を理解し、適切に刺激することで、
+          お客様は自然とあなたの商品・サービスを選ぶようになります。
+        </p>
+      </div>
+      
+      <div class="instincts-grid">
+        <div class="instinct-card">
+          <span class="instinct-icon">🛡️</span>
+          <h4>生存本能</h4>
+          <p>安全・安心を求める</p>
+        </div>
+        <div class="instinct-card">
+          <span class="instinct-icon">🍽️</span>
+          <h4>食欲</h4>
+          <p>満足を追求する</p>
+        </div>
+        <div class="instinct-card">
+          <span class="instinct-icon">❤️</span>
+          <h4>性的本能</h4>
+          <p>魅力的でありたい</p>
+        </div>
+        <div class="instinct-card">
+          <span class="instinct-icon">😡</span>
+          <h4>危険回避本能</h4>
+          <p>リスクを避ける</p>
+        </div>
+        <div class="instinct-card">
+          <span class="instinct-icon">😌</span>
+          <h4>快適性追求</h4>
+          <p>楽をしたい</p>
+        </div>
+        <div class="instinct-card">
+          <span class="instinct-icon">👑</span>
+          <h4>優越本能</h4>
+          <p>特別でありたい</p>
+        </div>
+        <div class="instinct-card">
+          <span class="instinct-icon">👥</span>
+          <h4>集団帰属本能</h4>
+          <p>仲間でいたい</p>
+        </div>
+        <div class="instinct-card">
+          <span class="instinct-icon">🎯</span>
+          <h4>承認欲求</h4>
+          <p>認められたい</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services-section">
+  <div class="container">
+    <h2 class="section-title">
+      あなたの課題を解決する<br>
+      <span class="gradient-text">4つの変革サービス</span>
+    </h2>
+    
+    <div class="services-grid">
+      {% for service in site.services limit:4 %}
+      <div class="service-card" data-service="{{ forloop.index }}">
+        <div class="service-icon">{{ service.icon }}</div>
+        <h3>{{ service.title }}</h3>
+        <p class="service-subtitle">{{ service.subtitle }}</p>
+        <div class="service-story">
+          <p class="story-hook">{{ service.story }}</p>
+          <p>{{ service.detail }}</p>
+        </div>
+        <ul class="service-features">
+          {% for feature in service.features %}
+          <li>
+            <strong>{{ feature.title }}</strong>
+            <span class="metric">{{ feature.metric }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="{{ service.url | relative_url }}" class="btn btn-service">
+          詳しく見る
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Case Studies Section -->
+<section id="case-studies" class="case-studies-section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="gradient-text">変革の実例</span><br>
+      お客様と共に創った成功ストーリー
+    </h2>
+    
+    <div class="case-studies-grid">
+      {% for case in site.case_studies limit:3 %}
+      <div class="case-study-card">
+        <div class="case-header">
+          <span class="industry">{{ case.industry }}</span>
+          <h3>{{ case.title }}</h3>
+        </div>
+        
+        <div class="before-after">
+          <div class="before">
+            <h4>Before</h4>
+            <p class="situation">{{ case.before_situation }}</p>
+            <p class="emotion">{{ case.before_emotion }}</p>
+          </div>
+          
+          <div class="transformation">
+            <span class="arrow">→</span>
+          </div>
+          
+          <div class="after">
+            <h4>After</h4>
+            <p class="result">{{ case.after_result }}</p>
+            <p class="emotion">{{ case.after_emotion }}</p>
+          </div>
+        </div>
+        
+        <div class="case-metrics">
+          <div class="metric">
+            <span class="label">{{ case.metric1_label }}</span>
+            <span class="value">{{ case.metric1_value }}</span>
+          </div>
+          <div class="metric">
+            <span class="label">{{ case.metric2_label }}</span>
+            <span class="value">{{ case.metric2_value }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Why Now Section -->
+<section id="why-now" class="why-now-section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="text-danger">なぜ今なのか？</span><br>
+      6ヶ月後の未来からの手紙
+    </h2>
+    
+    <div class="future-letter-container">
+      <div class="letter-choice">
+        <button class="choice-btn" onclick="showLetter('action')">
+          今行動した場合
+        </button>
+        <button class="choice-btn" onclick="showLetter('wait')">
+          様子を見た場合
+        </button>
+      </div>
+      
+      <div id="action-letter" class="future-letter" style="display: none;">
+        <h3>6ヶ月後のあなたへ</h3>
+        <p>
+          あの時、勇気を出して一歩踏み出してくれてありがとう。<br>
+          今、売上は2.2倍、新規顧客は毎月安定的に増え続けています。<br>
+          AIと心理学の組み合わせが、こんなに強力だとは思いませんでした。<br>
+          競合はまだ気づいていません。この差は、さらに広がるでしょう。
+        </p>
+        <p class="signature">- 6ヶ月後の成功したあなたより</p>
+      </div>
+      
+      <div id="wait-letter" class="future-letter" style="display: none;">
+        <h3>6ヶ月後のあなたへ</h3>
+        <p>
+          あの時、なぜ行動しなかったのだろう...<br>
+          競合A社は3ヶ月前にAI×心理学マーケティングを導入。<br>
+          彼らのシェアは30%も増加し、うちの顧客も奪われ始めています。<br>
+          今から追いつくには、3倍の投資が必要になりそうです。
+        </p>
+        <p class="signature">- 6ヶ月後の後悔しているあなたより</p>
+      </div>
+    </div>
+    
+    <div class="urgency-factors">
+      <h3>今すぐ行動すべき3つの理由</h3>
+      <div class="factors-grid">
+        <div class="factor">
+          <span class="factor-icon">⏰</span>
+          <h4>AI進化は加速している</h4>
+          <p>1ヶ月の遅れが、1年分の差になる時代</p>
+        </div>
+        <div class="factor">
+          <span class="factor-icon">📈</span>
+          <h4>競合も動き始めている</h4>
+          <p>先行者利益は、今この瞬間にある</p>
+        </div>
+        <div class="factor">
+          <span class="factor-icon">💰</span>
+          <h4>投資対効果が最も高い</h4>
+          <p>今なら最小投資で最大効果を得られる</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Belief Section -->
+<section id="belief" class="belief-section">
+  <div class="container">
+    <h2 class="section-title">
+      私の<span class="gradient-text">信念</span>
+    </h2>
+    
+    <div class="representative-message">
+      <p class="quote">
+        「データやAIは確かに重要です。<br>
+        でも、それ以上に大切なのは<br>
+        <span class="highlight">人間への深い理解と共感</span>です。」
+      </p>
+      <p class="message">
+        私たちは技術を売っているのではありません。<br>
+        あなたのビジネスと、その先にいるお客様の<br>
+        幸せな未来を創造しているのです。
+      </p>
+    </div>
+    
+    <div class="beliefs-grid">
+      <div class="belief-card">
+        <div class="belief-icon">❤️</div>
+        <h3>人を理解することから全てが始まる</h3>
+        <p>技術やデータの前に、まず「人間」を深く理解する。それが私の原点です。</p>
+      </div>
+      
+      <div class="belief-card">
+        <div class="belief-icon">🎯</div>
+        <h3>本質を見抜き、シンプルに解決する</h3>
+        <p>複雑に見える問題も、人間の本能という視点で見れば、驚くほどシンプルになります。</p>
+      </div>
+      
+      <div class="belief-card">
+        <div class="belief-icon">💡</div>
+        <h3>常識を疑い、新しい道を創る</h3>
+        <p>「今までこうだった」は関係ない。人間心理とAIの融合で、新しい可能性を切り開きます。</p>
+      </div>
+      
+      <div class="belief-card">
+        <div class="belief-icon">🚀</div>
+        <h3>共に成長し、共に成功する</h3>
+        <p>クライアントの成功が私の成功。一緒に挑戦し、一緒に喜びを分かち合いたい。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="final-cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">
+        AIは<span class="text-danger">待ってくれない。</span><br>
+        でも、人間の本能は<span class="gradient-text">変わらない。</span>
+      </h2>
+      
+      <p class="cta-subtitle">
+        この2つを味方につけた企業だけが、<br>
+        次の時代を<span class="highlight">制する</span>。
+      </p>
+      
+      <div class="cta-benefits">
+        <h3>今すぐ始める3つの理由</h3>
+        <ul>
+          <li>✓ 無料AI診断で、あなたのビジネスの可能性が分かる</li>
+          <li>✓ 30分の無料相談で、具体的な戦略が見える</li>
+          <li>✓ リスクゼロで、プロのアドバイスが受けられる</li>
+        </ul>
+      </div>
+      
+      <div class="cta-buttons">
+        <button class="btn btn-primary btn-large" onclick="openAIAnalysis()">
+          無料AI診断を受ける
+        </button>
+        <button class="btn btn-secondary btn-large" onclick="openContactForm()">
+          30分無料相談を予約
+        </button>
+      </div>
+      
+      <div class="trust-indicators">
+        <span>✓ 500社以上の実績</span>
+        <span>✓ 満足度98.5%</span>
+        <span>✓ 完全秘密保持</span>
+        <span>✓ 成果保証</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI Analysis Modal -->
+<div id="ai-analysis-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAIAnalysis()">&times;</span>
+    <h2>無料AI分析</h2>
+    <p>あなたのビジネスに最適な戦略を診断します</p>
+    <!-- AI診断フォームをここに実装 -->
+  </div>
+</div>
