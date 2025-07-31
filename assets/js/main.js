@@ -1,78 +1,127 @@
-// Neural Network Canvas Animation
+// Neural Network Canvas Animation with Performance Optimization
 function initNeuralNetworkCanvas() {
   const canvas = document.getElementById('neural-network-canvas');
   if (!canvas) return;
   
   const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  const container = canvas.parentElement;
   
-  const nodes = [];
-  const nodeCount = 50;
-  
-  // Create nodes
-  for (let i = 0; i < nodeCount; i++) {
-    nodes.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      radius: Math.random() * 3 + 1
-    });
+  // Responsive canvas sizing
+  function resizeCanvas() {
+    const rect = container.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    
+    // Recreate nodes on resize
+    createNodes();
   }
   
-  function animate() {
+  const nodes = [];
+  let nodeCount = 40; // Reduced for better performance
+  
+  // Dynamic node count based on screen size
+  function createNodes() {
+    nodes.length = 0;
+    nodeCount = window.innerWidth < 768 ? 20 : 40; // Fewer nodes on mobile
+    
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.5 + 0.3
+      });
+    }
+  }
+  
+  // Performance optimization with throttling
+  let animationId;
+  let lastTime = 0;
+  const fps = 30; // Target FPS for better performance
+  const fpsInterval = 1000 / fps;
+  
+  function animate(currentTime) {
+    animationId = requestAnimationFrame(animate);
+    
+    // Throttle animation frame rate
+    if (currentTime - lastTime < fpsInterval) return;
+    lastTime = currentTime;
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Update nodes
+    // Update nodes with boundary checking
     nodes.forEach(node => {
       node.x += node.vx;
       node.y += node.vy;
       
-      if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-      if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+      // Bounce off edges
+      if (node.x <= 0 || node.x >= canvas.width) {
+        node.vx *= -1;
+        node.x = Math.max(0, Math.min(canvas.width, node.x));
+      }
+      if (node.y <= 0 || node.y >= canvas.height) {
+        node.vy *= -1;
+        node.y = Math.max(0, Math.min(canvas.height, node.y));
+      }
     });
     
-    // Draw connections
-    ctx.strokeStyle = 'rgba(139, 92, 246, 0.1)';
-    ctx.lineWidth = 1;
+    // Draw connections with distance optimization
+    const maxDistance = window.innerWidth < 768 ? 80 : 120;
     
-    nodes.forEach((node1, i) => {
-      nodes.slice(i + 1).forEach(node2 => {
-        const distance = Math.sqrt(
-          Math.pow(node1.x - node2.x, 2) + 
-          Math.pow(node1.y - node2.y, 2)
-        );
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const node1 = nodes[i];
+        const node2 = nodes[j];
+        const dx = node1.x - node2.x;
+        const dy = node1.y - node2.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
         
-        if (distance < 150) {
+        if (distance < maxDistance) {
+          const opacity = (1 - distance / maxDistance) * 0.15;
           ctx.beginPath();
           ctx.moveTo(node1.x, node1.y);
           ctx.lineTo(node2.x, node2.y);
-          ctx.globalAlpha = 1 - distance / 150;
+          ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`;
+          ctx.lineWidth = 0.5;
           ctx.stroke();
         }
-      });
-    });
+      }
+    }
     
     // Draw nodes
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = 'rgba(139, 92, 246, 0.5)';
-    
     nodes.forEach(node => {
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(139, 92, 246, ${node.opacity})`;
       ctx.fill();
     });
-    
-    requestAnimationFrame(animate);
   }
   
-  animate();
+  // Initialize canvas and start animation
+  resizeCanvas();
+  animate(0);
   
-  // Resize handler
+  // Throttled resize handler
+  let resizeTimeout;
   window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(resizeCanvas, 100);
+  });
+  
+  // Pause animation when tab is not visible (performance optimization)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+    } else {
+      if (!animationId) {
+        animate(0);
+      }
+    }
   });
 }
 
@@ -171,18 +220,42 @@ function scrollToSection(sectionId) {
   }
 }
 
-// Future letter functionality
+// Future letter functionality with smooth transitions
 function showLetter(type) {
   const actionLetter = document.getElementById('action-letter');
   const waitLetter = document.getElementById('wait-letter');
+  const buttons = document.querySelectorAll('.choice-btn');
   
-  if (type === 'action') {
-    actionLetter.style.display = 'block';
-    waitLetter.style.display = 'none';
-  } else {
-    actionLetter.style.display = 'none';
-    waitLetter.style.display = 'block';
-  }
+  // Update button states
+  buttons.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.onclick && btn.onclick.toString().includes(type)) {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Hide all letters first
+  [actionLetter, waitLetter].forEach(letter => {
+    if (letter) {
+      letter.style.opacity = '0';
+      letter.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        letter.style.display = 'none';
+      }, 300);
+    }
+  });
+  
+  // Show selected letter after transition
+  setTimeout(() => {
+    const targetLetter = type === 'action' ? actionLetter : waitLetter;
+    if (targetLetter) {
+      targetLetter.style.display = 'block';
+      // Trigger reflow
+      targetLetter.offsetHeight;
+      targetLetter.style.opacity = '1';
+      targetLetter.style.transform = 'translateY(0)';
+    }
+  }, 350);
 }
 
 // Initialize everything when DOM is loaded
@@ -191,7 +264,174 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initSmoothScroll();
   initScrollAnimations();
+  initHeaderScrollEffect();
+  initModalFunctionality();
+  initLetterInteraction();
 });
+
+// Header scroll effect for better UX
+function initHeaderScrollEffect() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  
+  let lastScrollY = window.scrollY;
+  
+  const scrollHandler = () => {
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY > 100) {
+      header.style.background = 'rgba(10, 10, 10, 0.95)';
+      header.style.backdropFilter = 'blur(15px)';
+    } else {
+      header.style.background = 'rgba(10, 10, 10, 0.8)';
+      header.style.backdropFilter = 'blur(10px)';
+    }
+    
+    // Hide/show header on scroll
+    if (currentScrollY > 200) {
+      if (currentScrollY > lastScrollY && currentScrollY > 300) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+    }
+    
+    lastScrollY = currentScrollY;
+  };
+  
+  // Throttle scroll events
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        scrollHandler();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+}
+
+// Enhanced modal functionality
+function initModalFunctionality() {
+  const modal = document.getElementById('ai-analysis-modal');
+  if (!modal) return;
+  
+  // Close modal on backdrop click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeAIAnalysis();
+    }
+  });
+  
+  // Close modal on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      closeAIAnalysis();
+    }
+  });
+  
+  // Prevent body scroll when modal is open
+  const openAIAnalysisOriginal = window.openAIAnalysis;
+  window.openAIAnalysis = function() {
+    document.body.style.overflow = 'hidden';
+    if (openAIAnalysisOriginal) openAIAnalysisOriginal();
+  };
+  
+  const closeAIAnalysisOriginal = window.closeAIAnalysis;
+  window.closeAIAnalysis = function() {
+    document.body.style.overflow = 'auto';
+    if (closeAIAnalysisOriginal) closeAIAnalysisOriginal();
+  };
+}
+
+// Initialize letter interaction with proper event handling
+function initLetterInteraction() {
+  const choiceButtons = document.querySelectorAll('.choice-btn');
+  
+  choiceButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const onclick = this.getAttribute('onclick');
+      if (onclick) {
+        const match = onclick.match(/showLetter\('([^']+)'\)/);
+        if (match) {
+          showLetter(match[1]);
+        }
+      }
+    });
+  });
+  
+  // Show first letter by default
+  setTimeout(() => {
+    showLetter('action');
+  }, 500);
+}
+
+// Performance monitoring and optimization
+function initPerformanceOptimization() {
+  // Lazy load images
+  const images = document.querySelectorAll('img[data-src]');
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        observer.unobserve(img);
+      }
+    });
+  });
+  
+  images.forEach(img => imageObserver.observe(img));
+  
+  // Preload critical resources
+  const criticalLinks = [
+    'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap'
+  ];
+  
+  criticalLinks.forEach(href => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'style';
+    link.href = href;
+    document.head.appendChild(link);
+  });
+}
+
+// Touch and gesture support for mobile
+function initTouchSupport() {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  
+  document.addEventListener('touchend', (e) => {
+    if (!touchStartX || !touchStartY) return;
+    
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    
+    const diffX = touchStartX - touchEndX;
+    const diffY = touchStartY - touchEndY;
+    
+    // Swipe detection for future use
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          // Swipe left
+        } else {
+          // Swipe right
+        }
+      }
+    }
+    
+    touchStartX = 0;
+    touchStartY = 0;
+  }, { passive: true });
+}
 
 // Service card hover effects
 document.addEventListener('DOMContentLoaded', () => {

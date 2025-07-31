@@ -160,8 +160,8 @@ layout: default
     </h2>
     
     <div class="services-grid">
-      {% for service in site.services limit:4 %}
-      <div class="service-card" data-service="{{ forloop.index }}">
+      {% for service in site.data.services limit:4 %}
+      <div class="service-card glass-card" data-service="{{ forloop.index }}">
         <div class="service-icon">{{ service.icon }}</div>
         <h3>{{ service.title }}</h3>
         <p class="service-subtitle">{{ service.subtitle }}</p>
@@ -177,7 +177,7 @@ layout: default
           </li>
           {% endfor %}
         </ul>
-        <a href="{{ service.url | relative_url }}" class="btn btn-service">
+        <a href="{{ service.url | relative_url }}" class="btn btn-secondary btn-service">
           詳しく見る
         </a>
       </div>
@@ -195,7 +195,7 @@ layout: default
     </h2>
     
     <div class="case-studies-grid">
-      {% for case in site.case_studies limit:3 %}
+      {% for case in site.data.case_studies limit:3 %}
       <div class="case-study-card">
         <div class="case-header">
           <span class="industry">{{ case.industry }}</span>
@@ -394,8 +394,124 @@ layout: default
 <div id="ai-analysis-modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeAIAnalysis()">&times;</span>
-    <h2>無料AI分析</h2>
-    <p>あなたのビジネスに最適な戦略を診断します</p>
-    <!-- AI診断フォームをここに実装 -->
+    <h2>無料AI分析診断</h2>
+    <p>あなたのビジネスに最適な戦略を30秒で診断します</p>
+    
+    <form class="ai-analysis-form">
+      <div class="form-group">
+        <label for="business-type">業種を選択してください</label>
+        <select id="business-type" name="business-type" required>
+          <option value="">選択してください</option>
+          <option value="ec">EC・オンライン販売</option>
+          <option value="retail">実店舗・小売</option>
+          <option value="service">サービス業</option>
+          <option value="btob">BtoB・法人向け</option>
+          <option value="beauty">美容・サロン</option>
+          <option value="consulting">コンサルティング</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="monthly-revenue">月間売上規模</label>
+        <select id="monthly-revenue" name="monthly-revenue" required>
+          <option value="">選択してください</option>
+          <option value="under-100">100万円未満</option>
+          <option value="100-500">100万円〜500万円</option>
+          <option value="500-1000">500万円〜1000万円</option>
+          <option value="1000-5000">1000万円〜5000万円</option>
+          <option value="over-5000">5000万円以上</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="main-challenge">最も大きな課題</label>
+        <select id="main-challenge" name="main-challenge" required>
+          <option value="">選択してください</option>
+          <option value="traffic">集客・アクセス数の不足</option>
+          <option value="conversion">成約率・CVRの低さ</option>
+          <option value="retention">リピーター・LTV向上</option>
+          <option value="cost">広告費・獲得コストの高騰</option>
+          <option value="analysis">データ分析・改善方法</option>
+          <option value="automation">業務効率・自動化</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">メールアドレス（結果送信用）</label>
+        <input type="email" id="email" name="email" placeholder="example@company.com" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-large">
+        無料で診断結果を受け取る
+      </button>
+    </form>
+    
+    <p class="privacy-note">
+      ※診断結果は入力いただいたメールアドレスに送信されます<br>
+      ※個人情報は厳重に管理し、第三者に提供することはありません
+    </p>
   </div>
 </div>
+
+<style>
+.ai-analysis-form {
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.form-group option {
+  background: #1f2937;
+  color: #fff;
+}
+
+.privacy-note {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 1.5rem;
+  }
+  
+  .form-group select,
+  .form-group input {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+</style>
