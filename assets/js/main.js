@@ -125,20 +125,30 @@ function initNeuralNetworkCanvas() {
   });
 }
 
-// Mobile menu toggle
+// Mobile menu toggle with improved functionality
 function initMobileMenu() {
   const toggler = document.querySelector('.navbar-toggler');
   const menu = document.querySelector('.navbar-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
   
   if (toggler && menu) {
-    toggler.addEventListener('click', () => {
+    toggler.addEventListener('click', (e) => {
+      e.stopPropagation();
       menu.classList.toggle('active');
       toggler.classList.toggle('active');
     });
     
+    // Close menu when clicking nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+        toggler.classList.remove('active');
+      });
+    });
+    
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
+      if (!menu.contains(e.target) && !toggler.contains(e.target)) {
         menu.classList.remove('active');
         toggler.classList.remove('active');
       }
@@ -186,11 +196,17 @@ function initScrollAnimations() {
   });
 }
 
-// AI Analysis Modal
+// AI Analysis Modal with fixed functionality
 function openAIAnalysis() {
   const modal = document.getElementById('ai-analysis-modal');
   if (modal) {
-    modal.classList.add('active');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Add fade-in animation
+    setTimeout(() => {
+      modal.classList.add('active');
+    }, 10);
   }
 }
 
@@ -198,8 +214,17 @@ function closeAIAnalysis() {
   const modal = document.getElementById('ai-analysis-modal');
   if (modal) {
     modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 300);
   }
 }
+
+// Make functions globally accessible
+window.openAIAnalysis = openAIAnalysis;
+window.closeAIAnalysis = closeAIAnalysis;
 
 // Contact form
 function openContactForm() {
@@ -217,8 +242,21 @@ function scrollToSection(sectionId) {
       top: targetPosition,
       behavior: 'smooth'
     });
+    
+    // Close mobile menu if open
+    const menu = document.querySelector('.navbar-menu');
+    const toggler = document.querySelector('.navbar-toggler');
+    if (menu && toggler) {
+      menu.classList.remove('active');
+      toggler.classList.remove('active');
+    }
   }
 }
+
+// Make functions globally accessible
+window.openContactForm = openContactForm;
+window.scrollToSection = scrollToSection;
+window.showLetter = showLetter;
 
 // Future letter functionality with smooth transitions
 function showLetter(type) {
@@ -331,18 +369,40 @@ function initModalFunctionality() {
     }
   });
   
-  // Prevent body scroll when modal is open
-  const openAIAnalysisOriginal = window.openAIAnalysis;
-  window.openAIAnalysis = function() {
-    document.body.style.overflow = 'hidden';
-    if (openAIAnalysisOriginal) openAIAnalysisOriginal();
-  };
-  
-  const closeAIAnalysisOriginal = window.closeAIAnalysis;
-  window.closeAIAnalysis = function() {
-    document.body.style.overflow = 'auto';
-    if (closeAIAnalysisOriginal) closeAIAnalysisOriginal();
-  };
+  // Handle form submission
+  const form = modal.querySelector('.ai-analysis-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = {
+        businessType: form.querySelector('#business-type').value,
+        monthlyRevenue: form.querySelector('#monthly-revenue').value,
+        mainChallenge: form.querySelector('#main-challenge').value,
+        email: form.querySelector('#email').value
+      };
+      
+      // Show success message
+      const modalContent = modal.querySelector('.modal-content');
+      modalContent.innerHTML = `
+        <span class="close" onclick="closeAIAnalysis()">&times;</span>
+        <h2>診断を受け付けました</h2>
+        <p style="margin: 2rem 0; text-align: center;">
+          ご入力いただいたメールアドレスに、<br>
+          診断結果を送信いたしました。<br><br>
+          詳細なご相談をご希望の場合は、<br>
+          お気軽にお問い合わせください。
+        </p>
+        <button class="btn btn-primary btn-large" onclick="closeAIAnalysis()" style="width: 100%;">
+          閉じる
+        </button>
+      `;
+      
+      // Simulate sending data (in production, this would be an API call)
+      console.log('AI Analysis Form Data:', formData);
+    });
+  }
 }
 
 // Initialize letter interaction with proper event handling
