@@ -1,0 +1,408 @@
+// Contact Form Enhancement Styles
+// Form Integration Specialist - Enhanced Contact Form CSS
+
+/* Enhanced Form Validation States */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+
+  input, textarea, select {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    &:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    &.error {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    &.valid {
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      
+      &::after {
+        content: "✓";
+        position: absolute;
+        right: 0.75rem;
+        color: #10b981;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/* Field Error Messages */
+.field-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: slideInError 0.3s ease-out;
+
+  &::before {
+    content: "⚠";
+    font-size: 1rem;
+  }
+}
+
+@keyframes slideInError {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Messages */
+.form-message {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  animation: slideInMessage 0.5s ease-out;
+
+  &.success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+    
+    &::before {
+      content: "✅ ";
+      margin-right: 0.5rem;
+    }
+  }
+
+  &.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    
+    &::before {
+      content: "❌ ";
+      margin-right: 0.5rem;
+    }
+  }
+
+  &.warning {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+    
+    &::before {
+      content: "⚠️ ";
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@keyframes slideInMessage {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Submit Button */
+.contact-form button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+  min-height: 50px;
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Improved Checkbox Styling */
+.checkbox-label {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: #fff;
+    
+    .checkmark {
+      background: rgba(139, 92, 246, 0.2);
+      border-color: rgba(139, 92, 246, 0.5);
+    }
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+
+    &:focus + .checkmark {
+      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
+    }
+
+    &:checked + .checkmark {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+      transform: scale(1.05);
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1.25rem;
+    width: 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 0.25rem;
+      top: 0.125rem;
+      width: 0.25rem;
+      height: 0.5rem;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  input:checked ~ .checkmark:after {
+    display: block;
+    animation: checkmarkAppear 0.3s ease-out;
+  }
+}
+
+@keyframes checkmarkAppear {
+  from {
+    opacity: 0;
+    transform: rotate(45deg) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+/* Auto-resize Textarea */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  transition: height 0.2s ease;
+}
+
+/* Enhanced Select Styling */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d1d5db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+
+  &:focus {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b5cf6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  }
+}
+
+/* Mobile Enhancements */
+@media (max-width: 768px) {
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .checkbox-group {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .checkbox-label {
+    min-height: 44px; /* iOS touch target minimum */
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .form-message {
+    font-size: 0.9rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  /* Improve input spacing on mobile */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0.875rem;
+  }
+}
+
+/* Focus Management for Accessibility */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border-width: 2px;
+  }
+
+  .field-error {
+    font-weight: 600;
+  }
+
+  .form-message {
+    border-width: 2px;
+    font-weight: 600;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  .checkmark,
+  .checkbox-label,
+  button[type="submit"] {
+    transition: none;
+  }
+
+  .field-error,
+  .form-message {
+    animation: none;
+  }
+}
+
+/* Loading State Styles */
+.form-loading {
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    border-radius: 20px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid transparent;
+    border-top: 2px solid #8b5cf6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 11;
+  }
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Success Animation */
+.form-success {
+  .contact-form {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+/* Thank You Page Styles */
+.thank-you-container {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .thank-you-icon {
+    font-size: 4rem;
+    color: #10b981;
+    margin-bottom: 2rem;
+    animation: bounceIn 0.8s ease-out;
+  }
+
+  h1 {
+    color: #8b5cf6;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #d1d5db;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

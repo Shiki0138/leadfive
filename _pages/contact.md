@@ -17,10 +17,13 @@ permalink: /contact/
           <p>AI×心理学マーケティングに関するご相談、サービスについてのご質問など、<br>どんなことでもお気軽にお問い合わせください。</p>
         </div>
         
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
-          <input type="hidden" name="_to" value="{{ site.forms.contact_email }}">
-          <input type="hidden" name="_subject" value="【LeadFive】お問い合わせ">
-          <input type="hidden" name="_cc" value="{{ site.forms.contact_email }}">
+        <form action="{{ site.data.contact.form_service.endpoint }}" method="POST" class="contact-form" id="contact-form">
+          <input type="hidden" name="_subject" value="{{ site.data.contact.email.subject }}">
+          <input type="hidden" name="_next" value="{{ site.url }}{{ site.baseurl }}/contact/thank-you/">
+          <input type="hidden" name="_replyto" value="">
+          <input type="hidden" name="_format" value="plain">
+          
+          <!-- スパム対策用ハニーポット（JavaScriptで追加される） -->
           
           <div class="form-row">
             <div class="form-group">
@@ -426,3 +429,78 @@ permalink: /contact/
   }
 }
 </style>
+
+<!-- Font Awesome for icons (if not already included) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Enhanced Contact Form JavaScript -->
+<script src="{{ '/assets/js/contact.js' | relative_url }}"></script>
+
+<!-- Enhanced Contact Form CSS -->
+<link rel="stylesheet" href="{{ '/assets/css/contact-form.css' | relative_url }}">
+
+<script>
+// Initialize contact form with configuration from Jekyll data
+document.addEventListener('DOMContentLoaded', function() {
+  // Configuration from Jekyll data
+  const formConfig = {
+    endpoint: "{{ site.data.contact.form_service.endpoint }}",
+    provider: "{{ site.data.contact.form_service.provider }}",
+    features: {
+      honeypot: {{ site.data.contact.features.honeypot }},
+      rateLimiting: {{ site.data.contact.features.rate_limiting }},
+      clientValidation: {{ site.data.contact.features.client_validation }},
+      realTimeValidation: {{ site.data.contact.features.real_time_validation }},
+      autoFormatPhone: {{ site.data.contact.features.auto_format_phone }},
+      spamProtection: {{ site.data.contact.features.spam_protection }}
+    },
+    validation: {
+      requiredFields: {{ site.data.contact.validation.required_fields | jsonify }},
+      emailValidation: {{ site.data.contact.validation.email_validation }},
+      phoneValidation: {{ site.data.contact.validation.phone_validation }},
+      minMessageLength: {{ site.data.contact.validation.min_message_length }},
+      maxMessageLength: {{ site.data.contact.validation.max_message_length }}
+    },
+    messages: {
+      success: {
+        title: "{{ site.data.contact.messages.success.title }}",
+        body: "{{ site.data.contact.messages.success.body }}"
+      },
+      error: {
+        title: "{{ site.data.contact.messages.error.title }}",
+        body: "{{ site.data.contact.messages.error.body }}"
+      },
+      validation: {
+        required: "{{ site.data.contact.messages.validation.required }}",
+        email: "{{ site.data.contact.messages.validation.email }}",
+        phone: "{{ site.data.contact.messages.validation.phone }}",
+        privacy: "{{ site.data.contact.messages.validation.privacy }}"
+      }
+    },
+    rateLimit: {
+      cooldownMinutes: {{ site.data.contact.rate_limit.cooldown_minutes }},
+      dailyLimit: {{ site.data.contact.rate_limit.daily_limit }}
+    }
+  };
+
+  // Initialize contact form manager with configuration
+  if (window.ContactFormManager) {
+    const formManager = new ContactFormManager();
+    formManager.formEndpoint = formConfig.endpoint;
+    formManager.config = formConfig;
+  }
+  
+  // Update replyto field dynamically
+  const emailInput = document.getElementById('email');
+  const replytoField = document.querySelector('input[name="_replyto"]');
+  
+  if (emailInput && replytoField) {
+    emailInput.addEventListener('input', function() {
+      replytoField.value = this.value;
+    });
+  }
+  
+  // Set up form validation with configuration
+  window.formConfig = formConfig;
+});
+</script>

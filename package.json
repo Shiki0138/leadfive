@@ -4,7 +4,12 @@
   "description": "AI×心理学マーケティングコンサルティング会社「LeadFive」のJekyll製ウェブサイトです。",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "bundle exec jekyll build",
+    "serve": "bundle exec jekyll serve --livereload",
+    "generate-images": "node scripts/generate-business-images.js",
+    "enhance-design": "npm run generate-images && npm run build",
+    "dev": "bundle exec jekyll serve --livereload --incremental"
   },
   "repository": {
     "type": "git",
@@ -20,6 +25,7 @@
   "homepage": "https://github.com/Shiki0138/leadfive#readme",
   "dependencies": {
     "dotenv": "^17.2.1",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "@runware/sdk-js": "^1.5.0"
   }
 }
