@@ -25,6 +25,10 @@ bundle install
 
 3. ローカルサーバーを起動
 ```bash
+# 開発用（baseurlなし）
+bundle exec jekyll serve --config _config.yml,_config_development.yml
+
+# 本番環境と同じ設定で確認
 bundle exec jekyll serve
 ```
 

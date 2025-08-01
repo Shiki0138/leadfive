@@ -229,7 +229,8 @@ window.closeAIAnalysis = closeAIAnalysis;
 // Contact form
 function openContactForm() {
   // Redirect to contact page or open modal
-  window.location.href = '/contact/';
+  const baseurl = document.querySelector('meta[name="baseurl"]')?.content || '';
+  window.location.href = baseurl + '/contact/';
 }
 
 // Scroll to section
