@@ -383,24 +383,37 @@ function initModalFunctionality() {
         email: form.querySelector('#email').value
       };
       
-      // Show success message
+      // AI分析結果を生成（分岐ロジックで実装）
+      const analysisResult = generateAIAnalysis(formData);
+      
+      // Show analysis result
       const modalContent = modal.querySelector('.modal-content');
       modalContent.innerHTML = `
         <span class="close" onclick="closeAIAnalysis()">&times;</span>
-        <h2>診断を受け付けました</h2>
-        <p style="margin: 2rem 0; text-align: center;">
-          ご入力いただいたメールアドレスに、<br>
-          診断結果を送信いたしました。<br><br>
-          詳細なご相談をご希望の場合は、<br>
+        <h2>AI分析結果</h2>
+        <div style="margin: 2rem 0;">
+          <h3 style="color: #8b5cf6; margin-bottom: 1rem;">${analysisResult.title}</h3>
+          <div style="background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+            <p style="margin-bottom: 1rem;"><strong>現状分析：</strong></p>
+            <p style="color: #d1d5db; line-height: 1.8;">${analysisResult.analysis}</p>
+          </div>
+          <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+            <p style="margin-bottom: 1rem;"><strong>推奨アプローチ：</strong></p>
+            <p style="color: #d1d5db; line-height: 1.8;">${analysisResult.recommendation}</p>
+          </div>
+          <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 10px;">
+            <p style="margin-bottom: 1rem;"><strong>期待できる成果：</strong></p>
+            <p style="color: #d1d5db; line-height: 1.8;">${analysisResult.expectedResults}</p>
+          </div>
+        </div>
+        <p style="text-align: center; color: #9ca3af; margin-bottom: 1.5rem;">
+          より詳細な分析と戦略のご提案をご希望の場合は、<br>
           お気軽にお問い合わせください。
         </p>
-        <button class="btn btn-primary btn-large" onclick="closeAIAnalysis()" style="width: 100%;">
-          閉じる
+        <button class="btn btn-primary btn-large" onclick="window.location.href='/contact/'" style="width: 100%;">
+          お問い合わせへ
         </button>
       `;
-      
-      // Simulate sending data (in production, this would be an API call)
-      console.log('AI Analysis Form Data:', formData);
     });
   }
 }
@@ -491,6 +504,112 @@ function initTouchSupport() {
     touchStartX = 0;
     touchStartY = 0;
   }, { passive: true });
+}
+
+// AI分析結果生成関数（分岐ロジック）
+function generateAIAnalysis(formData) {
+  const { businessType, monthlyRevenue, mainChallenge } = formData;
+  
+  // 業種別の分析
+  const industryAnalysis = {
+    'ec': {
+      title: 'ECサイトの成長戦略',
+      focus: '購買心理とAIレコメンド'
+    },
+    'retail': {
+      title: '実店舗のデジタル変革',
+      focus: 'O2O戦略と顧客体験'
+    },
+    'service': {
+      title: 'サービス業のLTV向上',
+      focus: '顧客満足度とリピート率'
+    },
+    'btob': {
+      title: 'BtoBマーケティングの高度化',
+      focus: 'リード質と商談率'
+    },
+    'beauty': {
+      title: '美容サロンのブランディング',
+      focus: 'SNS活用と口コミ戦略'
+    },
+    'consulting': {
+      title: 'コンサルティングの差別化',
+      focus: '専門性と信頼性'
+    },
+    'other': {
+      title: 'ビジネス成長戦略',
+      focus: '業界特性に合わせた最適化'
+    }
+  };
+  
+  // 課題別の分析
+  const challengeAnalysis = {
+    'traffic': {
+      problem: '集客チャネルの偏りと広告依存',
+      solution: 'AIを活用したオーガニック流入強化',
+      result: '広告費削減と質の高いトラフィック獲得'
+    },
+    'conversion': {
+      problem: '訪問者の購買意欲を十分に引き出せていない',
+      solution: '8つの本能に基づくLP最適化',
+      result: 'CVR 2.5倍以上の向上実績'
+    },
+    'retention': {
+      problem: '顧客のニーズ変化への対応不足',
+      solution: 'AIを使ったパーソナライゼーション',
+      result: 'リピート率向上とLTV最大化'
+    },
+    'cost': {
+      problem: '競合激化による広告単価の高騰',
+      solution: 'AIを活用した効率的なターゲティング',
+      result: 'CAC 40%削減とROI改善'
+    },
+    'analysis': {
+      problem: 'データはあるが活用できていない',
+      solution: 'AI分析ツールと自動レポート',
+      result: '意思決定のスピード化と精度向上'
+    },
+    'automation': {
+      problem: '手作業が多く生産性が低い',
+      solution: 'AIを活用した業務自動化',
+      result: '作業時間 70%削減とコア業務への集中'
+    }
+  };
+  
+  // 売上規模別の分析
+  const revenueAnalysis = {
+    'under-100': {
+      stage: 'スタートアップフェーズ',
+      priority: '基盤構築と仕組み化'
+    },
+    '100-500': {
+      stage: '成長初期フェーズ',
+      priority: '効率化とスケール準備'
+    },
+    '500-1000': {
+      stage: '急成長フェーズ',
+      priority: 'システム化と自動化'
+    },
+    '1000-5000': {
+      stage: '拡大フェーズ',
+      priority: '差別化とブランディング'
+    },
+    'over-5000': {
+      stage: '成熟フェーズ',
+      priority: '最適化と新規事業'
+    }
+  };
+  
+  const industry = industryAnalysis[businessType] || industryAnalysis['other'];
+  const challenge = challengeAnalysis[mainChallenge];
+  const revenue = revenueAnalysis[monthlyRevenue];
+  
+  return {
+    title: industry.title,
+    analysis: `${revenue.stage}にあるあなたのビジネスは、${challenge.problem}という課題に直面しています。この段階では${revenue.priority}が重要ですが、多くの企業がここでつまずいています。`,
+    recommendation: `${industry.focus}に特化した${challenge.solution}を実施することをお勧めします。AI×心理学のアプローチにより、競合が真似できない独自の強みを構築できます。`,
+    expectedResults: `${challenge.result}が期待できます。実際に弊社が支援した同業界の企業では、6ヶ月で売上2.2倍を達成した事例もあります。`
+  };
 }
 
 // Service card hover effects

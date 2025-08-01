@@ -75,6 +75,16 @@ h6 { font-size: 1rem; }
   color: #ef4444;
 }
 
+.text-danger-blink {
+  color: #ef4444;
+  animation: softBlink 2s ease-in-out infinite;
+}
+
+@keyframes softBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
 .highlight {
   color: $neural-purple;
   font-weight: 700;
@@ -157,11 +167,11 @@ h6 { font-size: 1rem; }
 .navbar-brand .logo {
   font-size: 1.5rem;
   font-weight: 900;
-  color: $white;
   text-decoration: none;
-  background: linear-gradient(135deg, $neural-purple, $synapse-blue);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+}
+
+.navbar-brand .logo-text {
+  color: $white;
 }
 
 .navbar-toggler {
@@ -385,6 +395,65 @@ section {
 .section-title {
   text-align: center;
   margin-bottom: 3rem;
+}
+
+// New sections for updated design
+.reasons-list {
+  margin: 2rem auto;
+  max-width: 600px;
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  li {
+    display: inline-block;
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+    color: $gray-300;
+    font-size: 1.125rem;
+    
+    &::before {
+      content: '•';
+      color: $neural-purple;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.warning-message {
+  margin: 3rem auto;
+  text-align: center;
+  max-width: 800px;
+  
+  p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+}
+
+.solution-bridge {
+  margin: 3rem auto;
+  padding: 2rem;
+  max-width: 800px;
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  text-align: center;
+  
+  h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.125rem;
+    color: $gray-300;
+    line-height: 1.8;
+  }
 }
 
 // Problem Section
@@ -944,7 +1013,7 @@ section {
   font-size: 0.875rem;
 }
 
-// Belief Section
+// Belief Section with background images
 .belief-section {
   background: linear-gradient(to bottom, $deep-black, rgba(139, 92, 246, 0.03), $deep-black);
 }
@@ -992,10 +1061,43 @@ section {
 .belief-card {
   text-align: center;
   padding: 2rem 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
+  position: relative;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+  }
+  
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  &:nth-child(1) {
+    background-image: url('/assets/images/belief-1.jpg');
+  }
+  
+  &:nth-child(2) {
+    background-image: url('/assets/images/belief-2.jpg');
+  }
+  
+  &:nth-child(3) {
+    background-image: url('/assets/images/belief-3.jpg');
+  }
+  
+  &:nth-child(4) {
+    background-image: url('/assets/images/belief-4.jpg');
+  }
 }
 
 .belief-card:hover {
@@ -1172,14 +1274,23 @@ section {
   }
 }
 
-// Enhanced section dividers
+// Enhanced section dividers with mobile scroll optimization
 section {
-  &:not(:last-child) {
-    margin-bottom: 2rem;
+  padding: 5rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     
-    @media (max-width: 768px) {
-      margin-bottom: 1.5rem;
+    &.hero-section {
+      min-height: 100vh;
     }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 0;
   }
 }
 
@@ -1529,6 +1640,27 @@ section {
   }
 }
 
+.company-info {
+  margin-top: 1rem;
+  
+  p {
+    color: $gray-400;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  
+  a {
+    color: $gray-400;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: $neural-purple;
+    }
+  }
+}
+
 .social-links {
   display: flex;
   gap: 1rem;
@@ -1608,5 +1740,63 @@ section {
   .social-icon {
     width: 18px;
     height: 18px;
+  }
+}
+
+// Additional mobile optimization for new sections
+@media (max-width: 768px) {
+  .reasons-list ul {
+    display: block;
+    text-align: left;
+  }
+  
+  .reasons-list li {
+    display: block;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  .warning-message {
+    margin: 2rem auto;
+    padding: 0 1rem;
+    
+    p {
+      font-size: 1.125rem;
+    }
+  }
+  
+  .solution-bridge {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Section spacing for mobile "one section per scroll"
+@media (max-width: 768px) {
+  .problem-section,
+  .philosophy-section,
+  .services-section,
+  .case-studies-section,
+  .why-now-section,
+  .belief-section,
+  .final-cta-section {
+    padding: 4rem 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-section {
+    min-height: 100vh;
+    padding-bottom: 0;
   }
 }
