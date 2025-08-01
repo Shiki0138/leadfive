@@ -27,6 +27,12 @@ $gray-900: #111827;
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
+// Prevent auto-scroll on page load
+html, body {
+  overflow-anchor: none;
 }
 
 body {
