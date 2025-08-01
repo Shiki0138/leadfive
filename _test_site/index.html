@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="baseurl" content="/leadfive">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AI×心理学で売上を科学する LeadFive | AI×心理学で売上を科学する Leadfive</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="AI×心理学で売上を科学する LeadFive" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="LeadFiveは、AI技術と人間心理学を融合させた革新的なマーケティングコンサルティングを提供します。8つの本能に基づく科学的アプローチで、あなたのビジネスを次のステージへ導きます。" />
+<meta property="og:description" content="LeadFiveは、AI技術と人間心理学を融合させた革新的なマーケティングコンサルティングを提供します。8つの本能に基づく科学的アプローチで、あなたのビジネスを次のステージへ導きます。" />
+<link rel="canonical" href="https://shiki0138.github.io/leadfive/" />
+<meta property="og:url" content="https://shiki0138.github.io/leadfive/" />
+<meta property="og:site_name" content="AI×心理学で売上を科学する Leadfive" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AI×心理学で売上を科学する LeadFive" />
+<meta name="twitter:site" content="@leadfive" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"LeadFiveは、AI技術と人間心理学を融合させた革新的なマーケティングコンサルティングを提供します。8つの本能に基づく科学的アプローチで、あなたのビジネスを次のステージへ導きます。","headline":"AI×心理学で売上を科学する LeadFive","name":"LeadFive","sameAs":["https://twitter.com/leadfive","https://www.facebook.com/leadfive","https://www.linkedin.com/company/leadfive"],"url":"https://shiki0138.github.io/leadfive/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <!-- Critical CSS for faster mobile loading -->
+  <style>
+    /* Critical CSS */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); }
+    .navbar { padding: 1rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .btn { display: inline-block; padding: 0.75rem 2rem; border: none; border-radius: 9999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
+    .btn-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #ffffff; }
+    @media (max-width: 768px) { .container { padding: 0 15px; } }
+  </style>
+  
+  <link rel="stylesheet" href="/leadfive/assets/css/styles.css">
+  <!-- Fallback for direct main.css -->
+  <link rel="stylesheet" href="/leadfive/assets/css/main.css">
+  <!-- Additional fallback with absolute path for GitHub Pages -->
+  <link rel="stylesheet" href="/leadfive/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  
+</head>
+<body onload="window.scrollTo(0, 0);">
+  <header class="site-header">
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/leadfive/" class="logo">
+          <span class="logo-text">LeadFive</span>
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="navbar-menu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/leadfive/#philosophy" class="nav-link">理念</a>
+          </li>
+          <li class="nav-item">
+            <a href="/leadfive/#services" class="nav-link">サービス</a>
+          </li>
+          <li class="nav-item">
+            <a href="/leadfive/#case-studies" class="nav-link">実績</a>
+          </li>
+          <li class="nav-item">
+            <a href="/leadfive/blog/" class="nav-link">ブログ</a>
+          </li>
+          <li class="nav-item">
+            <a href="/leadfive/company/" class="nav-link">会社概要</a>
+          </li>
+          <li class="nav-item">
+            <a href="/leadfive/contact/" class="nav-link">お問い合わせ</a>
+          </li>
+        </ul>
+        
+        <div class="navbar-cta">
+          <button class="btn btn-primary btn-sm" onclick="openAIAnalysis()">
+            無料AI診断
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+  
+  <main>
+    <!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-background">
+    <canvas id="neural-network-canvas"></canvas>
+  </div>
+  
+  <div class="container hero-content">
+    <h1 class="hero-title">
+      <span class="gradient-text">AI × 人間心理</span>で<br>
+      売上を<span class="highlight">科学</span>する
+    </h1>
+    
+    <p class="hero-subtitle">
+      人間の8つの本能を理解し、AIで最適化。<br>
+      あなたのビジネスに、予測可能な成長を。
+    </p>
+    
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="openAIAnalysis()">
+        無料でAI分析を受ける
+      </button>
+      <button class="btn btn-secondary" onclick="scrollToSection('services')">
+        サービスを見る
+      </button>
+    </div>
+    
+    <div class="success-preview">
+      <p class="preview-title">6ヶ月後のあなた</p>
+      <div class="preview-metrics">
+        <div class="metric">
+          <span class="value">2.2x</span>
+          <span class="label">売上成長</span>
+        </div>
+        <div class="metric">
+          <span class="value">267%</span>
+          <span class="label">CV率向上</span>
+        </div>
+        <div class="metric">
+          <span class="value">42%</span>
+          <span class="label">コスト削減</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section id="problem" class="problem-section">
+  <div class="container">
+    <h2 class="section-title">なぜ今、多くのビジネスが<span class="text-danger">停滞</span>するのか？</h2>
+    
+    <div class="reasons-list">
+      <ul>
+        <li>デジタル化の波に乗り遅れている</li>
+        <li>顧客心理が読めない</li>
+        <li>AI活用の方法がわからない</li>
+      </ul>
+    </div>
+    
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon has-image" data-icon="problem-1">
+          <span class="emoji-fallback">😰</span>
+          <img src="/leadfive/assets/images/icons/problem-1.png" alt="広告費問題" loading="lazy">
+        </div>
+        <h3>広告費は増えるのに売上は横ばい</h3>
+        <p>競合が増え、広告単価は上昇。でも成果は...</p>
+      </div>
+      
+      <div class="problem-card">
+        <div class="problem-icon has-image" data-icon="problem-2">
+          <span class="emoji-fallback">🤖</span>
+          <img src="/leadfive/assets/images/icons/problem-2.png" alt="AIツール問題" loading="lazy">
+        </div>
+        <h3>AIツールを導入したが使いこなせない</h3>
+        <p>「とりあえずChatGPT」では競合と差がつかない</p>
+      </div>
+      
+      <div class="problem-card">
+        <div class="problem-icon has-image" data-icon="problem-3">
+          <span class="emoji-fallback">📊</span>
+          <img src="/leadfive/assets/images/icons/problem-3.png" alt="データ分析問題" loading="lazy">
+        </div>
+        <h3>データはあるが、次の一手が見えない</h3>
+        <p>分析ツールの数値を眺めるだけの日々</p>
+      </div>
+    </div>
+    
+    <div class="warning-message">
+      <p class="text-danger-blink">これらの問題を放置すると、1年後には取り返しのつかない差が生まれます</p>
+    </div>
+    
+    <div class="solution-bridge">
+      <h3>解決の鍵は<span class="gradient-text">テクノロジー × 顧客理解</span></h3>
+      <p>最新のAI技術と、変わらない人間の本能。<br>
+      この2つを掛け合わせることで、競合が真似できない強みが生まれます。</p>
+    </div>
+    
+    <div class="truth-reveal">
+      <h3>真実：<span class="gradient-text">人間の購買行動の95%は無意識</span></h3>
+      <p>データやロジックだけでは、人は動かない。<br>
+      必要なのは、8つの本能に訴えかける科学的アプローチ。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy Section -->
+<section id="philosophy" class="philosophy-section">
+  <div class="container">
+    <h2 class="section-title">
+      変わらない<span class="gradient-text">人間の8つの本能</span>
+    </h2>
+    
+    <div class="philosophy-content">
+      <div class="philosophy-text">
+        <p class="lead">
+          私たちは20年以上、人間心理とマーケティングの関係を研究してきました。
+        </p>
+        <p>
+          その結果たどり着いたのが、人間の行動を支配する「8つの本能」という考え方。
+          これらの本能を理解し、適切に刺激することで、
+          お客様は自然とあなたの商品・サービスを選ぶようになります。
+        </p>
+      </div>
+      
+      <div class="instincts-grid">
+        <div class="instinct-card glass-card">
+          <div class="instinct-icon has-image" data-icon="instinct-1">
+            <span class="emoji-fallback">🛡️</span>
+            <img src="/leadfive/assets/images/icons/instinct-1.png" alt="生存本能" loading="lazy">
+          </div>
+          <h4>生存本能</h4>
+          <p>安全・安心を求める</p>
+        </div>
+        <div class="instinct-card glass-card">
+          <div class="instinct-icon has-image" data-icon="instinct-2">
+            <span class="emoji-fallback">🍽️</span>
+            <img src="/leadfive/assets/images/icons/instinct-2.png" alt="食欲" loading="lazy">
+          </div>
+          <h4>食欲</h4>
+          <p>満足を追求する</p>
+        </div>
+        <div class="instinct-card glass-card">
+          <div class="instinct-icon has-image" data-icon="instinct-3">
+            <span class="emoji-fallback">❤️</span>
+            <img src="/leadfive/assets/images/icons/instinct-3.png" alt="性的本能" loading="lazy">
+          </div>
+          <h4>性的本能</h4>
+          <p>魅力的でありたい</p>
+        </div>
+        <div class="instinct-card glass-card">
+          <div class="instinct-icon has-image" data-icon="instinct-4">
+            <span class="emoji-fallback">😡</span>
+            <img src="/leadfive/assets/images/icons/instinct-4.png" alt="危険回避本能" loading="lazy">
+          </div>
+          <h4>危険回避本能</h4>
+          <p>リスクを避ける</p>
+        </div>
+        <div class="instinct-card glass-card">
+          <div class="instinct-icon has-image" data-icon="instinct-5">
+            <span class="emoji-fallback">😌</span>
+            <img src="/leadfive/assets/images/icons/instinct-5.png" alt="快適性追求" loading="lazy">
+          </div>
+          <h4>快適性追求</h4>
+          <p>楽をしたい</p>
+        </div>
+        <div class="instinct-card glass-card">
+          <div class="instinct-icon has-image" data-icon="instinct-6">
+            <span class="emoji-fallback">👑</span>
+            <img src="/leadfive/assets/images/icons/instinct-6.png" alt="優越本能" loading="lazy">
+          </div>
+          <h4>優越本能</h4>
+          <p>特別でありたい</p>
+        </div>
+        <div class="instinct-card glass-card">
+          <div class="instinct-icon has-image" data-icon="instinct-7">
+            <span class="emoji-fallback">👥</span>
+            <img src="/leadfive/assets/images/icons/instinct-7.png" alt="集団帰属本能" loading="lazy">
+          </div>
+          <h4>集団帰属本能</h4>
+          <p>仲間でいたい</p>
+        </div>
+        <div class="instinct-card glass-card">
+          <div class="instinct-icon has-image" data-icon="instinct-8">
+            <span class="emoji-fallback">🎯</span>
+            <img src="/leadfive/assets/images/icons/instinct-8.png" alt="承認欲求" loading="lazy">
+          </div>
+          <h4>承認欲求</h4>
+          <p>認められたい</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services-section">
+  <div class="container">
+    <h2 class="section-title">
+      あなたの課題を解決する<br>
+      <span class="gradient-text">4つの変革サービス</span>
+    </h2>
+    
+    <div class="services-grid">
+      
+      <div class="service-card glass-card" data-service="1">
+        <div class="service-icon">🧠</div>
+        <h3>AI×心理学 LP最適化</h3>
+        <p class="service-subtitle">科学的根拠に基づく高速PDCA</p>
+        <div class="service-story">
+          <p class="story-hook">CVR0.8%で悩んでいたECサイト経営者</p>
+          <p>3週間でCVR2.1%に改善、売上278%向上を実現</p>
+        </div>
+        <ul class="service-features">
+          
+          <li>
+            <strong>A/Bテスト自動化</strong>
+            <span class="metric">+267% CVR</span>
+          </li>
+          
+          <li>
+            <strong>心理トリガー分析</strong>
+            <span class="metric">42% 離脱減</span>
+          </li>
+          
+          <li>
+            <strong>リアルタイム最適化</strong>
+            <span class="metric">3週間で完了</span>
+          </li>
+          
+        </ul>
+        <a href="/leadfive/services/lp-optimization/" class="btn btn-secondary btn-service">
+          詳しく見る
+        </a>
+      </div>
+      
+      <div class="service-card glass-card" data-service="2">
+        <div class="service-icon">📊</div>
+        <h3>顧客心理データ分析</h3>
+        <p class="service-subtitle">行動予測AIで売上を科学する</p>
+        <div class="service-story">
+          <p class="story-hook">「なぜ売れないのか分からない」美容室オーナー</p>
+          <p>データ分析で客単価38%向上、リピート率67%改善</p>
+        </div>
+        <ul class="service-features">
+          
+          <li>
+            <strong>購買行動予測</strong>
+            <span class="metric">+187% 精度</span>
+          </li>
+          
+          <li>
+            <strong>顧客セグメント分析</strong>
+            <span class="metric">8つのタイプ識別</span>
+          </li>
+          
+          <li>
+            <strong>LTV最大化戦略</strong>
+            <span class="metric">+45% LTV向上</span>
+          </li>
+          
+        </ul>
+        <a href="/leadfive/services/customer-analysis/" class="btn btn-secondary btn-service">
+          詳しく見る
+        </a>
+      </div>
+      
+      <div class="service-card glass-card" data-service="3">
+        <div class="service-icon">🤖</div>
+        <h3>AI自動化マーケティング</h3>
+        <p class="service-subtitle">24/7稼働するAI営業マン</p>
+        <div class="service-story">
+          <p class="story-hook">深夜2時でも問い合わせが来るように</p>
+          <p>自動化により営業効率400%向上、人件費50%削減</p>
+        </div>
+        <ul class="service-features">
+          
+          <li>
+            <strong>チャットボット構築</strong>
+            <span class="metric">24/7 対応</span>
+          </li>
+          
+          <li>
+            <strong>メール自動配信</strong>
+            <span class="metric">+156% 開封率</span>
+          </li>
+          
+          <li>
+            <strong>SNS自動投稿</strong>
+            <span class="metric">週40時間削減</span>
+          </li>
+          
+        </ul>
+        <a href="/leadfive/services/ai-automation/" class="btn btn-secondary btn-service">
+          詳しく見る
+        </a>
+      </div>
+      
+      <div class="service-card glass-card" data-service="4">
+        <div class="service-icon">🎯</div>
+        <h3>統合マーケティング戦略</h3>
+        <p class="service-subtitle">オンライン・オフライン完全連携</p>
+        <div class="service-story">
+          <p class="story-hook">バラバラだった施策を統合したい経営者</p>
+          <p>全チャネル連携でROAS320%向上を達成</p>
+        </div>
+        <ul class="service-features">
+          
+          <li>
+            <strong>全チャネル分析</strong>
+            <span class="metric">15媒体統合</span>
+          </li>
+          
+          <li>
+            <strong>顧客行動追跡</strong>
+            <span class="metric">100% 可視化</span>
+          </li>
+          
+          <li>
+            <strong>ROI最適化</strong>
+            <span class="metric">+320% ROAS</span>
+          </li>
+          
+        </ul>
+        <a href="/leadfive/services/integrated-marketing/" class="btn btn-secondary btn-service">
+          詳しく見る
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Case Studies Section -->
+<section id="case-studies" class="case-studies-section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="gradient-text">変革の実例</span><br>
+      お客様と共に創った成功ストーリー
+    </h2>
+    
+    <div class="case-studies-grid">
+      
+      <div class="case-study-card">
+        <div class="case-header">
+          <span class="industry">EC・小売</span>
+          <h3>中小ECサイト売上2.2倍達成</h3>
+        </div>
+        
+        <div class="before-after">
+          <div class="before">
+            <h4>Before</h4>
+            <p class="situation">月売上150万円で頭打ち</p>
+            <p class="emotion">「広告費ばかり増えて利益が出ない...」</p>
+          </div>
+          
+          <div class="transformation">
+            <span class="arrow">→</span>
+          </div>
+          
+          <div class="after">
+            <h4>After</h4>
+            <p class="result">月売上330万円を達成</p>
+            <p class="emotion">「毎月安定して成長できています！」</p>
+          </div>
+        </div>
+        
+        <div class="case-metrics">
+          <div class="metric">
+            <span class="label">売上向上</span>
+            <span class="value">220%</span>
+          </div>
+          <div class="metric">
+            <span class="label">ROI改善</span>
+            <span class="value">180%</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="case-study-card">
+        <div class="case-header">
+          <span class="industry">美容・サロン</span>
+          <h3>美容室の逆転ストーリー（実話）</h3>
+        </div>
+        
+        <div class="before-after">
+          <div class="before">
+            <h4>Before</h4>
+            <p class="situation">月商250万円で頭打ち</p>
+            <p class="emotion">「SNSをどう活用していいか分からない...」</p>
+          </div>
+          
+          <div class="transformation">
+            <span class="arrow">→</span>
+          </div>
+          
+          <div class="after">
+            <h4>After</h4>
+            <p class="result">月商560万円を達成（1年3ヶ月）</p>
+            <p class="emotion">「Instagramを中心に顧客が増え続けています！」</p>
+          </div>
+        </div>
+        
+        <div class="case-metrics">
+          <div class="metric">
+            <span class="label">売上向上</span>
+            <span class="value">224%</span>
+          </div>
+          <div class="metric">
+            <span class="label">新規顧客数</span>
+            <span class="value">+187%</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="case-study-card">
+        <div class="case-header">
+          <span class="industry">BtoB・コンサル</span>
+          <h3>BtoB企業の商談率4倍改善</h3>
+        </div>
+        
+        <div class="before-after">
+          <div class="before">
+            <h4>Before</h4>
+            <p class="situation">問い合わせの90%が冷やかし</p>
+            <p class="emotion">「質の高いリードが全然来ない...」</p>
+          </div>
+          
+          <div class="transformation">
+            <span class="arrow">→</span>
+          </div>
+          
+          <div class="after">
+            <h4>After</h4>
+            <p class="result">商談化率40%を実現</p>
+            <p class="emotion">「営業チームが忙しくて嬉しい悲鳴です」</p>
+          </div>
+        </div>
+        
+        <div class="case-metrics">
+          <div class="metric">
+            <span class="label">商談率向上</span>
+            <span class="value">400%</span>
+          </div>
+          <div class="metric">
+            <span class="label">受注単価</span>
+            <span class="value">156%</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Why Now Section -->
+<section id="why-now" class="why-now-section">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="text-danger">なぜ今なのか？</span><br>
+      6ヶ月後の未来からの手紙
+    </h2>
+    
+    <div class="future-letter-container">
+      <div class="letter-choice">
+        <button class="choice-btn" onclick="showLetter('action')">
+          今行動した場合
+        </button>
+        <button class="choice-btn" onclick="showLetter('wait')">
+          様子を見た場合
+        </button>
+      </div>
+      
+      <div id="action-letter" class="future-letter" style="display: none;">
+        <h3>6ヶ月後のあなたへ</h3>
+        <p>
+          あの時、勇気を出して一歩踏み出してくれてありがとう。<br>
+          今、売上は2.2倍、新規顧客は毎月安定的に増え続けています。<br>
+          AIと心理学の組み合わせが、こんなに強力だとは思いませんでした。<br>
+          競合はまだ気づいていません。この差は、さらに広がるでしょう。
+        </p>
+        <p class="signature">- 6ヶ月後の成功したあなたより</p>
+      </div>
+      
+      <div id="wait-letter" class="future-letter" style="display: none;">
+        <h3>6ヶ月後のあなたへ</h3>
+        <p>
+          あの時、なぜ行動しなかったのだろう...<br>
+          競合A社は3ヶ月前にAI×心理学マーケティングを導入。<br>
+          彼らのシェアは30%も増加し、うちの顧客も奪われ始めています。<br>
+          今から追いつくには、3倍の投資が必要になりそうです。
+        </p>
+        <p class="signature">- 6ヶ月後の後悔しているあなたより</p>
+      </div>
+    </div>
+    
+    <div class="urgency-factors">
+      <h3>今すぐ行動すべき3つの理由</h3>
+      <div class="factors-grid">
+        <div class="factor">
+          <span class="factor-icon">⏰</span>
+          <h4>AI進化は加速している</h4>
+          <p>1ヶ月の遅れが、1年分の差になる時代</p>
+        </div>
+        <div class="factor">
+          <span class="factor-icon">📈</span>
+          <h4>競合も動き始めている</h4>
+          <p>先行者利益は、今この瞬間にある</p>
+        </div>
+        <div class="factor">
+          <span class="factor-icon">💰</span>
+          <h4>投資対効果が最も高い</h4>
+          <p>今なら最小投資で最大効果を得られる</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Belief Section -->
+<section id="belief" class="belief-section">
+  <div class="container">
+    <h2 class="section-title">
+      私の<span class="gradient-text">信念</span>
+    </h2>
+    
+    <div class="representative-message">
+      <p class="quote">
+        「データやAIは確かに重要です。<br>
+        でも、それ以上に大切なのは<br>
+        <span class="highlight">人間への深い理解と共感</span>です。」
+      </p>
+      <p class="message">
+        私たちは技術を売っているのではありません。<br>
+        あなたのビジネスと、その先にいるお客様の<br>
+        幸せな未来を創造しているのです。
+      </p>
+    </div>
+    
+    <div class="beliefs-grid">
+      <div class="belief-card">
+        <div class="belief-icon">❤️</div>
+        <h3>人を理解することから全てが始まる</h3>
+        <p>技術やデータの前に、まず「人間」を深く理解する。それが私の原点です。</p>
+      </div>
+      
+      <div class="belief-card">
+        <div class="belief-icon">🎯</div>
+        <h3>本質を見抜き、シンプルに解決する</h3>
+        <p>複雑に見える問題も、人間の本能という視点で見れば、驚くほどシンプルになります。</p>
+      </div>
+      
+      <div class="belief-card">
+        <div class="belief-icon">💡</div>
+        <h3>常識を疑い、新しい道を創る</h3>
+        <p>「今までこうだった」は関係ない。人間心理とAIの融合で、新しい可能性を切り開きます。</p>
+      </div>
+      
+      <div class="belief-card">
+        <div class="belief-icon">🚀</div>
+        <h3>共に成長し、共に成功する</h3>
+        <p>クライアントの成功が私の成功。一緒に挑戦し、一緒に喜びを分かち合いたい。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="final-cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">
+        AI活用は<span class="gradient-text">今がチャンス。</span><br>
+        そして、人間の本能は<span class="gradient-text">変わらない。</span>
+      </h2>
+      
+      <p class="cta-subtitle">
+        この2つを味方につけた企業だけが、<br>
+        次の時代を<span class="highlight">制する</span>。
+      </p>
+      
+      <div class="cta-benefits">
+        <h3>今すぐ始める3つの理由</h3>
+        <ul>
+          <li>✓ 無料AI診断で、あなたのビジネスの可能性が分かる</li>
+          <li>✓ 専門家による詳細な戦略提案が受けられる</li>
+          <li>✓ 業界トップクラスの実績とノウハウを活用できる</li>
+        </ul>
+      </div>
+      
+      <div class="cta-buttons">
+        <button class="btn btn-primary btn-large" onclick="openAIAnalysis()">
+          無料AI診断を受ける
+        </button>
+        <button class="btn btn-secondary btn-large" onclick="scrollToSection('contact')">
+          お問い合わせ
+        </button>
+      </div>
+      
+      <div class="trust-indicators">
+        <span>✓ 500社以上の実績</span>
+        <span>✓ 満足度98.5%</span>
+        <span>✓ 完全秘密保持</span>
+        <span>✓ 結果が出なければ全額返金</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI Analysis Modal -->
+<div id="ai-analysis-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAIAnalysis()">&times;</span>
+    <h2>無料AI分析診断</h2>
+    <p>あなたのビジネスに最適な戦略を30秒で診断します</p>
+    
+    <form class="ai-analysis-form">
+      <div class="form-group">
+        <label for="business-type">業種を選択してください</label>
+        <select id="business-type" name="business-type" required>
+          <option value="">選択してください</option>
+          <option value="ec">EC・オンライン販売</option>
+          <option value="retail">実店舗・小売</option>
+          <option value="service">サービス業</option>
+          <option value="btob">BtoB・法人向け</option>
+          <option value="beauty">美容・サロン</option>
+          <option value="consulting">コンサルティング</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="monthly-revenue">月間売上規模</label>
+        <select id="monthly-revenue" name="monthly-revenue" required>
+          <option value="">選択してください</option>
+          <option value="under-100">100万円未満</option>
+          <option value="100-500">100万円〜500万円</option>
+          <option value="500-1000">500万円〜1000万円</option>
+          <option value="1000-5000">1000万円〜5000万円</option>
+          <option value="over-5000">5000万円以上</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="main-challenge">最も大きな課題</label>
+        <select id="main-challenge" name="main-challenge" required>
+          <option value="">選択してください</option>
+          <option value="traffic">集客・アクセス数の不足</option>
+          <option value="conversion">成約率・CVRの低さ</option>
+          <option value="retention">リピーター・LTV向上</option>
+          <option value="cost">広告費・獲得コストの高騰</option>
+          <option value="analysis">データ分析・改善方法</option>
+          <option value="automation">業務効率・自動化</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">メールアドレス（結果送信用）</label>
+        <input type="email" id="email" name="email" placeholder="example@company.com" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-large">
+        無料で診断結果を受け取る
+      </button>
+    </form>
+    
+    <p class="privacy-note">
+      ※診断結果は入力いただいたメールアドレスに送信されます<br>
+      ※個人情報は厳重に管理し、第三者に提供することはありません
+    </p>
+  </div>
+</div>
+
+<style>
+.ai-analysis-form {
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.form-group option {
+  background: #1f2937;
+  color: #fff;
+}
+
+.privacy-note {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 1.5rem;
+  }
+  
+  .form-group select,
+  .form-group input {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+</style>
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>合同会社Leadfive</h3>
+        <p>人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。</p>
+        <div class="company-info">
+          <p>〒530-0001</p>
+          <p>大阪府大阪市北区梅田１－１３－１</p>
+          <p>大阪梅田ツインタワーズ・サウス１５階</p>
+          <p>TEL: <a href="tel:0677136747">06-7713-6747</a></p>
+          <p>EMAIL: <a href="mailto:leadfive.138@gmail.com">leadfive.138@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://twitter.com/leadfive" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/leadfive" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/leadfive" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>サービス</h4>
+        <ul class="footer-links">
+          <li><a href="/leadfive/services/ai-marketing/">広告・マーケティングサポート</a></li>
+          <li><a href="/leadfive/services/ai-prompt/">AIプロンプトエンジニアリング</a></li>
+          <li><a href="/leadfive/services/engineering/">エンジニアリングサポート</a></li>
+          <li><a href="/leadfive/services/consulting/">戦略コンサルティング</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>会社情報</h4>
+        <ul class="footer-links">
+          <li><a href="/leadfive/company/">会社概要</a></li>
+          <li><a href="/leadfive/company/#mission">ミッション</a></li>
+          <li><a href="/leadfive/company/#access">アクセス</a></li>
+          <li><a href="/leadfive/contact/">お問い合わせ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>リソース</h4>
+        <ul class="footer-links">
+          <li><a href="/leadfive/blog/">ブログ</a></li>
+          <li><a href="/leadfive/case-studies/">導入事例</a></li>
+          <li><a href="/leadfive/resources/whitepaper/">ホワイトペーパー</a></li>
+          <li><a href="/leadfive/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 合同会社Leadfive. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  
+  <script src="/leadfive/assets/js/main.js"></script>
+</body>
+</html>

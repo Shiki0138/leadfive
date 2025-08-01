@@ -59,6 +59,11 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - package.json
+  - scripts/
+  - blog-wizard.js
+  - blog-ai-assistant.js
+  - blog-server.js
 
 # SEO
 twitter:
@@ -74,3 +79,22 @@ social:
 
 # Analytics
 google_analytics: UA-XXXXXXXXX-X
+
+# GitHub Pages specific settings
+github: [metadata]
+safe: true
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+
+# Security settings
+webrick:
+  headers:
+    My-Header: My-Value
+    X-Frame-Options: "SAMEORIGIN"
+    X-Content-Type-Options: "nosniff"
+    X-XSS-Protection: "1; mode=block"
+
+# Environment
+environment: production

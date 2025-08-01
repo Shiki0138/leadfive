@@ -1,0 +1,22 @@
+# Production configuration for GitHub Pages
+environment: production
+
+# GitHub Pages settings
+url: "https://shiki0138.github.io"
+baseurl: "/leadfive"
+
+# Analytics (update with real GA ID)
+google_analytics: UA-XXXXXXXXX-X
+
+# Optimize for production
+sass:
+  style: compressed
+
+# Additional GitHub Pages optimizations  
+plugins:
+  - jekyll-feed
+  - jekyll-sass-converter
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-github-metadata

@@ -682,19 +682,19 @@ section {
   
   // 背景画像を各サービスに設定
   &:nth-child(1) {
-    background-image: url('../images/services/service-1.jpg');
+    background-image: url('{{ site.baseurl }}/assets/images/services/service-1.jpg');
   }
   
   &:nth-child(2) {
-    background-image: url('../images/services/service-2.jpg');
+    background-image: url('{{ site.baseurl }}/assets/images/services/service-2.jpg');
   }
   
   &:nth-child(3) {
-    background-image: url('../images/services/service-3.jpg');
+    background-image: url('{{ site.baseurl }}/assets/images/services/service-3.jpg');
   }
   
   &:nth-child(4) {
-    background-image: url('../images/services/service-4.jpg');
+    background-image: url('{{ site.baseurl }}/assets/images/services/service-4.jpg');
   }
   
   // 文字の可視性を確保するためのオーバーレイ
@@ -1090,19 +1090,19 @@ section {
   }
   
   &:nth-child(1) {
-    background-image: url('/assets/images/belief-1.jpg');
+    background-image: url('{{ site.baseurl }}/assets/images/belief-1.jpg');
   }
   
   &:nth-child(2) {
-    background-image: url('/assets/images/belief-2.jpg');
+    background-image: url('{{ site.baseurl }}/assets/images/belief-2.jpg');
   }
   
   &:nth-child(3) {
-    background-image: url('/assets/images/belief-3.jpg');
+    background-image: url('{{ site.baseurl }}/assets/images/belief-3.jpg');
   }
   
   &:nth-child(4) {
-    background-image: url('/assets/images/belief-4.jpg');
+    background-image: url('{{ site.baseurl }}/assets/images/belief-4.jpg');
   }
 }
 
