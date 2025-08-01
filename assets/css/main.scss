@@ -97,12 +97,13 @@ h6 { font-size: 1rem; }
 }
 
 // Glass effect
-.glass-card {
+.glass-card { 
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 // Buttons
@@ -392,18 +393,18 @@ section {
   }
   
   // Section divider
-  &:not(:last-child)::after {
+  &:not(:last-child)::after { 
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(139, 92, 246, 0.2);
+    box-shadow: 0 1px 5px rgba(139, 92, 246, 0.1);
     
     @media (max-width: 768px) {
-      width: 60px;
+      display: none; // Clean separation with borders instead
     }
   }
 }
@@ -462,14 +463,15 @@ section {
   }
 }
 
-.solution-bridge {
-  margin: 4rem auto; // Increased top margin
+.solution-bridge { 
+  margin: 4rem auto;
   padding: 2rem;
   max-width: 800px;
-  background: rgba(139, 92, 246, 0.05);
+  background: rgba(139, 92, 246, 0.08);
   border-radius: 20px;
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 2px solid rgba(139, 92, 246, 0.3);
   text-align: center;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
   
   // Better mobile spacing and margins
   @media (max-width: 768px) {
@@ -505,8 +507,21 @@ section {
 }
 
 // Problem Section
-.problem-section {
-  background: linear-gradient(to bottom, $deep-black, rgba(59, 130, 246, 0.05), $deep-black);
+.problem-section { 
+  background: $deep-black;
+  border-top: 2px solid rgba(59, 130, 246, 0.3);
+  border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+  position: relative;
+}
+.problem-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.2);
 }
 
 .problem-grid {
@@ -605,10 +620,14 @@ section {
 }
 
 // Philosophy Section - WHITE BACKGROUND for emphasis
-.philosophy-section {
-  background: linear-gradient(to bottom, $deep-black 0%, $white 15%, $white 85%, $deep-black 100%);
+.philosophy-section { 
+  background: $white;
   color: $gray-900;
   position: relative;
+  border-top: 4px solid $deep-black;
+  border-bottom: 4px solid $deep-black;
+  box-shadow: none;
+  margin: 3rem 0;
   
   .section-title {
     color: $gray-900;
@@ -666,15 +685,15 @@ section {
   }
 }
 
-.instinct-card {
+.instinct-card { 
   text-align: center;
   padding: 1.5rem;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: $white;
+  border: 2px solid $gray-200;
   color: $gray-800;
   border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   
   h4 {
     color: $gray-900;
@@ -699,10 +718,11 @@ section {
   }
 }
 
-.instinct-card:hover {
+.instinct-card:hover { 
   transform: scale(1.05);
-  border-color: rgba(139, 92, 246, 0.5);
-  background: rgba(255, 255, 255, 0.95);
+  border-color: $neural-purple;
+  background: $white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
 }
 
 .instinct-icon {
@@ -802,9 +822,22 @@ section {
 }
 
 // Services Section - Enhanced with better contrast
-.services-section {
-  background: linear-gradient(to bottom, $deep-black, rgba(139, 92, 246, 0.05), $deep-black);
+.services-section { 
+  background: $deep-black;
   position: relative;
+  border-top: 2px solid rgba(139, 92, 246, 0.3);
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 -2px 10px rgba(139, 92, 246, 0.2);
+  }
   
   // Add subtle pattern overlay for texture
   &::before {
@@ -936,13 +969,14 @@ section {
   font-weight: 500;
 }
 
-.service-story {
-  background: rgba(0, 0, 0, 0.6);
+.service-story { 
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   padding: 1rem;
   border-radius: 10px;
   margin-bottom: 1.5rem;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .story-hook {
@@ -984,9 +1018,14 @@ section {
 }
 
 // Case Studies Section - WHITE BACKGROUND for testimonial credibility
-.case-studies-section {
-  background: linear-gradient(to bottom, $deep-black 0%, rgba(249, 250, 251, 0.98) 10%, rgba(249, 250, 251, 0.98) 90%, $deep-black 100%);
+.case-studies-section { 
+  background: #f9fafb;
   color: $gray-900;
+  position: relative;
+  border-top: 4px solid $deep-black;
+  border-bottom: 4px solid $deep-black;
+  box-shadow: none;
+  margin: 3rem 0;
   
   .section-title {
     color: $gray-900;
@@ -1006,20 +1045,20 @@ section {
   gap: 2rem;
 }
 
-.case-study-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(139, 92, 246, 0.15);
+.case-study-card { 
+  background: $white;
+  border: 2px solid $gray-200;
   border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   color: $gray-800;
 }
 
-.case-study-card:hover {
+.case-study-card:hover { 
   transform: translateY(-5px);
-  border-color: rgba(139, 92, 246, 0.3);
+  border-color: $neural-purple;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
 }
 
 .case-header {
@@ -1121,8 +1160,21 @@ section {
 }
 
 // Why Now Section
-.why-now-section {
-  background: linear-gradient(to bottom, $deep-black, rgba(239, 68, 68, 0.05), $deep-black);
+.why-now-section { 
+  background: $deep-black;
+  border-top: 2px solid rgba(239, 68, 68, 0.3);
+  border-bottom: 2px solid rgba(239, 68, 68, 0.3);
+  position: relative;
+}
+.why-now-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.2);
 }
 
 .future-letter-container {
@@ -1189,13 +1241,14 @@ section {
   gap: 2rem;
 }
 
-.factor {
+.factor { 
   text-align: center;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .factor:hover {
@@ -1220,14 +1273,11 @@ section {
 }
 
 // Belief Section - Enhanced with subtle white accent
-.belief-section {
-  background: linear-gradient(to bottom, 
-    $deep-black 0%, 
-    rgba(249, 250, 251, 0.05) 20%, 
-    rgba(139, 92, 246, 0.03) 50%,
-    rgba(249, 250, 251, 0.05) 80%, 
-    $deep-black 100%);
+.belief-section { 
+  background: $deep-black;
   position: relative;
+  border-top: 2px solid rgba(139, 92, 246, 0.3);
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
   
   &::before {
     content: '';
@@ -1288,16 +1338,17 @@ section {
   gap: 2rem;
 }
 
-.belief-card {
+.belief-card { 
   text-align: center;
   padding: 2rem 1.5rem;
   position: relative;
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   
   // Enhanced glass effect with subtle business imagery
   &::before {
@@ -1393,10 +1444,14 @@ section {
 }
 
 // Final CTA Section - WHITE BACKGROUND for strong emphasis
-.final-cta-section {
-  background: linear-gradient(135deg, $white 0%, rgba(248, 250, 252, 0.95) 100%);
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
+.final-cta-section { 
+  background: $white;
+  border-top: 4px solid $deep-black;
+  border-bottom: 4px solid $deep-black;
   color: $gray-900;
+  position: relative;
+  box-shadow: none;
+  margin-top: 3rem;
   
   .cta-title {
     color: $gray-900;
@@ -1489,6 +1544,7 @@ section {
   gap: 1.5rem;
   justify-content: center;
   margin-bottom: 3rem;
+  align-items: center;
 }
 
 .trust-indicators {
@@ -1568,43 +1624,42 @@ section {
 }
 
 // Enhanced section separation with white accent sections
-.section-divider {
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(139, 92, 246, 0.3) 25%, 
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(139, 92, 246, 0.3) 75%, 
-    transparent 100%);
-  margin: 3rem auto;
-  max-width: 200px;
+.section-divider { 
+  height: 3px;
+  background: $neural-purple;
+  margin: 4rem auto;
+  max-width: 100px;
+  border-radius: 1.5px;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
   
-  @media (max-width: 768px) {
-    margin: 2rem auto;
-    max-width: 150px;
+  @media (max-width: 768px) { 
+    margin: 3rem auto;
+    max-width: 80px;
+    height: 2px;
   }
 }
 
-// White accent sections for better visual hierarchy
+// White accent sections for better visual hierarchy - SHARP BOUNDARIES
 .philosophy-section,
 .case-studies-section,
 .final-cta-section {
   position: relative;
   
+  // Ensure no gradient dividers - sharp borders only
   &::after {
+    display: none;
+  }
+  
+  // Add clear visual break with additional contrast
+  &::before {
     content: '';
     position: absolute;
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
+    top: -2px;
+    left: 0;
+    right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
-    
-    @media (max-width: 768px) {
-      width: 60px;
-      bottom: -30px;
-    }
+    background: $deep-black;
+    z-index: 10;
   }
 }
 
@@ -1647,14 +1702,23 @@ section {
     margin: 0 1rem;
   }
   
-  // Enhanced spacing for white sections on mobile
+  // Enhanced spacing for white sections on mobile - MAINTAIN SHARP BORDERS
   .philosophy-section,
   .case-studies-section,
   .final-cta-section {
-    padding: 4rem 0;
+    margin: 2rem 0;
+    border-top-width: 4px; // Keep sharp borders on mobile
+    border-bottom-width: 4px;
+    border-color: $deep-black;
     
     .container {
       padding: 0 1rem;
+    }
+    
+    // Ensure ::before pseudo-element is maintained on mobile
+    &::before {
+      height: 2px;
+      background: $deep-black;
     }
   }
 }
