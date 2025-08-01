@@ -3,8 +3,8 @@ title: "AI×心理学で売上を科学する | Leadfive"
 email: leadfive.138@gmail.com
 description: >-
   人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。
-baseurl: ""
-url: "https://leadfive-jekyll.netlify.app"
+baseurl: "/leadfive"
+url: "https://shiki0138.github.io"
 lang: ja
 
 # Company information
@@ -28,6 +28,7 @@ permalink: /blog/:year/:month/:day/:title/
 # Plugins
 plugins:
   - jekyll-feed
+  - jekyll-sass-converter
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
