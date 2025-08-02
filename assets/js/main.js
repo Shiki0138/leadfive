@@ -664,3 +664,36 @@ document.addEventListener('DOMContentLoaded', () => {
     card.style.setProperty('--service-color-to', colors[index % colors.length].to);
   });
 });
+
+// Contact form modal
+function openContactForm() {
+  const modal = document.getElementById('contact-modal');
+  if (modal) {
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Add fade-in animation
+    setTimeout(() => {
+      modal.classList.add('active');
+    }, 10);
+    
+    // Close mobile menu if open
+    const menu = document.querySelector('.navbar-menu');
+    const toggler = document.querySelector('.navbar-toggler');
+    if (menu && toggler) {
+      menu.classList.remove('active');
+      toggler.classList.remove('active');
+    }
+  }
+}
+
+function closeContactModal() {
+  const modal = document.getElementById('contact-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 300);
+  }
+}
