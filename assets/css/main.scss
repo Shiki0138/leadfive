@@ -2200,5 +2200,291 @@ section {
   }
 }
 
-// Import contact form styles
-@import 'contact-form';
+// Contact Modal Styles
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  &.active {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: $deep-black;
+  margin: 5% auto;
+  padding: 0;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  
+  .modal.active & {
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, $neural-purple, $impulse-pink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  p {
+    color: $gray-400;
+    font-size: 1rem;
+  }
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  font-size: 2rem;
+  font-weight: 300;
+  color: $gray-400;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1;
+  
+  &:hover {
+    color: $white;
+  }
+}
+
+// Contact Form Styles
+.contact-form {
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    
+    @media (max-width: 568px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: $white;
+      font-size: 0.875rem;
+      
+      .required {
+        color: $impulse-pink;
+      }
+    }
+    
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: $white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      
+      &::placeholder {
+        color: $gray-500;
+      }
+      
+      &:focus {
+        outline: none;
+        border-color: $neural-purple;
+        background: rgba(139, 92, 246, 0.05);
+      }
+      
+      &.error {
+        border-color: #ef4444;
+        background: rgba(239, 68, 68, 0.05);
+      }
+      
+      &.valid {
+        border-color: #10b981;
+        background: rgba(16, 185, 129, 0.05);
+      }
+    }
+    
+    select {
+      cursor: pointer;
+      
+      option {
+        background: $deep-black;
+        color: $white;
+      }
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+  
+  .checkbox-group {
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 400;
+      
+      input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5rem;
+      }
+      
+      a {
+        color: $neural-purple;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  .btn-large {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+
+.field-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.form-message {
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  
+  &.success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+  }
+  
+  &.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+  }
+}
+
+.success-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  
+  .success-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: $white;
+  }
+  
+  p {
+    color: $gray-300;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.form-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+// Modal responsive styles
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 10% auto;
+    width: 95%;
+  }
+  
+  .modal-header,
+  .modal-body {
+    padding: 1.5rem;
+  }
+}
+
+// Contact Modal Trigger Button Fix
+.contact-modal-trigger {
+  background: linear-gradient(135deg, $neural-purple, $impulse-pink) !important;
+  color: $white !important;
+  border: none !important;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+  }
+  
+  // Ensure visibility on white backgrounds
+  &.on-white {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    }
+  }
+}
+
+// Fix for any contact buttons that might be invisible
+button[onclick*="openContactForm"],
+.btn-contact,
+.contact-btn,
+.contact-trigger {
+  background: linear-gradient(135deg, $neural-purple, $impulse-pink) !important;
+  color: $white !important;
+  border: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+

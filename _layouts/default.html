@@ -50,6 +50,68 @@
   
   {% include footer.html %}
   
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContactModal()">&times;</span>
+      <div class="modal-header">
+        <h2>お問い合わせ</h2>
+        <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+      </div>
+      <div class="modal-body">
+        <form id="contactModalForm" class="contact-form" action="https://formspree.io/f/xkgwrrqv" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-company">会社名 <span class="required">*</span></label>
+              <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
+            </div>
+            <div class="form-group">
+              <label for="modal-name">お名前 <span class="required">*</span></label>
+              <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-email">メールアドレス <span class="required">*</span></label>
+              <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+            </div>
+            <div class="form-group">
+              <label for="modal-phone">電話番号</label>
+              <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
+            <select id="modal-inquiry-type" name="inquiry_type" required>
+              <option value="">選択してください</option>
+              <option value="service">サービスについて</option>
+              <option value="consultation">無料相談の申し込み</option>
+              <option value="quotation">見積もり依頼</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" name="privacy" value="agreed" required>
+              <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
   <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+  <script src="{{ site.baseurl }}/assets/js/contact-modal.js"></script>
 </body>
 </html>

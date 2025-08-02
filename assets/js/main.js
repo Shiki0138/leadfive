@@ -226,11 +226,31 @@ function closeAIAnalysis() {
 window.openAIAnalysis = openAIAnalysis;
 window.closeAIAnalysis = closeAIAnalysis;
 
-// Contact form
+// Contact form modal
 function openContactForm() {
-  // Redirect to contact page or open modal
-  const baseurl = document.querySelector('meta[name="baseurl"]')?.content || '';
-  window.location.href = baseurl + '/contact/';
+  const modal = document.getElementById('contact-modal');
+  if (modal) {
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Add fade-in animation
+    setTimeout(() => {
+      modal.classList.add('active');
+    }, 10);
+  }
+}
+
+// Close contact modal
+function closeContactModal() {
+  const modal = document.getElementById('contact-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 300);
+  }
 }
 
 // Scroll to section
@@ -256,6 +276,7 @@ function scrollToSection(sectionId) {
 
 // Make functions globally accessible
 window.openContactForm = openContactForm;
+window.closeContactModal = closeContactModal;
 window.scrollToSection = scrollToSection;
 window.showLetter = showLetter;
 

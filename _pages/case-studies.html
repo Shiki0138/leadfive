@@ -1,0 +1,526 @@
+---
+layout: page
+title: 導入事例 | AI×心理学マーケティングの成功事例
+description: LeadFiveのAI×心理学アプローチによる成功事例をご紹介。様々な業界での売上向上、効率化、顧客満足度向上の実績をご覧ください。
+permalink: /case-studies/
+---
+
+<style>
+.case-studies-hero {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  padding: 6rem 0;
+  margin-bottom: 4rem;
+  text-align: center;
+  position: relative;
+}
+
+.case-studies-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.results-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+}
+
+.result-stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #8b5cf6;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.filter-section {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.case-studies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.case-study-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.case-study-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.case-study-header {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.1));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.industry-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.case-study-content {
+  padding: 2rem;
+}
+
+.case-metrics {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.metric {
+  flex: 1;
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.25rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.featured-case {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+  padding: 3rem;
+  border-radius: 20px;
+  margin-bottom: 4rem;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+.featured-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #8b5cf6;
+  color: #fff;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-section {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 3rem;
+  border-radius: 20px;
+  margin-bottom: 4rem;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.testimonial-card {
+  background: #0a0a0a;
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  font-size: 3rem;
+  color: rgba(139, 92, 246, 0.3);
+}
+
+.testimonial-text {
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 4rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  border-radius: 20px;
+  margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+  .case-studies-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .results-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .case-studies-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+</style>
+
+<div class="case-studies-hero">
+  <div class="container">
+    <h1>導入事例</h1>
+    <p>AI×心理学アプローチで実現した、確かな成果をご紹介します</p>
+  </div>
+</div>
+
+<div class="container">
+  <section class="results-summary">
+    <div class="result-stat">
+      <div class="stat-value">150+</div>
+      <div class="stat-label">導入企業数</div>
+    </div>
+    <div class="result-stat">
+      <div class="stat-value">2.8倍</div>
+      <div class="stat-label">平均売上向上率</div>
+    </div>
+    <div class="result-stat">
+      <div class="stat-value">65%</div>
+      <div class="stat-label">コスト削減率</div>
+    </div>
+    <div class="result-stat">
+      <div class="stat-value">92%</div>
+      <div class="stat-label">顧客満足度</div>
+    </div>
+  </section>
+
+  <section class="filter-section">
+    <div class="filter-buttons">
+      <button class="filter-btn active" onclick="filterCases('all')">すべて</button>
+      <button class="filter-btn" onclick="filterCases('ec')">EC・小売</button>
+      <button class="filter-btn" onclick="filterCases('service')">サービス業</button>
+      <button class="filter-btn" onclick="filterCases('btob')">BtoB</button>
+      <button class="filter-btn" onclick="filterCases('beauty')">美容・健康</button>
+    </div>
+  </section>
+
+  <section class="featured-case" data-category="ec">
+    <span class="featured-badge">注目の事例</span>
+    <h2>大手ECサイト A社様</h2>
+    <p>AI×心理学アプローチで実現した驚異的な成果</p>
+    <div class="case-metrics" style="margin-top: 2rem;">
+      <div class="metric">
+        <div class="metric-value">3.2倍</div>
+        <div class="metric-label">コンバージョン率</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">2.5倍</div>
+        <div class="metric-label">平均購買単価</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">45%</div>
+        <div class="metric-label">リピート率向上</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">60%</div>
+        <div class="metric-label">広告費削減</div>
+      </div>
+    </div>
+    <p style="margin-top: 2rem;">
+      8つの本能に基づくパーソナライゼーションとAIレコメンドシステムの導入により、
+      顧客体験を大幅に改善。データドリブンな施策で持続的な成長を実現しました。
+    </p>
+    <a href="{{ '/case-studies/ec-site/' | relative_url }}" class="btn btn-primary" style="margin-top: 1.5rem;">詳細を見る</a>
+  </section>
+
+  <section class="case-studies-grid">
+    <div class="case-study-card" data-category="service">
+      <div class="case-study-header">
+        <span class="industry-tag">サービス業</span>
+        <h3>人材紹介会社 B社様</h3>
+      </div>
+      <div class="case-study-content">
+        <p>AIマッチングシステムとコミュニケーション最適化により、マッチング精度が大幅向上</p>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-value">85%</div>
+            <div class="metric-label">マッチング精度</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">2.1倍</div>
+            <div class="metric-label">成約率</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-study-card" data-category="beauty">
+      <a href="{{ '/case-studies/beauty-salon/' | relative_url }}" style="text-decoration: none; color: inherit;">
+        <div class="case-study-header">
+          <span class="industry-tag">美容・健康</span>
+          <h3>美容サロンチェーン C社様</h3>
+        </div>
+        <div class="case-study-content">
+          <p>顧客心理を捉えたLPとSNS戦略で、新規顧客獲得コストを大幅削減</p>
+          <div class="case-metrics">
+            <div class="metric">
+              <div class="metric-value">70%</div>
+              <div class="metric-label">CPA削減</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">3.5倍</div>
+              <div class="metric-label">予約率</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="case-study-card" data-category="btob">
+      <div class="case-study-header">
+        <span class="industry-tag">BtoB</span>
+        <h3>SaaS企業 D社様</h3>
+      </div>
+      <div class="case-study-content">
+        <p>AIによるリード最適化とナーチャリング自動化で、営業効率が飛躍的に向上</p>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-value">4.2倍</div>
+            <div class="metric-label">商談化率</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">55%</div>
+            <div class="metric-label">営業時間削減</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-study-card" data-category="ec">
+      <div class="case-study-header">
+        <span class="industry-tag">EC・小売</span>
+        <h3>アパレルEC E社様</h3>
+      </div>
+      <div class="case-study-content">
+        <p>AI画像認識とパーソナライゼーションで、顧客体験を革新</p>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-value">2.8倍</div>
+            <div class="metric-label">購買率</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">40%</div>
+            <div class="metric-label">返品率削減</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-study-card" data-category="service">
+      <div class="case-study-header">
+        <span class="industry-tag">サービス業</span>
+        <h3>フィットネスクラブ F社様</h3>
+      </div>
+      <div class="case-study-content">
+        <p>行動心理学に基づく継続率向上プログラムで、LTVが大幅改善</p>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-value">78%</div>
+            <div class="metric-label">継続率</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">2.3倍</div>
+            <div class="metric-label">LTV向上</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-study-card" data-category="btob">
+      <div class="case-study-header">
+        <span class="industry-tag">BtoB</span>
+        <h3>製造業 G社様</h3>
+      </div>
+      <div class="case-study-content">
+        <p>AIによる需要予測と在庫最適化で、キャッシュフローを大幅改善</p>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-value">35%</div>
+            <div class="metric-label">在庫削減</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">98%</div>
+            <div class="metric-label">納期遵守率</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial-section">
+    <h2 class="section-title">お客様の声</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          「LeadFiveのAI×心理学アプローチは、まさに目から鱗でした。
+          データだけでは見えなかった顧客の本音が見えるようになり、
+          施策の精度が格段に上がりました。」
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">TK</div>
+          <div>
+            <strong>田中 健一様</strong><br>
+            <small>EC事業部長</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          「導入から3ヶ月で売上が2倍に。こんなに早く成果が出るとは
+          思いませんでした。投資対効果は期待以上です。」
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">YS</div>
+          <div>
+            <strong>山田 さくら様</strong><br>
+            <small>マーケティング責任者</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          「AIの活用方法がわからず悩んでいましたが、LeadFiveの
+          サポートで実践的な活用ができるようになりました。」
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MS</div>
+          <div>
+            <strong>松本 誠様</strong><br>
+            <small>代表取締役</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>あなたのビジネスも、次の成功事例に</h2>
+    <p>AI×心理学の力で、確かな成果を実現しませんか？</p>
+    <div class="cta-buttons">
+      <button class="btn btn-primary btn-large" onclick="openContactForm()">
+        無料相談を申し込む
+      </button>
+      <button class="btn btn-outline btn-large" onclick="openAIAnalysis()">
+        AI診断を受ける
+      </button>
+    </div>
+  </section>
+</div>
+
+<script>
+function filterCases(category) {
+  // Update active button
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+  
+  // Filter case study cards
+  const cards = document.querySelectorAll('.case-study-card, .featured-case');
+  cards.forEach(card => {
+    if (category === 'all' || card.getAttribute('data-category') === category) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
