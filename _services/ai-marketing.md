@@ -152,7 +152,8 @@ features:
           <li>✓ 広告最適化（1媒体）</li>
           <li>✓ 月次レポート</li>
         </ul>
-        <div class="price">月額 15万円〜</div>
+        <div class="price">お見積もりを依頼</div>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">詳細を相談する</button>
       </div>
       
       <div class="pricing-card glass-card featured">
@@ -165,7 +166,8 @@ features:
           <li>✓ AI自動最適化</li>
           <li>✓ 週次ミーティング</li>
         </ul>
-        <div class="price">月額 50万円〜</div>
+        <div class="price">投資対効果を重視したご提案</div>
+        <button class="btn btn-primary btn-block" onclick="openContactForm()">お見積もりを依頼</button>
       </div>
       
       <div class="pricing-card glass-card">
@@ -177,8 +179,16 @@ features:
           <li>✓ 全媒体対応</li>
           <li>✓ 24時間サポート</li>
         </ul>
-        <div class="price">個別見積もり</div>
+        <div class="price">戦略的パートナーシップ</div>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">戦略相談を申し込む</button>
       </div>
+    </div>
+    <div class="custom-solution-note">
+      <p>
+        <strong>価格について：</strong>お客様の広告予算、ビジネス規模、達成目標に応じて、<br>
+        最適なROIを実現するカスタムプランをご提案いたします。<br>
+        まずは無料診断で、具体的な改善余地をご確認ください。
+      </p>
     </div>
   </div>
 </section>
@@ -443,6 +453,19 @@ features:
   font-size: 1.5rem;
   font-weight: 700;
   color: #8b5cf6;
+}
+
+.custom-solution-note {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.custom-solution-note p {
+  color: #e5e7eb;
+  line-height: 1.8;
 }
 
 .service-cta {

@@ -152,7 +152,8 @@ features:
           <li>✓ 簡易レポート</li>
           <li>✓ 月次更新</li>
         </ul>
-        <div class="price">月額 20万円〜</div>
+        <div class="price">データ量に応じたご提案</div>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">お見積もりを依頼</button>
       </div>
       
       <div class="pricing-card glass-card featured">
@@ -165,7 +166,8 @@ features:
           <li>✓ リアルタイム更新</li>
           <li>✓ 施策提案付き</li>
         </ul>
-        <div class="price">月額 60万円〜</div>
+        <div class="price">成果重視のカスタムプラン</div>
+        <button class="btn btn-primary btn-block" onclick="openContactForm()">詳細を相談する</button>
       </div>
       
       <div class="pricing-card glass-card">
@@ -177,8 +179,16 @@ features:
           <li>✓ カスタムAI開発</li>
           <li>✓ 実行支援込み</li>
         </ul>
-        <div class="price">個別見積もり</div>
+        <div class="price">戦略的パートナーシップ</div>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">戦略相談を申し込む</button>
       </div>
+    </div>
+    <div class="custom-solution-note">
+      <p>
+        <strong>価格について：</strong>分析対象のデータ量、更新頻度、必要な分析の深さに応じて、<br>
+        最適なROIを実現するプランをご提案いたします。<br>
+        まずは無料のデータ診断で、改善可能性をご確認ください。
+      </p>
     </div>
   </div>
 </section>
@@ -443,6 +453,19 @@ features:
   font-size: 1.5rem;
   font-weight: 700;
   color: #3b82f6;
+}
+
+.custom-solution-note {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.custom-solution-note p {
+  color: #e5e7eb;
+  line-height: 1.8;
 }
 
 .service-cta {

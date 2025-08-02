@@ -201,10 +201,11 @@ features:
         <p>まずは一部業務から</p>
         <ul>
           <li>✓ チャットボット基本機能</li>
-          <li>✓ メール自動化（月1万通まで）</li>
+          <li>✓ メール自動化</li>
           <li>✓ 基本レポート</li>
         </ul>
-        <div class="price">月額 25万円〜</div>
+        <div class="price">導入規模に応じたご提案</div>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">お見積もりを依頼</button>
       </div>
       
       <div class="pricing-card glass-card featured">
@@ -213,11 +214,12 @@ features:
         <p>本格的な自動化に</p>
         <ul>
           <li>✓ 高度なAIチャットボット</li>
-          <li>✓ 無制限メール配信</li>
+          <li>✓ 大規模メール配信</li>
           <li>✓ SNS自動投稿</li>
           <li>✓ 詳細分析レポート</li>
         </ul>
-        <div class="price">月額 70万円〜</div>
+        <div class="price">ROI最大化プラン</div>
+        <button class="btn btn-primary btn-block" onclick="openContactForm()">詳細を相談する</button>
       </div>
       
       <div class="pricing-card glass-card">
@@ -229,8 +231,16 @@ features:
           <li>✓ 専任サポート</li>
           <li>✓ AI学習最適化</li>
         </ul>
-        <div class="price">個別見積もり</div>
+        <div class="price">戦略的パートナーシップ</div>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">戦略相談を申し込む</button>
       </div>
+    </div>
+    <div class="custom-solution-note">
+      <p>
+        <strong>価格について：</strong>自動化したい業務の範囲、処理量、システム連携の複雑さに応じて、<br>
+        最適な投資対効果を実現するプランをカスタマイズいたします。<br>
+        まずは無料相談で、どれだけの効率化が可能かをシミュレーションします。
+      </p>
     </div>
   </div>
 </section>
@@ -545,6 +555,19 @@ features:
   font-size: 1.5rem;
   font-weight: 700;
   color: #ec4899;
+}
+
+.custom-solution-note {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(236, 72, 153, 0.1);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.custom-solution-note p {
+  color: #e5e7eb;
+  line-height: 1.8;
 }
 
 .service-cta {

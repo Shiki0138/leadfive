@@ -179,6 +179,19 @@ permalink: /services/ai-prompt/
   border-radius: 20px;
 }
 
+.custom-solution-note {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.custom-solution-note p {
+  color: #e5e7eb;
+  line-height: 1.8;
+}
+
 @media (max-width: 768px) {
   .service-hero h1 {
     font-size: 2rem;
@@ -295,43 +308,54 @@ permalink: /services/ai-prompt/
   </section>
 
   <section class="pricing-section">
-    <h2 class="section-title">料金プラン</h2>
+    <h2 class="section-title">カスタムソリューション</h2>
+    <p class="lead-text">
+      お客様のビジネス規模、課題、目標に合わせて、<br>
+      最適なAIプロンプトエンジニアリングソリューションをご提案いたします。
+    </p>
     <div class="pricing-cards">
       <div class="pricing-card">
-        <h3>ベーシックプラン</h3>
-        <p class="price">¥50,000<span class="price-unit">/プロンプト</span></p>
+        <h3>スタートアップ・中小企業向け</h3>
+        <p class="price">お客様に最適なプランをご提案</p>
         <ul>
-          <li>✅ 単一用途のプロンプト設計</li>
-          <li>✅ 基本的な心理学フレームワーク適用</li>
-          <li>✅ 3回までの修正対応</li>
-          <li>✅ 使用マニュアル付き</li>
+          <li>✅ ビジネス課題の詳細ヒアリング</li>
+          <li>✅ ROI最大化を目指した設計</li>
+          <li>✅ 段階的な導入支援</li>
+          <li>✅ 継続的なサポート体制</li>
         </ul>
-        <button class="btn btn-outline btn-block" onclick="openContactForm()">お問い合わせ</button>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">お見積もりを依頼</button>
       </div>
       <div class="pricing-card featured">
-        <h3>プロフェッショナルプラン</h3>
-        <p class="price">¥200,000<span class="price-unit">/月</span></p>
+        <h3>成長企業向け</h3>
+        <p class="price">投資対効果を重視したご提案</p>
         <ul>
-          <li>✅ 複数用途のプロンプト設計（最大10個）</li>
-          <li>✅ 高度な心理学的最適化</li>
-          <li>✅ A/Bテストによる継続改善</li>
-          <li>✅ 月次レポートと改善提案</li>
-          <li>✅ オンサイトトレーニング（2回）</li>
+          <li>✅ 複数部門での活用戦略</li>
+          <li>✅ カスタマイズされた最適化</li>
+          <li>✅ 成果に基づく継続改善</li>
+          <li>✅ 専門チームによるサポート</li>
+          <li>✅ トレーニング・教育プログラム</li>
         </ul>
-        <button class="btn btn-primary btn-block" onclick="openContactForm()">お問い合わせ</button>
+        <button class="btn btn-primary btn-block" onclick="openContactForm()">詳細を相談する</button>
       </div>
       <div class="pricing-card">
-        <h3>エンタープライズプラン</h3>
-        <p class="price">要相談</p>
+        <h3>エンタープライズ向け</h3>
+        <p class="price">戦略的パートナーシップ</p>
         <ul>
           <li>✅ 全社規模のAI活用戦略立案</li>
           <li>✅ カスタムAIモデルの構築支援</li>
           <li>✅ 専任コンサルタント配置</li>
           <li>✅ 24時間サポート体制</li>
-          <li>✅ ROI保証プログラム</li>
+          <li>✅ 成果保証プログラム</li>
         </ul>
-        <button class="btn btn-outline btn-block" onclick="openContactForm()">お問い合わせ</button>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">戦略相談を申し込む</button>
       </div>
+    </div>
+    <div class="custom-solution-note">
+      <p>
+        <strong>価格について：</strong>お客様の具体的なニーズ、プロジェクト規模、期間に応じて、<br>
+        最適な投資対効果を実現する価格をご提案させていただきます。<br>
+        まずは無料相談で、お客様のビジネス課題をお聞かせください。
+      </p>
     </div>
   </section>
 

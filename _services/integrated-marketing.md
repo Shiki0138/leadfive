@@ -232,11 +232,12 @@ features:
         <h3>ベーシック統合</h3>
         <p>主要チャネルの統合</p>
         <ul>
-          <li>✓ 5チャネルまで統合</li>
+          <li>✓ 複数チャネル統合</li>
           <li>✓ 基本ダッシュボード</li>
           <li>✓ 月次レポート</li>
         </ul>
-        <div class="price">月額 30万円〜</div>
+        <div class="price">チャネル数に応じたご提案</div>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">お見積もりを依頼</button>
       </div>
       
       <div class="pricing-card glass-card featured">
@@ -244,25 +245,34 @@ features:
         <h3>アドバンスド統合</h3>
         <p>全方位マーケティング</p>
         <ul>
-          <li>✓ 10チャネルまで統合</li>
+          <li>✓ 主要チャネル統合</li>
           <li>✓ AI予算最適化</li>
           <li>✓ リアルタイム分析</li>
           <li>✓ 週次改善提案</li>
         </ul>
-        <div class="price">月額 80万円〜</div>
+        <div class="price">統合効果を最大化</div>
+        <button class="btn btn-primary btn-block" onclick="openContactForm()">詳細を相談する</button>
       </div>
       
       <div class="pricing-card glass-card">
         <h3>エンタープライズ</h3>
         <p>大規模統合戦略</p>
         <ul>
-          <li>✓ 無制限チャネル</li>
+          <li>✓ 全チャネル対応</li>
           <li>✓ カスタムAI開発</li>
           <li>✓ 専任チーム</li>
           <li>✓ 24時間サポート</li>
         </ul>
-        <div class="price">個別見積もり</div>
+        <div class="price">戦略的パートナーシップ</div>
+        <button class="btn btn-outline btn-block" onclick="openContactForm()">戦略相談を申し込む</button>
       </div>
+    </div>
+    <div class="custom-solution-note">
+      <p>
+        <strong>価格について：</strong>統合するチャネル数、広告予算規模、必要な分析の深さに応じて、<br>
+        最適な統合効果を実現するプランをカスタマイズいたします。<br>
+        まずは無料診断で、統合による期待効果をシミュレーションします。
+      </p>
     </div>
   </div>
 </section>
@@ -607,6 +617,19 @@ features:
   font-size: 1.5rem;
   font-weight: 700;
   color: #06b6d4;
+}
+
+.custom-solution-note {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(6, 182, 212, 0.1);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.custom-solution-note p {
+  color: #e5e7eb;
+  line-height: 1.8;
 }
 
 .service-cta {
