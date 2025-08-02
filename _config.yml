@@ -37,6 +37,22 @@ plugins:
 paginate: 10
 paginate_path: "/blog/page:num/"
 
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: "_pages"
+    values:
+      layout: "page"
+
+# Include pages directory
+include:
+  - _pages
+
 # Ensure blog directory is not excluded
 keep_files:
   - blog
