@@ -138,33 +138,67 @@ permalink: /privacy/
 </section>
 
 <style>
-.privacy-content {
+.page-header {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
   padding: 4rem 0;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-subtitle {
+  color: #6b7280;
+  font-size: 1.125rem;
+}
+
+.privacy-content {
+  padding: 0 0 4rem;
+  background: #ffffff;
+  color: #1f2937;
 }
 
 .content-wrapper {
   max-width: 800px;
   margin: 0 auto;
+  background: #ffffff;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .last-updated {
-  color: #9ca3af;
+  color: #6b7280;
   font-size: 0.875rem;
   margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .privacy-section {
   margin-bottom: 3rem;
+  padding: 2rem;
+  background: #f9fafb;
+  border-radius: 15px;
+  border: 1px solid #e5e7eb;
 }
 
 .privacy-section h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #8b5cf6;
+  color: #111827;
+  font-weight: 700;
 }
 
 .privacy-section p {
-  color: #e5e7eb;
+  color: #374151;
   line-height: 1.8;
   margin-bottom: 1rem;
 }
@@ -178,7 +212,7 @@ permalink: /privacy/
 .privacy-section li {
   position: relative;
   padding: 0.5rem 0;
-  color: #d1d5db;
+  color: #4b5563;
 }
 
 .privacy-section li::before {
@@ -186,12 +220,14 @@ permalink: /privacy/
   position: absolute;
   left: -1.5rem;
   color: #8b5cf6;
+  font-weight: bold;
 }
 
 .privacy-section a {
   color: #8b5cf6;
   text-decoration: none;
   transition: color 0.3s ease;
+  font-weight: 500;
 }
 
 .privacy-section a:hover {
@@ -202,10 +238,30 @@ permalink: /privacy/
 .contact-info {
   margin-top: 1rem;
   padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 2px solid #8b5cf6;
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.1);
 }
 
 .contact-info p {
   margin: 0;
   line-height: 1.8;
+  color: #1f2937;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .content-wrapper {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .privacy-section {
+    padding: 1.5rem;
+  }
 }
 </style>
