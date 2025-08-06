@@ -1,0 +1,112 @@
+name: 🎯 キーワードレスポンス処理
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  process-keyword-response:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.body, '#keyword:') || contains(github.event.comment.body, '#keyword:')
+    
+    steps:
+    - name: 📥 リポジトリチェックアウト
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 📋 Node.js セットアップ
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: 🎯 キーワード抽出・保存
+      run: |
+        node -e "
+        const fs = require('fs');
+        
+        // イシューまたはコメントからキーワード抽出
+        const content = process.env.GITHUB_EVENT_NAME === 'issues' 
+          ? '${{ github.event.issue.body }}'
+          : '${{ github.event.comment.body }}';
+        
+        console.log('Processing content:', content);
+        
+        // #keyword: パターンを検索
+        const keywordMatch = content.match(/#keyword:\s*(.+)/i);
+        
+        if (keywordMatch) {
+          const keyword = keywordMatch[1].trim();
+          console.log('Extracted keyword:', keyword);
+          
+          // レスポンスファイル作成
+          const responseData = {
+            keyword: keyword,
+            timestamp: new Date().toISOString(),
+            approved: true,
+            source: 'github_issue',
+            user: '${{ github.event.sender.login }}',
+            issue_number: '${{ github.event.issue.number }}'
+          };
+          
+          // ディレクトリ作成
+          fs.mkdirSync('.github', { recursive: true });
+          
+          // レスポンスファイル保存
+          fs.writeFileSync('.github/keyword-response.json', JSON.stringify(responseData, null, 2));
+          
+          console.log('Keyword response saved successfully');
+          
+          // 環境変数に設定（次のステップで使用）
+          console.log('::set-output name=keyword::' + keyword);
+          console.log('::set-output name=success::true');
+        } else {
+          console.log('No keyword found in content');
+          console.log('::set-output name=success::false');
+        }
+        "
+      id: extract-keyword
+    
+    - name: 📤 レスポンスファイルコミット
+      if: steps.extract-keyword.outputs.success == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .github/keyword-response.json
+        git commit -m "🎯 キーワードレスポンス: ${{ steps.extract-keyword.outputs.keyword }}"
+        git push
+    
+    - name: 💬 確認コメント投稿
+      if: steps.extract-keyword.outputs.success == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const keyword = '${{ steps.extract-keyword.outputs.keyword }}';
+          const comment = `✅ **キーワードを受け付けました！**
+          
+          🎯 **受付キーワード**: ${keyword}
+          ⏰ **受付時刻**: ${new Date().toLocaleString('ja-JP', {timeZone: 'Asia/Tokyo'})}
+          
+          📝 このキーワードで次回のブログ記事を生成します。
+          🚀 毎日午前9時の自動投稿で使用されます。
+          
+          ---
+          *LeadFive自動ブログシステムより*`;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+    
+    - name: 📱 LINE通知送信
+      if: steps.extract-keyword.outputs.success == 'true'
+      run: |
+        if [ -n "${{ secrets.LINE_NOTIFY_TOKEN }}" ]; then
+          curl -X POST https://notify-api.line.me/api/notify \
+            -H "Authorization: Bearer ${{ secrets.LINE_NOTIFY_TOKEN }}" \
+            -d "message=✅ キーワード受付完了！%0A%0A🎯 キーワード: ${{ steps.extract-keyword.outputs.keyword }}%0A👤 投稿者: ${{ github.event.sender.login }}%0A⏰ 受付時刻: $(date '+%Y-%m-%d %H:%M:%S')%0A%0A📝 次回の自動ブログ生成で使用されます"
+        fi

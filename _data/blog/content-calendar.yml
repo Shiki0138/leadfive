@@ -1,0 +1,204 @@
+# コンテンツカレンダー設定
+# 毎日異なるテーマとキーワードで自動投稿するための設定
+
+# 曜日別テーマ設定
+weekly_themes:
+  monday:
+    theme: "AIマーケティング"
+    instinct: "learning"
+    structure: "howTo"
+    keywords:
+      - "AI マーケティング 最新トレンド"
+      - "生成AI 活用法 マーケティング"
+      - "ChatGPT ビジネス活用 事例"
+      - "AI ツール 比較 2025"
+    
+  tuesday:
+    theme: "消費者心理"
+    instinct: "hierarchy"
+    structure: "problemSolution"
+    keywords:
+      - "消費者心理 8つの本能 活用"
+      - "購買行動 心理学 分析"
+      - "顧客インサイト AI 発見"
+      - "行動経済学 マーケティング 応用"
+    
+  wednesday:
+    theme: "成功事例"
+    instinct: "territorial"
+    structure: "caseStudy"
+    keywords:
+      - "AI導入 成功事例 中小企業"
+      - "デジタル変革 事例 製造業"
+      - "CVR改善 成功事例 EC"
+      - "マーケティング自動化 ROI"
+    
+  thursday:
+    theme: "実践テクニック"
+    instinct: "learning"
+    structure: "howTo"
+    keywords:
+      - "SEO対策 AI活用 2025"
+      - "SNSマーケティング 自動化 方法"
+      - "メールマーケティング AI 最適化"
+      - "コンテンツマーケティング 効率化"
+    
+  friday:
+    theme: "トレンド分析"
+    instinct: "survival"
+    structure: "comparison"
+    keywords:
+      - "マーケティングトレンド 2025 予測"
+      - "AI技術 最新動向 ビジネス"
+      - "デジタルマーケティング 未来"
+      - "生成AI 進化 影響"
+    
+  saturday:
+    theme: "業界別ガイド"
+    instinct: "nurturing"
+    structure: "problemSolution"
+    keywords:
+      - "美容業界 AI活用 完全ガイド"
+      - "不動産業界 デジタル変革"
+      - "飲食業界 マーケティング自動化"
+      - "医療業界 AI導入 事例"
+    
+  sunday:
+    theme: "戦略立案"
+    instinct: "reproduction"
+    structure: "howTo"
+    keywords:
+      - "マーケティング戦略 AI時代"
+      - "ビジネス成長 AI活用 戦略"
+      - "競争優位 構築 方法"
+      - "DX推進 ロードマップ 作成"
+
+# 月別特集テーマ
+monthly_campaigns:
+  january:
+    theme: "新年の計画と目標設定"
+    special_keywords:
+      - "マーケティング計画 2025"
+      - "AI導入 ロードマップ"
+      
+  february:
+    theme: "効率化と生産性向上"
+    special_keywords:
+      - "業務効率化 AI活用"
+      - "生産性向上 ツール"
+      
+  march:
+    theme: "年度末の振り返りと改善"
+    special_keywords:
+      - "マーケティング成果 分析"
+      - "KPI改善 方法"
+      
+  april:
+    theme: "新年度のスタートダッシュ"
+    special_keywords:
+      - "新規事業 AI活用"
+      - "チーム強化 戦略"
+      
+  may:
+    theme: "顧客エンゲージメント強化"
+    special_keywords:
+      - "顧客満足度 向上"
+      - "カスタマーサクセス AI"
+      
+  june:
+    theme: "上半期の成果最大化"
+    special_keywords:
+      - "売上向上 施策"
+      - "コンバージョン最適化"
+      
+  july:
+    theme: "夏のマーケティング戦略"
+    special_keywords:
+      - "季節マーケティング 成功"
+      - "キャンペーン自動化"
+      
+  august:
+    theme: "データ分析と insights"
+    special_keywords:
+      - "ビッグデータ 活用"
+      - "予測分析 AI"
+      
+  september:
+    theme: "下半期の戦略見直し"
+    special_keywords:
+      - "戦略修正 ポイント"
+      - "競合分析 AI活用"
+      
+  october:
+    theme: "ホリデーシーズン準備"
+    special_keywords:
+      - "年末商戦 準備"
+      - "ECサイト 最適化"
+      
+  november:
+    theme: "来年度計画の準備"
+    special_keywords:
+      - "予算計画 マーケティング"
+      - "投資対効果 最大化"
+      
+  december:
+    theme: "年間総括と未来展望"
+    special_keywords:
+      - "年間振り返り 成果"
+      - "来年トレンド 予測"
+
+# 業界別キーワードプール
+industry_keywords:
+  retail:
+    - "小売業 AI活用"
+    - "店舗DX 成功事例"
+    - "オムニチャネル 戦略"
+    
+  beauty:
+    - "美容業界 集客"
+    - "サロン経営 効率化"
+    - "顧客管理 システム"
+    
+  realestate:
+    - "不動産 AI査定"
+    - "物件マッチング 自動化"
+    - "不動産テック 活用"
+    
+  healthcare:
+    - "医療マーケティング"
+    - "患者エンゲージメント"
+    - "ヘルスケアDX"
+    
+  education:
+    - "教育業界 AI"
+    - "オンライン学習 最適化"
+    - "EdTech トレンド"
+    
+  manufacturing:
+    - "製造業 DX"
+    - "BtoB マーケティング"
+    - "スマートファクトリー"
+
+# トレンドキーワード（定期更新）
+trending_keywords:
+  current:
+    - "生成AI ビジネス活用 2025"
+    - "プロンプトエンジニアリング"
+    - "AIエージェント 導入"
+    - "マルチモーダルAI 活用"
+    - "AIガバナンス 構築"
+    
+  emerging:
+    - "AGI ビジネスインパクト"
+    - "量子コンピューティング マーケティング"
+    - "メタバース 顧客体験"
+    - "Web3 マーケティング"
+    - "サステナブル経営 AI"
+
+# 自動選択ルール
+selection_rules:
+  - "同じキーワードは30日間使用しない"
+  - "月別テーマを優先的に組み込む"
+  - "トレンドキーワードを週1回以上使用"
+  - "業界別キーワードをローテーション"
+  - "読者の反応が良かったキーワードの関連語を優先"
