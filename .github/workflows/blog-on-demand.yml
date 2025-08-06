@@ -145,10 +145,13 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "GitHub Actions Blog Bot"
         
+        # 必要なディレクトリを作成
+        mkdir -p assets/images/blog
+        
         # 変更をステージング
-        git add _posts/
-        git add assets/images/blog/
-        git add _site/
+        git add _posts/ || echo "No posts to add"
+        git add assets/images/blog/ 2>/dev/null || echo "No images to add"
+        git add _site/ 2>/dev/null || echo "No _site to add"
         
         # コミット
         COMMIT_TITLE="📝 ブログ投稿: ${{ steps.generate.outputs.title }}"
