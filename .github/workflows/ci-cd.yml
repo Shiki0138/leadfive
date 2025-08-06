@@ -1,0 +1,159 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  RUBY_VERSION: '3.0'
+  NODE_VERSION: '18'
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ env.RUBY_VERSION }}
+        bundler-cache: true
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        bundle install
+        npm ci
+    
+    - name: Run HTML Proofer
+      run: |
+        bundle exec jekyll build
+        bundle exec htmlproofer ./_site \
+          --disable-external \
+          --allow-hash-href \
+          --ignore-urls "#" \
+          --ignore-files "./_site/assets/js/blog-automation.js"
+    
+    - name: Run JavaScript linting
+      run: |
+        npm install -g eslint
+        eslint assets/js/*.js || true
+    
+    - name: Run security checks
+      run: |
+        bundle exec bundle-audit check
+        npm audit --audit-level=moderate || true
+
+  build:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ env.RUBY_VERSION }}
+        bundler-cache: true
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        bundle install
+        npm ci
+    
+    - name: Build Jekyll site
+      run: |
+        bundle exec jekyll build --config _config.yml,_config_production.yml
+      env:
+        JEKYLL_ENV: production
+    
+    - name: Generate sitemap
+      run: |
+        bundle exec jekyll build
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: jekyll-site
+        path: _site/
+
+  deploy-staging:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: jekyll-site
+        path: _site/
+    
+    - name: Deploy to staging
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        publish_branch: gh-pages-staging
+        cname: staging.leadfive.com
+
+  deploy-production:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://leadfive.com
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: jekyll-site
+        path: _site/
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        cname: leadfive.com
+
+  performance-test:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Run Lighthouse CI
+      uses: treosh/lighthouse-ci-action@v9
+      with:
+        urls: |
+          https://staging.leadfive.com
+          https://staging.leadfive.com/blog
+          https://staging.leadfive.com/contact
+        budgetPath: ./lighthouse-budget.json
+        uploadArtifacts: true
+        temporaryPublicStorage: true

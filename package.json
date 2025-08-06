@@ -4,12 +4,28 @@
   "description": "AI×心理学マーケティングコンサルティング会社「LeadFive」のJekyll製ウェブサイトです。",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest --config jest.config.js --testPathPattern=tests/unit",
+    "test:integration": "jest --config jest.config.js --testPathPattern=tests/integration",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
     "build": "bundle exec jekyll build",
+    "build:production": "JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config_production.yml",
     "serve": "bundle exec jekyll serve --livereload",
+    "dev": "bundle exec jekyll serve --livereload --incremental",
+    "lint": "eslint assets/js/**/*.js",
+    "lint:fix": "eslint assets/js/**/*.js --fix",
+    "security:check": "npm audit && bundle exec bundle-audit check",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:staging": "./scripts/deploy.sh --staging",
+    "deploy:production": "./scripts/deploy.sh --production",
     "generate-images": "node scripts/generate-business-images.js",
     "enhance-design": "npm run generate-images && npm run build",
-    "dev": "bundle exec jekyll serve --livereload --incremental"
+    "monitor:start": "node scripts/monitor.js",
+    "performance:test": "lighthouse https://leadfive.com --budget-path=./lighthouse-budget.json --output=html --output-path=./test-results/lighthouse-report.html"
   },
   "repository": {
     "type": "git",
@@ -24,8 +40,14 @@
   },
   "homepage": "https://github.com/Shiki0138/leadfive#readme",
   "dependencies": {
-    "dotenv": "^17.2.1",
-    "uuid": "^11.1.0",
-    "@runware/sdk-js": "^1.5.0"
+    "dotenv": "^16.6.1",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
   }
 }

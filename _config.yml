@@ -65,6 +65,9 @@ collections:
   case_studies:
     output: true
     permalink: /case-studies/:path/
+  virtual:
+    output: true
+    permalink: /virtual/:path/
 
 # Exclude from processing
 exclude:

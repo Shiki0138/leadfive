@@ -249,13 +249,13 @@ permalink: /blog-admin/
       <form class="auto-post-form" id="autoPostForm">
         <div class="form-group">
           <label class="form-label">記事のトピック</label>
-          <input type="text" class="form-input" placeholder="例: AI×心理学マーケティングの最新トレンド" required>
+          <input type="text" name="topic" class="form-input" placeholder="例: AI×心理学マーケティングの最新トレンド" required>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">カテゴリー</label>
-            <select class="form-select" required>
+            <select name="category" class="form-select" required>
               <option value="">選択してください</option>
               <option value="ai-marketing">AIマーケティング</option>
               <option value="psychology">消費者心理</option>
@@ -266,7 +266,7 @@ permalink: /blog-admin/
           </div>
           <div class="form-group">
             <label class="form-label">ターゲット読者</label>
-            <select class="form-select" required>
+            <select name="targetAudience" class="form-select" required>
               <option value="">選択してください</option>
               <option value="beginner">初心者</option>
               <option value="intermediate">中級者</option>
@@ -278,23 +278,23 @@ permalink: /blog-admin/
 
         <div class="form-group">
           <label class="form-label">キーワード（カンマ区切り）</label>
-          <input type="text" class="form-input" placeholder="AI, 心理学, マーケティング, 売上向上">
+          <input type="text" name="keywords" class="form-input" placeholder="AI, 心理学, マーケティング, 売上向上" required>
         </div>
 
         <div class="form-group">
           <label class="form-label">記事の概要（AIへの指示）</label>
-          <textarea class="form-textarea" placeholder="この記事で伝えたいメッセージや、含めたい具体的な内容を記述してください"></textarea>
+          <textarea name="outline" class="form-textarea" placeholder="この記事で伝えたいメッセージや、含めたい具体的な内容を記述してください"></textarea>
         </div>
 
         <div class="schedule-section">
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">投稿日時</label>
-              <input type="datetime-local" class="form-input" required>
+              <input type="datetime-local" name="publishDate" class="form-input" required>
             </div>
             <div class="form-group">
               <label class="form-label">投稿タイプ</label>
-              <select class="form-select" required>
+              <select name="publishType" class="form-select" required>
                 <option value="immediate">即時投稿</option>
                 <option value="scheduled">予約投稿</option>
                 <option value="draft">下書き保存</option>
@@ -366,9 +366,211 @@ permalink: /blog-admin/
   </div>
 </div>
 
+<script src="{{ '/assets/js/blog-templates.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/ai-blog-generator.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/blog-post-manager.js' | relative_url }}"></script>
 <script>
-document.getElementById('autoPostForm').addEventListener('submit', function(e) {
+// ブログ管理システムの初期化
+const postManager = new BlogPostManager();
+
+// 統計情報を更新
+function updateStatistics() {
+  const stats = postManager.getStatistics();
+  
+  document.querySelector('.stat-card:nth-child(1) .stat-number').textContent = stats.total;
+  document.querySelector('.stat-card:nth-child(2) .stat-number').textContent = stats.thisWeek;
+  document.querySelector('.stat-card:nth-child(3) .stat-number').textContent = stats.scheduled;
+}
+
+// 投稿キューを更新
+function updateQueue() {
+  const posts = postManager.posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10);
+  const queueList = document.querySelector('.queue-list');
+  
+  if (posts.length === 0) {
+    queueList.innerHTML = '<p style="text-align: center; color: #6b7280;">まだ投稿がありません</p>';
+    return;
+  }
+  
+  queueList.innerHTML = posts.map(post => `
+    <div class="queue-item">
+      <div>
+        <div class="queue-item-title">${post.title}</div>
+        <div class="queue-item-date">
+          ${post.status === 'published' 
+            ? new Date(post.publishDate).toLocaleDateString('ja-JP') + ' 投稿済み'
+            : post.status === 'scheduled'
+            ? new Date(post.publishDate).toLocaleDateString('ja-JP') + ' ' + new Date(post.publishDate).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' }) + ' 予定'
+            : '下書き'
+          }
+        </div>
+      </div>
+      <span class="queue-item-status status-${post.status}">
+        ${post.status === 'published' ? '公開中' : post.status === 'scheduled' ? '予約済み' : '下書き'}
+      </span>
+    </div>
+  `).join('');
+}
+
+// フォーム送信処理
+document.getElementById('autoPostForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  alert('AI記事生成機能は現在開発中です。この機能により、指定されたトピックに基づいて自動的に高品質な記事を生成できるようになります。');
+  
+  const formData = new FormData(e.target);
+  const params = {
+    topic: formData.get('topic'),
+    category: formData.get('category'),
+    keywords: formData.get('keywords'),
+    targetAudience: formData.get('targetAudience'),
+    outline: formData.get('outline'),
+    publishDate: formData.get('publishDate'),
+    publishType: formData.get('publishType')
+  };
+  
+  // ローディング表示
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = '生成中...';
+  submitBtn.disabled = true;
+  
+  try {
+    // 記事を生成
+    const result = await postManager.createPost(params);
+    
+    if (result.success) {
+      window.showNotification('記事が正常に生成されました！', 'success');
+      
+      // プレビューを表示
+      showPreview(result.preview);
+      
+      // 統計とキューを更新
+      updateStatistics();
+      updateQueue();
+      
+      // フォームをリセット
+      e.target.reset();
+    } else {
+      window.showNotification('記事の生成に失敗しました: ' + result.error, 'error');
+    }
+  } catch (error) {
+    window.showNotification('エラーが発生しました: ' + error.message, 'error');
+  } finally {
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  }
+});
+
+// プレビューを表示
+function showPreview(previewHtml) {
+  // プレビューモーダルが存在しない場合は作成
+  let modal = document.getElementById('preview-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'preview-modal';
+    modal.className = 'preview-modal';
+    modal.innerHTML = `
+      <div class="preview-modal-content">
+        <div class="preview-modal-header">
+          <h2>記事プレビュー</h2>
+          <button class="close-preview" onclick="closePreview()">×</button>
+        </div>
+        <div class="preview-modal-body"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+  
+  modal.querySelector('.preview-modal-body').innerHTML = previewHtml;
+  modal.style.display = 'block';
+  setTimeout(() => modal.classList.add('show'), 10);
+}
+
+// プレビューを閉じる
+function closePreview() {
+  const modal = document.getElementById('preview-modal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded', function() {
+  updateStatistics();
+  updateQueue();
+  
+  // 定期的に統計を更新
+  setInterval(() => {
+    updateStatistics();
+    updateQueue();
+  }, 60000); // 1分ごと
 });
 </script>
+
+<style>
+.preview-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.preview-modal.show {
+  opacity: 1;
+}
+
+.preview-modal-content {
+  position: relative;
+  background: white;
+  margin: 2rem auto;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 15px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.preview-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.preview-modal-header h2 {
+  font-size: 1.5rem;
+  color: #111827;
+  margin: 0;
+}
+
+.close-preview {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #6b7280;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.close-preview:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.preview-modal-body {
+  padding: 2rem;
+}
+</style>

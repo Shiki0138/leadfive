@@ -3,7 +3,8 @@
 const fs = require('fs').promises;
 const path = require('path');
 const readline = require('readline');
-const { v4: uuidv4 } = require('uuid');
+const uuid = require('uuid');
+const { v4: uuidv4 } = uuid;
 require('dotenv').config();
 
 // カラー出力用のヘルパー
