@@ -144,12 +144,13 @@ jobs:
         git add _site/
         
         # コミット
-        git commit -m "📝 ブログ投稿: ${{ steps.generate.outputs.title }}
-        
-        キーワード: ${{ inputs.keyword }}
+        COMMIT_TITLE="📝 ブログ投稿: ${{ steps.generate.outputs.title }}"
+        COMMIT_BODY="キーワード: ${{ inputs.keyword }}
         カテゴリー: ${{ inputs.category }}
         生成時刻: ${{ steps.blog-params.outputs.generated_at }} JST
-        実行者: ${{ github.actor }}" || echo "No changes to commit"
+        実行者: ${{ github.actor }}"
+        
+        git commit -m "$COMMIT_TITLE" -m "$COMMIT_BODY" || echo "No changes to commit"
         git push
     
     - name: 📊 サマリー作成
