@@ -63,10 +63,15 @@ jobs:
     - name: 🔧 Ruby セットアップ
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.1'
-        bundler-cache: true
+        ruby-version: '3.0'
+        bundler-cache: false
     
-    - name: 📦 依存関係インストール
+    - name: 📦 Ruby 依存関係インストール
+      run: |
+        gem install bundler
+        bundle install
+    
+    - name: 📦 Node.js 依存関係インストール
       run: |
         cd scripts/blog-automation
         npm install
