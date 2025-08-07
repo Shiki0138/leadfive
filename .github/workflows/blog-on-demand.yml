@@ -43,6 +43,7 @@ on:
 
 env:
   ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
 
 jobs:
@@ -111,17 +112,21 @@ jobs:
         export BLOG_TITLE="${{ steps.blog-params.outputs.title }}"
         
         # APIキーの確認と生成
-        if [ -z "${{ env.ANTHROPIC_API_KEY }}" ]; then
-          echo "⚠️ APIキーなし - モックジェネレーターを使用"
-          node mock-blog-generator.js "$BLOG_KEYWORD"
-        else
+        if [ -n "${{ env.GEMINI_API_KEY }}" ]; then
+          echo "✅ Gemini APIを使用して生成"
+          node gemini-blog-generator.js "$BLOG_KEYWORD" || {
+            echo "⚠️ Gemini API失敗 - モックジェネレーターにフォールバック"
+            node mock-blog-generator.js "$BLOG_KEYWORD"
+          }
+        elif [ -n "${{ env.ANTHROPIC_API_KEY }}" ]; then
           echo "✅ Claude APIを使用して生成"
-          
-          # カスタムプロンプトを含む生成（SEO最適化＋結論ファースト）
           node claude-blog-generator.js "$BLOG_KEYWORD" || {
             echo "⚠️ Claude API失敗 - モックジェネレーターにフォールバック"
             node mock-blog-generator.js "$BLOG_KEYWORD"
           }
+        else
+          echo "⚠️ APIキーなし - モックジェネレーターを使用"
+          node mock-blog-generator.js "$BLOG_KEYWORD"
         fi
         
         # 生成結果の確認
