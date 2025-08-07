@@ -46,11 +46,10 @@
 </header>
 
 <script>
-function toggleMobileMenu() {
+// Mobile menu toggle function - must be globally available
+window.toggleMobileMenu = function() {
   const menu = document.getElementById('navbarMenu');
   const toggler = document.querySelector('.navbar-toggler');
-  
-  console.log('Toggle mobile menu called', menu, toggler); // Debug log
   
   if (menu && toggler) {
     menu.classList.toggle('active');
@@ -65,11 +64,14 @@ function toggleMobileMenu() {
   }
 }
 
-// Make toggleMobileMenu globally available
-window.toggleMobileMenu = toggleMobileMenu;
+// Wait for DOM to be ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMobileMenuEvents);
+} else {
+  initMobileMenuEvents();
+}
 
-// Initialize event listeners when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+function initMobileMenuEvents() {
   // Close menu when clicking on a link
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
@@ -109,5 +111,5 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
-});
+}
 </script>
