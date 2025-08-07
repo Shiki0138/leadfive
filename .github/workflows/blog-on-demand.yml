@@ -118,7 +118,10 @@ jobs:
           echo "✅ Claude APIを使用して生成"
           
           # カスタムプロンプトを含む生成（SEO最適化＋結論ファースト）
-          node claude-blog-generator.js "$BLOG_KEYWORD"
+          node claude-blog-generator.js "$BLOG_KEYWORD" || {
+            echo "⚠️ Claude API失敗 - モックジェネレーターにフォールバック"
+            node mock-blog-generator.js "$BLOG_KEYWORD"
+          }
         fi
         
         # 生成結果の確認
