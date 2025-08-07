@@ -448,7 +448,7 @@ h6 { font-size: 1rem; }
   padding: 6rem 0 4rem;
   
   @media (max-width: 768px) {
-    padding: 5rem 0 3rem;
+    padding: 3.5rem 0 3rem; // Reduced top padding by ~1cm (from 5rem to 3.5rem)
   }
 }
 
@@ -475,9 +475,9 @@ h6 { font-size: 1rem; }
   justify-content: center;
   
   @media (max-width: 768px) {
-    min-height: calc(100vh - 80px);
-    justify-content: space-between;
-    padding: 2rem 0 180px; // Space for fixed buttons
+    min-height: calc(100vh - 120px);
+    justify-content: flex-start;
+    padding: 2rem 0 180px; // Adjusted padding for better positioning
   }
 }
 
@@ -501,7 +501,7 @@ h6 { font-size: 1rem; }
     font-size: 2.2rem;
     margin-bottom: 1.5rem;
     flex: 0 0 auto;
-    margin-top: auto;
+    margin-top: 0; // Changed from auto to 0 to position higher
     line-height: 1.2;
     padding: 0 1rem;
     text-align: center;
