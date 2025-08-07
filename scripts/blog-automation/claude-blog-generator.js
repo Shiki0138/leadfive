@@ -213,15 +213,22 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
   }
 
   async insertInternalLinks(content) {
-    console.log('🔗 内部リンク挿入中...');
+    console.log('🔗 リンク処理中...');
     
     const { recentPosts } = await this.buildContext();
     let linkedContent = content.content;
+    let internalLinkCount = 0;
     
-    // {{INTERNAL_LINK:トピック}}を実際のリンクに置換
+    // {{INTERNAL_LINK:トピック}}を実際のリンクに置換（最大3本）
     const linkMatches = linkedContent.match(/\{\{INTERNAL_LINK:([^}]+)\}\}/g) || [];
     
     for (const match of linkMatches) {
+      if (internalLinkCount >= 3) {
+        // 3本を超える場合は削除
+        linkedContent = linkedContent.replace(match, '');
+        continue;
+      }
+      
       const topic = match.match(/\{\{INTERNAL_LINK:([^}]+)\}\}/)[1];
       
       // 関連する記事を探す
@@ -233,11 +240,29 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
       if (relatedPost) {
         const link = `[${topic}](${relatedPost.url})`;
         linkedContent = linkedContent.replace(match, link);
+        internalLinkCount++;
       } else {
-        // 関連記事がない場合はトピックのみ表示
-        linkedContent = linkedContent.replace(match, topic);
+        // 関連記事がない場合は削除
+        linkedContent = linkedContent.replace(match, '');
       }
     }
+    
+    // 外部リンクの例（最大2本）
+    const externalLinks = [
+      { text: '経済産業省DXレポート', url: 'https://www.meti.go.jp/policy/it_policy/dx/dx.html' },
+      { text: 'Google AI責任原則', url: 'https://ai.google/responsibility/principles/' }
+    ];
+    
+    // {{EXTERNAL_LINK:xxx}}形式を処理
+    let externalLinkCount = 0;
+    linkedContent = linkedContent.replace(/\{\{EXTERNAL_LINK:([^}]+)\}\}/g, (match, linkText) => {
+      if (externalLinkCount < 2) {
+        externalLinkCount++;
+        const link = externalLinks[externalLinkCount - 1];
+        return `[${link.text}](${link.url})`;
+      }
+      return '';
+    });
     
     return { ...content, content: linkedContent };
   }

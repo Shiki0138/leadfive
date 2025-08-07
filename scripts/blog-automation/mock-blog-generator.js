@@ -109,24 +109,36 @@ class MockBlogGenerator {
   }
 
   async insertInternalLinks(content) {
-    console.log('🔗 内部リンク挿入中...');
-    
-    // モック内部リンクマッピング
-    const linkMap = {
-      'AI活用の基礎知識': '/blog/ai-basics-guide/',
-      'おすすめAIツール比較': '/blog/ai-tools-comparison/',
-      'AI導入の障壁を乗り越える方法': '/blog/overcome-ai-challenges/',
-      'お問い合わせはこちら': '/contact/'
-    };
+    console.log('🔗 リンク処理中...');
     
     let linkedContent = content.content;
+    let internalLinkCount = 0;
     
-    // {{INTERNAL_LINK:xxx}}を実際のリンクに置換
-    for (const [text, url] of Object.entries(linkMap)) {
-      const pattern = `{{INTERNAL_LINK:${text}}}`;
-      const link = `[${text}](${url})`;
-      linkedContent = linkedContent.replace(new RegExp(pattern, 'g'), link);
-    }
+    // {{INTERNAL_LINK:xxx}}を削除（現時点では関連記事が少ないため）
+    linkedContent = linkedContent.replace(/\{\{INTERNAL_LINK:[^}]+\}\}/g, (match) => {
+      if (internalLinkCount < 1) {
+        internalLinkCount++;
+        return '[お問い合わせはこちら](/contact/)';
+      }
+      return '';
+    });
+    
+    // 外部リンクの例（最大2本）
+    const externalLinks = [
+      { text: 'ChatGPT公式ガイド', url: 'https://openai.com/chatgpt' },
+      { text: '中小企業庁DX推進ガイドライン', url: 'https://www.chusho.meti.go.jp/keiei/gijut/dx.html' }
+    ];
+    
+    // {{EXTERNAL_LINK:xxx}}形式を処理
+    let externalLinkCount = 0;
+    linkedContent = linkedContent.replace(/\{\{EXTERNAL_LINK:([^}]+)\}\}/g, (match, linkText) => {
+      if (externalLinkCount < 2) {
+        const link = externalLinks[externalLinkCount];
+        externalLinkCount++;
+        return `[${link.text}](${link.url})`;
+      }
+      return '';
+    });
     
     return { ...content, content: linkedContent };
   }

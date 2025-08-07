@@ -198,22 +198,58 @@ ${context.recentTopics.join('\n')}
   }
 
   async insertInternalLinks(content) {
-    console.log('🔗 内部リンク挿入中...');
-    
-    const internalLinks = [
-      { text: 'AI活用の基礎知識', url: '/blog/ai-basics-guide/' },
-      { text: 'マーケティング成功事例', url: '/blog/marketing-success-cases/' },
-      { text: '最新AIツール比較', url: '/blog/ai-tools-comparison/' },
-      { text: 'お問い合わせはこちら', url: '/contact/' },
-      { text: '無料相談を申し込む', url: '/consultation/' }
-    ];
+    console.log('🔗 リンク処理中...');
     
     let modifiedContent = content.content;
     
-    // {{INTERNAL_LINK:xxx}}形式を実際のリンクに変換
-    modifiedContent = modifiedContent.replace(/\{\{INTERNAL_LINK:([^}]+)\}\}/g, (match, linkText) => {
-      const link = internalLinks.find(l => l.text.includes(linkText)) || internalLinks[0];
-      return `[${link.text}](${link.url})`;
+    // 既存の記事を確認して内部リンクを設定（最大3本）
+    try {
+      const posts = await fs.readdir(this.postsDir);
+      const mdPosts = posts.filter(f => f.endsWith('.md') && !f.includes('mock'));
+      
+      if (mdPosts.length > 1) {
+        // ランダムに1-2本の内部リンクを設定
+        const linkCount = Math.min(2, mdPosts.length - 1);
+        const selectedPosts = mdPosts
+          .sort(() => Math.random() - 0.5)
+          .slice(0, linkCount);
+        
+        for (const post of selectedPosts) {
+          const postContent = await fs.readFile(path.join(this.postsDir, post), 'utf-8');
+          const titleMatch = postContent.match(/^title: "(.+)"/m);
+          if (titleMatch) {
+            const title = titleMatch[1];
+            const url = `/blog/${post.replace('.md', '')}/`;
+            // 適切な位置に内部リンクを挿入
+            modifiedContent = modifiedContent.replace(
+              /{{INTERNAL_LINK:[^}]+}}/,
+              `[${title}](${url})`
+            );
+          }
+        }
+      }
+    } catch (error) {
+      console.log('内部リンク設定をスキップ');
+    }
+    
+    // {{INTERNAL_LINK:xxx}}の残りを削除
+    modifiedContent = modifiedContent.replace(/\{\{INTERNAL_LINK:[^}]+\}\}/g, '');
+    
+    // 外部リンクの例（最大2本）
+    const externalLinks = [
+      { text: 'Google AIの最新動向', url: 'https://ai.google/updates/' },
+      { text: '総務省AIガイドライン', url: 'https://www.soumu.go.jp/main_sosiki/joho_tsusin/ai/' }
+    ];
+    
+    // {{EXTERNAL_LINK:xxx}}形式を処理
+    let externalLinkCount = 0;
+    modifiedContent = modifiedContent.replace(/\{\{EXTERNAL_LINK:([^}]+)\}\}/g, (match, linkText) => {
+      if (externalLinkCount < 2) {
+        externalLinkCount++;
+        const link = externalLinks[externalLinkCount - 1];
+        return `[${link.text}](${link.url})`;
+      }
+      return '';
     });
     
     return { ...content, content: modifiedContent };
