@@ -252,19 +252,18 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
       const match = imageMatches[i];
       const description = match.match(/\{\{IMAGE:([^}]+)\}\}/)[1];
       
-      try {
-        // Unsplash APIから画像を取得
-        const imageUrl = await this.fetchImage(description);
-        const imagePath = await this.downloadAndSaveImage(imageUrl, i);
-        
-        // マークダウン形式の画像タグに置換
-        const imageTag = `\n\n![${description}](${imagePath})\n\n`;
-        finalContent = finalContent.replace(match, imageTag);
-        
-      } catch (error) {
-        console.warn(`画像取得エラー: ${description}`, error.message);
-        finalContent = finalContent.replace(match, '');
-      }
+      // プレースホルダー画像を使用
+      const placeholderImages = [
+        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop',
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop',
+        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop',
+        'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=630&fit=crop',
+        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=630&fit=crop'
+      ];
+      
+      const imageUrl = placeholderImages[i % placeholderImages.length];
+      const imageTag = `\n\n![${description}](${imageUrl})\n\n`;
+      finalContent = finalContent.replace(match, imageTag);
     }
     
     return { ...content, content: finalContent };

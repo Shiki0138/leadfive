@@ -92,12 +92,18 @@ class GeminiBlogGenerator {
 既存記事のトピック:
 ${context.recentTopics.join('\n')}
 
+重要な指示:
+- 「[以下、同様のフォーマットで3000文字まで続く...]」のような省略表現は絶対に使用しない
+- 完全な記事を最後まで書き切る
+- 各セクションは具体的な内容で充実させる
+- 画像の位置には{{IMAGE:説明}}を使用
+
 以下の形式で出力してください：
 1. タイトル候補5つ（SEOスコア付き）
 2. 検索意図の分析
 3. 選択タイトル: [最高スコアのタイトル]
 4. メタディスクリプション: [120-150文字]
-5. 記事本文（2500-3000文字、指定構成に従う）`;
+5. 記事本文（2500-3000文字、完全版、省略なし）`;
 
     const response = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${this.apiKey}`,
@@ -109,7 +115,7 @@ ${context.recentTopics.join('\n')}
         }],
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: 4000,
+          maxOutputTokens: 8192,
           topP: 0.9,
           topK: 40
         }
@@ -218,11 +224,32 @@ ${context.recentTopics.join('\n')}
     
     let finalContent = content.content;
     
-    // {{IMAGE:xxx}}形式をマークダウン画像に変換
+    // プレースホルダー画像のURLリスト
+    const placeholderImages = [
+      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=630&fit=crop', // レストラン内装
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=630&fit=crop', // レストランインテリア
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200&h=630&fit=crop', // 料理
+      'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&h=630&fit=crop', // シェフ
+      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&h=630&fit=crop'  // 食材
+    ];
+    
+    // {{IMAGE:xxx}}形式を実際の画像URLに変換
     let imageCount = 0;
     finalContent = finalContent.replace(/\{\{IMAGE:([^}]+)\}\}/g, (match, altText) => {
+      const imageUrl = placeholderImages[imageCount % placeholderImages.length];
       imageCount++;
-      return `\n\n![${altText}](/assets/images/blog/placeholder-${imageCount}.jpg)\n\n`;
+      return `\n\n![${altText}](${imageUrl})\n\n`;
+    });
+    
+    // 各h2の後に画像がない場合は自動挿入
+    finalContent = finalContent.replace(/^## (.+)$/gm, (match, heading) => {
+      const nextLineMatch = finalContent.substring(finalContent.indexOf(match) + match.length).match(/^\n*!\[/);
+      if (!nextLineMatch) {
+        const imageUrl = placeholderImages[imageCount % placeholderImages.length];
+        imageCount++;
+        return `${match}\n\n![${heading}のイメージ画像](${imageUrl})`;
+      }
+      return match;
     });
     
     return { ...content, content: finalContent };
