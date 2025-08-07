@@ -106,7 +106,7 @@ ${context.recentTopics.join('\n')}
 5. 記事本文（2500-3000文字、完全版、省略なし）`;
 
     const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${this.apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.apiKey}`,
       {
         contents: [{
           parts: [{
