@@ -663,7 +663,7 @@ section {
   
   // Add proper spacing below blinking text
   @media (max-width: 768px) {
-    margin: 2.5rem auto 3rem;
+    margin: 5rem auto 5rem; // Increased spacing to about 2cm top and bottom
     padding: 0 1rem;
   }
   
@@ -2380,7 +2380,7 @@ section {
   }
   
   .warning-message {
-    margin: 2rem auto;
+    margin: 5rem auto; // Increased from 2rem to 5rem (about 2cm top and bottom)
     padding: 0 1rem;
     
     p {
