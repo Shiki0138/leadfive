@@ -7,13 +7,13 @@
         </a>
       </div>
       
-      <button class="navbar-toggler" aria-label="Toggle navigation">
+      <button class="navbar-toggler" aria-label="Toggle navigation" onclick="toggleMobileMenu()">
         <span></span>
         <span></span>
         <span></span>
       </button>
       
-      <div class="navbar-menu">
+      <div class="navbar-menu" id="navbarMenu">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a href="{{ site.baseurl }}/#philosophy" class="nav-link">理念</a>
@@ -44,3 +44,56 @@
     </div>
   </nav>
 </header>
+
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('navbarMenu');
+  const toggler = document.querySelector('.navbar-toggler');
+  
+  menu.classList.toggle('active');
+  toggler.classList.toggle('active');
+  
+  // Prevent/allow body scroll
+  if (menu.classList.contains('active')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+}
+
+// Close menu when clicking on a link
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    const menu = document.getElementById('navbarMenu');
+    const toggler = document.querySelector('.navbar-toggler');
+    
+    menu.classList.remove('active');
+    toggler.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('navbarMenu');
+  const toggler = document.querySelector('.navbar-toggler');
+  
+  if (!menu.contains(e.target) && !toggler.contains(e.target)) {
+    menu.classList.remove('active');
+    toggler.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Handle escape key to close menu
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const menu = document.getElementById('navbarMenu');
+    const toggler = document.querySelector('.navbar-toggler');
+    
+    menu.classList.remove('active');
+    toggler.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+</script>
