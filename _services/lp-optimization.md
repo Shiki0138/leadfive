@@ -111,11 +111,11 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
       </div>
       
       <div class="step-item">
+        <div class="step-number">02</div>
         <div class="step-content">
           <h3>心理戦略設計</h3>
           <p>8つの本能に基づいた心理戦略を設計。ターゲットに最も響く心理トリガーを選定。</p>
         </div>
-        <div class="step-number">02</div>
       </div>
       
       <div class="step-item">
@@ -127,11 +127,11 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
       </div>
       
       <div class="step-item">
+        <div class="step-number">04</div>
         <div class="step-content">
           <h3>継続最適化</h3>
           <p>結果分析と継続的な改善。市場変化に応じて自動でLPを進化させ続ける。</p>
         </div>
-        <div class="step-number">04</div>
       </div>
     </div>
   </div>
@@ -558,6 +558,35 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
   .cta-buttons {
     flex-direction: column;
     align-items: center;
+  }
+  
+  /* Fix process steps mobile layout */
+  .process-steps {
+    gap: 2rem;
+  }
+  
+  .step-item {
+    flex-direction: column !important;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .step-item:nth-child(even) {
+    flex-direction: column !important;
+  }
+  
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: 1.25rem;
+  }
+  
+  .step-content h3 {
+    font-size: 1.25rem;
+  }
+  
+  .step-content p {
+    font-size: 0.875rem;
   }
 }
 
