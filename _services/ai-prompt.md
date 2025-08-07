@@ -192,18 +192,193 @@ permalink: /services/ai-prompt/
   line-height: 1.8;
 }
 
+/* Additional base styles */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.lead-text {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.service-intro {
+  margin-bottom: 4rem;
+}
+
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.pricing-card li {
+  padding: 0.5rem 0;
+  color: #d1d5db;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #8b5cf6;
+  color: #8b5cf6;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: #8b5cf6;
+  color: #ffffff;
+}
+
 @media (max-width: 768px) {
+  .service-hero {
+    padding: 4rem 0;
+  }
+  
   .service-hero h1 {
     font-size: 2rem;
+    line-height: 1.3;
+  }
+  
+  .service-hero p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+  }
+  
+  .lead-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .prompt-features {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+  
+  .feature-icon {
+    font-size: 2.5rem;
+  }
+  
+  .use-case-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .use-case-item {
+    padding: 1.25rem;
+  }
+  
+  .use-case-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .use-case-item p {
+    font-size: 0.875rem;
+  }
+  
+  .process-steps {
+    gap: 1.5rem;
   }
   
   .process-step {
     flex-direction: column;
     text-align: center;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .step-number {
+    font-size: 2rem;
+  }
+  
+  .step-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .step-content p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .pricing-section {
+    padding: 2rem 1rem;
+  }
+  
+  .pricing-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .pricing-card {
+    padding: 2rem 1.5rem;
   }
   
   .pricing-card.featured {
     transform: none;
+    order: -1; /* Move featured card to top on mobile */
+  }
+  
+  .price {
+    font-size: 1.75rem;
+  }
+  
+  .cta-section {
+    padding: 3rem 1rem;
+  }
+  
+  .custom-solution-note {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .custom-solution-note p {
+    font-size: 0.875rem;
+  }
+  
+  /* Fix button spacing */
+  .btn-block {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  /* Fix list spacing */
+  .pricing-card ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .pricing-card li {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
   }
 }
 </style>
