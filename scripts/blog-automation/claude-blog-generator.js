@@ -45,7 +45,10 @@ class ClaudeBlogGenerator {
       return { success: true, filename, title: finalContent.title };
       
     } catch (error) {
-      console.error('❌ ブログ生成エラー:', error);
+      console.error('❌ ブログ生成エラー:', error.message);
+      if (error.response && error.response.data) {
+        console.error('API エラー詳細:', JSON.stringify(error.response.data, null, 2));
+      }
       return { success: false, error: error.message };
     }
   }
@@ -104,7 +107,7 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
     const response = await axios.post(
       'https://api.anthropic.com/v1/messages',
       {
-        model: 'claude-3-opus-20240229',
+        model: 'claude-3-sonnet-20240229',
         max_tokens: 4000,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }]
