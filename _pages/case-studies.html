@@ -25,7 +25,7 @@ permalink: /case-studies/
 
 .results-summary {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
   padding: 3rem;
@@ -234,7 +234,7 @@ permalink: /case-studies/
   }
   
   .results-summary {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
   
   .case-studies-grid {
@@ -263,20 +263,16 @@ permalink: /case-studies/
 <div class="container">
   <section class="results-summary">
     <div class="result-stat">
-      <div class="stat-value">150+</div>
-      <div class="stat-label">導入企業数</div>
+      <div class="stat-value">12社</div>
+      <div class="stat-label">企業数</div>
     </div>
     <div class="result-stat">
-      <div class="stat-value">2.8倍</div>
-      <div class="stat-label">平均売上向上率</div>
+      <div class="stat-value">100%</div>
+      <div class="stat-label">業務改善実感</div>
     </div>
     <div class="result-stat">
-      <div class="stat-value">65%</div>
-      <div class="stat-label">コスト削減率</div>
-    </div>
-    <div class="result-stat">
-      <div class="stat-value">92%</div>
-      <div class="stat-label">顧客満足度</div>
+      <div class="stat-value">100%</div>
+      <div class="stat-label">リピート依頼</div>
     </div>
   </section>
 
@@ -287,6 +283,7 @@ permalink: /case-studies/
       <button class="filter-btn" onclick="filterCases('service')">サービス業</button>
       <button class="filter-btn" onclick="filterCases('btob')">BtoB</button>
       <button class="filter-btn" onclick="filterCases('beauty')">美容・健康</button>
+      <button class="filter-btn" onclick="filterCases('construction')">造園・建設</button>
     </div>
   </section>
 
@@ -320,21 +317,21 @@ permalink: /case-studies/
   </section>
 
   <section class="case-studies-grid">
-    <div class="case-study-card" data-category="service">
+    <div class="case-study-card" data-category="construction">
       <div class="case-study-header">
-        <span class="industry-tag">サービス業</span>
-        <h3>人材紹介会社 B社様</h3>
+        <span class="industry-tag">造園・建設</span>
+        <h3>造園事業者様</h3>
       </div>
       <div class="case-study-content">
-        <p>AIマッチングシステムとコミュニケーション最適化により、マッチング精度が大幅向上</p>
+        <p>造園事業者の見積もり作成支援システムを作成し、業務効率化が進められ売り上げがアップ</p>
         <div class="case-metrics">
           <div class="metric">
-            <div class="metric-value">85%</div>
-            <div class="metric-label">マッチング精度</div>
+            <div class="metric-value">3.5倍</div>
+            <div class="metric-label">見積もり作成速度</div>
           </div>
           <div class="metric">
-            <div class="metric-value">2.1倍</div>
-            <div class="metric-label">成約率</div>
+            <div class="metric-value">2.2倍</div>
+            <div class="metric-label">売上向上</div>
           </div>
         </div>
       </div>
@@ -405,18 +402,18 @@ permalink: /case-studies/
     <div class="case-study-card" data-category="service">
       <div class="case-study-header">
         <span class="industry-tag">サービス業</span>
-        <h3>フィットネスクラブ F社様</h3>
+        <h3>歯科医師エフクリニック様</h3>
       </div>
       <div class="case-study-content">
-        <p>行動心理学に基づく継続率向上プログラムで、LTVが大幅改善</p>
+        <p>歯科医師の顧客管理システムを開発し、リマインド機能などを活用することで継続率がアップ。新規のLPなども作ってホワイトニングなどの集客も行ったため、売り上げが大きく伸びました</p>
         <div class="case-metrics">
           <div class="metric">
-            <div class="metric-value">78%</div>
-            <div class="metric-label">継続率</div>
+            <div class="metric-value">85%</div>
+            <div class="metric-label">継続率向上</div>
           </div>
           <div class="metric">
-            <div class="metric-value">2.3倍</div>
-            <div class="metric-label">LTV向上</div>
+            <div class="metric-value">3.2倍</div>
+            <div class="metric-label">売上向上</div>
           </div>
         </div>
       </div>
@@ -448,43 +445,42 @@ permalink: /case-studies/
     <div class="testimonial-grid">
       <div class="testimonial-card">
         <p class="testimonial-text">
-          「LeadFiveのAI×心理学アプローチは、まさに目から鱗でした。
-          データだけでは見えなかった顧客の本音が見えるようになり、
-          施策の精度が格段に上がりました。」
+          「見積もり作成支援システムのおかげで、これまで半日かかっていた見積もりが30分で完成するようになりました。
+          お客様への対応スピードも上がり、受注率が大幅に向上。
+          業務効率化と売上アップの両方を実現できて本当に感謝しています。」
         </p>
         <div class="testimonial-author">
-          <div class="author-avatar">TK</div>
+          <div class="author-avatar">造</div>
           <div>
-            <strong>田中 健一様</strong><br>
-            <small>EC事業部長</small>
+            <strong>造園事業者様</strong>
           </div>
         </div>
       </div>
       
       <div class="testimonial-card">
         <p class="testimonial-text">
-          「導入から3ヶ月で売上が2倍に。こんなに早く成果が出るとは
-          思いませんでした。投資対効果は期待以上です。」
+          「顧客管理システムとリマインド機能により、患者様の継続率が大幅に改善しました。
+          新規のLPやホワイトニングの集客施策も素晴らしく、
+          開院以来最高の売上を記録することができました。本当にありがとうございます。」
         </p>
         <div class="testimonial-author">
-          <div class="author-avatar">YS</div>
+          <div class="author-avatar">歯</div>
           <div>
-            <strong>山田 さくら様</strong><br>
-            <small>マーケティング責任者</small>
+            <strong>歯科医師様</strong>
           </div>
         </div>
       </div>
       
       <div class="testimonial-card">
         <p class="testimonial-text">
-          「AIの活用方法がわからず悩んでいましたが、LeadFiveの
-          サポートで実践的な活用ができるようになりました。」
+          「AI×心理学アプローチで、お客様一人ひとりに最適な施術とサービスを提案できるようになりました。
+          顧客満足度が向上し、リピート率も大幅にアップ。
+          LeadFiveのサポートで、サロンの価値を最大限に引き出せています。」
         </p>
         <div class="testimonial-author">
-          <div class="author-avatar">MS</div>
+          <div class="author-avatar">美</div>
           <div>
-            <strong>松本 誠様</strong><br>
-            <small>代表取締役</small>
+            <strong>美容室経営者様</strong>
           </div>
         </div>
       </div>
