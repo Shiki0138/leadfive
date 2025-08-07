@@ -182,19 +182,49 @@ h6 { font-size: 1rem; }
 }
 
 .btn-secondary {
-  background: rgba(30, 58, 138, 0.1);
+  background: $white;
   color: $dark-blue;
-  border: 1px solid rgba(30, 58, 138, 0.2);
+  border: 2px solid $dark-blue;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
-  background: rgba(30, 58, 138, 0.15);
-  color: $dark-blue;
+  background: $dark-blue;
+  color: $white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
 }
 
 .btn-large {
   padding: 1rem 3rem;
   font-size: 1.125rem;
+}
+
+// Fix for CTA section buttons
+.final-cta-section {
+  .btn-secondary {
+    background: transparent;
+    color: $dark-blue;
+    border: 2px solid $dark-blue;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+      background: $dark-blue;
+      color: $white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+    }
+  }
+  
+  // Mobile specific adjustments
+  @media (max-width: 768px) {
+    .btn-secondary {
+      background: rgba(30, 58, 138, 0.05);
+      font-size: 1rem;
+      padding: 0.875rem 2rem;
+    }
+  }
 }
 
 .btn-sm {
