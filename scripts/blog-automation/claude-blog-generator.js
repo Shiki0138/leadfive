@@ -107,7 +107,7 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
     const response = await axios.post(
       'https://api.anthropic.com/v1/messages',
       {
-        model: 'claude-3-sonnet-20240229',
+        model: 'claude-3-5-sonnet-20241022',
         max_tokens: 4000,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }]
