@@ -354,6 +354,13 @@ reading_time: ${Math.ceil(content.content.length / 500)}
     return filename;
   }
 
+  async generateContentPreview() {
+    // プレビュー用のコンテンツ生成（ファイル保存なし）
+    const context = await this.buildContext();
+    const content = await this.generateContent(context);
+    return content;
+  }
+
   async updateStats(filename, title) {
     const statsFile = path.join(this.dataDir, 'blog-stats.json');
     
