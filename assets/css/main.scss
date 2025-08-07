@@ -222,15 +222,17 @@ h6 { font-size: 1rem; }
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   
-  // Blog pages override
+  // Blog pages override - more subtle design
   .blog-page & {
-    background: rgba(255, 255, 255, 0.98);
-    border-bottom: 1px solid #e5e7eb;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    border-bottom: none;
   }
 }
 
 .navbar {
-  padding: 0.75rem 0;
+  padding: 1rem 0;
   
   @media (max-width: 768px) {
     padding: 1rem 0;
@@ -266,9 +268,11 @@ h6 { font-size: 1rem; }
   text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
   
   .blog-page & {
-    color: #1e3a8a !important;
-    background: none;
-    -webkit-text-fill-color: #1e3a8a;
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
   }
 }
 
@@ -296,7 +300,7 @@ h6 { font-size: 1rem; }
   transform-origin: center;
   
   .blog-page & {
-    background: #1e3a8a !important;
+    background: #8b5cf6 !important;
   }
 }
 
@@ -325,14 +329,19 @@ h6 { font-size: 1rem; }
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(10, 10, 10, 0.98);
     backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: flex-start;
     padding: 6rem 2rem 2rem;
-    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease;
     z-index: 1000;
+    
+    .blog-page & {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    }
     
     &.active {
       right: 0;
@@ -391,14 +400,19 @@ h6 { font-size: 1rem; }
     width: 100%;
     display: block;
     border: 1px solid transparent;
+    
+    .blog-page & {
+      color: #6b7280;
+    }
   }
   
   .blog-page & {
-    color: #4b5563 !important;
+    color: #6b7280 !important;
   }
   
   .blog-page &:hover {
-    color: #1e3a8a !important;
+    color: #8b5cf6 !important;
+    background: rgba(139, 92, 246, 0.08);
   }
 }
 
