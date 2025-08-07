@@ -853,16 +853,10 @@ section {
   }
 }
 
-// Philosophy Section - WHITE BACKGROUND for emphasis
+// Philosophy Section
 .philosophy-section { 
-  background: $white;
-  color: $gray-900;
   position: relative;
-  border-top: 4px solid $deep-black;
-  border-bottom: 4px solid $deep-black;
-  box-shadow: none;
-  margin: 4rem 0;
-  padding: 4rem 0;
+  padding: 5rem 0;
   
   @media (max-width: 768px) {
     margin: 3rem 0; // Better spacing on mobile
@@ -875,7 +869,6 @@ section {
   }
   
   .section-title {
-    color: $gray-900;
     
     .gradient-text {
       background: linear-gradient(135deg, $neural-purple, $synapse-blue);
@@ -901,11 +894,11 @@ section {
   font-size: 1.25rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
-  color: $gray-700;
+  color: $gray-300;
 }
 
 .philosophy-text p {
-  color: $gray-600;
+  color: $gray-300;
   line-height: 1.8;
 }
 
@@ -934,18 +927,13 @@ section {
   text-align: center;
   padding: 1.5rem;
   transition: all 0.3s ease;
-  background: $white;
-  border: 2px solid $gray-200;
-  color: $gray-800;
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   
   h4 {
-    color: $gray-900;
+    color: $white;
   }
   
   p {
-    color: $gray-600;
+    color: $gray-400;
   }
   
   // Better mobile sizing and spacing for 2x4 grid
@@ -969,8 +957,7 @@ section {
 .instinct-card:hover { 
   transform: scale(1.05);
   border-color: $neural-purple;
-  background: $white;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
 .instinct-icon {
@@ -1269,16 +1256,10 @@ section {
 
 // Case Studies Section - WHITE BACKGROUND for testimonial credibility
 .case-studies-section { 
-  background: #f9fafb;
-  color: $gray-900;
   position: relative;
-  border-top: 4px solid $deep-black;
-  border-bottom: 4px solid $deep-black;
-  box-shadow: none;
-  margin: 3rem 0;
+  padding: 5rem 0;
   
   .section-title {
-    color: $gray-900;
     
     .gradient-text {
       background: linear-gradient(135deg, $neural-purple, $synapse-blue);
@@ -1296,13 +1277,12 @@ section {
 }
 
 .case-study-card { 
-  background: $white;
-  border: 2px solid $gray-200;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(139, 92, 246, 0.2);
   border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  color: $gray-800;
 }
 
 .case-study-card:hover { 
@@ -1329,7 +1309,7 @@ section {
 .case-header h3 {
   font-size: 1.25rem;
   margin-bottom: 0;
-  color: $gray-900;
+  color: $white;
 }
 
 .before-after {
@@ -1704,7 +1684,6 @@ section {
   margin-top: 3rem;
   
   .cta-title {
-    color: $gray-900;
     
     .gradient-text {
       background: linear-gradient(135deg, $neural-purple, $synapse-blue);
@@ -1729,8 +1708,7 @@ section {
   
   .cta-benefits {
     h3 {
-      color: $gray-900;
-    }
+      }
     
     li {
       color: $gray-700;
