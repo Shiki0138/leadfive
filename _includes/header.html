@@ -50,6 +50,8 @@ function toggleMobileMenu() {
   const menu = document.getElementById('navbarMenu');
   const toggler = document.querySelector('.navbar-toggler');
   
+  console.log('Toggle mobile menu called', menu, toggler); // Debug log
+  
   if (menu && toggler) {
     menu.classList.toggle('active');
     toggler.classList.toggle('active');
