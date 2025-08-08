@@ -53,7 +53,7 @@ permalink: /services/ai-prompt/
 
 .prompt-features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -85,9 +85,16 @@ permalink: /services/ai-prompt/
   margin-bottom: 4rem;
 }
 
+@media (max-width: 768px) {
+  .use-cases {
+    padding: 2rem 1rem;
+    margin-bottom: 3rem;
+  }
+}
+
 .use-case-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
 }
@@ -136,7 +143,7 @@ permalink: /services/ai-prompt/
 
 .pricing-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -193,6 +200,19 @@ permalink: /services/ai-prompt/
 }
 
 /* Additional base styles */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -249,7 +269,7 @@ permalink: /services/ai-prompt/
 
 @media (max-width: 768px) {
   .service-hero {
-    padding: 4rem 0;
+    padding: 4rem 0 3rem;
   }
   
   .service-hero h1 {
@@ -260,6 +280,7 @@ permalink: /services/ai-prompt/
   .service-hero p {
     font-size: 1rem;
     line-height: 1.5;
+    padding: 0 1rem;
   }
   
   .section-title {
@@ -271,6 +292,8 @@ permalink: /services/ai-prompt/
   .lead-text {
     font-size: 1rem;
     line-height: 1.6;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
   }
   
   .prompt-features {
@@ -355,6 +378,27 @@ permalink: /services/ai-prompt/
     padding: 3rem 1rem;
   }
   
+  .cta-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section p {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn-large {
+    padding: 0.875rem 1.5rem !important;
+    font-size: 0.875rem !important;
+  }
+  
   .custom-solution-note {
     padding: 1.5rem;
     margin-top: 2rem;
@@ -368,6 +412,8 @@ permalink: /services/ai-prompt/
   .btn-block {
     width: 100%;
     margin-top: 1rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
   }
   
   /* Fix list spacing */
@@ -386,7 +432,7 @@ permalink: /services/ai-prompt/
 <div class="service-hero">
   <div class="container">
     <h1>AIプロンプトエンジニアリング</h1>
-    <p>ChatGPT、Claude、Geminiなど最新AIの潜在能力を最大限引き出す<br>心理学的アプローチによる最適なプロンプト設計</p>
+    <p>ChatGPT、Claude、Geminiなど最新AIの潜在能力を最大限引き出す心理学的アプローチによる最適なプロンプト設計</p>
   </div>
 </div>
 
@@ -394,8 +440,8 @@ permalink: /services/ai-prompt/
   <section class="service-intro">
     <h2 class="section-title">AIの真の力を解放する、プロンプトの科学</h2>
     <p class="lead-text">
-      同じAIでも、プロンプト次第で出力の質は天と地ほどの差が生まれます。<br>
-      LeadFiveは、人間の8つの本能を理解した心理学的アプローチで、<br>
+      同じAIでも、プロンプト次第で出力の質は天と地ほどの差が生まれます。
+      LeadFiveは、人間の8つの本能を理解した心理学的アプローチで、
       AIから最高のパフォーマンスを引き出すプロンプトを設計します。
     </p>
   </section>
@@ -485,7 +531,7 @@ permalink: /services/ai-prompt/
   <section class="pricing-section">
     <h2 class="section-title">カスタムソリューション</h2>
     <p class="lead-text">
-      お客様のビジネス規模、課題、目標に合わせて、<br>
+      お客様のビジネス規模、課題、目標に合わせて、
       最適なAIプロンプトエンジニアリングソリューションをご提案いたします。
     </p>
     <div class="pricing-cards">
@@ -527,8 +573,8 @@ permalink: /services/ai-prompt/
     </div>
     <div class="custom-solution-note">
       <p>
-        <strong>価格について：</strong>お客様の具体的なニーズ、プロジェクト規模、期間に応じて、<br>
-        最適な投資対効果を実現する価格をご提案させていただきます。<br>
+        <strong>価格について：</strong>お客様の具体的なニーズ、プロジェクト規模、期間に応じて、
+        最適な投資対効果を実現する価格をご提案させていただきます。
         まずは無料相談で、お客様のビジネス課題をお聞かせください。
       </p>
     </div>
