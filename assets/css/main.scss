@@ -480,7 +480,7 @@ h6 { font-size: 1rem; }
   @media (max-width: 768px) {
     min-height: calc(100vh - 120px);
     justify-content: flex-start;
-    padding: 7rem 0 180px; // Increased top padding by 2cm (5rem to 7rem)
+    padding: 11.5rem 0 180px; // Increased top padding by 1.8cm more (7rem + 4.5rem = 11.5rem)
   }
 }
 
