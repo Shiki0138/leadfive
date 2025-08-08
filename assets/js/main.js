@@ -132,25 +132,47 @@ function initMobileMenu() {
   const navLinks = document.querySelectorAll('.nav-link');
   
   if (toggler && menu) {
-    toggler.addEventListener('click', (e) => {
+    // Remove any existing listeners first
+    toggler.replaceWith(toggler.cloneNode(true));
+    const newToggler = document.querySelector('.navbar-toggler');
+    
+    newToggler.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
       menu.classList.toggle('active');
-      toggler.classList.toggle('active');
+      newToggler.classList.toggle('active');
+      
+      // Handle body scroll lock
+      if (menu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+      } else {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+      }
     });
     
     // Close menu when clicking nav links
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.remove('active');
-        toggler.classList.remove('active');
+        newToggler.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
       });
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !toggler.contains(e.target)) {
+      if (!menu.contains(e.target) && !newToggler.contains(e.target)) {
         menu.classList.remove('active');
-        toggler.classList.remove('active');
+        newToggler.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
       }
     });
   }
@@ -201,7 +223,11 @@ function openAIAnalysis() {
   const modal = document.getElementById('ai-analysis-modal');
   if (modal) {
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    // Store current scroll position
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
     
     // Add fade-in animation
     setTimeout(() => {
@@ -214,7 +240,13 @@ function closeAIAnalysis() {
   const modal = document.getElementById('ai-analysis-modal');
   if (modal) {
     modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    
+    // Restore scroll position
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
     
     setTimeout(() => {
       modal.style.display = 'none';
@@ -231,7 +263,11 @@ function openContactForm() {
   const modal = document.getElementById('contact-modal');
   if (modal) {
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    // Store current scroll position
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
     
     // Add fade-in animation
     setTimeout(() => {
@@ -245,7 +281,13 @@ function closeContactModal() {
   const modal = document.getElementById('contact-modal');
   if (modal) {
     modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    
+    // Restore scroll position
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
     
     setTimeout(() => {
       modal.style.display = 'none';
@@ -320,6 +362,12 @@ function showLetter(type) {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  // Ensure body is not locked on page load
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  
   initNeuralNetworkCanvas();
   initMobileMenu();
   initSmoothScroll();
@@ -652,35 +700,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Contact form modal
-function openContactForm() {
-  const modal = document.getElementById('contact-modal');
-  if (modal) {
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    // Add fade-in animation
-    setTimeout(() => {
-      modal.classList.add('active');
-    }, 10);
-    
-    // Close mobile menu if open
-    const menu = document.querySelector('.navbar-menu');
-    const toggler = document.querySelector('.navbar-toggler');
-    if (menu && toggler) {
-      menu.classList.remove('active');
-      toggler.classList.remove('active');
-    }
-  }
-}
-
-function closeContactModal() {
-  const modal = document.getElementById('contact-modal');
-  if (modal) {
-    modal.classList.remove('active');
-    setTimeout(() => {
-      modal.style.display = 'none';
-      document.body.style.overflow = '';
-    }, 300);
-  }
-}

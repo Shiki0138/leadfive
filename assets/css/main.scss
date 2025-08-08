@@ -45,6 +45,8 @@ body {
   overflow-x: hidden;
   min-height: 100%;
   position: relative;
+  // Ensure scrolling is not blocked
+  overflow-y: auto !important;
 }
 
 // Blog pages specific styling
@@ -288,7 +290,7 @@ h6 { font-size: 1rem; }
   cursor: pointer;
   padding: 1rem; // Increased padding for better touch area
   margin: -0.5rem; // Adjusted negative margin
-  z-index: 10001; // Higher than navbar-menu
+  z-index: 10002; // Higher than navbar-menu and modals
   position: relative; // Ensure z-index works
   -webkit-tap-highlight-color: transparent; // Remove tap highlight on iOS
   touch-action: manipulation; // Improve touch responsiveness
