@@ -283,14 +283,19 @@ h6 { font-size: 1rem; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.75rem; // Increased padding for larger touch area
-  margin: -0.25rem; // Negative margin to maintain visual position
+  padding: 1rem; // Increased padding for better touch area
+  margin: -0.5rem; // Adjusted negative margin
   z-index: 10001; // Higher than navbar-menu
   position: relative; // Ensure z-index works
   -webkit-tap-highlight-color: transparent; // Remove tap highlight on iOS
+  touch-action: manipulation; // Improve touch responsiveness
   
   @media (max-width: 768px) {
     display: flex;
+  }
+  
+  &:focus {
+    outline: none;
   }
 }
 
