@@ -218,9 +218,53 @@ permalink: /resources/whitepaper/
   color: #9ca3af;
 }
 
+.mobile-br {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .mobile-br {
+    display: inline;
+  }
+  
+  .whitepaper-hero {
+    padding: 4rem 0 3rem;
+  }
+  
+  .whitepaper-hero h1 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    word-break: keep-all;
+  }
+  
+  .whitepaper-hero p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 0 1rem;
+    word-break: keep-all;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
   .whitepaper-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 0 0.5rem 3rem;
+  }
+  
+  .whitepaper-card {
+    margin: 0;
+  }
+  
+  .card-header {
+    padding: 1.5rem;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
   }
   
   .form-grid {
@@ -230,6 +274,69 @@ permalink: /resources/whitepaper/
   .download-stats {
     flex-direction: column;
     gap: 1.5rem;
+    margin: 0 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .featured-whitepaper {
+    padding: 2rem 1rem;
+    margin: 0 0.5rem 3rem;
+  }
+  
+  .featured-whitepaper h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+  
+  .featured-whitepaper p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+  
+  .preview-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .preview-section ul {
+    text-align: left !important;
+    padding-left: 0;
+  }
+  
+  .preview-section li {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    word-break: keep-all;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  
+  .preview-section li::before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+  }
+  
+  .content-info {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .topic-tags {
+    justify-content: center;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 5% auto;
+    padding: 1.5rem;
   }
 }
 
@@ -270,23 +377,23 @@ permalink: /resources/whitepaper/
 <div class="whitepaper-hero">
   <div class="container">
     <h1>ホワイトペーパー</h1>
-    <p>AI×心理学マーケティングの実践的なノウハウを無料でご提供</p>
+    <p>AI×心理学マーケティングの<br class="mobile-br">実践的なノウハウを無料でご提供</p>
   </div>
 </div>
 
 <div class="container">
   <section class="featured-whitepaper">
     <span class="featured-badge">最新資料</span>
-    <h2>2024年最新版：AI×心理学マーケティング完全ガイド</h2>
-    <p>8つの本能を活用したマーケティング戦略の全てを解説</p>
+    <h2>2024年最新版：<br class="mobile-br">AI×心理学マーケティング<br class="mobile-br">完全ガイド</h2>
+    <p>8つの本能を活用した<br class="mobile-br">マーケティング戦略の全てを解説</p>
     <div class="preview-section">
       <h3>資料の内容</h3>
       <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-        <li>✅ 人間の8つの本能とマーケティングへの応用方法</li>
-        <li>✅ AIを活用した顧客心理分析の実践手法</li>
-        <li>✅ 業界別の成功事例（15社の詳細データ付き）</li>
-        <li>✅ すぐに使える施策テンプレート集</li>
-        <li>✅ ROI計測とKPI設定のベストプラクティス</li>
+        <li>人間の8つの本能と<br class="mobile-br">マーケティングへの応用方法</li>
+        <li>AIを活用した顧客心理分析の<br class="mobile-br">実践手法</li>
+        <li>業界別の成功事例<br class="mobile-br">（15社の詳細データ付き）</li>
+        <li>すぐに使える<br class="mobile-br">施策テンプレート集</li>
+        <li>ROI計測とKPI設定の<br class="mobile-br">ベストプラクティス</li>
       </ul>
     </div>
     <div class="download-stats">
@@ -300,7 +407,7 @@ permalink: /resources/whitepaper/
       </div>
       <div class="stat">
         <div class="stat-number">3,500+</div>
-        <div class="stat-label">ダウンロード数</div>
+        <div class="stat-label">ダウンロード</div>
       </div>
     </div>
     <button class="btn btn-primary btn-large" onclick="showDownloadForm('complete-guide')">

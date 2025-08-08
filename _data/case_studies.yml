@@ -20,13 +20,3 @@
   metric2_label: "新規顧客数"
   metric2_value: "+187%"
 
-- title: "BtoB企業の商談率4倍改善"
-  industry: "BtoB・コンサル"
-  before_situation: "問い合わせの90%が冷やかし"
-  before_emotion: "「質の高いリードが全然来ない...」"
-  after_result: "商談化率40%を実現"
-  after_emotion: "「営業チームが忙しくて嬉しい悲鳴です」"
-  metric1_label: "商談率向上"
-  metric1_value: "400%"
-  metric2_label: "受注単価"
-  metric2_value: "156%"

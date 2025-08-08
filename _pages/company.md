@@ -125,6 +125,10 @@ permalink: /company/
   border-bottom: none;
 }
 
+.info-cards {
+  display: none;
+}
+
 .philosophy-section {
   background: rgba(255, 255, 255, 0.03);
   padding: 4rem 3rem;
@@ -191,22 +195,166 @@ permalink: /company/
 }
 
 @media (max-width: 768px) {
+  .company-page {
+    padding: 2rem 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .company-header {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+  
   .company-header h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  
+  .company-header p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .message-section {
+    margin: 0 0.5rem 2rem;
+    padding: 2rem 0;
+    border-radius: 15px;
+  }
+  
+  .message-content {
+    padding: 0 1rem;
   }
   
   .ceo-header {
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
   }
   
-  .message-section {
-    margin: 0 0 3rem;
-    padding: 3rem 0;
+  .ceo-photo {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+  }
+  
+  .message-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .message-text p {
+    margin-bottom: 1rem;
+  }
+  
+  .company-info-section {
+    margin: 0 0.5rem 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .info-table {
+    font-size: 0.875rem;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .info-table {
+    display: none;
+  }
+  
+  .info-cards {
+    display: block;
+    gap: 1rem;
+  }
+  
+  .info-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .info-card h4 {
+    color: #8b5cf6;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .info-card p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #e5e7eb;
+  }
+  
+  .philosophy-section {
+    padding: 2rem 1rem;
+    margin: 0 0.5rem 2rem;
+    border-radius: 15px;
   }
   
   .philosophy-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .philosophy-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+  
+  .philosophy-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .philosophy-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .philosophy-card p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .access-section {
+    margin: 0 0.5rem;
+  }
+  
+  .access-map {
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .access-map p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .btn-large {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
   }
 }
 </style>
@@ -229,9 +377,10 @@ permalink: /company/
         </div>
         <div class="message-text">
           <p>「売上は運や勘ではなく、科学できる」</p>
-          <p>私たちLeadFiveは、この信念のもと、人間の本能的な行動原理とAI技術を融合させた、全く新しいマーケティングアプローチを提供しています。</p>
-          <p>従来のマーケティングは経験則に頼る部分が大きく、成果にばらつきがありました。しかし、8つの本能という人間の根源的な欲求を理解し、AIで最適化することで、予測可能で再現性の高い成果を実現できるようになりました。</p>
-          <p>お客様のビジネスを「科学」し、持続的な成長を実現する。それが私たちの使命です。</p>
+          <p>この信念のもと、人間の本能的な行動原理とAI技術を融合させた、全く新しいマーケティングアプローチを提供しています。</p>
+          <p>従来のマーケティングは、単にフレームワークを活用しただけ、または、経験則に頼る部分が大きく、成果にばらつきがありました。しかし、8つの本能という人間の根源的な欲求を理解し、「データ×AI」で最適化することで、予測可能で再現性の高い成果を実現できるようになりました。</p>
+          <p>お客様のビジネスを「科学」し、持続的な成長を実現する。そして、「本来得られる成果を手に入れていただく。」</p>
+          <p>それが弊社の使命です。</p>
         </div>
       </div>
     </section>
@@ -274,6 +423,42 @@ permalink: /company/
           </td>
         </tr>
       </table>
+      
+      <!-- Mobile Card Layout -->
+      <div class="info-cards">
+        <div class="info-card">
+          <h4>会社名</h4>
+          <p>合同会社Leadfive</p>
+        </div>
+        <div class="info-card">
+          <h4>代表者</h4>
+          <p>代表社員 山下 公一</p>
+        </div>
+        <div class="info-card">
+          <h4>設立</h4>
+          <p>2024年4月8日</p>
+        </div>
+        <div class="info-card">
+          <h4>所在地</h4>
+          <p>〒530-0001<br>大阪府大阪市北区梅田1-13-1<br>大阪梅田ツインタワーズ・サウス15階</p>
+        </div>
+        <div class="info-card">
+          <h4>電話番号</h4>
+          <p>06-7713-6747</p>
+        </div>
+        <div class="info-card">
+          <h4>メールアドレス</h4>
+          <p>leadfive.138@gmail.com</p>
+        </div>
+        <div class="info-card">
+          <h4>事業内容</h4>
+          <p>・AI×心理学マーケティングコンサルティング<br>
+          ・LP最適化サービス<br>
+          ・AIプロンプトエンジニアリング<br>
+          ・マーケティング自動化支援<br>
+          ・データ分析・予測モデル構築</p>
+        </div>
+      </div>
     </section>
 
     <section class="philosophy-section">

@@ -8,7 +8,7 @@ permalink: /services/consulting/
 <style>
 .consulting-hero {
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-  padding: 6rem 0;
+  padding: 8rem 0 6rem;
   margin-bottom: 4rem;
   text-align: center;
   position: relative;
@@ -213,16 +213,108 @@ permalink: /services/consulting/
 }
 
 @media (max-width: 768px) {
+  .consulting-hero {
+    padding: 6rem 0 4rem;
+  }
+  
+  .consulting-hero h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  
+  .consulting-hero p {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0 1rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
   .value-props {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .value-card {
+    padding: 1.5rem;
   }
   
   .service-tabs {
     flex-direction: column;
+    gap: 0.5rem;
   }
   
   .tab-button {
     width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .consulting-services {
+    padding: 2rem 1rem;
+    margin: 1rem 0.5rem 3rem;
+  }
+  
+  .approach-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 0 0.5rem;
+  }
+  
+  .approach-card {
+    padding: 1.5rem;
+  }
+  
+  .methodology-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .methodology-item {
+    padding: 1.5rem 1rem;
+  }
+  
+  .model-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .model-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .team-section {
+    padding: 2rem 1rem;
+    margin: 0 0.5rem 3rem;
+  }
+  
+  .expertise-badges {
+    gap: 0.5rem;
+  }
+  
+  .expertise-badge {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .cta-section {
+    padding: 3rem 1rem;
+    margin: 0 0.5rem;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 300px;
   }
 }
 </style>

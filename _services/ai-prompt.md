@@ -8,7 +8,7 @@ permalink: /services/ai-prompt/
 <style>
 .service-hero {
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
-  padding: 6rem 0;
+  padding: 8rem 0 6rem;
   margin-bottom: 4rem;
   text-align: center;
   position: relative;
@@ -269,7 +269,7 @@ permalink: /services/ai-prompt/
 
 @media (max-width: 768px) {
   .service-hero {
-    padding: 4rem 0 3rem;
+    padding: 6rem 0 3rem;
   }
   
   .service-hero h1 {
@@ -299,6 +299,7 @@ permalink: /services/ai-prompt/
   .prompt-features {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    margin: 0 1rem;
   }
   
   .feature-card {
@@ -354,6 +355,7 @@ permalink: /services/ai-prompt/
   
   .pricing-section {
     padding: 2rem 1rem;
+    margin: 0 0.5rem;
   }
   
   .pricing-cards {
@@ -376,6 +378,7 @@ permalink: /services/ai-prompt/
   
   .cta-section {
     padding: 3rem 1rem;
+    margin: 0 0.5rem;
   }
   
   .cta-section h2 {
