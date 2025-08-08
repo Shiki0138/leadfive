@@ -41,7 +41,7 @@
   </script>
   {% endif %}
 </head>
-<body{% if page.layout == 'blog-post' %} class="blog-page"{% endif %}>
+<body{% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %} class="blog-page"{% endif %}>
   {% include header.html %}
   
   <main>

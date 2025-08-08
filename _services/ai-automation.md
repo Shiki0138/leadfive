@@ -11,7 +11,7 @@ features:
     metric: 24/7 完全対応
   - title: メール自動配信システム
     description: 心理的タイミングを狙った自動メール配信
-    metric: 開封率 156%向上
+    metric: 配信効率 300%向上
   - title: SNS自動投稿AI
     description: エンゲージメント最適化された自動投稿
     metric: 週40時間削減
@@ -113,21 +113,6 @@ features:
         </div>
       </div>
       
-      <div class="result-card glass-card">
-        <h3>通販会社 F社</h3>
-        <p class="challenge">課題：メルマガ配信の手間とコストが膨大</p>
-        <p class="solution">施策：AI自動配信システムで最適化</p>
-        <div class="metrics">
-          <div class="metric-item">
-            <span class="value">156%</span>
-            <span class="label">開封率向上</span>
-          </div>
-          <div class="metric-item">
-            <span class="value">50%</span>
-            <span class="label">人件費削減</span>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
