@@ -129,6 +129,16 @@ permalink: /company/
   display: none;
 }
 
+@media (min-width: 769px) {
+  .info-cards {
+    display: none !important;
+  }
+  
+  .info-table {
+    display: table !important;
+  }
+}
+
 .philosophy-section {
   background: rgba(255, 255, 255, 0.03);
   padding: 4rem 3rem;
@@ -269,11 +279,11 @@ permalink: /company/
   }
   
   .info-table {
-    display: none;
+    display: none !important;
   }
   
   .info-cards {
-    display: block;
+    display: block !important;
     gap: 1rem;
   }
   
