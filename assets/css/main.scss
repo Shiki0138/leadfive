@@ -270,10 +270,10 @@ h6 { font-size: 1rem; }
   
   // Blog pages override - more subtle design
   .blog-page & {
-    background: rgba(255, 255, 255, 0.95);
+    background: $dark-blue;
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-    border-bottom: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -461,12 +461,13 @@ h6 { font-size: 1rem; }
   }
   
   .blog-page & {
-    color: #6b7280 !important;
+    color: $white !important;
   }
   
   .blog-page &:hover {
-    color: #8b5cf6 !important;
-    background: rgba(139, 92, 246, 0.08);
+    color: $white !important;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 
