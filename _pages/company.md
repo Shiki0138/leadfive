@@ -190,6 +190,11 @@ permalink: /company/
   margin-top: 4rem;
 }
 
+.access-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .access-map {
   background: rgba(255, 255, 255, 0.05);
   padding: 3rem;

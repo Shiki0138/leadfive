@@ -2266,6 +2266,34 @@ section {
     min-width: fit-content;
     flex-shrink: 0;
   }
+  
+  // CTA buttons mobile layout
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .cta-buttons .btn,
+  .cta-buttons a {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+  
+  // Access section mobile
+  .access-section {
+    text-align: center;
+  }
+  
+  .access-section .btn {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+  }
 }
 
 @media (max-width: 640px) {
