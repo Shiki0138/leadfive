@@ -1,20 +1,20 @@
 ---
 layout: default
-title: 広告・マーケティングサポート
-icon: 📢
+title: AI自動化マーケティング
+icon: 🤖
 color: from-neural-purple to-purple-700
-story: あなたの広告費、本当に効いていますか？
-detail: 人間心理に基づく広告で、同じ予算で3倍の成果を。
+story: マーケティングの全てをAIで自動化し、成果を最大化
+detail: 広告運用からコンテンツ作成まで、AIが24時間働きます。
 features:
   - title: Facebook/Google広告最適化
     description: 8つの本能に訴求するクリエイティブ設計
     metric: CTR改善率 平均267%
-  - title: 心理トリガー広告制作
-    description: 購買行動を促す心理学的アプローチ
-    metric: 成約率 平均3.2倍
-  - title: AIターゲティング最適化
-    description: 潜在顧客の心理特性を自動分析
-    metric: CPA削減率 平均42%
+  - title: ブログ記事自動作成システム
+    description: SEO最適化された記事を毎日自動生成・投稿
+    metric: 平均SEO流入 380%向上
+  - title: AI顧客データ分析
+    description: 顧客行動を分析し、最適なアプローチを自動提案
+    metric: 顧客単価 平均45%向上
 ---
 
 <section class="service-detail-hero">
@@ -27,14 +27,14 @@ features:
 <section class="service-overview">
   <div class="container">
     <div class="overview-content glass-card">
-      <h2>人間心理×AIで広告効果を最大化</h2>
+      <h2>AIがマーケティングを完全自動化</h2>
       <p class="lead">
-        広告費は増えるのに、売上は横ばい...<br>
-        そんな悩みを抱えていませんか？
+        広告運用、コンテンツ作成、顧客分析...<br>
+        全てのマーケティング業務をAIにお任せください。
       </p>
       <p>
-        私たちは、人間の8つの本能を理解し、AIの力で最適化することで、
-        同じ広告予算で3倍以上の成果を実現します。
+        24時間365日働くAIマーケティングシステムが、<br>
+        人間では不可能な速度と精度で成果を生み出し続けます。
       </p>
     </div>
   </div>
@@ -98,9 +98,41 @@ features:
     
     <div class="results-grid">
       <div class="result-card glass-card">
-        <h3>美容室チェーン A社</h3>
+        <h3>サービス企業 A社</h3>
+        <p class="challenge">課題：Web集客が弱く、問い合わせが少ない</p>
+        <p class="solution">施策：ブログ自動投稿システムでSEO強化</p>
+        <div class="metrics">
+          <div class="metric-item">
+            <span class="value">380%</span>
+            <span class="label">SEO流入増加</span>
+          </div>
+          <div class="metric-item">
+            <span class="value">月120記事</span>
+            <span class="label">自動生成</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="result-card glass-card">
+        <h3>歯科医院 B様</h3>
+        <p class="challenge">課題：患者データを活用できていない</p>
+        <p class="solution">施策：AI顧客分析システムで最適なアプローチ</p>
+        <div class="metrics">
+          <div class="metric-item">
+            <span class="value">185%</span>
+            <span class="label">売上向上</span>
+          </div>
+          <div class="metric-item">
+            <span class="value">92%</span>
+            <span class="label">リピート率</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="result-card glass-card">
+        <h3>美容室チェーン C社</h3>
         <p class="challenge">課題：広告費が高騰し、新規獲得コストが上昇</p>
-        <p class="solution">施策：承認欲求に訴求する心理的アプローチ</p>
+        <p class="solution">施策：AI広告自動最適化システム導入</p>
         <div class="metrics">
           <div class="metric-item">
             <span class="value">312%</span>
@@ -109,22 +141,6 @@ features:
           <div class="metric-item">
             <span class="value">65%</span>
             <span class="label">CPA削減</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="result-card glass-card">
-        <h3>ECサイト B社</h3>
-        <p class="challenge">課題：カート放棄率が高く、売上が伸び悩み</p>
-        <p class="solution">施策：危険回避本能を活用した限定性訴求</p>
-        <div class="metrics">
-          <div class="metric-item">
-            <span class="value">523%</span>
-            <span class="label">売上向上</span>
-          </div>
-          <div class="metric-item">
-            <span class="value">78%</span>
-            <span class="label">カート放棄率改善</span>
           </div>
         </div>
       </div>
@@ -196,13 +212,13 @@ features:
 <section class="service-cta">
   <div class="container">
     <div class="cta-content glass-card">
-      <h2>まずは無料診断から始めませんか？</h2>
+      <h2>AIマーケティングの可能性を体験してください</h2>
       <p>
-        あなたの広告の改善ポイントを、AI×心理学の観点から無料で診断します。<br>
-        具体的な改善提案と期待効果をレポートでお渡しします。
+        あなたのビジネスにAIマーケティングを導入した場合の<br>
+        具体的な成果予測と改善提案を無料でご提供します。
       </p>
-      <button class="btn btn-primary btn-large" onclick="openAIAnalysis()">
-        無料診断を申し込む
+      <button class="btn btn-primary btn-large" onclick="openContactForm()">
+        無料相談はこちら
       </button>
     </div>
   </div>
@@ -331,9 +347,15 @@ features:
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .result-card {

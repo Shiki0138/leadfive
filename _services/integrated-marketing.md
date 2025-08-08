@@ -150,17 +150,17 @@ features:
     
     <div class="results-grid">
       <div class="result-card glass-card">
-        <h3>小売チェーン G社</h3>
-        <p class="challenge">課題：オンラインとオフラインの施策が連携していない</p>
-        <p class="solution">施策：O2O統合マーケティングシステム構築</p>
+        <h3>ヘアケアメーカー G社</h3>
+        <p class="challenge">課題：顧客データが分散し、効果的なマーケティングができない</p>
+        <p class="solution">施策：顧客データ統合プラットフォーム構築</p>
         <div class="metrics">
           <div class="metric-item">
-            <span class="value">320%</span>
-            <span class="label">ROAS向上</span>
+            <span class="value">280%</span>
+            <span class="label">LTV向上</span>
           </div>
           <div class="metric-item">
-            <span class="value">45%</span>
-            <span class="label">来店率向上</span>
+            <span class="value">52%</span>
+            <span class="label">リピート率向上</span>
           </div>
         </div>
       </div>
