@@ -857,7 +857,7 @@ section {
   
   // Better mobile spacing
   @media (max-width: 768px) {
-    margin: 3rem auto;
+    margin: 8rem auto 3rem; // 8rem top (約2cm追加), 3rem bottom
     padding: 1.5rem;
   }
   
@@ -926,10 +926,11 @@ section {
 }
 
 .philosophy-text .lead {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
   color: $gray-300;
+  line-height: 1.8;
 }
 
 .philosophy-text p {
