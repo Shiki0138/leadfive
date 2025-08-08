@@ -96,6 +96,24 @@ body.blog-page {
   }
 }
 
+// Blog post content styling
+.blog-post-content {
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $dark-blue;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
+      margin-top: 2.5rem;
+    }
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
