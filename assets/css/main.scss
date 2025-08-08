@@ -684,7 +684,7 @@ section {
   
   // Add proper spacing below blinking text
   @media (max-width: 768px) {
-    margin: 7.5rem auto 7.5rem; // Increased spacing to about 3cm top and bottom (added 1cm each)
+    margin: 10rem auto 10rem; // Increased spacing to about 4cm top and bottom (added 1cm each: 7.5rem + 2.5rem = 10rem)
     padding: 0 1rem;
   }
   
@@ -2411,7 +2411,7 @@ section {
   }
   
   .warning-message {
-    margin: 5rem auto; // Increased from 2rem to 5rem (about 2cm top and bottom)
+    margin: 10rem auto; // Further increased to match main rule (about 4cm top and bottom)
     padding: 0 1rem;
     
     p {

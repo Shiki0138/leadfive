@@ -39,7 +39,7 @@ permalink: /company/
 @media (max-width: 768px) {
   .message-section {
     padding: 3rem 0;
-    margin: 0 -20px 3rem;
+    margin: 0 0 3rem;
   }
 }
 
@@ -132,6 +132,12 @@ permalink: /company/
   margin-bottom: 4rem;
 }
 
+@media (max-width: 768px) {
+  .philosophy-section {
+    padding: 2rem 1.5rem;
+  }
+}
+
 .philosophy-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -179,6 +185,12 @@ permalink: /company/
 }
 
 @media (max-width: 768px) {
+  .access-map {
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
   .company-header h1 {
     font-size: 2rem;
   }
@@ -189,7 +201,7 @@ permalink: /company/
   }
   
   .message-section {
-    margin: 0 -1rem 3rem;
+    margin: 0 0 3rem;
     padding: 3rem 0;
   }
   

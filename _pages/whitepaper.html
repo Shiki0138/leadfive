@@ -33,7 +33,7 @@ permalink: /resources/whitepaper/
 
 .whitepaper-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -230,6 +230,39 @@ permalink: /resources/whitepaper/
   .download-stats {
     flex-direction: column;
     gap: 1.5rem;
+  }
+}
+
+.cta-section {
+  padding: 3rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  margin-top: 4rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 300px;
   }
 }
 </style>
@@ -470,8 +503,8 @@ permalink: /resources/whitepaper/
       <button class="btn btn-primary btn-large" onclick="openContactForm()">
         無料相談を申し込む
       </button>
-      <button class="btn btn-outline btn-large" onclick="openAIAnalysis()">
-        AI診断を受ける
+      <button class="btn btn-outline btn-large" onclick="openContactForm()">
+        無料相談はこちら
       </button>
     </div>
   </section>

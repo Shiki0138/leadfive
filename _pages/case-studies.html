@@ -33,6 +33,12 @@ permalink: /case-studies/
   border-radius: 20px;
 }
 
+@media (max-width: 768px) {
+  .results-summary {
+    padding: 2rem 1.5rem;
+  }
+}
+
 .result-stat {
   text-align: center;
 }
@@ -80,7 +86,7 @@ permalink: /case-studies/
 
 .case-studies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -152,6 +158,12 @@ permalink: /case-studies/
   border: 2px solid rgba(139, 92, 246, 0.3);
 }
 
+@media (max-width: 768px) {
+  .featured-case {
+    padding: 2rem 1.5rem;
+  }
+}
+
 .featured-badge {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -167,6 +179,12 @@ permalink: /case-studies/
   padding: 3rem;
   border-radius: 20px;
   margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .testimonial-section {
+    padding: 2rem 1.5rem;
+  }
 }
 
 .testimonial-grid {
@@ -236,6 +254,12 @@ permalink: /case-studies/
 }
 
 @media (max-width: 768px) {
+  .cta-section {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
   .case-studies-hero h1 {
     font-size: 2rem;
   }
@@ -249,13 +273,13 @@ permalink: /case-studies/
   }
   
   .filter-buttons {
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
   
   .filter-btn {
-    width: 100%;
-    max-width: 200px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
 }
 </style>
@@ -501,8 +525,8 @@ permalink: /case-studies/
       <button class="btn btn-primary btn-large" onclick="openContactForm()">
         無料相談を申し込む
       </button>
-      <button class="btn btn-outline btn-large" onclick="openAIAnalysis()">
-        AI診断を受ける
+      <button class="btn btn-outline btn-large" onclick="openContactForm()">
+        無料相談はこちら
       </button>
     </div>
   </section>

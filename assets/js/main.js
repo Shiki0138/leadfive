@@ -218,22 +218,10 @@ function initScrollAnimations() {
   });
 }
 
-// AI Analysis Modal with fixed functionality
+// AI Analysis Modal - Redirect to Contact Form
 function openAIAnalysis() {
-  const modal = document.getElementById('ai-analysis-modal');
-  if (modal) {
-    modal.style.display = 'block';
-    // Store current scroll position
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-    
-    // Add fade-in animation
-    setTimeout(() => {
-      modal.classList.add('active');
-    }, 10);
-  }
+  // Redirect to contact form instead of AI analysis
+  openContactForm();
 }
 
 function closeAIAnalysis() {
