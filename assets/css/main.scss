@@ -47,6 +47,11 @@ body {
   position: relative;
   // Ensure scrolling is not blocked
   overflow-y: auto !important;
+  
+  // Prevent horizontal overflow on mobile
+  @media (max-width: 768px) {
+    overflow-x: hidden !important;
+  }
 }
 
 // Blog pages specific styling
@@ -80,6 +85,8 @@ body.blog-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
   
   @media (max-width: 1024px) {
     padding: 0 24px;
@@ -87,6 +94,7 @@ body.blog-page {
   
   @media (max-width: 768px) {
     padding: 0 20px;
+    max-width: 100%;
   }
   
   @media (max-width: 480px) {

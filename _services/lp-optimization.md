@@ -246,6 +246,13 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
   justify-content: center;
   gap: 3rem;
   margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .service-metrics {
+    gap: 1.5rem;
+  }
 }
 
 .metric-item {
@@ -274,9 +281,16 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
 
 .problems-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .problems-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 .problem-item {
@@ -312,6 +326,13 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+}
+
+@media (max-width: 768px) {
+  .solution-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 .solution-text h3 {
@@ -393,6 +414,15 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
   flex-direction: row-reverse;
 }
 
+@media (max-width: 768px) {
+  .step-item,
+  .step-item:nth-child(even) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
 .step-number {
   flex-shrink: 0;
   width: 80px;
@@ -405,6 +435,14 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
   font-size: 1.5rem;
   font-weight: 900;
   color: white;
+}
+
+@media (max-width: 768px) {
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: 1.25rem;
+  }
 }
 
 .step-content h3 {

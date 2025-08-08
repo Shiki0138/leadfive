@@ -31,9 +31,16 @@ permalink: /company/
   background: #fff;
   color: #111827;
   padding: 4rem 0;
-  margin: 0 -2rem 4rem;
+  margin: 0 0 4rem;
   border-top: 4px solid #0a0a0a;
   border-bottom: 4px solid #0a0a0a;
+}
+
+@media (max-width: 768px) {
+  .message-section {
+    padding: 3rem 0;
+    margin: 0 -20px 3rem;
+  }
 }
 
 .message-content {
@@ -49,6 +56,14 @@ permalink: /company/
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid #e5e7eb;
+}
+
+@media (max-width: 768px) {
+  .ceo-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
 }
 
 .ceo-photo {
@@ -78,7 +93,18 @@ permalink: /company/
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  overflow: hidden;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .info-table {
+    font-size: 0.875rem;
+  }
+  
+  .info-table th,
+  .info-table td {
+    padding: 1rem;
+  }
 }
 
 .info-table th,
@@ -108,9 +134,16 @@ permalink: /company/
 
 .philosophy-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 .philosophy-card {
