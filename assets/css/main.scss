@@ -29,6 +29,7 @@ $gray-900: #111827;
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 0;
+  height: 100%;
 }
 
 // Prevent auto-scroll on page load
@@ -42,6 +43,8 @@ body {
   color: $white;
   line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100%;
+  position: relative;
 }
 
 // Blog pages specific styling
@@ -2464,7 +2467,7 @@ section {
 .modal {
   display: none;
   position: fixed;
-  z-index: 9999;
+  z-index: 99999; // Higher than everything
   left: 0;
   top: 0;
   width: 100%;
@@ -2473,6 +2476,8 @@ section {
   backdrop-filter: blur(5px);
   opacity: 0;
   transition: opacity 0.3s ease;
+  overflow-y: auto; // Allow scrolling in modal
+  -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
   
   &.active {
     opacity: 1;

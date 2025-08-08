@@ -320,14 +320,6 @@ function showLetter(type) {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Force scroll to top on page load/refresh
-  window.scrollTo(0, 0);
-  
-  // Also handle history scrollRestoration
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-  
   initNeuralNetworkCanvas();
   initMobileMenu();
   initSmoothScroll();
@@ -335,11 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScrollEffect();
   initModalFunctionality();
   initLetterInteraction();
-});
-
-// Force scroll to top before page unload (for refresh)
-window.addEventListener('beforeunload', () => {
-  window.scrollTo(0, 0);
 });
 
 // Header scroll effect for better UX
