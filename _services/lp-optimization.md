@@ -17,20 +17,20 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
       </p>
       <p class="service-description">
         人間の8つの本能を理解し、AIで最適化。<br>
-        CVR0.8%から2.1%への改善実績を持つ、科学的アプローチによるLP最適化サービス。
+        新規顧客月間0人から25人への改善実績を持つ、科学的アプローチによるLP最適化サービス。
       </p>
       <div class="service-metrics">
         <div class="metric-item">
-          <span class="metric-value">+267%</span>
-          <span class="metric-label">CVR向上</span>
+          <span class="metric-value">0→25人</span>
+          <span class="metric-label">新規顧客/月</span>
         </div>
         <div class="metric-item">
-          <span class="metric-value">42%</span>
-          <span class="metric-label">離脱減少</span>
+          <span class="metric-value">68%</span>
+          <span class="metric-label">予約完了率</span>
         </div>
         <div class="metric-item">
-          <span class="metric-value">3週間</span>
-          <span class="metric-label">最適化完了</span>
+          <span class="metric-value">2週間</span>
+          <span class="metric-label">成果達成</span>
         </div>
       </div>
     </div>
@@ -143,21 +143,21 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
     
     <div class="case-study-card glass-card">
       <div class="case-header">
-        <span class="industry">EC・オンライン販売</span>
-        <h3>ファッション系ECサイト様</h3>
+        <span class="industry">美容・エステ</span>
+        <h3>美容系集客サイト様</h3>
       </div>
       
       <div class="case-challenge">
         <h4>課題</h4>
-        <p>月間10万PVあるにも関わらず、CVRが0.8%と業界平均を大きく下回っていた。広告費は月200万円かけているが、売上が伸び悩んでいる状況。</p>
+        <p>地域密着型の美容サロンで、ホームページはあるものの、Web経由の新規予約が全く入らない状況。チラシや口コミのみに頼っていて、集客が不安定だった。</p>
       </div>
       
       <div class="case-solution">
         <h4>施策</h4>
         <ul>
-          <li><strong>心理分析：</strong>「優越本能」と「集団帰属本能」を活用したソーシャルプルーフの強化</li>
-          <li><strong>AIテスト：</strong>20パターンのLP要素を同時並行でテスト実行</li>
-          <li><strong>最適化：</strong>レビュー表示位置、色彩心理学、購入ボタンの文言を科学的に最適化</li>
+          <li><strong>心理分析：</strong>「生存本能（安心感）」と「性的本能（美しくなりたい）」を活用した信頼性と変身願望への訴求</li>
+          <li><strong>AIテスト：</strong>ビフォーアフター画像、お客様の声、初回限定オファーの配置を最適化</li>
+          <li><strong>最適化：</strong>予約導線の簡略化、施術メニューの見せ方、スタッフ紹介による親近感演出</li>
         </ul>
       </div>
       
@@ -165,16 +165,16 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
         <h4>結果</h4>
         <div class="results-grid">
           <div class="result-item">
-            <span class="result-value">0.8% → 2.1%</span>
-            <span class="result-label">CVR改善</span>
+            <span class="result-value">0人 → 25人</span>
+            <span class="result-label">新規顧客/月</span>
           </div>
           <div class="result-item">
-            <span class="result-value">+278%</span>
-            <span class="result-label">売上向上</span>
+            <span class="result-value">85%</span>
+            <span class="result-label">リピート率</span>
           </div>
           <div class="result-item">
-            <span class="result-value">21日間</span>
-            <span class="result-label">最適化期間</span>
+            <span class="result-value">14日間</span>
+            <span class="result-label">成果達成</span>
           </div>
         </div>
       </div>
@@ -194,8 +194,8 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
         具体的な改善点をレポートとしてお渡しします。
       </p>
       <div class="cta-buttons">
-        <button class="btn btn-primary btn-large" onclick="openAIAnalysis()">
-          無料LP診断を受ける
+        <button class="btn btn-primary btn-large" onclick="openContactForm()">
+          無料相談はこちら
         </button>
         <a href="#" onclick="openContactForm(); return false;" class="btn btn-secondary btn-large">
           詳しく相談する
