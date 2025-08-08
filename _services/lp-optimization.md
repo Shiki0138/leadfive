@@ -197,7 +197,7 @@ description: "科学的根拠に基づく高速PDCAでLPのCVRを劇的に改善
         <button class="btn btn-primary btn-large" onclick="openAIAnalysis()">
           無料LP診断を受ける
         </button>
-        <a href="{{ '/contact/' | relative_url }}" class="btn btn-secondary btn-large">
+        <a href="#" onclick="openContactForm(); return false;" class="btn btn-secondary btn-large">
           詳しく相談する
         </a>
       </div>

@@ -116,32 +116,14 @@ permalink: /contact/
       <p>AI×心理学マーケティングで、あなたのビジネスの成長をサポートします</p>
     </div>
 
-    <div class="contact-options">
+    <div class="contact-options" style="max-width: 600px; margin: 0 auto 4rem;">
       <div class="contact-card">
         <span class="contact-icon">💬</span>
         <h3>お問い合わせフォーム</h3>
         <p>サービスに関するご質問、ご相談はこちらから。1-2営業日以内にご返信いたします。</p>
-        <button class="btn btn-primary" onclick="openContactForm()">
-          フォームを開く
+        <button class="btn btn-primary btn-large" onclick="openContactForm()">
+          お問い合わせフォームを開く
         </button>
-      </div>
-
-      <div class="contact-card">
-        <span class="contact-icon">📞</span>
-        <h3>お電話でのご相談</h3>
-        <p>お急ぎの方はお電話でもご相談を承っております。</p>
-        <a href="tel:0677136747" class="btn btn-outline">
-          06-7713-6747
-        </a>
-      </div>
-
-      <div class="contact-card">
-        <span class="contact-icon">📧</span>
-        <h3>メールでのお問い合わせ</h3>
-        <p>詳細な資料請求やご提案をご希望の方はメールでも承ります。</p>
-        <a href="mailto:leadfive.138@gmail.com" class="btn btn-outline">
-          メールを送る
-        </a>
       </div>
     </div>
 
