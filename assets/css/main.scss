@@ -65,7 +65,8 @@ body.blog-page {
   }
   
   .navbar {
-    background: transparent !important;
+    background: $dark-blue !important;
+    background-color: $dark-blue !important;
   }
   
   .navbar-brand .logo-text {
@@ -101,17 +102,22 @@ body.blog-page {
     margin: 0 0.25rem !important;
   }
   
-  // Additional overrides with different selectors
+  // MAXIMUM FORCE OVERRIDES - NO EXCEPTIONS
+  nav.navbar {
+    background: $dark-blue !important;
+    background-color: $dark-blue !important;
+  }
+  
+  nav.navbar a,
+  nav.navbar .nav-link,
+  .navbar a,
+  .navbar .nav-link,
   a.nav-link {
     color: $white !important;
     background-color: $dark-blue !important;
     background: $dark-blue !important;
-  }
-  
-  .nav-link {
-    color: $white !important;
-    background-color: $dark-blue !important;
-    background: $dark-blue !important;
+    border: none !important;
+    text-shadow: none !important;
   }
   
   .navbar-nav .nav-item .nav-link:hover,
@@ -121,6 +127,17 @@ body.blog-page {
     background: rgba(30, 58, 138, 1.0) !important;
     border-radius: 6px !important;
     transform: translateY(-1px) !important;
+  }
+  
+  // Scroll animation effect
+  .site-header {
+    transition: all 0.3s ease-in-out !important;
+    
+    &.scrolled {
+      background: rgba(30, 58, 138, 0.95) !important;
+      backdrop-filter: blur(20px) !important;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1) !important;
+    }
   }
   
   // Mobile menu for blog pages

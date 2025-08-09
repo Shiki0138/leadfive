@@ -1,3 +1,40 @@
+// Blog page header scroll animation
+function initBlogHeaderScroll() {
+  if (!document.body.classList.contains('blog-page')) return;
+  
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  
+  let lastScrollTop = 0;
+  
+  function handleScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    lastScrollTop = scrollTop;
+  }
+  
+  // Throttled scroll handler for better performance
+  let ticking = false;
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(handleScroll);
+      ticking = true;
+      setTimeout(() => { ticking = false; }, 16); // ~60fps
+    }
+  }
+  
+  window.addEventListener('scroll', requestTick, { passive: true });
+  
+  // Initial check
+  handleScroll();
+}
+
 // Neural Network Canvas Animation with Performance Optimization
 function initNeuralNetworkCanvas() {
   const canvas = document.getElementById('neural-network-canvas');
@@ -363,6 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScrollEffect();
   initModalFunctionality();
   initLetterInteraction();
+  initBlogHeaderScroll();
 });
 
 // Header scroll effect for better UX
