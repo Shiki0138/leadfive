@@ -80,7 +80,7 @@ category: AI活用
               <a href="{{ '/blog/category/データ分析/' | relative_url }}">
                 <span class="category-name">データ分析</span>
                 <span class="category-count">
-                  {{ site.posts | where_exp: "post", "post.categories contains 'データ分析' or post.categories contains 'データドリブンマーケティング'" | size }}
+                  {{ site.posts | where_exp: "post", "post.categories contains 'データ分析'" | size }}
                 </span>
               </a>
             </li>

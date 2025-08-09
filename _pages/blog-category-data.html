@@ -19,7 +19,7 @@ category: データ分析
     <div class="blog-grid">
       <div class="blog-main">
         <div class="blog-list">
-          {% assign filtered_posts = site.posts | where_exp: "post", "post.categories contains 'データドリブンマーケティング' or post.categories contains 'データ分析'" %}
+          {% assign filtered_posts = site.posts | where_exp: "post", "post.categories contains 'データ分析'" %}
           
           {% if filtered_posts.size > 0 %}
             {% for post in filtered_posts %}
@@ -80,7 +80,7 @@ category: データ分析
               <a href="{{ '/blog/category/データ分析/' | relative_url }}">
                 <span class="category-name">データ分析</span>
                 <span class="category-count">
-                  {{ site.posts | where_exp: "post", "post.categories contains 'データ分析' or post.categories contains 'データドリブンマーケティング'" | size }}
+                  {{ site.posts | where_exp: "post", "post.categories contains 'データ分析'" | size }}
                 </span>
               </a>
             </li>
