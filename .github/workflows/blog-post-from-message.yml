@@ -2,7 +2,7 @@ name: Blog Post from Messaging App
 
 on:
   repository_dispatch:
-    types: [blog-post-from-line, blog-post-from-slack, blog-post-from-telegram, blog-post-from-email]
+    types: [blog-post-from-line, blog-post-from-slack, blog-post-from-telegram, blog-post-from-email, create-blog-post]
 
 jobs:
   create-blog-post:
@@ -27,10 +27,13 @@ jobs:
       - name: Generate Blog Post
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          TOPIC: ${{ github.event.client_payload.topic }}
+          TOPIC: ${{ github.event.client_payload.topic || github.event.client_payload.title }}
           DESCRIPTION: ${{ github.event.client_payload.description }}
           AUDIENCE: ${{ github.event.client_payload.audience }}
-          CUSTOMIZATION: ${{ github.event.client_payload.customization }}
+          CATEGORY: ${{ github.event.client_payload.category }}
+          CUSTOM_INSTRUCTION: ${{ github.event.client_payload.customInstruction }}
+          URGENCY: ${{ github.event.client_payload.urgency }}
+          READ_TIME: ${{ github.event.client_payload.readTime }}
           TIMESTAMP: ${{ github.event.client_payload.timestamp }}
         run: |
           node scripts/generate-blog-from-topic.js
