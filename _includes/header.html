@@ -1,9 +1,9 @@
-<header class="site-header" {% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %}style="background: #1e3a8a !important;"{% endif %}>
+<header class="site-header" {% if page.url contains '/blog/' %}style="background: #1e3a8a !important;"{% endif %}>
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
         <a href="{{ '/' | relative_url }}" class="logo">
-          <span class="logo-text" {% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>LeadFive</span>
+          <span class="logo-text" {% if page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>LeadFive</span>
         </a>
       </div>
       
@@ -14,26 +14,44 @@
       </button>
       
       <div class="navbar-menu" id="navbarMenu">
+        {% if page.url contains '/blog/' %}
+        <!-- Blog navigation with categories for ALL blog pages -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="{{ site.baseurl }}/#philosophy" class="nav-link" {% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>理念</a>
+            <a href="{{ site.baseurl }}/blog/" class="nav-link" style="color: #ffffff !important;">全ての記事</a>
+          </li>
+          {% assign unique_categories = site.posts | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
+          {% for category in unique_categories limit:5 %}
+          {% unless category == '' %}
+          <li class="nav-item">
+            <a href="{{ '/blog/category/' | append: category | slugify | append: '/' | relative_url }}" class="nav-link" style="color: #ffffff !important;">{{ category }}</a>
+          </li>
+          {% endunless %}
+          {% endfor %}
+        </ul>
+        {% else %}
+        <!-- Regular navigation for non-blog pages -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="{{ site.baseurl }}/#philosophy" class="nav-link">理念</a>
           </li>
           <li class="nav-item">
-            <a href="{{ site.baseurl }}/#services" class="nav-link" {% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>サービス</a>
+            <a href="{{ site.baseurl }}/#services" class="nav-link">サービス</a>
           </li>
           <li class="nav-item">
-            <a href="{{ site.baseurl }}/#case-studies" class="nav-link" {% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>実績</a>
+            <a href="{{ site.baseurl }}/#case-studies" class="nav-link">実績</a>
           </li>
           <li class="nav-item">
-            <a href="{{ site.baseurl }}/blog/" class="nav-link" {% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>ブログ</a>
+            <a href="{{ site.baseurl }}/blog/" class="nav-link">ブログ</a>
           </li>
           <li class="nav-item">
-            <a href="{{ site.baseurl }}/company/" class="nav-link" {% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>会社概要</a>
+            <a href="{{ site.baseurl }}/company/" class="nav-link">会社概要</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" onclick="openContactForm(); return false;" {% if page.layout == 'blog-post' or page.layout == 'blog' or page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>お問い合わせ</a>
+            <a href="#" class="nav-link" onclick="openContactForm(); return false;">お問い合わせ</a>
           </li>
         </ul>
+        {% endif %}
       </div>
     </div>
   </nav>
