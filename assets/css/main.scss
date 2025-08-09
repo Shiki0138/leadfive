@@ -60,7 +60,7 @@ body.blog-page {
   color: $gray-800;
   
   .site-header {
-    background: $dark-blue;
+    background: $dark-blue !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
   
@@ -111,6 +111,21 @@ body.blog-page {
       font-size: 1.75rem;
       margin-top: 2.5rem;
     }
+  }
+}
+
+// Blog page button styles
+body.blog-page {
+  .btn-primary {
+    background: linear-gradient(135deg, $neural-purple, $impulse-pink) !important;
+    color: $white !important;
+    border: none !important;
+  }
+  
+  .navbar-cta .btn {
+    background: linear-gradient(135deg, $neural-purple, $impulse-pink) !important;
+    color: $white !important;
+    border: none !important;
   }
 }
 
@@ -270,7 +285,7 @@ h6 { font-size: 1rem; }
   
   // Blog pages override - more subtle design
   .blog-page & {
-    background: $dark-blue;
+    background: $dark-blue !important;
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
