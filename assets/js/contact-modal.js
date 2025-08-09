@@ -147,27 +147,23 @@
       _to: 'leadfive.138@gmail.com'
     };
 
-    // Send to Formspree
-    fetch('https://formspree.io/f/xkgwrrqv', {
+    // Send to Google Apps Script
+    fetch('https://script.google.com/macros/s/AKfycbxufN4CPujE75vKqgeMqKMhumfFm9HE4j4pN0sZMSaKJGXS7wP5vp6P1d5jKgz8LIne/exec', {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify(data),
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'text/plain'
       }
     })
     .then(response => {
-      if (response.ok) {
-        // Success
-        showSuccessMessage();
-        form.reset();
-        setTimeout(() => {
-          window.closeContactModal();
-        }, 3000);
-      } else {
-        // Error
-        throw new Error('送信に失敗しました');
-      }
+      // no-corsモードでは常に成功として扱う
+      showSuccessMessage();
+      form.reset();
+      setTimeout(() => {
+        window.closeContactModal();
+      }, 3000);
     })
     .catch(error => {
       // Show error message
