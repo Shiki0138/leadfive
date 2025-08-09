@@ -1,9 +1,9 @@
-<header class="site-header" {% if page.url contains '/blog/' %}style="background: #1e3a8a !important;"{% endif %}>
+<header class="site-header" {% if page.url contains '/blog/' or page.layout == 'blog-post' or page.layout == 'blog' %}style="background: #1e3a8a !important;"{% endif %}>
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
         <a href="{{ '/' | relative_url }}" class="logo">
-          <span class="logo-text" {% if page.url contains '/blog/' %}style="color: #ffffff !important;"{% endif %}>LeadFive</span>
+          <span class="logo-text" {% if page.url contains '/blog/' or page.layout == 'blog-post' or page.layout == 'blog' %}style="color: #ffffff !important;"{% endif %}>LeadFive</span>
         </a>
       </div>
       
@@ -14,7 +14,7 @@
       </button>
       
       <div class="navbar-menu" id="navbarMenu">
-        {% if page.url contains '/blog/' %}
+        {% if page.url contains '/blog/' or page.layout == 'blog-post' or page.layout == 'blog' %}
         <!-- Blog navigation with categories for ALL blog pages -->
         <ul class="navbar-nav">
           <li class="nav-item">
