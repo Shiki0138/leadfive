@@ -20,14 +20,18 @@
           <li class="nav-item">
             <a href="{{ site.baseurl }}/blog/" class="nav-link" style="color: #ffffff !important;">全ての記事</a>
           </li>
-          {% assign unique_categories = site.posts | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
-          {% for category in unique_categories limit:5 %}
-          {% unless category == '' %}
           <li class="nav-item">
-            <a href="{{ '/blog/category/' | append: category | slugify | append: '/' | relative_url }}" class="nav-link" style="color: #ffffff !important;">{{ category }}</a>
+            <a href="{{ site.baseurl }}/blog/category/aiマーケティング/" class="nav-link" style="color: #ffffff !important;">AIマーケティング</a>
           </li>
-          {% endunless %}
-          {% endfor %}
+          <li class="nav-item">
+            <a href="{{ site.baseurl }}/blog/category/美容業界/" class="nav-link" style="color: #ffffff !important;">美容業界</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ site.baseurl }}/blog/category/データ分析/" class="nav-link" style="color: #ffffff !important;">データ分析</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ site.baseurl }}/blog/category/ai活用/" class="nav-link" style="color: #ffffff !important;">AI活用</a>
+          </li>
         </ul>
         {% else %}
         <!-- Regular navigation for non-blog pages -->

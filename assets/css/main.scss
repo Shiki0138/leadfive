@@ -61,7 +61,11 @@ body.blog-page {
   
   .site-header {
     background: $dark-blue !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  .navbar {
+    background: transparent !important;
   }
   
   .navbar-brand .logo-text {
@@ -70,16 +74,35 @@ body.blog-page {
   
   .nav-link {
     color: $white !important;
-    opacity: 0.9;
+    opacity: 1 !important;
+    font-weight: 500 !important;
   }
   
   .nav-link:hover {
     color: $white !important;
-    opacity: 1;
+    opacity: 0.8 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 6px !important;
   }
   
   .navbar-toggler span {
     background: $white !important;
+  }
+  
+  // Force override any conflicting styles
+  .navbar-nav .nav-item .nav-link {
+    color: $white !important;
+    background: transparent !important;
+    border: none !important;
+    text-shadow: none !important;
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover,
+  .navbar-nav .nav-item .nav-link:focus,
+  .navbar-nav .nav-item .nav-link:active {
+    color: $white !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 6px !important;
   }
   
   // Mobile menu for blog pages
@@ -329,10 +352,11 @@ h6 { font-size: 1rem; }
   text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
   
   .blog-page & {
-    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #ffffff !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: initial !important;
     text-shadow: none;
   }
 }
@@ -461,6 +485,7 @@ h6 { font-size: 1rem; }
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-size: 0.95rem;
+  background: transparent !important;
   
   @media (max-width: 768px) {
     color: rgba(255, 255, 255, 0.9);
@@ -469,20 +494,25 @@ h6 { font-size: 1rem; }
     width: 100%;
     display: block;
     border: 1px solid transparent;
+    background: transparent !important;
     
     .blog-page & {
       color: $white !important;
+      background: transparent !important;
     }
   }
   
   .blog-page & {
     color: $white !important;
+    background: transparent !important;
+    border: none !important;
+    text-shadow: none !important;
   }
   
   .blog-page &:hover {
     color: $white !important;
     opacity: 0.8;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1) !important;
   }
 }
 

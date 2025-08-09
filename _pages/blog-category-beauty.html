@@ -1,0 +1,374 @@
+---
+layout: blog
+title: 美容業界記事一覧 | LeadFive ブログ
+permalink: /blog/category/美容業界/
+category: 美容業界
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">
+      カテゴリー: <span class="category-name">美容業界</span>
+    </h1>
+    <p class="page-subtitle">美容業界に関する記事一覧</p>
+  </div>
+</section>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-grid">
+      <div class="blog-main">
+        <div class="blog-list">
+          {% assign filtered_posts = site.posts | where_exp: "post", "post.categories contains '美容業界'" %}
+          
+          {% if filtered_posts.size > 0 %}
+            {% for post in filtered_posts %}
+            <article class="post-item glass-card">
+              <div class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</div>
+              <h2 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h2>
+              {% if post.excerpt %}
+              <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+              {% endif %}
+              <div class="post-meta">
+                {% if post.categories %}
+                <span class="categories">
+                  {% for category in post.categories %}
+                  <a href="{{ '/blog/category/' | append: category | slugify | append: '/' | relative_url }}">{{ category }}</a>
+                  {% endfor %}
+                </span>
+                {% endif %}
+                <a href="{{ post.url | relative_url }}" class="read-more">続きを読む →</a>
+              </div>
+            </article>
+            {% endfor %}
+          {% else %}
+            <div class="no-posts glass-card">
+              <div class="no-posts-content">
+                <div class="no-posts-icon">📝</div>
+                <h3>記事が見つかりません</h3>
+                <p>「美容業界」カテゴリーの記事はまだありません。</p>
+                <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">すべての記事を見る</a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-widget glass-card">
+          <h3>カテゴリー別記事数</h3>
+          <ul class="category-count-list">
+            <li>
+              <a href="{{ '/blog/category/aiマーケティング/' | relative_url }}">
+                <span class="category-name">AIマーケティング</span>
+                <span class="category-count">
+                  {{ site.posts | where_exp: "post", "post.categories contains 'AIマーケティング'" | size }}
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/blog/category/美容業界/' | relative_url }}">
+                <span class="category-name">美容業界</span>
+                <span class="category-count">
+                  {{ site.posts | where_exp: "post", "post.categories contains '美容業界'" | size }}
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/blog/category/データ分析/' | relative_url }}">
+                <span class="category-name">データ分析</span>
+                <span class="category-count">
+                  {{ site.posts | where_exp: "post", "post.categories contains 'データ分析'" | size }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget glass-card">
+          <h3>最新記事</h3>
+          <ul class="recent-posts">
+            {% for post in site.posts limit: 5 %}
+            <li>
+              <a href="{{ post.url | relative_url }}">
+                <div class="recent-post-meta">
+                  <time>{{ post.date | date: "%m.%d" }}</time>
+                  {% if post.categories %}
+                  <span class="category">{{ post.categories | first }}</span>
+                  {% endif %}
+                </div>
+                <div class="recent-post-title">{{ post.title }}</div>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+.page-header {
+  background: #f9fafb;
+  padding: 4rem 0;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
+}
+
+.category-name {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.blog-section {
+  padding: 2rem 0 4rem;
+  background: #ffffff;
+  min-height: 80vh;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+}
+
+@media (max-width: 968px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.post-item {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.post-item:hover {
+  transform: translateX(5px);
+  background: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+}
+
+.post-date {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.post-title {
+  margin-bottom: 1rem;
+}
+
+.post-title a {
+  color: #111827;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.post-title a:hover {
+  color: #8b5cf6;
+}
+
+.post-excerpt {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.categories a {
+  color: #8b5cf6;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-size: 0.875rem;
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.categories a:hover {
+  background: rgba(139, 92, 246, 0.2);
+  transform: translateY(-1px);
+}
+
+.read-more {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  color: #ec4899;
+  transform: translateX(3px);
+}
+
+.no-posts {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 15px;
+}
+
+.no-posts-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.no-posts-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+
+.no-posts h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.no-posts p {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.sidebar-widget {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 15px;
+}
+
+.sidebar-widget h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.category-count-list {
+  list-style: none;
+}
+
+.category-count-list li {
+  margin-bottom: 0.75rem;
+}
+
+.category-count-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #4b5563;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.category-count-list a:hover {
+  color: #8b5cf6;
+}
+
+.category-count {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.recent-posts {
+  list-style: none;
+}
+
+.recent-posts li {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.recent-posts li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.recent-posts a {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.recent-posts a:hover {
+  color: #111827;
+}
+
+.recent-post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.recent-post-meta .category {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+  padding: 0.125rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.recent-post-title {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .sidebar-widget {
+    padding: 1.25rem;
+  }
+}
+</style>
