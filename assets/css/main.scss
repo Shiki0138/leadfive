@@ -92,17 +92,21 @@ body.blog-page {
   // Force override any conflicting styles
   .navbar-nav .nav-item .nav-link {
     color: $white !important;
-    background: transparent !important;
+    background: rgba(30, 58, 138, 0.8) !important;
     border: none !important;
     text-shadow: none !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px !important;
+    margin: 0 0.25rem !important;
   }
   
   .navbar-nav .nav-item .nav-link:hover,
   .navbar-nav .nav-item .nav-link:focus,
   .navbar-nav .nav-item .nav-link:active {
     color: $white !important;
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(30, 58, 138, 1.0) !important;
     border-radius: 6px !important;
+    transform: translateY(-1px) !important;
   }
   
   // Mobile menu for blog pages
@@ -504,15 +508,18 @@ h6 { font-size: 1rem; }
   
   .blog-page & {
     color: $white !important;
-    background: transparent !important;
+    background: rgba(30, 58, 138, 0.8) !important;
     border: none !important;
     text-shadow: none !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px !important;
+    margin: 0 0.25rem !important;
   }
   
   .blog-page &:hover {
     color: $white !important;
-    opacity: 0.8;
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(30, 58, 138, 1.0) !important;
+    transform: translateY(-1px) !important;
   }
 }
 
