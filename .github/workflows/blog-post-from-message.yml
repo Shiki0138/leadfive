@@ -24,9 +24,10 @@ jobs:
           npm install slugify
           npm install front-matter
       
-      - name: Generate Blog Post
+      - name: Generate Premium Blog Post
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           TOPIC: ${{ github.event.client_payload.topic || github.event.client_payload.title }}
           DESCRIPTION: ${{ github.event.client_payload.description }}
           AUDIENCE: ${{ github.event.client_payload.audience }}
@@ -35,8 +36,11 @@ jobs:
           URGENCY: ${{ github.event.client_payload.urgency }}
           READ_TIME: ${{ github.event.client_payload.readTime }}
           TIMESTAMP: ${{ github.event.client_payload.timestamp }}
+          WEEKLY_THEME: ${{ github.event.client_payload.weeklyTheme }}
+          OPTIMIZED_IMAGE_URL: ${{ github.event.client_payload.optimizedImageUrl }}
         run: |
-          node scripts/generate-blog-from-topic.js
+          # プレミアムClaude生成システムを使用
+          node scripts/premium-claude-content-generator.js
       
       - name: Commit and Push
         env:
