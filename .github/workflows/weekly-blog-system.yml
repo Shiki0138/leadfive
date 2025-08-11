@@ -1,0 +1,297 @@
+name: Weekly Blog System
+on:
+  # 手動トリガー（テスト用）
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        default: 'daily-post'
+        type: choice
+        options:
+          - 'daily-post'
+          - 'init-weekly-schedule'
+          - 'emergency-stop'
+          - 'status-check'
+
+  # メールからのトリガー（週間承認）
+  repository_dispatch:
+    types: [weekly-blog-approved, weekly-blog-scheduled]
+
+  # 毎日午前9時に実行（日次投稿）
+  schedule:
+    - cron: '0 0 * * *'  # UTC 0時 = JST 9時
+
+  # GitHub Issues からの緊急停止トリガー
+  issues:
+    types: [opened]
+
+jobs:
+  # メール承認による週間スケジュール初期化
+  initialize-weekly-schedule:
+    if: github.event_name == 'repository_dispatch' && github.event.action == 'weekly-blog-approved'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          cd leadfive-demo
+          npm install
+
+      - name: Initialize Weekly Schedule
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+        run: |
+          cd leadfive-demo
+          node scripts/weekly-blog-scheduler.js init
+          echo "✅ 7日間のブログスケジュールを初期化しました"
+
+      - name: Commit Schedule
+        run: |
+          cd leadfive-demo
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _data/weekly-schedule.json
+          git commit -m "📅 週間ブログスケジュール初期化
+
+          🤖 Generated with Claude Code
+          Co-Authored-By: Claude <noreply@anthropic.com>" || exit 0
+          git push
+
+      - name: Send Confirmation Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: '✅ 週間ブログスケジュール設定完了'
+          body: |
+            7日間の自動投稿スケジュールを設定しました。
+
+            📅 投稿開始: 明日朝9時から
+            📝 投稿数: 7記事（連続投稿）
+            🔗 進捗確認: ${{ github.server_url }}/${{ github.repository }}/actions
+
+            緊急停止が必要な場合は、「緊急停止」というタイトルでIssueを作成してください。
+          to: ${{ secrets.RECIPIENT_EMAIL }}
+          from: LeadFive Blog System <noreply@github.com>
+
+  # 毎日の自動投稿実行
+  daily-blog-post:
+    if: |
+      github.event_name == 'schedule' || 
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'daily-post')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          cd leadfive-demo
+          npm install
+
+      - name: Check and Execute Daily Post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+        run: |
+          cd leadfive-demo
+          
+          # 日次投稿実行
+          node scripts/weekly-blog-scheduler.js daily
+          
+          # 結果をログに記録
+          echo "Daily blog post execution completed at $(date)"
+
+      - name: Commit Generated Post
+        run: |
+          cd leadfive-demo
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # 新しい記事ファイルがあるかチェック
+          if [ -n "$(git status --porcelain)" ]; then
+            git add _posts/
+            git add _data/weekly-schedule.json
+            git commit -m "📝 日次ブログ記事自動投稿
+
+            🤖 Generated with Claude Code
+            Co-Authored-By: Claude <noreply@anthropic.com>"
+            git push
+            
+            echo "✅ 新しい記事を投稿しました"
+          else
+            echo "📭 本日投稿予定の記事はありませんでした"
+          fi
+
+      - name: Build and Deploy
+        run: |
+          cd leadfive-demo
+          bundle exec jekyll build
+          
+          # GitHub Pages への自動デプロイ（設定されている場合）
+          echo "✅ サイトをビルドしました"
+
+      - name: Update Status
+        if: failure()
+        run: |
+          echo "❌ 日次投稿でエラーが発生しました"
+          # エラー通知の処理
+
+  # 緊急停止処理
+  emergency-stop:
+    if: |
+      (github.event_name == 'issues' && contains(github.event.issue.title, '緊急停止')) ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'emergency-stop')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          cd leadfive-demo
+          npm install
+
+      - name: Execute Emergency Stop
+        run: |
+          cd leadfive-demo
+          node scripts/weekly-blog-scheduler.js stop
+          echo "🚨 週間ブログスケジュールを緊急停止しました"
+
+      - name: Commit Stop Status
+        run: |
+          cd leadfive-demo
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _data/weekly-schedule.json
+          git commit -m "🚨 緊急停止: 週間ブログスケジュール停止
+
+          🤖 Generated with Claude Code
+          Co-Authored-By: Claude <noreply@anthropic.com>" || exit 0
+          git push
+
+      - name: Close Issue (if triggered by issue)
+        if: github.event_name == 'issues'
+        uses: peter-evans/close-issue@v3
+        with:
+          comment: |
+            ✅ 緊急停止処理を実行しました。
+            
+            - 未投稿の記事スケジュールをキャンセル
+            - 自動投稿を停止
+            
+            再開する場合は、新しい週間計画メールをお送りします。
+
+      - name: Send Emergency Stop Notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: '🚨 ブログ自動投稿を緊急停止しました'
+          body: |
+            週間ブログ自動投稿システムを緊急停止しました。
+
+            📅 停止日時: $(date)
+            🔗 詳細: ${{ github.server_url }}/${{ github.repository }}/actions
+            
+            再開をご希望の場合は、新しい週間計画メールをお送りいたします。
+          to: ${{ secrets.RECIPIENT_EMAIL }}
+          from: LeadFive Blog System <noreply@github.com>
+
+  # ステータス確認・レポート生成
+  status-report:
+    if: |
+      github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'status-check'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          cd leadfive-demo
+          npm install
+
+      - name: Generate Status Report
+        run: |
+          cd leadfive-demo
+          echo "📊 週間ブログシステム状況レポート" > status_report.md
+          echo "生成日時: $(date)" >> status_report.md
+          echo "" >> status_report.md
+          
+          # スケジュール状況を取得
+          node scripts/weekly-blog-scheduler.js status >> status_report.md
+          
+          cat status_report.md
+
+      - name: Send Status Report
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: '📊 週間ブログシステム状況レポート'
+          body: file://status_report.md
+          to: ${{ secrets.RECIPIENT_EMAIL }}
+          from: LeadFive Blog System <noreply@github.com>
+
+  # 週次のメンテナンス・クリーンアップ
+  weekly-maintenance:
+    # 毎週日曜日の夜中に実行
+    if: github.event.schedule == '0 15 * * 0'  # UTC 15時 = JST 月曜日0時
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cleanup Old Schedules
+        run: |
+          cd leadfive-demo
+          echo "🧹 週次メンテナンス実行中..."
+          
+          # 古いスケジュールファイルをアーカイブ
+          if [ -f "_data/weekly-schedule.json" ]; then
+            mkdir -p _data/archive
+            cp _data/weekly-schedule.json "_data/archive/schedule-$(date +%Y-%m-%d).json"
+            echo "📁 スケジュールをアーカイブしました"
+          fi
+
+      - name: Generate Weekly Summary
+        run: |
+          cd leadfive-demo
+          echo "📈 週間サマリー生成中..."
+          
+          # 今週の投稿統計を生成
+          POSTS_COUNT=$(find _posts -name "*.md" -newermt "7 days ago" | wc -l)
+          echo "今週の投稿数: $POSTS_COUNT 記事" > weekly_summary.txt
+          
+          echo "✅ 週間サマリー完了"

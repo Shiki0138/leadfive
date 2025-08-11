@@ -1,0 +1,40 @@
+name: Blog Auto Post
+
+on:
+  repository_dispatch:
+    types: [scheduled-blog-post]
+
+jobs:
+  create-blog-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: |
+        cd scripts/blog-automation
+        npm install
+    
+    - name: Create blog post
+      env:
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      run: |
+        node scripts/blog-automation/claude-blog-generator.js \
+          --title "${{ github.event.client_payload.suggestedTitle }}" \
+          --keywords "${{ join(github.event.client_payload.keywords, ',') }}" \
+          --theme "${{ github.event.client_payload.theme }}" \
+          --audience "${{ github.event.client_payload.audience }}"
+    
+    - name: Commit and push
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add _posts/
+        git commit -m "自動投稿: ${{ github.event.client_payload.suggestedTitle }}"
+        git push
