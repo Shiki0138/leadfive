@@ -102,7 +102,7 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
 2. タイトル案5つ（各案にSEOスコアを付記）
 3. 選択タイトル: [最高スコアのタイトル]
 4. メタディスクリプション: [120-150文字]
-5. 記事本文（2500-3000文字、指定構成に従う）`;
+5. 記事本文（指定構成に従い、読み応えのある内容で）`;
 
     const response = await axios.post(
       'https://api.anthropic.com/v1/messages',
@@ -273,20 +273,36 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
     let finalContent = content.content;
     const imageMatches = finalContent.match(/\{\{IMAGE:([^}]+)\}\}/g) || [];
     
+    // 日付とタイトルからユニークなシードを生成
+    const dateStr = new Date().toISOString().split('T')[0];
+    const titleHash = content.title.split('').reduce((a, b) => {
+      a = ((a << 5) - a) + b.charCodeAt(0);
+      return a & a;
+    }, 0);
+    
     for (let i = 0; i < imageMatches.length; i++) {
       const match = imageMatches[i];
       const description = match.match(/\{\{IMAGE:([^}]+)\}\}/)[1];
       
-      // プレースホルダー画像を使用
-      const placeholderImages = [
-        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop',
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop',
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop',
-        'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=630&fit=crop',
-        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=630&fit=crop'
+      // ユニークなIDを生成
+      const uniqueId = `${dateStr}-${Math.abs(titleHash)}-${i}-${Date.now()}`;
+      const searchTerms = [
+        'AI marketing technology',
+        'digital transformation business',
+        'business analytics dashboard',
+        'artificial intelligence office',
+        'data visualization charts',
+        'machine learning concept',
+        'automation workflow',
+        'technology innovation',
+        'business strategy meeting',
+        'corporate technology'
       ];
       
-      const imageUrl = placeholderImages[i % placeholderImages.length];
+      // 記事ごとに異なる検索語を選択
+      const searchTerm = searchTerms[(Math.abs(titleHash) + i) % searchTerms.length];
+      const imageUrl = `https://source.unsplash.com/1200x630/?${searchTerm}&sig=${uniqueId}`;
+      
       const imageTag = `\n\n![${description}](${imageUrl})\n\n`;
       finalContent = finalContent.replace(match, imageTag);
     }
