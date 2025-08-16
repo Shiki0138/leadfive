@@ -131,7 +131,15 @@ jobs:
             echo "📭 本日投稿予定の記事はありませんでした"
           fi
 
-      - name: Build and Deploy
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Build Jekyll Site
         run: |
+          gem install bundler
+          bundle install
           bundle exec jekyll build
           echo "✅ サイトをビルドしました"

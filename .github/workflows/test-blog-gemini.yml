@@ -1,0 +1,63 @@
+name: Test Blog with Gemini (Simple)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-blog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Node Dependencies
+        run: |
+          cd scripts/blog-automation
+          npm install
+
+      - name: Generate Mock Blog Post
+        run: |
+          cd scripts/blog-automation
+          node mock-gemini-test.js "AIマーケティング テスト"
+          
+      - name: Check Generated Files
+        run: |
+          echo "📁 生成されたファイル:"
+          ls -la _posts/
+          
+      - name: Setup Ruby (if needed)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Install Ruby Dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build Jekyll Site (Optional)
+        run: |
+          bundle exec jekyll build || echo "Jekyll build skipped"
+          
+      - name: Commit Test Post
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            git add _posts/
+            git commit -m "📝 テスト: Gemini モック記事生成
+
+            🤖 Generated with Mock Gemini Generator
+            Co-Authored-By: GitHub Actions <noreply@github.com>"
+            git push
+            echo "✅ テスト記事を投稿しました"
+          else
+            echo "📭 新しい記事はありません"
+          fi
