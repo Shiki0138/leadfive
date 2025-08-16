@@ -1,0 +1,137 @@
+name: Weekly Blog System (Gemini)
+on:
+  # 手動トリガー（テスト用）
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        default: 'daily-post'
+        type: choice
+        options:
+          - 'daily-post'
+          - 'test-gemini'
+
+  # 毎日午前9時に実行（日次投稿）
+  schedule:
+    - cron: '0 0 * * *'  # UTC 0時 = JST 9時
+
+jobs:
+  # Gemini API でのテスト投稿
+  test-gemini-post:
+    if: |
+      github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'test-gemini'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          cd scripts/blog-automation
+          npm install
+
+      - name: Test Gemini Generator
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          cd scripts/blog-automation
+          node gemini-blog-generator.js "AIマーケティング 自動化"
+
+      - name: Check Generated Post
+        run: |
+          echo "✅ 生成された記事:"
+          ls -la _posts/
+          
+  # 毎日の自動投稿実行（Gemini版）
+  daily-blog-post-gemini:
+    if: |
+      github.event_name == 'schedule' || 
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'daily-post')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      - name: Check Schedule and Generate Post
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          # スケジュールファイルの確認
+          if [ -f "_data/weekly-schedule.json" ]; then
+            echo "📅 スケジュールファイル確認OK"
+            
+            # 今日の投稿情報を取得
+            TODAY=$(date +%Y-%m-%d)
+            TOPIC=$(node -e "
+              const schedule = require('./_data/weekly-schedule.json');
+              const today = '$TODAY';
+              const post = schedule.schedule.find(p => p.date === today && p.status === 'pending');
+              if (post) console.log(post.keywords[0]);
+            ")
+            
+            if [ -n "$TOPIC" ]; then
+              echo "📝 本日のトピック: $TOPIC"
+              
+              # Gemini でブログ記事生成
+              cd scripts/blog-automation
+              npm install
+              node gemini-blog-generator.js "$TOPIC"
+              
+              # スケジュールを更新
+              cd ../..
+              node -e "
+                const fs = require('fs');
+                const schedule = require('./_data/weekly-schedule.json');
+                const today = '$TODAY';
+                const post = schedule.schedule.find(p => p.date === today);
+                if (post) post.status = 'completed';
+                fs.writeFileSync('./_data/weekly-schedule.json', JSON.stringify(schedule, null, 2));
+              "
+              
+              echo "✅ 記事生成完了"
+            else
+              echo "📭 本日の投稿予定はありません"
+            fi
+          else
+            echo "⚠️ スケジュールファイルが見つかりません"
+          fi
+
+      - name: Commit Generated Post
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # 新しい記事ファイルがあるかチェック
+          if [ -n "$(git status --porcelain)" ]; then
+            git add _posts/
+            git add _data/weekly-schedule.json
+            git commit -m "📝 Gemini による日次ブログ記事自動投稿
+
+            🤖 Generated with Gemini AI
+            Co-Authored-By: GitHub Actions <noreply@github.com>"
+            git push
+            
+            echo "✅ 新しい記事を投稿しました"
+          else
+            echo "📭 本日投稿予定の記事はありませんでした"
+          fi
+
+      - name: Build and Deploy
+        run: |
+          bundle exec jekyll build
+          echo "✅ サイトをビルドしました"
