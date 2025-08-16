@@ -1,0 +1,66 @@
+name: Unsplash画像取得テスト
+
+on:
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: '検索キーワード'
+        required: false
+        default: 'AIマーケティング'
+        type: string
+
+jobs:
+  test-unsplash:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          npm install sharp axios
+          chmod +x scripts/fetch-unsplash-image.js
+          
+      - name: 🎨 Test Unsplash Image Fetch
+        env:
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+        run: |
+          echo "🔍 Testing with keyword: ${{ github.event.inputs.keyword }}"
+          
+          # Unsplash画像を取得
+          DATE=$(date +%Y-%m-%d-%H%M%S)
+          OUTPUT_PATH="assets/images/blog/test-${DATE}-unsplash.jpg"
+          
+          node scripts/fetch-unsplash-image.js "${{ github.event.inputs.keyword }}" "$OUTPUT_PATH"
+          
+          # 結果を確認
+          if [ -f "$OUTPUT_PATH" ]; then
+            echo "✅ 画像取得成功！"
+            ls -la "$OUTPUT_PATH"
+            
+            # クレジット情報も確認
+            CREDIT_FILE="${OUTPUT_PATH%.jpg}-credit.json"
+            if [ -f "$CREDIT_FILE" ]; then
+              echo "📄 クレジット情報:"
+              cat "$CREDIT_FILE"
+            fi
+          else
+            echo "❌ 画像取得失敗"
+            exit 1
+          fi
+          
+      - name: 💾 Save Test Results
+        if: success()
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          git add assets/images/blog/test-*
+          git commit -m "🧪 Unsplash API テスト: ${{ github.event.inputs.keyword }}" || echo "No changes"
+          git push || echo "Nothing to push"

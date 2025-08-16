@@ -36,7 +36,35 @@ class GeminiBlogGenerator {
       // 5. ファイルを保存
       const filename = await this.savePost(finalContent);
       
-      // 6. 統計を更新
+      // 6. Unsplash画像を取得（オプション）
+      if (process.env.UNSPLASH_API_KEY) {
+        const { fetchUnsplashImage } = require('../fetch-unsplash-image');
+        const date = new Date().toISOString().split('T')[0];
+        const imagePath = path.join(this.imagesDir, `${date}-unsplash-featured.jpg`);
+        
+        console.log('🎨 Unsplash画像を取得中...');
+        const imageResult = await fetchUnsplashImage(this.keyword, imagePath);
+        
+        if (imageResult) {
+          // 記事を更新して画像パスを追加
+          const postPath = path.join(this.postsDir, filename);
+          let postContent = await fs.readFile(postPath, 'utf-8');
+          
+          // 画像パスを更新
+          const relativeImagePath = `/assets/images/blog/${path.basename(imagePath)}`;
+          postContent = postContent.replace(/^image:.*$/m, `image: ${relativeImagePath}`);
+          
+          // クレジット情報を追加
+          if (imageResult.credit) {
+            postContent += `\n\n---\n\n*Photo by [${imageResult.credit.photographer}](${imageResult.credit.photographer_url}) on [Unsplash](https://unsplash.com)*`;
+          }
+          
+          await fs.writeFile(postPath, postContent, 'utf-8');
+          console.log('✅ Unsplash画像を記事に追加しました');
+        }
+      }
+      
+      // 7. 統計を更新
       await this.updateStats(filename, finalContent.title);
       
       console.log(`✅ Gemini ブログ記事生成完了: ${filename}`);

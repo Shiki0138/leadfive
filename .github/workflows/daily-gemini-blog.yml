@@ -36,8 +36,11 @@ jobs:
           
       - name: 📦 Install Dependencies
         run: |
-          # Install sharp for image generation
-          npm install sharp
+          # Install image processing and HTTP libraries
+          npm install sharp axios
+          
+          # Install jq for JSON processing
+          sudo apt-get update && sudo apt-get install -y jq
           
           # Install blog automation dependencies
           cd scripts/blog-automation
@@ -108,21 +111,25 @@ jobs:
           echo "📁 Generated files:"
           ls -la _posts/ | tail -5
           
-      - name: 🎨 Generate Unique Featured Image
+      - name: 🎨 Fetch Unsplash Featured Image
+        env:
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         run: |
           # 最新の記事を取得
           LATEST_POST=$(ls -t _posts/*.md | head -1)
           
           if [ -f "$LATEST_POST" ]; then
-            # タイトルと日付を抽出
+            # タイトルとキーワードを抽出
             TITLE=$(grep "^title:" "$LATEST_POST" | sed 's/title: *"*\(.*\)"*/\1/')
+            KEYWORDS=$(grep "^tags:" "$LATEST_POST" | sed 's/tags: *\[\(.*\)\]/\1/' | sed 's/,.*//;s/^ *//;s/ *$//')
             DATE=$(date +%Y-%m-%d)
             
-            echo "🎨 Generating image for: $TITLE"
+            echo "🎨 Fetching image for: $TITLE"
+            echo "🔍 Keywords: $KEYWORDS"
             
-            # ユニーク画像を生成
-            OUTPUT_PATH="assets/images/blog/${DATE}-gemini-featured.jpg"
-            node scripts/generate-unique-image.js "$TITLE" "$DATE" "$OUTPUT_PATH"
+            # Unsplashから画像を取得
+            OUTPUT_PATH="assets/images/blog/${DATE}-unsplash-featured.jpg"
+            node scripts/fetch-unsplash-image.js "$KEYWORDS" "$OUTPUT_PATH"
             
             # 記事の画像パスを更新
             if [ -f "$OUTPUT_PATH" ]; then
@@ -133,7 +140,25 @@ jobs:
                 # featured: の後に追加
                 sed -i "/^featured:/a image: /$OUTPUT_PATH" "$LATEST_POST"
               fi
-              echo "✅ Image linked to post"
+              
+              # クレジット情報を記事に追加
+              CREDIT_FILE="${OUTPUT_PATH%.jpg}-credit.json"
+              if [ -f "$CREDIT_FILE" ]; then
+                PHOTOGRAPHER=$(jq -r '.photographer' "$CREDIT_FILE")
+                PHOTOGRAPHER_URL=$(jq -r '.photographer_url' "$CREDIT_FILE")
+                
+                # 記事の最後にクレジットを追加
+                echo "" >> "$LATEST_POST"
+                echo "---" >> "$LATEST_POST"
+                echo "" >> "$LATEST_POST"
+                echo "*Photo by [$PHOTOGRAPHER]($PHOTOGRAPHER_URL) on [Unsplash](https://unsplash.com)*" >> "$LATEST_POST"
+              fi
+              
+              echo "✅ Unsplash image fetched and linked"
+            else
+              echo "⚠️ Failed to fetch Unsplash image, using fallback"
+              # フォールバック画像を生成
+              node scripts/generate-unique-image.js "$TITLE" "$DATE" "assets/images/blog/${DATE}-fallback.jpg"
             fi
           fi
           
