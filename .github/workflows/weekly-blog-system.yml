@@ -42,22 +42,19 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd leadfive-demo
-          npm install
+                    npm install
 
       - name: Initialize Weekly Schedule
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         run: |
-          cd leadfive-demo
-          node scripts/weekly-blog-scheduler.js init
+                    node scripts/weekly-blog-scheduler.js init
           echo "✅ 7日間のブログスケジュールを初期化しました"
 
       - name: Commit Schedule
         run: |
-          cd leadfive-demo
-          git config --local user.email "action@github.com"
+                    git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add _data/weekly-schedule.json
           git commit -m "📅 週間ブログスケジュール初期化
@@ -102,7 +99,6 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd leadfive-demo
           npm install
 
       - name: Check and Execute Daily Post
@@ -110,8 +106,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         run: |
-          cd leadfive-demo
-          
+                    
           # 日次投稿実行
           node scripts/weekly-blog-scheduler.js daily
           
@@ -120,8 +115,7 @@ jobs:
 
       - name: Commit Generated Post
         run: |
-          cd leadfive-demo
-          git config --local user.email "action@github.com"
+                    git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
           # 新しい記事ファイルがあるかチェック
@@ -141,8 +135,7 @@ jobs:
 
       - name: Build and Deploy
         run: |
-          cd leadfive-demo
-          bundle exec jekyll build
+                    bundle exec jekyll build
           
           # GitHub Pages への自動デプロイ（設定されている場合）
           echo "✅ サイトをビルドしました"
@@ -170,19 +163,16 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd leadfive-demo
-          npm install
+                    npm install
 
       - name: Execute Emergency Stop
         run: |
-          cd leadfive-demo
-          node scripts/weekly-blog-scheduler.js stop
+                    node scripts/weekly-blog-scheduler.js stop
           echo "🚨 週間ブログスケジュールを緊急停止しました"
 
       - name: Commit Stop Status
         run: |
-          cd leadfive-demo
-          git config --local user.email "action@github.com"
+                    git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add _data/weekly-schedule.json
           git commit -m "🚨 緊急停止: 週間ブログスケジュール停止
@@ -237,13 +227,11 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd leadfive-demo
-          npm install
+                    npm install
 
       - name: Generate Status Report
         run: |
-          cd leadfive-demo
-          echo "📊 週間ブログシステム状況レポート" > status_report.md
+                    echo "📊 週間ブログシステム状況レポート" > status_report.md
           echo "生成日時: $(date)" >> status_report.md
           echo "" >> status_report.md
           
@@ -275,8 +263,7 @@ jobs:
 
       - name: Cleanup Old Schedules
         run: |
-          cd leadfive-demo
-          echo "🧹 週次メンテナンス実行中..."
+                    echo "🧹 週次メンテナンス実行中..."
           
           # 古いスケジュールファイルをアーカイブ
           if [ -f "_data/weekly-schedule.json" ]; then
@@ -287,8 +274,7 @@ jobs:
 
       - name: Generate Weekly Summary
         run: |
-          cd leadfive-demo
-          echo "📈 週間サマリー生成中..."
+                    echo "📈 週間サマリー生成中..."
           
           # 今週の投稿統計を生成
           POSTS_COUNT=$(find _posts -name "*.md" -newermt "7 days ago" | wc -l)
