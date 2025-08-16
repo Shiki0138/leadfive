@@ -1,0 +1,233 @@
+name: 毎日自動ブログ投稿（Gemini本番版）
+
+on:
+  # 手動実行
+  workflow_dispatch:
+    inputs:
+      custom_topic:
+        description: 'カスタムトピック（省略可）'
+        required: false
+        type: string
+        
+  # 毎日午前9時に自動実行
+  schedule:
+    - cron: '0 0 * * *'  # UTC 0:00 = JST 9:00
+
+jobs:
+  daily-blog-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: 💎 Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+          
+      - name: 📦 Install Dependencies
+        run: |
+          # Install sharp for image generation
+          npm install sharp
+          
+          # Install blog automation dependencies
+          cd scripts/blog-automation
+          npm install
+          cd ../..
+          
+          # Install Jekyll dependencies
+          gem install bundler
+          bundle install
+          
+      - name: 🎯 Determine Topic
+        id: topic
+        run: |
+          # カスタムトピックがあればそれを使用
+          if [ -n "${{ github.event.inputs.custom_topic }}" ]; then
+            echo "TOPIC=${{ github.event.inputs.custom_topic }}" >> $GITHUB_OUTPUT
+            echo "SOURCE=manual" >> $GITHUB_OUTPUT
+          else
+            # スケジュールから今日のトピックを取得
+            TODAY=$(date +%Y-%m-%d)
+            
+            if [ -f "_data/weekly-schedule.json" ]; then
+              SCHEDULED_TOPIC=$(node -e "
+                const fs = require('fs');
+                const schedule = JSON.parse(fs.readFileSync('_data/weekly-schedule.json', 'utf8'));
+                const today = '$TODAY';
+                const post = schedule.schedule.find(p => p.date === today && p.status === 'pending');
+                if (post) {
+                  console.log(post.keywords.join(' '));
+                }
+              " 2>/dev/null)
+              
+              if [ -n "$SCHEDULED_TOPIC" ]; then
+                echo "TOPIC=$SCHEDULED_TOPIC" >> $GITHUB_OUTPUT
+                echo "SOURCE=schedule" >> $GITHUB_OUTPUT
+              else
+                # トレンドトピックを選択（曜日ベース）
+                DAY_OF_WEEK=$(date +%u)
+                case $DAY_OF_WEEK in
+                  1) TOPIC="AI戦略 デジタル変革" ;;
+                  2) TOPIC="AIツール 実践ガイド" ;;
+                  3) TOPIC="データ分析 KPI設定" ;;
+                  4) TOPIC="AI最新トレンド 2025" ;;
+                  5) TOPIC="AI導入 成功事例" ;;
+                  6) TOPIC="AI基礎知識 入門" ;;
+                  7) TOPIC="AIマーケティング 統合戦略" ;;
+                esac
+                echo "TOPIC=$TOPIC" >> $GITHUB_OUTPUT
+                echo "SOURCE=default" >> $GITHUB_OUTPUT
+              fi
+            else
+              echo "TOPIC=AIマーケティング 自動化" >> $GITHUB_OUTPUT
+              echo "SOURCE=default" >> $GITHUB_OUTPUT
+            fi
+          fi
+          
+          echo "📝 Today's topic: $(cat $GITHUB_OUTPUT | grep TOPIC | cut -d'=' -f2)"
+          
+      - name: 🤖 Generate Blog with Gemini API
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          cd scripts/blog-automation
+          node gemini-blog-generator.js "${{ steps.topic.outputs.TOPIC }}"
+          cd ../..
+          
+          # 生成されたファイルを確認
+          echo "📁 Generated files:"
+          ls -la _posts/ | tail -5
+          
+      - name: 🎨 Generate Unique Featured Image
+        run: |
+          # 最新の記事を取得
+          LATEST_POST=$(ls -t _posts/*.md | head -1)
+          
+          if [ -f "$LATEST_POST" ]; then
+            # タイトルと日付を抽出
+            TITLE=$(grep "^title:" "$LATEST_POST" | sed 's/title: *"*\(.*\)"*/\1/')
+            DATE=$(date +%Y-%m-%d)
+            
+            echo "🎨 Generating image for: $TITLE"
+            
+            # ユニーク画像を生成
+            OUTPUT_PATH="assets/images/blog/${DATE}-gemini-featured.jpg"
+            node scripts/generate-unique-image.js "$TITLE" "$DATE" "$OUTPUT_PATH"
+            
+            # 記事の画像パスを更新
+            if [ -f "$OUTPUT_PATH" ]; then
+              # image: 行が既にある場合は更新、なければ追加
+              if grep -q "^image:" "$LATEST_POST"; then
+                sed -i "s|^image:.*|image: /$OUTPUT_PATH|" "$LATEST_POST"
+              else
+                # featured: の後に追加
+                sed -i "/^featured:/a image: /$OUTPUT_PATH" "$LATEST_POST"
+              fi
+              echo "✅ Image linked to post"
+            fi
+          fi
+          
+      - name: 📊 Update Schedule Status
+        if: steps.topic.outputs.SOURCE == 'schedule'
+        run: |
+          TODAY=$(date +%Y-%m-%d)
+          node -e "
+            const fs = require('fs');
+            const schedule = JSON.parse(fs.readFileSync('_data/weekly-schedule.json', 'utf8'));
+            const today = '$TODAY';
+            const post = schedule.schedule.find(p => p.date === today);
+            if (post) {
+              post.status = 'completed';
+              post.published_at = new Date().toISOString();
+              fs.writeFileSync('_data/weekly-schedule.json', JSON.stringify(schedule, null, 2));
+              console.log('✅ Schedule updated');
+            }
+          "
+          
+      - name: 🏗️ Build Jekyll Site
+        run: |
+          bundle exec jekyll build
+          echo "✅ Site built successfully"
+          
+      - name: 📤 Commit and Push
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          
+          # すべての変更をステージング
+          git add -A
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            # コミットメッセージを作成
+            TOPIC="${{ steps.topic.outputs.TOPIC }}"
+            DATE=$(date +"%Y年%m月%d日")
+            
+            git commit -m "🚀 [自動投稿] ${DATE}: ${TOPIC}
+
+📝 Gemini APIによる高品質コンテンツ
+🎨 ユニークなアイキャッチ画像付き
+📊 SEO最適化済み
+
+Generated by: Gemini Pro
+Image: Procedurally generated
+Schedule: ${{ steps.topic.outputs.SOURCE }}
+
+🤖 Automated with GitHub Actions
+Co-Authored-By: Gemini AI <noreply@google.com>"
+            
+            git push
+            
+            echo "✅ Successfully published new blog post!"
+            echo "📌 Topic: $TOPIC"
+            echo "📅 Date: $DATE"
+          else
+            echo "ℹ️ No changes to commit"
+          fi
+          
+      - name: 📢 Send Notification
+        if: success() && github.event_name == 'schedule'
+        continue-on-error: true
+        run: |
+          # Slack通知（設定されている場合）
+          if [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
+            TOPIC="${{ steps.topic.outputs.TOPIC }}"
+            DATE=$(date +"%Y年%m月%d日")
+            
+            curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+              -H 'Content-Type: application/json' \
+              -d "{
+                \"text\": \"📝 新しいブログ記事が公開されました！\",
+                \"blocks\": [
+                  {
+                    \"type\": \"section\",
+                    \"text\": {
+                      \"type\": \"mrkdwn\",
+                      \"text\": \"*${DATE} のブログ記事を公開しました*\\n\\n📌 *トピック:* ${TOPIC}\\n🤖 *生成:* Gemini API\\n🎨 *画像:* 自動生成\"
+                    }
+                  }
+                ]
+              }"
+          fi
+          
+      - name: 🚨 Error Handling
+        if: failure()
+        run: |
+          echo "❌ Blog generation failed!"
+          echo "Error occurred at: $(date)"
+          
+          # エラー通知
+          if [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
+            curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+              -H 'Content-Type: application/json' \
+              -d '{"text": "⚠️ ブログ自動投稿でエラーが発生しました。GitHubActionsを確認してください。"}'
+          fi

@@ -1,0 +1,239 @@
+name: Gemini自動ブログ投稿システム（本番版）
+
+on:
+  # 手動実行
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'ブログトピック（省略時はスケジュールから取得）'
+        required: false
+        type: string
+      
+  # 毎日午前9時に自動実行
+  schedule:
+    - cron: '0 0 * * *'  # UTC 0時 = JST 9時
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+          
+      - name: Install Dependencies
+        run: |
+          # Node.js dependencies
+          cd scripts/blog-automation
+          npm install
+          cd ../..
+          
+          # Ruby dependencies
+          gem install bundler
+          bundle install
+          
+      - name: Get Today's Topic
+        id: get-topic
+        run: |
+          # 手動入力があればそれを使用
+          if [ -n "${{ github.event.inputs.topic }}" ]; then
+            echo "TOPIC=${{ github.event.inputs.topic }}" >> $GITHUB_OUTPUT
+            echo "CUSTOM=true" >> $GITHUB_OUTPUT
+          else
+            # スケジュールから今日のトピックを取得
+            TODAY=$(date +%Y-%m-%d)
+            if [ -f "_data/weekly-schedule.json" ]; then
+              TOPIC=$(node -e "
+                const schedule = require('./_data/weekly-schedule.json');
+                const today = '$TODAY';
+                const post = schedule.schedule.find(p => p.date === today && p.status === 'pending');
+                if (post) {
+                  console.log(post.keywords.join(' '));
+                }
+              ")
+              
+              if [ -n "$TOPIC" ]; then
+                echo "TOPIC=$TOPIC" >> $GITHUB_OUTPUT
+                echo "CUSTOM=false" >> $GITHUB_OUTPUT
+              else
+                # デフォルトトピック
+                echo "TOPIC=AIマーケティング 最新トレンド" >> $GITHUB_OUTPUT
+                echo "CUSTOM=false" >> $GITHUB_OUTPUT
+              fi
+            else
+              echo "TOPIC=AIマーケティング 自動化" >> $GITHUB_OUTPUT
+              echo "CUSTOM=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+          
+      - name: Generate Blog Content with Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+        run: |
+          cd scripts/blog-automation
+          
+          # Gemini APIで記事生成
+          echo "📝 Generating blog post about: ${{ steps.get-topic.outputs.TOPIC }}"
+          node gemini-blog-generator.js "${{ steps.get-topic.outputs.TOPIC }}"
+          
+      - name: Generate Featured Image
+        env:
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+        run: |
+          # 最新の記事ファイルを取得
+          LATEST_POST=$(ls -t _posts/*.md | head -1)
+          
+          if [ -f "$LATEST_POST" ]; then
+            # 記事からタイトルとキーワードを抽出
+            TITLE=$(grep "^title:" "$LATEST_POST" | sed 's/title: *"*\(.*\)"*/\1/')
+            DATE=$(date +%Y-%m-%d)
+            
+            # 画像生成スクリプトの作成
+            cat > scripts/generate-post-image.js << 'EOF'
+          const sharp = require('sharp');
+          const axios = require('axios');
+          const fs = require('fs').promises;
+          const path = require('path');
+          
+          async function generatePostImage(title, date) {
+            const width = 1200;
+            const height = 630;
+            
+            // Unsplash APIから画像を取得
+            const unsplashUrl = `https://api.unsplash.com/photos/random?query=${encodeURIComponent(title)}&orientation=landscape`;
+            const headers = { Authorization: `Client-ID ${process.env.UNSPLASH_API_KEY}` };
+            
+            try {
+              const response = await axios.get(unsplashUrl, { headers });
+              const imageUrl = response.data.urls.regular;
+              const imageResponse = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+              
+              // 画像を処理
+              const processedImage = await sharp(Buffer.from(imageResponse.data))
+                .resize(width, height, { fit: 'cover' })
+                .modulate({ brightness: 0.7 }) // 暗くしてテキストを見やすく
+                .toBuffer();
+              
+              // テキストオーバーレイを追加
+              const svg = `
+                <svg width="${width}" height="${height}">
+                  <style>
+                    .title { fill: white; font-size: 48px; font-weight: bold; }
+                    .date { fill: #e0e0e0; font-size: 24px; }
+                  </style>
+                  <text x="60" y="300" class="title">${title.substring(0, 30)}...</text>
+                  <text x="60" y="350" class="date">${date}</text>
+                </svg>
+              `;
+              
+              const finalImage = await sharp(processedImage)
+                .composite([{ input: Buffer.from(svg), top: 0, left: 0 }])
+                .jpeg({ quality: 85 })
+                .toBuffer();
+              
+              // 保存
+              const filename = `${date}-gemini-featured.jpg`;
+              const filepath = path.join(__dirname, '../../assets/images/blog', filename);
+              await fs.mkdir(path.dirname(filepath), { recursive: true });
+              await fs.writeFile(filepath, finalImage);
+              
+              console.log(`✅ Featured image created: ${filename}`);
+              return `/assets/images/blog/${filename}`;
+              
+            } catch (error) {
+              console.error('画像生成エラー:', error);
+              // デフォルト画像パスを返す
+              return '/assets/images/blog/default-featured.jpg';
+            }
+          }
+          
+          // 実行
+          const title = process.argv[2];
+          const date = process.argv[3];
+          generatePostImage(title, date).catch(console.error);
+          EOF
+            
+            # 画像生成実行
+            cd scripts
+            npm install sharp
+            node generate-post-image.js "$TITLE" "$DATE"
+            cd ..
+            
+            # 記事に画像パスを追加
+            IMAGE_PATH="/assets/images/blog/${DATE}-gemini-featured.jpg"
+            sed -i "s|image:.*|image: $IMAGE_PATH|" "$LATEST_POST"
+            
+            echo "✅ Featured image generated and linked"
+          fi
+          
+      - name: Update Schedule Status
+        if: steps.get-topic.outputs.CUSTOM == 'false'
+        run: |
+          # スケジュールのステータスを更新
+          TODAY=$(date +%Y-%m-%d)
+          node -e "
+            const fs = require('fs');
+            const schedule = require('./_data/weekly-schedule.json');
+            const today = '$TODAY';
+            const post = schedule.schedule.find(p => p.date === today);
+            if (post) {
+              post.status = 'completed';
+              post.published_at = new Date().toISOString();
+            }
+            fs.writeFileSync('./_data/weekly-schedule.json', JSON.stringify(schedule, null, 2));
+          "
+          
+      - name: Build Jekyll Site
+        run: |
+          bundle exec jekyll build
+          echo "✅ Jekyll サイトビルド完了"
+          
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # 変更をコミット
+          git add .
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            TOPIC="${{ steps.get-topic.outputs.TOPIC }}"
+            git commit -m "📝 [自動投稿] ${TOPIC}に関する記事を公開
+
+            ✨ Gemini APIで生成
+            🖼️ アイキャッチ画像付き
+            📅 $(date +%Y-%m-%d)
+            
+            🤖 Generated with Gemini AI
+            Co-Authored-By: GitHub Actions <noreply@github.com>"
+            
+            git push
+            echo "✅ 記事を公開しました"
+            
+            # Slack通知（設定されている場合）
+            if [ -n "${{ secrets.SLACK_WEBHOOK_URL }}" ]; then
+              curl -X POST -H 'Content-type: application/json' \
+                --data "{\"text\":\"📝 新しいブログ記事を公開しました: ${TOPIC}\"}" \
+                ${{ secrets.SLACK_WEBHOOK_URL }}
+            fi
+          else
+            echo "📭 更新はありません"
+          fi
+          
+      - name: Error Notification
+        if: failure()
+        run: |
+          echo "❌ ブログ生成でエラーが発生しました"
+          # エラー通知処理
