@@ -162,6 +162,13 @@ jobs:
             fi
           fi
           
+      - name: 🔗 Add Internal Links
+        run: |
+          # 内部リンク追加スクリプトを実行
+          chmod +x scripts/add-internal-links.js
+          node scripts/add-internal-links.js latest
+          echo "✅ 内部リンクを追加しました"
+          
       - name: 📊 Update Schedule Status
         if: steps.topic.outputs.SOURCE == 'schedule'
         run: |

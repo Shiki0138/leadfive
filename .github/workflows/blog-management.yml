@@ -1,0 +1,150 @@
+name: ブログ記事管理
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: '実行するアクション'
+        required: true
+        default: 'list'
+        type: choice
+        options:
+          - 'list'
+          - 'delete-range'
+          - 'edit'
+          - 'add-links-all'
+          - 'add-links-latest'
+      start_date:
+        description: '開始日 (YYYY-MM-DD) - delete-range用'
+        required: false
+        type: string
+      end_date:
+        description: '終了日 (YYYY-MM-DD) - delete-range用'
+        required: false
+        type: string
+      post_filename:
+        description: '記事ファイル名 - edit用'
+        required: false
+        type: string
+
+jobs:
+  manage-posts:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: 📋 List Posts
+        if: github.event.inputs.action == 'list'
+        run: |
+          echo "📝 ブログ記事一覧:"
+          echo "=================="
+          ls -la _posts/*.md | tail -20
+          echo ""
+          echo "合計: $(ls _posts/*.md | wc -l) 記事"
+          
+      - name: 🗑️ Delete Posts by Date Range
+        if: github.event.inputs.action == 'delete-range'
+        run: |
+          START_DATE="${{ github.event.inputs.start_date }}"
+          END_DATE="${{ github.event.inputs.end_date }}"
+          
+          if [ -z "$START_DATE" ] || [ -z "$END_DATE" ]; then
+            echo "❌ 開始日と終了日を指定してください"
+            exit 1
+          fi
+          
+          echo "🗑️ ${START_DATE} から ${END_DATE} の記事を削除します"
+          
+          # 削除対象をリスト
+          echo "削除対象:"
+          ls _posts/*.md | grep -E "${START_DATE}|${END_DATE}" | while IFS= read -r file; do
+            DATE=$(basename "$file" | grep -oE '^\d{4}-\d{2}-\d{2}')
+            if [ "$DATE" >= "$START_DATE" ] && [ "$DATE" <= "$END_DATE" ]; then
+              echo "- $file"
+            fi
+          done
+          
+          # 削除実行
+          deleted=0
+          for file in _posts/*.md; do
+            DATE=$(basename "$file" | grep -oE '^\d{4}-\d{2}-\d{2}')
+            if [ "$DATE" ] && [ "$DATE" \>= "$START_DATE" ] && [ "$DATE" \<= "$END_DATE" ]; then
+              rm "$file"
+              ((deleted++))
+            fi
+          done
+          
+          echo "✅ ${deleted}件の記事を削除しました"
+          
+      - name: 🔗 Add Internal Links to All Posts
+        if: github.event.inputs.action == 'add-links-all'
+        run: |
+          chmod +x scripts/add-internal-links.js
+          node scripts/add-internal-links.js all
+          
+      - name: 🔗 Add Internal Links to Latest Post
+        if: github.event.inputs.action == 'add-links-latest'
+        run: |
+          chmod +x scripts/add-internal-links.js
+          node scripts/add-internal-links.js latest
+          
+      - name: 📝 Edit Post
+        if: github.event.inputs.action == 'edit'
+        run: |
+          if [ -z "${{ github.event.inputs.post_filename }}" ]; then
+            echo "❌ 編集する記事ファイル名を指定してください"
+            exit 1
+          fi
+          
+          echo "📝 記事編集機能は手動で実行してください:"
+          echo "1. ローカルで記事を編集"
+          echo "2. git add, commit, push で変更を反映"
+          echo ""
+          echo "または GitHub Web UIで直接編集:"
+          echo "https://github.com/${{ github.repository }}/edit/main/_posts/${{ github.event.inputs.post_filename }}"
+          
+      - name: 💾 Commit Changes
+        if: |
+          github.event.inputs.action == 'delete-range' ||
+          github.event.inputs.action == 'add-links-all' ||
+          github.event.inputs.action == 'add-links-latest'
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            
+            case "${{ github.event.inputs.action }}" in
+              "delete-range")
+                MESSAGE="🗑️ 記事を削除: ${{ github.event.inputs.start_date }} 〜 ${{ github.event.inputs.end_date }}"
+                ;;
+              "add-links-all")
+                MESSAGE="🔗 すべての記事に内部リンクを追加"
+                ;;
+              "add-links-latest")
+                MESSAGE="🔗 最新記事に内部リンクを追加"
+                ;;
+            esac
+            
+            git commit -m "$MESSAGE
+
+            Action: ${{ github.event.inputs.action }}
+            
+            🤖 Automated with GitHub Actions
+            Co-Authored-By: Blog Manager <noreply@github.com>"
+            
+            git push
+            echo "✅ 変更をコミットしました"
+          else
+            echo "ℹ️ 変更はありません"
+          fi
