@@ -48,7 +48,7 @@ const seoWritingPrompts = {
 5. **キーワード配置**（自然な形で前半に）
 
 タイトル例のフォーマット：
-- 【{currentYear}年最新】{keyword}完全ガイド｜{benefit}を実現する{number}つの方法
+- 【${new Date().getFullYear()}年最新】{keyword}完全ガイド｜{benefit}を実現する{number}つの方法
 - {keyword}で{result}を達成！{target}が注目する{method}とは
 - なぜ{competitor}は{keyword}で成功したのか？{time}で{achievement}した秘密
 
@@ -163,7 +163,7 @@ const seoWritingPrompts = {
    - 恐怖回避（〜しないと、〜の落とし穴）
    - 社会的証明（〜が選ぶ、〜で話題）
    - 権威性（専門家が教える、〜認定）
-   - 緊急性（今すぐ、2025年版）
+   - 緊急性（今すぐ、${new Date().getFullYear()}年版）
 
 5. **クリック要素**:
    - 【】で重要性を強調

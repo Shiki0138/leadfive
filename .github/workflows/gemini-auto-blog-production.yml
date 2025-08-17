@@ -74,7 +74,7 @@ jobs:
       - name: Generate Blog Content with Gemini
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: |
           cd scripts/blog-automation
           
@@ -84,7 +84,7 @@ jobs:
           
       - name: Generate Featured Image
         env:
-          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: |
           # 必要なパッケージをインストール
           npm install sharp axios

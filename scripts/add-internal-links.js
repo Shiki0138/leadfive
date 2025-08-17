@@ -25,12 +25,20 @@ class InternalLinkManager {
         const tags = this.extractTags(content);
         const date = file.match(/^(\d{4}-\d{2}-\d{2})/)?.[1];
         
+        // permalinkフォーマット: /blog/:year/:month/:day/:title/
+        const dateMatch = file.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/);
+        let url = '#';
+        if (dateMatch) {
+          const [_, year, month, day, slug] = dateMatch;
+          url = `/blog/${year}/${month}/${day}/${slug}/`;
+        }
+        
         posts.push({
           filename: file,
           title,
           tags,
           date,
-          url: `/blog/${file.replace('.md', '')}/`
+          url
         });
       }
     }

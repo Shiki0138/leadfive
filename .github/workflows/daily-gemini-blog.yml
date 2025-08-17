@@ -112,7 +112,7 @@ jobs:
           
       - name: 🎨 Fetch Featured Image
         env:
-          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         continue-on-error: true
         run: |
           # 最新の記事を取得

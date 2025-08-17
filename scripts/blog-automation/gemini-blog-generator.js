@@ -247,7 +247,13 @@ ${context.recentTopics.join('\n')}
           const titleMatch = postContent.match(/^title: "(.+)"/m);
           if (titleMatch) {
             const title = titleMatch[1];
-            const url = `/blog/${post.replace('.md', '')}/`;
+            // permalinkフォーマット: /blog/:year/:month/:day/:title/
+            const dateMatch = post.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/);
+            let url = '#';
+            if (dateMatch) {
+              const [_, year, month, day, slug] = dateMatch;
+              url = `/blog/${year}/${month}/${day}/${slug}/`;
+            }
             // 適切な位置に内部リンクを挿入
             modifiedContent = modifiedContent.replace(
               /{{INTERNAL_LINK:[^}]+}}/,

@@ -40,11 +40,12 @@ async function fetchUnsplashImage(keyword, outputPath) {
       }
     }
     
-    // ランダム性を高めるためにページ番号を1〜10からランダムに選択
-    const randomPage = Math.floor(Math.random() * 10) + 1;
+    // ランダム性を高めるためにページ番号を1〜20からランダムに選択
+    const randomPage = Math.floor(Math.random() * 20) + 1;
     
-    // タイムスタンプを追加してさらにランダム化
+    // タイムスタンプと日付を組み合わせてさらにランダム化
     const timestamp = Date.now();
+    const dateHash = new Date().getDate() + new Date().getMonth();
     
     // Unsplash APIで画像検索
     const searchUrl = `https://api.unsplash.com/search/photos`;
@@ -55,7 +56,7 @@ async function fetchUnsplashImage(keyword, outputPath) {
         page: randomPage,
         orientation: 'landscape',
         content_filter: 'high',
-        order_by: timestamp % 2 === 0 ? 'relevant' : 'latest' // 時刻に応じて並び順を変更
+        order_by: (timestamp + dateHash) % 3 === 0 ? 'relevant' : (timestamp + dateHash) % 3 === 1 ? 'latest' : 'popular' // より多様な並び順
       },
       headers: {
         'Authorization': `Client-ID ${UNSPLASH_API_KEY}`
@@ -79,8 +80,9 @@ async function fetchUnsplashImage(keyword, outputPath) {
       response.data = fallbackResponse.data;
     }
     
-    // ランダムに画像を選択
-    const randomIndex = Math.floor(Math.random() * response.data.results.length);
+    // より複雑なランダム選択（時間ベースのシード）
+    const seed = timestamp + dateHash + keyword.charCodeAt(0);
+    const randomIndex = seed % response.data.results.length;
     const photo = response.data.results[randomIndex];
     
     console.log(`📸 選択された画像: ${photo.description || photo.alt_description || 'No description'}`);
