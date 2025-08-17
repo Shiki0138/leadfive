@@ -40,8 +40,11 @@ async function fetchUnsplashImage(keyword, outputPath) {
       }
     }
     
-    // ランダム性を高めるためにページ番号をランダムに
-    const randomPage = Math.floor(Math.random() * 5) + 1;
+    // ランダム性を高めるためにページ番号を1〜10からランダムに選択
+    const randomPage = Math.floor(Math.random() * 10) + 1;
+    
+    // タイムスタンプを追加してさらにランダム化
+    const timestamp = Date.now();
     
     // Unsplash APIで画像検索
     const searchUrl = `https://api.unsplash.com/search/photos`;
@@ -51,7 +54,8 @@ async function fetchUnsplashImage(keyword, outputPath) {
         per_page: 30,
         page: randomPage,
         orientation: 'landscape',
-        content_filter: 'high'
+        content_filter: 'high',
+        order_by: timestamp % 2 === 0 ? 'relevant' : 'latest' // 時刻に応じて並び順を変更
       },
       headers: {
         'Authorization': `Client-ID ${UNSPLASH_API_KEY}`

@@ -48,7 +48,7 @@ const seoWritingPrompts = {
 5. **キーワード配置**（自然な形で前半に）
 
 タイトル例のフォーマット：
-- 【{year}年最新】{keyword}完全ガイド｜{benefit}を実現する{number}つの方法
+- 【{currentYear}年最新】{keyword}完全ガイド｜{benefit}を実現する{number}つの方法
 - {keyword}で{result}を達成！{target}が注目する{method}とは
 - なぜ{competitor}は{keyword}で成功したのか？{time}で{achievement}した秘密
 
