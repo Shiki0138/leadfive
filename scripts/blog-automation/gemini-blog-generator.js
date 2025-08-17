@@ -9,7 +9,7 @@ class GeminiBlogGenerator {
   constructor(config) {
     this.apiKey = config.geminiApiKey || process.env.GEMINI_API_KEY;
     this.keyword = config.keyword;
-    this.targetLength = config.targetLength || 3000;
+    this.targetLength = config.targetLength || 3000; // デフォルト3000文字
     this.category = config.category || 'AIマーケティング';
     this.customTitle = config.customTitle || null;
     this.postsDir = path.join(__dirname, '../../_posts');
@@ -131,7 +131,12 @@ ${context.recentTopics.join('\n')}
 2. 検索意図の分析
 3. 選択タイトル: [最高スコアのタイトル]
 4. メタディスクリプション: [120-150文字]
-5. 記事本文（2500-3000文字、完全版、省略なし）`;
+5. 記事本文（2500-3500文字、完全版、省略なし）
+
+注意事項:
+- 記事本文は必ず2500文字以上3500文字以下で生成すること
+- 2500文字を下回ることは絶対にNG
+- 各セクションで十分な情報量を確保し、読者に価値を提供すること`;
 
     const response = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.apiKey}`,
@@ -143,7 +148,7 @@ ${context.recentTopics.join('\n')}
         }],
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: 8192,
+          maxOutputTokens: 10000, // 十分な長さを確保
           topP: 0.9,
           topK: 40
         }
@@ -404,7 +409,7 @@ if (require.main === module) {
     keyword,
     category,
     customTitle,
-    targetLength: 3000
+    targetLength: 3000 // 2500-3500文字の中間値
   });
   
   generator.generateBlogPost()
