@@ -38,6 +38,7 @@ jobs:
         run: |
           # Install image processing and HTTP libraries
           npm install sharp axios
+          cd scripts && npm install axios && cd ..
           
           # Install jq for JSON processing
           sudo apt-get update && sudo apt-get install -y jq

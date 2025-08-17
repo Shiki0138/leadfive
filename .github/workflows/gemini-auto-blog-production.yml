@@ -86,24 +86,29 @@ jobs:
         env:
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         run: |
+          # 必要なパッケージをインストール
+          npm install sharp axios
+          
           # 最新の記事ファイルを取得
           LATEST_POST=$(ls -t _posts/*.md | head -1)
           
           if [ -f "$LATEST_POST" ]; then
             # タイトルとキーワードを抽出
             TITLE=$(grep "^title:" "$LATEST_POST" | sed 's/title: *"*\(.*\)"*/\1/')
+            KEYWORDS=$(grep "^tags:" "$LATEST_POST" | sed 's/tags: *\[\(.*\)\]/\1/' | sed 's/,.*//;s/^ *//;s/ *$//')
             DATE=$(date +%Y-%m-%d)
             
-            # 画像生成スクリプトの作成
-            cat > scripts/generate-post-image.js << 'EOF'
-          const sharp = require('sharp');
-          const axios = require('axios');
-          const fs = require('fs').promises;
-          const path = require('path');
-          
-          async function generatePostImage(title, date) {
-            const width = 1200;
-            const height = 630;
+            # Unsplash画像取得スクリプトを使用
+            chmod +x scripts/fetch-unsplash-image.js
+            node scripts/fetch-unsplash-image.js "$KEYWORDS" "assets/images/blog/${DATE}-featured.jpg"
+            
+            # 画像パスを記事に追加
+            if [ -f "assets/images/blog/${DATE}-featured.jpg" ]; then
+              sed -i "s|^image:.*|image: /assets/images/blog/${DATE}-featured.jpg|" "$LATEST_POST" || \
+              sed -i "/^featured:/a image: /assets/images/blog/${DATE}-featured.jpg" "$LATEST_POST"
+              echo "✅ Featured image linked to post"
+            fi
+          fi
             
             // Unsplash APIから画像を取得
             const unsplashUrl = `https://api.unsplash.com/photos/random?query=${encodeURIComponent(title)}&orientation=landscape`;
@@ -161,7 +166,7 @@ jobs:
             
             # 画像生成実行
             cd scripts
-            npm install sharp
+            npm install sharp axios
             node generate-post-image.js "$TITLE" "$DATE"
             cd ..
             
