@@ -17,27 +17,59 @@ async function fetchUnsplashImage(keyword, outputPath) {
   }
   
   try {
-    // キーワードを英語に変換（簡易マッピング）
+    // キーワードを英語に変換（拡張マッピング）
     const keywordMap = {
-      'AI': 'artificial intelligence technology',
-      'マーケティング': 'digital marketing',
-      '戦略': 'business strategy',
-      'データ分析': 'data analytics visualization',
-      'デジタル変革': 'digital transformation',
-      '自動化': 'automation technology',
-      'ツール': 'software tools',
-      '成功事例': 'success business',
-      'トレンド': 'trends future',
-      '基礎': 'fundamentals learning'
+      'AI': ['artificial intelligence', 'AI technology', 'machine learning', 'deep learning', 'neural network'],
+      'マーケティング': ['digital marketing', 'marketing strategy', 'social media', 'content marketing', 'branding'],
+      '戦略': ['business strategy', 'strategic planning', 'business plan', 'growth strategy', 'innovation'],
+      'データ分析': ['data analytics', 'data visualization', 'business intelligence', 'data science', 'analytics dashboard'],
+      'デジタル変革': ['digital transformation', 'digitalization', 'digital innovation', 'tech transformation', 'digital disruption'],
+      '自動化': ['automation', 'robotic process', 'workflow automation', 'AI automation', 'digital automation'],
+      'ツール': ['software tools', 'digital tools', 'productivity apps', 'business software', 'tech stack'],
+      '成功事例': ['success story', 'case study', 'business success', 'achievement', 'milestone'],
+      'トレンド': ['trends', 'future trends', 'emerging technology', 'innovation trends', 'tech trends'],
+      '基礎': ['fundamentals', 'basics', 'foundation', 'introduction', 'beginner guide'],
+      '整骨院': ['physiotherapy', 'physical therapy', 'rehabilitation', 'health clinic', 'medical practice'],
+      '美容': ['beauty salon', 'cosmetics', 'beauty treatment', 'spa', 'wellness'],
+      '飲食店': ['restaurant', 'cafe', 'dining', 'food service', 'hospitality'],
+      '集客': ['customer acquisition', 'lead generation', 'marketing campaign', 'customer engagement', 'growth hacking'],
+      '効率化': ['efficiency', 'productivity', 'optimization', 'streamline', 'process improvement']
     };
     
-    // キーワードから英語検索語を生成
-    let searchQuery = keyword;
-    for (const [jp, en] of Object.entries(keywordMap)) {
+    // 視覚的なスタイルバリエーション
+    const styleVariations = [
+      'modern office', 'minimal workspace', 'technology abstract', 'business meeting',
+      'creative workspace', 'digital art', 'futuristic concept', 'professional team',
+      'innovation lab', 'startup office', 'corporate environment', 'tech conference',
+      'data visualization', 'workflow diagram', 'business graphics', 'digital interface'
+    ];
+    
+    // キーワードから英語検索語を生成（複数の可能性から選択）
+    let searchQueries = [];
+    let baseQuery = 'business technology'; // デフォルト
+    
+    // マッチするキーワードをすべて収集
+    for (const [jp, enArray] of Object.entries(keywordMap)) {
       if (keyword.includes(jp)) {
-        searchQuery = en;
-        break;
+        searchQueries.push(...enArray);
       }
+    }
+    
+    // 検索クエリをランダムに選択、またはスタイルバリエーションと組み合わせ
+    if (searchQueries.length > 0) {
+      const randomQuery = searchQueries[Math.floor(Math.random() * searchQueries.length)];
+      const randomStyle = styleVariations[Math.floor(Math.random() * styleVariations.length)];
+      
+      // 時々スタイルを追加（50%の確率）
+      if (Math.random() > 0.5) {
+        searchQuery = `${randomQuery} ${randomStyle}`;
+      } else {
+        searchQuery = randomQuery;
+      }
+    } else {
+      // マッチしない場合は汎用的なビジネス画像
+      const randomStyle = styleVariations[Math.floor(Math.random() * styleVariations.length)];
+      searchQuery = randomStyle;
     }
     
     // ランダム性を高めるためにページ番号を1〜20からランダムに選択
@@ -49,15 +81,27 @@ async function fetchUnsplashImage(keyword, outputPath) {
     
     // Unsplash APIで画像検索
     const searchUrl = `https://api.unsplash.com/search/photos`;
+    
+    // 色のバリエーションを追加（時々特定の色を指定）
+    const colorOptions = ['black_and_white', 'black', 'white', 'yellow', 'orange', 'red', 'purple', 'magenta', 'green', 'teal', 'blue'];
+    const useColor = Math.random() > 0.7; // 30%の確率で色指定
+    
+    const searchParams = {
+      query: searchQuery,
+      per_page: 30,
+      page: randomPage,
+      orientation: 'landscape',
+      content_filter: 'high',
+      order_by: (timestamp + dateHash) % 3 === 0 ? 'relevant' : (timestamp + dateHash) % 3 === 1 ? 'latest' : 'popular'
+    };
+    
+    // 時々色を指定してバリエーションを増やす
+    if (useColor) {
+      searchParams.color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+    }
+    
     const response = await axios.get(searchUrl, {
-      params: {
-        query: searchQuery,
-        per_page: 30,
-        page: randomPage,
-        orientation: 'landscape',
-        content_filter: 'high',
-        order_by: (timestamp + dateHash) % 3 === 0 ? 'relevant' : (timestamp + dateHash) % 3 === 1 ? 'latest' : 'popular' // より多様な並び順
-      },
+      params: searchParams,
       headers: {
         'Authorization': `Client-ID ${UNSPLASH_API_KEY}`
       }
@@ -80,13 +124,22 @@ async function fetchUnsplashImage(keyword, outputPath) {
       response.data = fallbackResponse.data;
     }
     
-    // より複雑なランダム選択（時間ベースのシード）
-    const seed = timestamp + dateHash + keyword.charCodeAt(0);
-    const randomIndex = seed % response.data.results.length;
-    const photo = response.data.results[randomIndex];
+    // より良いランダム選択（完全ランダム）
+    const photos = response.data.results;
     
+    // 画像を品質でフィルタリング（いいね数が多いもの）
+    const qualityPhotos = photos.filter(p => p.likes > 10).length > 5 
+      ? photos.filter(p => p.likes > 10) 
+      : photos;
+    
+    // 完全にランダムに選択
+    const randomIndex = Math.floor(Math.random() * qualityPhotos.length);
+    const photo = qualityPhotos[randomIndex];
+    
+    console.log(`🔍 検索クエリ: ${searchQuery}`);
     console.log(`📸 選択された画像: ${photo.description || photo.alt_description || 'No description'}`);
     console.log(`👤 撮影者: ${photo.user.name}`);
+    console.log(`💙 いいね数: ${photo.likes}`);
     console.log(`🔗 Unsplash URL: ${photo.links.html}`);
     
     // 画像をダウンロード
@@ -119,7 +172,10 @@ async function fetchUnsplashImage(keyword, outputPath) {
       photographer_url: photo.user.links.html,
       unsplash_url: photo.links.html,
       download_location: photo.links.download_location,
-      description: photo.description || photo.alt_description
+      description: photo.description || photo.alt_description,
+      photo_id: photo.id,
+      search_query: searchQuery,
+      selected_at: new Date().toISOString()
     };
     
     const creditPath = outputPath.replace(/\.(jpg|jpeg|png)$/, '-credit.json');
