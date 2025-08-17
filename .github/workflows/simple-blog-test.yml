@@ -1,0 +1,48 @@
+name: シンプルブログテスト（Jekyllなし）
+
+on:
+  workflow_dispatch:
+
+jobs:
+  simple-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          cd scripts/blog-automation
+          npm install
+          
+      - name: 🤖 Generate Test Post (Mock)
+        run: |
+          cd scripts/blog-automation
+          node mock-blog-generator.js "テスト記事"
+          
+      - name: 📋 Check Results
+        run: |
+          echo "📁 生成されたファイル:"
+          ls -la _posts/ | tail -5
+          
+          echo ""
+          echo "📝 最新の記事内容（プレビュー）:"
+          LATEST=$(ls -t _posts/*.md | head -1)
+          if [ -f "$LATEST" ]; then
+            head -20 "$LATEST"
+          fi
+          
+      - name: 💾 Commit Test Post
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          git add _posts/
+          git commit -m "🧪 テスト記事生成（Jekyllビルドなし）" || echo "No changes"
+          git push || echo "Nothing to push"
