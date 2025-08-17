@@ -110,9 +110,10 @@ jobs:
           echo "📁 Generated files:"
           ls -la _posts/ | tail -5
           
-      - name: 🎨 Fetch Unsplash Featured Image
+      - name: 🎨 Fetch Featured Image
         env:
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+        continue-on-error: true
         run: |
           # 最新の記事を取得
           LATEST_POST=$(ls -t _posts/*.md | head -1)
@@ -126,9 +127,18 @@ jobs:
             echo "🎨 Fetching image for: $TITLE"
             echo "🔍 Keywords: $KEYWORDS"
             
-            # Unsplashから画像を取得
-            OUTPUT_PATH="assets/images/blog/${DATE}-unsplash-featured.jpg"
-            node scripts/fetch-unsplash-image.js "$KEYWORDS" "$OUTPUT_PATH"
+            # Unsplashから画像を取得（APIキーがある場合）
+            OUTPUT_PATH="assets/images/blog/${DATE}-featured.jpg"
+            
+            if [ -n "$UNSPLASH_API_KEY" ]; then
+              node scripts/fetch-unsplash-image.js "$KEYWORDS" "$OUTPUT_PATH" || {
+                echo "⚠️ Unsplash画像取得失敗。フォールバック使用"
+                node scripts/generate-unique-image.js "$TITLE" "$DATE" "$OUTPUT_PATH"
+              }
+            else
+              echo "ℹ️ Unsplash APIキーなし。自動生成画像を使用"
+              node scripts/generate-unique-image.js "$TITLE" "$DATE" "$OUTPUT_PATH"
+            fi
             
             # 記事の画像パスを更新
             if [ -f "$OUTPUT_PATH" ]; then

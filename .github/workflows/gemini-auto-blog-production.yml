@@ -98,9 +98,19 @@ jobs:
             KEYWORDS=$(grep "^tags:" "$LATEST_POST" | sed 's/tags: *\[\(.*\)\]/\1/' | sed 's/,.*//;s/^ *//;s/ *$//')
             DATE=$(date +%Y-%m-%d)
             
-            # Unsplash画像取得スクリプトを使用
-            chmod +x scripts/fetch-unsplash-image.js
-            node scripts/fetch-unsplash-image.js "$KEYWORDS" "assets/images/blog/${DATE}-featured.jpg"
+            # Unsplash画像取得を試みる
+            if [ -n "$UNSPLASH_API_KEY" ]; then
+              chmod +x scripts/fetch-unsplash-image.js
+              node scripts/fetch-unsplash-image.js "$KEYWORDS" "assets/images/blog/${DATE}-featured.jpg" || {
+                echo "⚠️ Unsplash画像取得に失敗。フォールバック画像を使用"
+                chmod +x scripts/generate-unique-image.js
+                node scripts/generate-unique-image.js "$TITLE" "$DATE" "assets/images/blog/${DATE}-featured.jpg"
+              }
+            else
+              echo "ℹ️ Unsplash APIキーなし。自動生成画像を使用"
+              chmod +x scripts/generate-unique-image.js
+              node scripts/generate-unique-image.js "$TITLE" "$DATE" "assets/images/blog/${DATE}-featured.jpg"
+            fi
             
             # 画像パスを記事に追加
             if [ -f "assets/images/blog/${DATE}-featured.jpg" ]; then
@@ -108,73 +118,6 @@ jobs:
               sed -i "/^featured:/a image: /assets/images/blog/${DATE}-featured.jpg" "$LATEST_POST"
               echo "✅ Featured image linked to post"
             fi
-          fi
-            
-            // Unsplash APIから画像を取得
-            const unsplashUrl = `https://api.unsplash.com/photos/random?query=${encodeURIComponent(title)}&orientation=landscape`;
-            const headers = { Authorization: `Client-ID ${process.env.UNSPLASH_API_KEY}` };
-            
-            try {
-              const response = await axios.get(unsplashUrl, { headers });
-              const imageUrl = response.data.urls.regular;
-              const imageResponse = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-              
-              // 画像を処理
-              const processedImage = await sharp(Buffer.from(imageResponse.data))
-                .resize(width, height, { fit: 'cover' })
-                .modulate({ brightness: 0.7 }) // 暗くしてテキストを見やすく
-                .toBuffer();
-              
-              // テキストオーバーレイを追加
-              const svg = `
-                <svg width="${width}" height="${height}">
-                  <style>
-                    .title { fill: white; font-size: 48px; font-weight: bold; }
-                    .date { fill: #e0e0e0; font-size: 24px; }
-                  </style>
-                  <text x="60" y="300" class="title">${title.substring(0, 30)}...</text>
-                  <text x="60" y="350" class="date">${date}</text>
-                </svg>
-              `;
-              
-              const finalImage = await sharp(processedImage)
-                .composite([{ input: Buffer.from(svg), top: 0, left: 0 }])
-                .jpeg({ quality: 85 })
-                .toBuffer();
-              
-              // 保存
-              const filename = `${date}-gemini-featured.jpg`;
-              const filepath = path.join(__dirname, '../../assets/images/blog', filename);
-              await fs.mkdir(path.dirname(filepath), { recursive: true });
-              await fs.writeFile(filepath, finalImage);
-              
-              console.log(`✅ Featured image created: ${filename}`);
-              return `/assets/images/blog/${filename}`;
-              
-            } catch (error) {
-              console.error('画像生成エラー:', error);
-              // デフォルト画像パスを返す
-              return '/assets/images/blog/default-featured.jpg';
-            }
-          }
-          
-          // 実行
-          const title = process.argv[2];
-          const date = process.argv[3];
-          generatePostImage(title, date).catch(console.error);
-          EOF
-            
-            # 画像生成実行
-            cd scripts
-            npm install sharp axios
-            node generate-post-image.js "$TITLE" "$DATE"
-            cd ..
-            
-            # 記事に画像パスを追加
-            IMAGE_PATH="/assets/images/blog/${DATE}-gemini-featured.jpg"
-            sed -i "s|image:.*|image: $IMAGE_PATH|" "$LATEST_POST"
-            
-            echo "✅ Featured image generated and linked"
           fi
           
       - name: Update Schedule Status
