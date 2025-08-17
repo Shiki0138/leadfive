@@ -36,9 +36,8 @@ jobs:
           
       - name: 📦 Install Dependencies
         run: |
-          # Install image processing and HTTP libraries
+          # Install image processing and HTTP libraries in root
           npm install sharp axios
-          cd scripts && npm install axios && cd ..
           
           # Install jq for JSON processing
           sudo apt-get update && sudo apt-get install -y jq

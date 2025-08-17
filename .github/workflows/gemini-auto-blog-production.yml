@@ -32,7 +32,10 @@ jobs:
           
       - name: Install Dependencies
         run: |
-          # Node.js dependencies
+          # Install axios and sharp in root for scripts
+          npm install axios sharp
+          
+          # Node.js dependencies for blog-automation
           cd scripts/blog-automation
           npm install
           cd ../..
