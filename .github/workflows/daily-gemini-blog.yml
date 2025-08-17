@@ -28,7 +28,11 @@ jobs:
         with:
           node-version: '18'
           
-      # Ruby setup is optional - skip if causing issues
+      - name: 💎 Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
           
       - name: 📦 Install Dependencies
         run: |
@@ -43,7 +47,7 @@ jobs:
           npm install
           cd ../..
           
-          # Skip Jekyll dependencies for now
+          # Ruby is already set up by ruby/setup-ruby
           
       - name: 🎯 Determine Topic
         id: topic
@@ -180,18 +184,10 @@ jobs:
             }
           "
           
-      - name: 🏗️ Build Jekyll Site (Optional)
-        continue-on-error: true
+      - name: 🏗️ Build Jekyll Site
         run: |
-          # Try to setup Ruby and Jekyll if possible
-          if command -v ruby &> /dev/null; then
-            ruby --version
-            gem install bundler jekyll || true
-            bundle install || true
-            bundle exec jekyll build || echo "⚠️ Jekyll build skipped"
-          else
-            echo "ℹ️ Jekyll build skipped - Ruby not available"
-          fi
+          bundle exec jekyll build
+          echo "✅ Site built successfully"
           
       - name: 📤 Commit and Push
         run: |

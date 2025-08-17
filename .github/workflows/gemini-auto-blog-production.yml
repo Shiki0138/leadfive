@@ -1,7 +1,6 @@
 name: Gemini自動ブログ投稿システム（本番版）
 
 on:
-  # 手動実行
   workflow_dispatch:
     inputs:
       topic:
@@ -9,7 +8,6 @@ on:
         required: false
         type: string
       
-  # 毎日午前9時に自動実行
   schedule:
     - cron: '0 0 * * *'  # UTC 0時 = JST 9時
 
@@ -29,7 +27,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: '3.3'
           bundler-cache: true
           
       - name: Install Dependencies
@@ -38,10 +36,6 @@ jobs:
           cd scripts/blog-automation
           npm install
           cd ../..
-          
-          # Ruby dependencies
-          gem install bundler
-          bundle install
           
       - name: Get Today's Topic
         id: get-topic
@@ -96,7 +90,7 @@ jobs:
           LATEST_POST=$(ls -t _posts/*.md | head -1)
           
           if [ -f "$LATEST_POST" ]; then
-            # 記事からタイトルとキーワードを抽出
+            # タイトルとキーワードを抽出
             TITLE=$(grep "^title:" "$LATEST_POST" | sed 's/title: *"*\(.*\)"*/\1/')
             DATE=$(date +%Y-%m-%d)
             

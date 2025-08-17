@@ -33,14 +33,8 @@ jobs:
       - name: Setup Ruby (if needed)
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
-          bundler-cache: false
-
-      - name: Install Ruby Dependencies
-        run: |
-          gem install bundler:2.3.26
-          bundle config set --local path 'vendor/bundle'
-          bundle install || bundle update
+          ruby-version: '3.3'
+          bundler-cache: true
 
       - name: Build Jekyll Site (Optional)
         run: |
