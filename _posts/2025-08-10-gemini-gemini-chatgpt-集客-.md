@@ -2,7 +2,7 @@
 layout: blog-post
 title: "ChatGPTよりGeminiの方がマーケティングは使える？"
 date: 2025-08-10T11:38:45.759Z
-categories: [AIマーケティング]
+categories: [ai-marketing]
 tags: [Gemini ChatGPT 集客　, Gemini生成, SEO最適化]
 description: "Gemini ChatGPTを活用した集客戦略で売上を劇的に向上させませんか？本記事では、顧客を惹きつける魔法の会話設計を含む5つの秘訣を公開。AI集客の成功事例も交え、具体的なステップを分かりやすく解説します。今すぐ読んで、あなたのビジネスをレベルアップさせましょう！"
 author: "Gemini Generator"

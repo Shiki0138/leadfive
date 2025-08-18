@@ -2,7 +2,7 @@
 layout: blog-post
 title: "なぜ飲食店　ChatGPT　活用で成功する企業は27%しかいないのか？逆説的アプローチの真実"
 date: 2025-08-07T00:56:00.450Z
-categories: [AIマーケティング, テスト]
+categories: [ai-marketing, test]
 tags: [飲食店　ChatGPT　活用, モック記事, テスト]
 description: "衝撃的な事実から始めましょう。飲食店　ChatGPT　活用を導入した企業の73%が期待した成果を得られていません。成功の秘訣は、実は「使いすぎない」ことにありました。..."
 author: "Mock Generator"

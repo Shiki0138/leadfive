@@ -2,7 +2,7 @@
 layout: blog-post
 title: "なぜAIマーケティング導入企業の73%が失敗するのか？成功の逆説的アプローチ"
 date: 2025-08-06T14:05:10.613Z
-categories: [AIマーケティング, テスト記事]
+categories: [ai-marketing, test]
 tags: [AI活用, マーケティング戦略, 逆説的アプローチ, 常識を覆す]
 description: "AIマーケティングで成功する企業はわずか27%。失敗の原因は「AIに頼りすぎること」でした。逆説的ですが、AIを制限することで売上を3倍にした企業の実例を紹介します。"
 author: "Test Generator"

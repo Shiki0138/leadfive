@@ -2,7 +2,7 @@
 layout: blog-post
 title: "なぜChatGPT 美容室　活用で成功する企業は27%しかいないのか？逆説的アプローチの真実"
 date: 2025-08-06T23:37:57.564Z
-categories: [AIマーケティング, テスト]
+categories: [ai-marketing, test]
 tags: [ChatGPT 美容室　活用, モック記事, テスト]
 description: "衝撃的な事実から始めましょう。ChatGPT 美容室　活用を導入した企業の73%が期待した成果を得られていません。成功の秘訣は、実は「使いすぎない」ことにありました。..."
 author: "Mock Generator"

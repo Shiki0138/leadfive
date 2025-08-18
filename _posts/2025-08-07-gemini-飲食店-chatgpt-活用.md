@@ -2,7 +2,7 @@
 layout: blog-post
 title: "飲食店の売上を伸ばすChatGPT徹底活用法（最新版）"
 date: 2025-08-07T01:58:30.785Z
-categories: [AIマーケティング]
+categories: [ai-marketing]
 tags: [飲食店　ChatGPT　活用, Gemini生成, SEO最適化]
 description: "飲食店経営で悩んでいませんか？ChatGPTを活用した5つの革新的戦略で集客を劇的に改善し、売上UPを実現しましょう！成功事例や注意点も解説。今すぐチェックして、競合に差をつけましょう！"
 author: "Gemini Generator"

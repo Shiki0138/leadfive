@@ -2,7 +2,7 @@
 layout: blog-post
 title: "個人店経営者が売上を伸ばすChatGPTの活用裏ワザ"
 date: 2025-08-08T15:15:09.333Z
-categories: [AIマーケティング]
+categories: [ai-marketing]
 tags: [ChatGPT　経営　使い方, Gemini生成, SEO最適化]
 description: "ChatGPTを経営に活用して売上を3倍に伸ばした企業の成功事例を5つご紹介！業務効率化、顧客満足度向上、新規顧客獲得など、具体的な活用方法と効果を分かりやすく解説。AI導入で迷っている経営者必見！今すぐChatGPTの力を活用してビジネスを成長させましょう。"
 author: "Gemini Generator"
