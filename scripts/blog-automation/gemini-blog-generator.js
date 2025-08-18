@@ -294,38 +294,157 @@ ${context.recentTopics.join('\n')}
     return { ...content, content: modifiedContent };
   }
 
+  async fetchDynamicImage(altText, usedImageIds, imageHistory) {
+    try {
+      const { fetchUnsplashImage } = require('../fetch-unsplash-image.js');
+      
+      // altTextから検索キーワードを生成
+      const searchKeyword = altText.replace(/のイメージ画像|の画像|画像/g, '').trim();
+      
+      // 一時的な画像パスを生成
+      const tempImagePath = path.join(this.imagesDir, `temp-${Date.now()}.jpg`);
+      
+      // Unsplashから画像を取得
+      const result = await fetchUnsplashImage(searchKeyword, tempImagePath);
+      
+      if (result && result.credit && result.credit.photo_id) {
+        // 過去30日以内に使用された画像は除外
+        const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
+        const recentlyUsed = imageHistory.some(img => 
+          img.photo_id === result.credit.photo_id && 
+          new Date(img.used_at).getTime() > thirtyDaysAgo
+        );
+        
+        if (!recentlyUsed && !usedImageIds.has(result.credit.photo_id)) {
+          usedImageIds.add(result.credit.photo_id);
+          
+          // 画像履歴に追加
+          imageHistory.push({
+            photo_id: result.credit.photo_id,
+            used_at: new Date().toISOString(),
+            keyword: searchKeyword
+          });
+          
+          // 画像URLを返す（実際のUnsplash画像URL）
+          const imageResponse = await axios.get(result.credit.download_location, {
+            headers: {
+              'Authorization': `Client-ID ${process.env.UNSPLASH_API_KEY || process.env.UNSPLASH_ACCESS_KEY}`
+            }
+          });
+          
+          // 一時ファイルを削除
+          try {
+            await fs.unlink(tempImagePath);
+          } catch (e) {}
+          
+          // Unsplashの画像URLを直接返す
+          return `https://images.unsplash.com/photo-${result.credit.photo_id}?w=1200&h=630&fit=crop`;
+        }
+      }
+      
+      // 重複の場合は別の画像を試す
+      return this.getRandomStockImage();
+    } catch (error) {
+      console.error('画像取得エラー:', error);
+      return this.getRandomStockImage();
+    }
+  }
+  
+  getRandomStockImage() {
+    // フォールバック用のストック画像
+    const stockImages = [
+      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&h=630&fit=crop', // ラップトップ
+      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=630&fit=crop', // テクノロジー
+      'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=630&fit=crop', // データ分析
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop', // ビジネスデータ
+      'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=630&fit=crop'  // オフィス
+    ];
+    return stockImages[Math.floor(Math.random() * stockImages.length)];
+  }
+  
+  async saveImageHistory(imageHistory, usedImageIds) {
+    try {
+      // 履歴を最新100件に制限
+      const updatedHistory = imageHistory.slice(-100);
+      await fs.writeFile(
+        path.join(this.dataDir, 'used-images.json'), 
+        JSON.stringify(updatedHistory, null, 2)
+      );
+    } catch (error) {
+      console.error('画像履歴保存エラー:', error);
+    }
+  }
+
   async insertImagePlaceholders(content) {
     console.log('🖼️ 画像プレースホルダー挿入中...');
     
     let finalContent = content.content;
     
-    // プレースホルダー画像のURLリスト
-    const placeholderImages = [
-      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=630&fit=crop', // レストラン内装
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=630&fit=crop', // レストランインテリア
-      'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1200&h=630&fit=crop', // 料理
-      'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&h=630&fit=crop', // シェフ
-      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&h=630&fit=crop'  // 食材
-    ];
+    // 使用済み画像を追跡（重複を避ける）
+    const usedImageIds = new Set();
     
-    // {{IMAGE:xxx}}形式を実際の画像URLに変換
-    let imageCount = 0;
+    // 保存された画像履歴を読み込み
+    const imageHistoryPath = path.join(this.dataDir, 'used-images.json');
+    let imageHistory = [];
+    try {
+      const historyData = await fs.readFile(imageHistoryPath, 'utf-8');
+      imageHistory = JSON.parse(historyData);
+    } catch (e) {
+      // ファイルが存在しない場合は空配列
+    }
+    
+    // {{IMAGE:xxx}}形式を動的に取得した画像URLに変換
+    const imageMatches = [...finalContent.matchAll(/\{\{IMAGE:([^}]+)\}\}/g)];
+    const imagePromises = [];
+    
+    // 各画像プレースホルダーに対して画像を取得
+    for (const match of imageMatches) {
+      const altText = match[1];
+      imagePromises.push(this.fetchDynamicImage(altText, usedImageIds, imageHistory));
+    }
+    
+    const fetchedImages = await Promise.all(imagePromises);
+    
+    // 取得した画像で置換
+    let imageIndex = 0;
     finalContent = finalContent.replace(/\{\{IMAGE:([^}]+)\}\}/g, (match, altText) => {
-      const imageUrl = placeholderImages[imageCount % placeholderImages.length];
-      imageCount++;
+      const imageUrl = fetchedImages[imageIndex] || this.getRandomStockImage();
+      imageIndex++;
       return `\n\n![${altText}](${imageUrl})\n\n`;
     });
     
     // 各h2の後に画像がない場合は自動挿入
-    finalContent = finalContent.replace(/^## (.+)$/gm, (match, heading) => {
-      const nextLineMatch = finalContent.substring(finalContent.indexOf(match) + match.length).match(/^\n*!\[/);
-      if (!nextLineMatch) {
-        const imageUrl = placeholderImages[imageCount % placeholderImages.length];
-        imageCount++;
+    const headingMatches = [...finalContent.matchAll(/^## (.+)$/gm)];
+    const headingImagePromises = [];
+    
+    for (const match of headingMatches) {
+      const heading = match[1];
+      const matchIndex = match.index;
+      const nextContent = finalContent.substring(matchIndex + match[0].length);
+      const hasImage = nextContent.match(/^\n*!\[/);
+      
+      if (!hasImage) {
+        headingImagePromises.push(this.fetchDynamicImage(heading, usedImageIds, imageHistory));
+      }
+    }
+    
+    const headingImages = await Promise.all(headingImagePromises);
+    let headingImageIndex = 0;
+    
+    finalContent = finalContent.replace(/^## (.+)$/gm, (match, heading, offset) => {
+      const nextContent = finalContent.substring(offset + match.length);
+      const hasImage = nextContent.match(/^\n*!\[/);
+      
+      if (!hasImage && headingImageIndex < headingImages.length) {
+        const imageUrl = headingImages[headingImageIndex] || this.getRandomStockImage();
+        headingImageIndex++;
         return `${match}\n\n![${heading}のイメージ画像](${imageUrl})`;
       }
       return match;
     });
+    
+    // 使用した画像を履歴に保存
+    await this.saveImageHistory(imageHistory, usedImageIds);
     
     return { ...content, content: finalContent };
   }
