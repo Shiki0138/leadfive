@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="baseurl" content="">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Claude API キー取得・設定ガイド | AI×心理学で売上を科学する Leadfive</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Claude API キー取得・設定ガイド" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<meta property="og:description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<link rel="canonical" href="https://leadfive138.com/docs/CLAUDE_API_SETUP_GUIDE/" />
+<meta property="og:url" content="https://leadfive138.com/docs/CLAUDE_API_SETUP_GUIDE/" />
+<meta property="og:site_name" content="AI×心理学で売上を科学する Leadfive" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Claude API キー取得・設定ガイド" />
+<meta name="twitter:site" content="@leadfive" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。","headline":"Claude API キー取得・設定ガイド","url":"https://leadfive138.com/docs/CLAUDE_API_SETUP_GUIDE/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <!-- Critical CSS for faster mobile loading -->
+  <style>
+    /* Critical CSS */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+    body.blog-page { background-color: #ffffff; color: #374151; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); }
+    body.blog-page .site-header { background: #1e3a8a !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
+    body.blog-page .navbar, body.blog-page nav.navbar { background: #1e3a8a !important; background-color: #1e3a8a !important; }
+    body.blog-page .nav-link, body.blog-page nav.navbar .nav-link, body.blog-page nav.navbar a, body.blog-page .navbar a { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; padding: 0.5rem 1rem !important; border-radius: 6px !important; margin: 0 0.2rem !important; border: none !important; text-shadow: none !important; }
+    body.blog-page .navbar-nav .nav-item .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page a.nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    .blog-page .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page .navbar-nav { background: transparent !important; }
+    body.blog-page .navbar-menu { background: transparent !important; }
+    body.blog-page .navbar-brand .logo-text { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    .navbar { padding: 1rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .btn { display: inline-block; padding: 0.75rem 2rem; border: none; border-radius: 9999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
+    .btn-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #ffffff; }
+    @media (max-width: 768px) { .container { padding: 0 15px; } }
+  </style>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFLZV7QS');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <header class="site-header" >
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/" class="logo">
+          <span class="logo-text" >LeadFive</span>
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="navbar-menu" id="navbarMenu">
+        
+        <!-- Regular navigation for non-blog pages -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/#philosophy" class="nav-link">理念</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#services" class="nav-link">サービス</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#case-studies" class="nav-link">実績</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog/" class="nav-link">ブログ</a>
+          </li>
+          <li class="nav-item">
+            <a href="/company/" class="nav-link">会社概要</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="openContactForm(); return false;">お問い合わせ</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu is handled by main.js -->
+  
+  <main>
+    <h1 id="claude-api-キー取得設定ガイド">Claude API キー取得・設定ガイド</h1>
+
+<h2 id="-重要な注意事項">📌 重要な注意事項</h2>
+
+<p>Claude Code（デスクトップアプリ）と Claude API は別のサービスです：</p>
+<ul>
+  <li><strong>Claude Code</strong>: サブスクリプション型のデスクトップアプリケーション</li>
+  <li><strong>Claude API</strong>: APIキーベースのプログラマティックアクセス</li>
+</ul>
+
+<p>ブログ自動生成システムには <strong>Claude API</strong> のキーが必要です。</p>
+
+<h2 id="-claude-api-キーの取得方法">🔑 Claude API キーの取得方法</h2>
+
+<h3 id="1-anthropic-console-にアクセス">1. Anthropic Console にアクセス</h3>
+
+<ol>
+  <li><a href="https://console.anthropic.com">https://console.anthropic.com</a> にアクセス</li>
+  <li>アカウントを作成またはログイン</li>
+</ol>
+
+<h3 id="2-api-キーの作成">2. API キーの作成</h3>
+
+<ol>
+  <li>ダッシュボードの「API Keys」セクションに移動</li>
+  <li>「Create Key」をクリック</li>
+  <li>キーの名前を入力（例：「Blog Generator」）</li>
+  <li>生成されたAPIキーをコピー（一度しか表示されません！）</li>
+</ol>
+
+<h3 id="3-料金プラン">3. 料金プラン</h3>
+
+<p>Claude API は従量課金制です：</p>
+<ul>
+  <li><strong>Claude 3 Opus</strong>: $15 / 1M入力トークン、$75 / 1M出力トークン</li>
+  <li><strong>Claude 3 Sonnet</strong>: $3 / 1M入力トークン、$15 / 1M出力トークン</li>
+  <li><strong>Claude 3 Haiku</strong>: $0.25 / 1M入力トークン、$1.25 / 1M出力トークン</li>
+</ul>
+
+<p>ブログ生成（3000文字）の目安：</p>
+<ul>
+  <li>1記事あたり約4000トークン使用</li>
+  <li>Opus使用時：約$0.30/記事</li>
+  <li>Sonnet使用時：約$0.06/記事</li>
+</ul>
+
+<h2 id="-コスト最適化の方法">💰 コスト最適化の方法</h2>
+
+<h3 id="1-モデルの選択">1. モデルの選択</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// claude-blog-generator.js を編集</span>
+<span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+  <span class="dl">'</span><span class="s1">https://api.anthropic.com/v1/messages</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="c1">// model: 'claude-3-opus-20240229',  // 高品質だが高価</span>
+    <span class="na">model</span><span class="p">:</span> <span class="dl">'</span><span class="s1">claude-3-sonnet-20240229</span><span class="dl">'</span><span class="p">,</span>   <span class="c1">// バランス型（推奨）</span>
+    <span class="c1">// model: 'claude-3-haiku-20240229', // 安価だが品質低下</span>
+    <span class="na">max_tokens</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="2-生成頻度の調整">2. 生成頻度の調整</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># .github/workflows/claude-auto-blog-daily.yml を編集</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="c1"># 毎日実行</span>
+    <span class="c1"># - cron: '0 0 * * *'</span>
+    
+    <span class="c1"># 週3回実行（月・水・金）</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1,3,5'</span>
+    
+    <span class="c1"># 週1回実行（月曜日）</span>
+    <span class="c1"># - cron: '0 0 * * 1'</span>
+</code></pre></div></div>
+
+<h2 id="️-api-キーの設定方法">🛠️ API キーの設定方法</h2>
+
+<h3 id="方法1-github-secrets推奨">方法1: GitHub Secrets（推奨）</h3>
+
+<ol>
+  <li>GitHubリポジトリの Settings → Secrets and variables → Actions</li>
+  <li>「New repository secret」をクリック</li>
+  <li>Name: <code class="language-plaintext highlighter-rouge">ANTHROPIC_API_KEY</code></li>
+  <li>Value: 取得したAPIキー</li>
+  <li>「Add secret」をクリック</li>
+</ol>
+
+<h3 id="方法2-ローカル環境変数">方法2: ローカル環境変数</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># .env ファイルを作成</span>
+<span class="nb">echo</span> <span class="s2">"ANTHROPIC_API_KEY=sk-ant-api03-xxxxx"</span> <span class="o">&gt;</span> scripts/blog-automation/.env
+
+<span class="c"># または環境変数として設定</span>
+<span class="nb">export </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">"sk-ant-api03-xxxxx"</span>
+</code></pre></div></div>
+
+<h3 id="方法3-bashrc--zshrc-に追加">方法3: .bashrc / .zshrc に追加</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ~/.bashrc または ~/.zshrc に追加</span>
+<span class="nb">export </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">"sk-ant-api03-xxxxx"</span>
+
+<span class="c"># 設定を反映</span>
+<span class="nb">source</span> ~/.bashrc  <span class="c"># または source ~/.zshrc</span>
+</code></pre></div></div>
+
+<h2 id="-無料の代替案">🆓 無料の代替案</h2>
+
+<h3 id="1-openai-api-を使用">1. OpenAI API を使用</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scripts/blog-automation/openai-blog-generator.js として新規作成</span>
+<span class="kd">const</span> <span class="nx">OpenAI</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">openai</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">openai</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpenAI</span><span class="p">({</span>
+  <span class="na">apiKey</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">OPENAI_API_KEY</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">generateWithOpenAI</span><span class="p">(</span><span class="nx">prompt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">openai</span><span class="p">.</span><span class="nx">chat</span><span class="p">.</span><span class="nx">completions</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+    <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">gpt-4-turbo-preview</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// または gpt-3.5-turbo</span>
+    <span class="na">messages</span><span class="p">:</span> <span class="p">[{</span> <span class="na">role</span><span class="p">:</span> <span class="dl">"</span><span class="s2">user</span><span class="dl">"</span><span class="p">,</span> <span class="na">content</span><span class="p">:</span> <span class="nx">prompt</span> <span class="p">}],</span>
+    <span class="na">max_tokens</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+  <span class="p">});</span>
+  
+  <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">message</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="2-ローカルllmを使用ollama">2. ローカルLLMを使用（Ollama）</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ollama のインストール</span>
+curl <span class="nt">-fsSL</span> https://ollama.com/install.sh | sh
+
+<span class="c"># 日本語対応モデルをダウンロード</span>
+ollama pull llama2-japanese
+
+<span class="c"># API サーバーを起動</span>
+ollama serve
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scripts/blog-automation/ollama-blog-generator.js</span>
+<span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">generateWithOllama</span><span class="p">(</span><span class="nx">prompt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:11434/api/generate</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">model</span><span class="p">:</span> <span class="dl">'</span><span class="s1">llama2-japanese</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">prompt</span><span class="p">:</span> <span class="nx">prompt</span><span class="p">,</span>
+    <span class="na">stream</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="p">});</span>
+  
+  <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-コスト管理のベストプラクティス">📊 コスト管理のベストプラクティス</h2>
+
+<h3 id="1-使用量モニタリング">1. 使用量モニタリング</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scripts/blog-automation/usage-tracker.js</span>
+<span class="kd">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">).</span><span class="nx">promises</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">class</span> <span class="nx">UsageTracker</span> <span class="p">{</span>
+  <span class="k">async</span> <span class="nx">logUsage</span><span class="p">(</span><span class="nx">tokens</span><span class="p">,</span> <span class="nx">cost</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">logFile</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">'</span><span class="s1">../../logs/api-usage.json</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">usage</span> <span class="o">=</span> <span class="p">{</span> <span class="na">total_tokens</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">total_cost</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">entries</span><span class="p">:</span> <span class="p">[]</span> <span class="p">};</span>
+    
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">existing</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">logFile</span><span class="p">,</span> <span class="dl">'</span><span class="s1">utf-8</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">usage</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">existing</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{}</span>
+    
+    <span class="nx">usage</span><span class="p">.</span><span class="nx">total_tokens</span> <span class="o">+=</span> <span class="nx">tokens</span><span class="p">;</span>
+    <span class="nx">usage</span><span class="p">.</span><span class="nx">total_cost</span> <span class="o">+=</span> <span class="nx">cost</span><span class="p">;</span>
+    <span class="nx">usage</span><span class="p">.</span><span class="nx">entries</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+      <span class="na">date</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span>
+      <span class="nx">tokens</span><span class="p">,</span>
+      <span class="nx">cost</span>
+    <span class="p">});</span>
+    
+    <span class="k">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="nx">logFile</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">usage</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="2-月次予算アラート">2. 月次予算アラート</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># .github/workflows/usage-alert.yml</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">API使用量アラート</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">MON'</span>  <span class="c1"># 毎週月曜日</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">check-usage</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">使用量チェック</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">USAGE=$(cat logs/api-usage.json | jq .total_cost)</span>
+          <span class="s">if (( $(echo "$USAGE &gt; 50" | bc -l) )); then</span>
+            <span class="s">echo "⚠️ 月次API使用料が$50を超えました: $${USAGE}"</span>
+            <span class="s"># Slack/メール通知を送信</span>
+          <span class="s">fi</span>
+</code></pre></div></div>
+
+<h2 id="-トラブルシューティング">🔧 トラブルシューティング</h2>
+
+<h3 id="よくあるエラー">よくあるエラー</h3>
+
+<ol>
+  <li><strong>認証エラー</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: 401 Unauthorized
+</code></pre></div>    </div>
+    <p>→ APIキーが正しく設定されているか確認</p>
+  </li>
+  <li><strong>レート制限</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: 429 Too Many Requests
+</code></pre></div>    </div>
+    <p>→ リクエスト間隔を調整（5秒以上推奨）</p>
+  </li>
+  <li><strong>残高不足</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: insufficient_balance
+</code></pre></div>    </div>
+    <p>→ Anthropic Console で残高を確認・チャージ</p>
+  </li>
+</ol>
+
+<h2 id="-サポート">📞 サポート</h2>
+
+<ul>
+  <li><strong>Anthropic公式ドキュメント</strong>: https://docs.anthropic.com</li>
+  <li><strong>料金計算機</strong>: https://anthropic.com/pricing</li>
+  <li><strong>サポート</strong>: support@anthropic.com</li>
+</ul>
+
+<hr />
+
+<p>最終更新: 2025年1月</p>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>合同会社Leadfive</h3>
+        <p>人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。</p>
+        <div class="company-info">
+          <p>〒530-0001</p>
+          <p>大阪府大阪市北区梅田１－１３－１</p>
+          <p>大阪梅田ツインタワーズ・サウス１５階</p>
+          <p>TEL: <a href="tel:06-7713-6747">06-7713-6747</a></p>
+          <p>EMAIL: <a href="mailto:leadfive.138@gmail.com">leadfive.138@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://x.com/leadfive138" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>サービス</h4>
+        <ul class="footer-links">
+          <li><a href="/services/lp-optimization/">AI×心理学 LP最適化</a></li>
+          <li><a href="/services/customer-analysis/">顧客心理データ分析</a></li>
+          <li><a href="/services/ai-automation/">AI自動化マーケティング</a></li>
+          <li><a href="/services/integrated-marketing/">統合マーケティング戦略</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>会社情報</h4>
+        <ul class="footer-links">
+          <li><a href="/company/">会社概要</a></li>
+          <li><a href="/company/#mission">ミッション</a></li>
+          <li><a href="/company/#access">アクセス</a></li>
+          <li><a href="#" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>リソース</h4>
+        <ul class="footer-links">
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/case-studies/">導入事例</a></li>
+          <!-- <li><a href="/resources/whitepaper/">ホワイトペーパー</a></li> -->
+          <li><a href="/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 合同会社Leadfive. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContactModal()">&times;</span>
+      <div class="modal-header">
+        <h2>お問い合わせ</h2>
+        <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+      </div>
+      <div class="modal-body">
+        <form id="contactModalForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-company">会社名 <span class="required">*</span></label>
+              <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
+            </div>
+            <div class="form-group">
+              <label for="modal-name">お名前 <span class="required">*</span></label>
+              <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-email">メールアドレス <span class="required">*</span></label>
+              <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+            </div>
+            <div class="form-group">
+              <label for="modal-phone">電話番号</label>
+              <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
+            <select id="modal-inquiry-type" name="inquiry_type" required>
+              <option value="">選択してください</option>
+              <option value="service">サービスについて</option>
+              <option value="consultation">無料相談の申し込み</option>
+              <option value="quotation">見積もり依頼</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" name="privacy" value="agreed" required>
+              <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- AI Analysis Modal -->
+  <div id="ai-analysis-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAIAnalysis()">&times;</span>
+      <h2 style="text-align: center;">無料AI分析診断</h2>
+      <p style="text-align: center;">あなたのビジネスに最適な戦略を30秒で診断します</p>
+      
+      <form class="ai-analysis-form">
+        <div class="form-group">
+          <label for="business-type">業種を選択してください</label>
+          <select id="business-type" name="business-type" required>
+            <option value="">選択してください</option>
+            <option value="ec">EC・オンライン販売</option>
+            <option value="retail">実店舗・小売</option>
+            <option value="service">サービス業</option>
+            <option value="btob">BtoB・法人向け</option>
+            <option value="beauty">美容・サロン</option>
+            <option value="consulting">コンサルティング</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="monthly-revenue">月間売上規模</label>
+          <select id="monthly-revenue" name="monthly-revenue" required>
+            <option value="">選択してください</option>
+            <option value="under-100">100万円未満</option>
+            <option value="100-500">100万円〜500万円</option>
+            <option value="500-1000">500万円〜1000万円</option>
+            <option value="1000-5000">1000万円〜5000万円</option>
+            <option value="over-5000">5000万円以上</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="main-challenge">最も大きな課題</label>
+          <select id="main-challenge" name="main-challenge" required>
+            <option value="">選択してください</option>
+            <option value="traffic">集客・アクセス数の不足</option>
+            <option value="conversion">成約率・CVRの低さ</option>
+            <option value="retention">リピーター・LTV向上</option>
+            <option value="cost">広告費・獲得コストの高騰</option>
+            <option value="analysis">データ分析・改善方法</option>
+            <option value="automation">業務効率・自動化</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">メールアドレス（結果送信用）</label>
+          <input type="email" id="email" name="email" placeholder="example@company.com" required>
+        </div>
+        
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-large">
+            無料で診断結果を受け取る
+          </button>
+        </div>
+      </form>
+      
+      <p class="privacy-note">
+        ※診断結果は入力いただいたメールアドレスに送信されます<br>
+        ※個人情報は厳重に管理し、第三者に提供することはありません
+      </p>
+    </div>
+  </div>
+  
+  <style>
+  .ai-analysis-form {
+    margin-top: 2rem;
+  }
+  
+  .ai-analysis-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .ai-analysis-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .ai-analysis-form .form-group select,
+  .ai-analysis-form .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .ai-analysis-form .form-group select:focus,
+  .ai-analysis-form .form-group input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  }
+  
+  .ai-analysis-form .form-group option {
+    background: #1f2937;
+    color: #fff;
+  }
+  
+  .privacy-note {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      margin: 10% auto;
+      padding: 1.5rem;
+    }
+    
+    .ai-analysis-form .form-group select,
+    .ai-analysis-form .form-group input {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+  </style>
+  
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/contact-modal.js"></script>
+  <script src="/assets/js/contact-handler-gas.js"></script>
+  
+</body>
+</html>

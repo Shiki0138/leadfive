@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="baseurl" content="">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🗓️ 週次一括指示システム実装ガイド | AI×心理学で売上を科学する Leadfive</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="🗓️ 週次一括指示システム実装ガイド" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<meta property="og:description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<link rel="canonical" href="https://leadfive138.com/docs/WEEKLY_BATCH_SYSTEM/" />
+<meta property="og:url" content="https://leadfive138.com/docs/WEEKLY_BATCH_SYSTEM/" />
+<meta property="og:site_name" content="AI×心理学で売上を科学する Leadfive" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🗓️ 週次一括指示システム実装ガイド" />
+<meta name="twitter:site" content="@leadfive" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。","headline":"🗓️ 週次一括指示システム実装ガイド","url":"https://leadfive138.com/docs/WEEKLY_BATCH_SYSTEM/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <!-- Critical CSS for faster mobile loading -->
+  <style>
+    /* Critical CSS */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+    body.blog-page { background-color: #ffffff; color: #374151; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); }
+    body.blog-page .site-header { background: #1e3a8a !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
+    body.blog-page .navbar, body.blog-page nav.navbar { background: #1e3a8a !important; background-color: #1e3a8a !important; }
+    body.blog-page .nav-link, body.blog-page nav.navbar .nav-link, body.blog-page nav.navbar a, body.blog-page .navbar a { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; padding: 0.5rem 1rem !important; border-radius: 6px !important; margin: 0 0.2rem !important; border: none !important; text-shadow: none !important; }
+    body.blog-page .navbar-nav .nav-item .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page a.nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    .blog-page .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page .navbar-nav { background: transparent !important; }
+    body.blog-page .navbar-menu { background: transparent !important; }
+    body.blog-page .navbar-brand .logo-text { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    .navbar { padding: 1rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .btn { display: inline-block; padding: 0.75rem 2rem; border: none; border-radius: 9999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
+    .btn-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #ffffff; }
+    @media (max-width: 768px) { .container { padding: 0 15px; } }
+  </style>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFLZV7QS');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <header class="site-header" >
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/" class="logo">
+          <span class="logo-text" >LeadFive</span>
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="navbar-menu" id="navbarMenu">
+        
+        <!-- Regular navigation for non-blog pages -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/#philosophy" class="nav-link">理念</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#services" class="nav-link">サービス</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#case-studies" class="nav-link">実績</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog/" class="nav-link">ブログ</a>
+          </li>
+          <li class="nav-item">
+            <a href="/company/" class="nav-link">会社概要</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="openContactForm(); return false;">お問い合わせ</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu is handled by main.js -->
+  
+  <main>
+    <h1 id="️-週次一括指示システム実装ガイド">🗓️ 週次一括指示システム実装ガイド</h1>
+
+<h2 id="-システム概要">📋 システム概要</h2>
+
+<p>週1回（月曜日）にメールで7日分の記事案を送信し、一括返信で全ての記事をカスタマイズできるシステムです。</p>
+
+<h2 id="-新しいワークフロー">🔄 新しいワークフロー</h2>
+
+<h3 id="1-週次企画メール月曜日朝7時">1. <strong>週次企画メール（月曜日朝7時）</strong></h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ===== 📅 週次一括確認メール =====</span>
+<span class="kd">function</span> <span class="nx">sendWeeklyBatchConfirmation</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">weeklyPlan</span> <span class="o">=</span> <span class="nx">createWeeklyContentPlan</span><span class="p">();</span>
+  
+  <span class="kd">const</span> <span class="nx">htmlBody</span> <span class="o">=</span> <span class="s2">`
+    &lt;div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 800px; margin: 0 auto;"&gt;
+      
+      &lt;!-- ヘッダー --&gt;
+      &lt;div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 40px; text-align: center; border-radius: 15px 15px 0 0;"&gt;
+        &lt;h1 style="color: white; margin: 0; font-size: 32px;"&gt;📅 今週の記事プラン（7日分）&lt;/h1&gt;
+        &lt;p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0;"&gt;</span><span class="p">${</span><span class="nx">weeklyPlan</span><span class="p">.</span><span class="nx">theme</span><span class="p">}</span><span class="s2">&lt;/p&gt;
+      &lt;/div&gt;
+      
+      &lt;!-- 記事一覧 --&gt;
+      &lt;div style="background: white; padding: 40px; border: 1px solid #e2e8f0;"&gt;
+        &lt;div style="background: #f8fafc; padding: 20px; border-radius: 10px; margin-bottom: 30px;"&gt;
+          &lt;h2 style="margin: 0 0 10px 0; color: #1e293b;"&gt;📧 返信方法&lt;/h2&gt;
+          &lt;p style="margin: 0; color: #475569;"&gt;
+            各記事番号の後に指示を記入して返信してください。&lt;br&gt;
+            例：&lt;br&gt;
+            1: OK データ重視で&lt;br&gt;
+            2: OK 事例多めで&lt;br&gt;
+            3: SKIP&lt;br&gt;
+            4: OK&lt;br&gt;
+            5: OK 初心者向けで&lt;br&gt;
+            6: OK 美容業界特化で&lt;br&gt;
+            7: OK
+          &lt;/p&gt;
+        &lt;/div&gt;
+        
+        </span><span class="p">${</span><span class="nx">weeklyPlan</span><span class="p">.</span><span class="nx">dailyTopics</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">topic</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="nx">dayNames</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">月</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">火</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">水</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">木</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">金</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">土</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">日</span><span class="dl">'</span><span class="p">];</span>
+          <span class="kd">const</span> <span class="nx">dayOfWeek</span> <span class="o">=</span> <span class="p">(</span><span class="nx">today</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()</span> <span class="o">+</span> <span class="nx">index</span><span class="p">)</span> <span class="o">%</span> <span class="mi">7</span><span class="p">;</span>
+          
+          <span class="k">return</span> <span class="s2">`
+            &lt;div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 25px; margin-bottom: 20px;"&gt;
+              &lt;div style="display: flex; justify-content: space-between; align-items: start;"&gt;
+                &lt;div style="flex: 1;"&gt;
+                  &lt;h3 style="margin: 0 0 10px 0; color: #1e293b; font-size: 20px;"&gt;
+                    </span><span class="p">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">. </span><span class="p">${</span><span class="nx">dayNames</span><span class="p">[</span><span class="nx">dayOfWeek</span><span class="p">]}</span><span class="s2">曜日
+                  &lt;/h3&gt;
+                  &lt;p style="margin: 0 0 10px 0; color: #3730a3; font-weight: 600;"&gt;
+                    </span><span class="p">${</span><span class="nx">topic</span><span class="p">}</span><span class="s2">
+                  &lt;/p&gt;
+                  &lt;div style="display: flex; gap: 10px; flex-wrap: wrap;"&gt;
+                    &lt;span style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 15px; font-size: 12px;"&gt;
+                      </span><span class="p">${</span><span class="nx">weeklyPlan</span><span class="p">.</span><span class="nx">focus</span><span class="p">}</span><span class="s2">
+                    &lt;/span&gt;
+                    &lt;span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 15px; font-size: 12px;"&gt;
+                      読了8-12分
+                    &lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div style="text-align: right;"&gt;
+                  &lt;div style="background: #8b5cf6; color: white; padding: 8px 16px; border-radius: 20px; font-size: 24px; font-weight: 700;"&gt;
+                    </span><span class="p">${</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          `</span><span class="p">;</span>
+        <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">)}</span><span class="s2">
+        
+        &lt;!-- カスタマイズオプション --&gt;
+        &lt;div style="background: #fef7ff; border: 2px solid #d8b4fe; border-radius: 12px; padding: 25px; margin-top: 30px;"&gt;
+          &lt;h3 style="margin: 0 0 15px 0; color: #7c3aed;"&gt;🛠️ カスタマイズオプション&lt;/h3&gt;
+          &lt;div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; font-size: 14px; color: #6b46c1;"&gt;
+            &lt;div&gt;• &lt;strong&gt;OK&lt;/strong&gt; = そのまま投稿&lt;/div&gt;
+            &lt;div&gt;• &lt;strong&gt;OK データ重視で&lt;/strong&gt; = 統計・数値多め&lt;/div&gt;
+            &lt;div&gt;• &lt;strong&gt;OK 事例多めで&lt;/strong&gt; = ケーススタディ中心&lt;/div&gt;
+            &lt;div&gt;• &lt;strong&gt;OK 初心者向けで&lt;/strong&gt; = 基本説明充実&lt;/div&gt;
+            &lt;div&gt;• &lt;strong&gt;OK 美容業界特化で&lt;/strong&gt; = 美容事例中心&lt;/div&gt;
+            &lt;div&gt;• &lt;strong&gt;SKIP&lt;/strong&gt; = その日はスキップ&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;!-- フッター --&gt;
+      &lt;div style="background: #1e293b; padding: 30px; text-align: center; border-radius: 0 0 15px 15px;"&gt;
+        &lt;p style="color: #e2e8f0; margin: 0;"&gt;
+          🤖 LeadFive Premium AI - 週次一括指示システム
+        &lt;/p&gt;
+        &lt;p style="color: #94a3b8; margin: 10px 0 0 0; font-size: 14px;"&gt;
+          返信後、毎日指定時刻に自動投稿されます
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `</span><span class="p">;</span>
+  
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">MailApp</span><span class="p">.</span><span class="nx">sendEmail</span><span class="p">({</span>
+      <span class="na">to</span><span class="p">:</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">recipientEmail</span><span class="p">,</span>
+      <span class="na">subject</span><span class="p">:</span> <span class="s2">`📅【LeadFive】今週の記事プラン（</span><span class="p">${</span><span class="nx">weeklyPlan</span><span class="p">.</span><span class="nx">theme</span><span class="p">}</span><span class="s2">）- 7日分一括確認`</span><span class="p">,</span>
+      <span class="na">htmlBody</span><span class="p">:</span> <span class="nx">htmlBody</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">botName</span>
+    <span class="p">});</span>
+    
+    <span class="c1">// 週次プランを保存</span>
+    <span class="kd">const</span> <span class="nx">weeklyBatchId</span> <span class="o">=</span> <span class="s2">`weekly_batch_</span><span class="p">${</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">today</span><span class="p">,</span> <span class="dl">'</span><span class="s1">JST</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">yyyyMMdd</span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">setProperty</span><span class="p">(</span><span class="nx">weeklyBatchId</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+      <span class="nx">weeklyPlan</span><span class="p">,</span>
+      <span class="na">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">pending</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="nx">today</span><span class="p">.</span><span class="nx">toISOString</span><span class="p">()</span>
+    <span class="p">}));</span>
+    
+    <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">setProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">latestWeeklyBatch</span><span class="dl">'</span><span class="p">,</span> <span class="nx">weeklyBatchId</span><span class="p">);</span>
+    
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ 週次一括確認メール送信完了</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ 週次確認メール送信エラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 📧 週次返信処理 =====</span>
+<span class="kd">function</span> <span class="nx">processWeeklyBatchReplies</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">threads</span> <span class="o">=</span> <span class="nx">GmailApp</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span>
+      <span class="s2">`to:</span><span class="p">${</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">recipientEmail</span><span class="p">}</span><span class="s2"> subject:"今週の記事プラン" is:unread newer_than:7d`</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span>
+    <span class="p">);</span>
+    
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`📬 週次返信検索結果: </span><span class="p">${</span><span class="nx">threads</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">件`</span><span class="p">);</span>
+    
+    <span class="nx">threads</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">thread</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">messages</span> <span class="o">=</span> <span class="nx">thread</span><span class="p">.</span><span class="nx">getMessages</span><span class="p">();</span>
+      <span class="kd">const</span> <span class="nx">latestMessage</span> <span class="o">=</span> <span class="nx">messages</span><span class="p">[</span><span class="nx">messages</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+      
+      <span class="k">if</span> <span class="p">(</span><span class="nx">latestMessage</span><span class="p">.</span><span class="nx">getFrom</span><span class="p">().</span><span class="nx">includes</span><span class="p">(</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">recipientEmail</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">latestMessage</span><span class="p">.</span><span class="nx">isUnread</span><span class="p">())</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">bodyText</span> <span class="o">=</span> <span class="nx">latestMessage</span><span class="p">.</span><span class="nx">getPlainBody</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">instructions</span> <span class="o">=</span> <span class="nx">parseWeeklyInstructions</span><span class="p">(</span><span class="nx">bodyText</span><span class="p">);</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="nx">instructions</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">saveWeeklyInstructions</span><span class="p">(</span><span class="nx">instructions</span><span class="p">);</span>
+          <span class="nx">latestMessage</span><span class="p">.</span><span class="nx">markRead</span><span class="p">();</span>
+          <span class="nx">sendWeeklyConfirmation</span><span class="p">(</span><span class="nx">instructions</span><span class="p">);</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ 週次指示を保存しました</span><span class="dl">'</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ 週次返信処理エラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 📝 週次指示の解析 =====</span>
+<span class="kd">function</span> <span class="nx">parseWeeklyInstructions</span><span class="p">(</span><span class="nx">bodyText</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">lines</span> <span class="o">=</span> <span class="nx">bodyText</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="se">\\</span><span class="s1">n</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">instructions</span> <span class="o">=</span> <span class="p">[];</span>
+  
+  <span class="nx">lines</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">line</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">line</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^</span><span class="se">(\d)</span><span class="sr">:</span><span class="se">\s</span><span class="sr">*</span><span class="se">(</span><span class="sr">.+</span><span class="se">)</span><span class="sr">/</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">dayNumber</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+      <span class="kd">const</span> <span class="nx">instruction</span> <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">trim</span><span class="p">();</span>
+      
+      <span class="nx">instructions</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+        <span class="na">day</span><span class="p">:</span> <span class="nx">dayNumber</span><span class="p">,</span>
+        <span class="na">instruction</span><span class="p">:</span> <span class="nx">instruction</span><span class="p">,</span>
+        <span class="na">skip</span><span class="p">:</span> <span class="nx">instruction</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">SKIP</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">customization</span><span class="p">:</span> <span class="nx">instruction</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^OK</span><span class="se">\s</span><span class="sr">*/i</span><span class="p">,</span> <span class="dl">''</span><span class="p">).</span><span class="nx">trim</span><span class="p">()</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  
+  <span class="k">return</span> <span class="nx">instructions</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 💾 週次指示の保存 =====</span>
+<span class="kd">function</span> <span class="nx">saveWeeklyInstructions</span><span class="p">(</span><span class="nx">instructions</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">weeklyInstructionsId</span> <span class="o">=</span> <span class="s2">`weekly_instructions_</span><span class="p">${</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">today</span><span class="p">,</span> <span class="dl">'</span><span class="s1">JST</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">yyyyMMdd</span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span><span class="p">;</span>
+  
+  <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">setProperty</span><span class="p">(</span><span class="nx">weeklyInstructionsId</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="nx">instructions</span><span class="p">,</span>
+    <span class="na">createdAt</span><span class="p">:</span> <span class="nx">today</span><span class="p">.</span><span class="nx">toISOString</span><span class="p">(),</span>
+    <span class="na">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span>
+  <span class="p">}));</span>
+  
+  <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">setProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">activeWeeklyInstructions</span><span class="dl">'</span><span class="p">,</span> <span class="nx">weeklyInstructionsId</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 📅 毎日の自動実行 =====</span>
+<span class="kd">function</span> <span class="nx">executeDailyPost</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">dayOfWeek</span> <span class="o">=</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getDay</span><span class="p">();</span> <span class="c1">// 0=日曜日</span>
+  <span class="kd">const</span> <span class="nx">adjustedDay</span> <span class="o">=</span> <span class="nx">dayOfWeek</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">?</span> <span class="mi">7</span> <span class="p">:</span> <span class="nx">dayOfWeek</span><span class="p">;</span> <span class="c1">// 月曜日を1とする</span>
+  
+  <span class="c1">// アクティブな週次指示を取得</span>
+  <span class="kd">const</span> <span class="nx">instructionsId</span> <span class="o">=</span> <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">getProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">activeWeeklyInstructions</span><span class="dl">'</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instructionsId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">⚠️ アクティブな週次指示がありません</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="kd">const</span> <span class="nx">weeklyData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">getProperty</span><span class="p">(</span><span class="nx">instructionsId</span><span class="p">));</span>
+  <span class="kd">const</span> <span class="nx">todayInstruction</span> <span class="o">=</span> <span class="nx">weeklyData</span><span class="p">.</span><span class="nx">instructions</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">inst</span> <span class="o">=&gt;</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">day</span> <span class="o">===</span> <span class="nx">adjustedDay</span><span class="p">);</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">todayInstruction</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`ℹ️ </span><span class="p">${</span><span class="nx">adjustedDay</span><span class="p">}</span><span class="s2">日目の指示がありません`</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="nx">todayInstruction</span><span class="p">.</span><span class="nx">skip</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`⏭️ </span><span class="p">${</span><span class="nx">adjustedDay</span><span class="p">}</span><span class="s2">日目はスキップ`</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="c1">// 週次プランから今日のトピックを取得</span>
+  <span class="kd">const</span> <span class="nx">weeklyPlanId</span> <span class="o">=</span> <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">getProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">currentWeeklyPlan</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">weeklyPlan</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">getProperty</span><span class="p">(</span><span class="nx">weeklyPlanId</span><span class="p">));</span>
+  <span class="kd">const</span> <span class="nx">todaysTopic</span> <span class="o">=</span> <span class="nx">weeklyPlan</span><span class="p">.</span><span class="nx">dailyTopics</span><span class="p">[</span><span class="nx">adjustedDay</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+  
+  <span class="c1">// 記事作成を実行</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`📝 </span><span class="p">${</span><span class="nx">adjustedDay</span><span class="p">}</span><span class="s2">日目の記事作成: </span><span class="p">${</span><span class="nx">todaysTopic</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`🛠️ カスタマイズ: </span><span class="p">${</span><span class="nx">todayInstruction</span><span class="p">.</span><span class="nx">customization</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">なし</span><span class="dl">'</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  
+  <span class="c1">// 提案データを作成</span>
+  <span class="kd">const</span> <span class="nx">dailyProposal</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">topic</span><span class="p">:</span> <span class="nx">todaysTopic</span><span class="p">,</span>
+    <span class="na">weeklyTheme</span><span class="p">:</span> <span class="nx">weeklyPlan</span><span class="p">.</span><span class="nx">theme</span><span class="p">,</span>
+    <span class="na">aiSuggestion</span><span class="p">:</span> <span class="nx">generateAdvancedContentSuggestion</span><span class="p">(</span><span class="nx">todaysTopic</span><span class="p">,</span> <span class="nx">weeklyPlan</span><span class="p">.</span><span class="nx">focus</span><span class="p">),</span>
+    <span class="na">dayOfWeek</span><span class="p">:</span> <span class="nx">adjustedDay</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="p">};</span>
+  
+  <span class="c1">// 保存して記事作成</span>
+  <span class="kd">const</span> <span class="nx">proposalId</span> <span class="o">=</span> <span class="s2">`auto_daily_</span><span class="p">${</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">today</span><span class="p">,</span> <span class="dl">'</span><span class="s1">JST</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">yyyyMMdd</span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span><span class="p">;</span>
+  <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">setProperty</span><span class="p">(</span><span class="nx">proposalId</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">dailyProposal</span><span class="p">));</span>
+  <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">setProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">latestDailyProposal</span><span class="dl">'</span><span class="p">,</span> <span class="nx">proposalId</span><span class="p">);</span>
+  
+  <span class="nx">createPremiumBlogPost</span><span class="p">(</span><span class="nx">todayInstruction</span><span class="p">.</span><span class="nx">customization</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== ⏰ 新しいスケジューリング設定 =====</span>
+<span class="kd">function</span> <span class="nx">setupWeeklyBatchScheduling</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 既存トリガーを削除</span>
+  <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">getProjectTriggers</span><span class="p">().</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">trigger</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">deleteTrigger</span><span class="p">(</span><span class="nx">trigger</span><span class="p">);</span>
+  <span class="p">});</span>
+  
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// 毎週月曜日朝7時に週次確認メール</span>
+    <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">newTrigger</span><span class="p">(</span><span class="dl">'</span><span class="s1">sendWeeklyBatchConfirmation</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">timeBased</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">onWeekDay</span><span class="p">(</span><span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">WeekDay</span><span class="p">.</span><span class="nx">MONDAY</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">atHour</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+    
+    <span class="c1">// 30分ごとに週次返信チェック（月曜日のみ頻繁に）</span>
+    <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">newTrigger</span><span class="p">(</span><span class="dl">'</span><span class="s1">processWeeklyBatchReplies</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">timeBased</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">everyMinutes</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+    
+    <span class="c1">// 毎日朝9時に自動投稿実行</span>
+    <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">newTrigger</span><span class="p">(</span><span class="dl">'</span><span class="s1">executeDailyPost</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">timeBased</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">atHour</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">everyDays</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+    
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ 週次一括システムのスケジューリング設定完了</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ スケジューリング設定エラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-返信フォーマット例">🎯 返信フォーマット例</h2>
+
+<h3 id="基本的な返信"><strong>基本的な返信</strong></h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1: OK
+2: OK
+3: OK
+4: OK
+5: OK
+6: OK
+7: OK
+</code></pre></div></div>
+
+<h3 id="カスタマイズ込みの返信"><strong>カスタマイズ込みの返信</strong></h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1: OK データ重視で
+2: OK 事例多めで
+3: SKIP
+4: OK 初心者向けで
+5: OK
+6: OK 美容業界特化で
+7: OK 実践手順で
+</code></pre></div></div>
+
+<h3 id="部分的にスキップ"><strong>部分的にスキップ</strong></h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1: OK
+2: OK
+3: SKIP
+4: SKIP
+5: OK データ重視で
+6: OK
+7: OK
+</code></pre></div></div>
+
+<h2 id="-メリット">📊 メリット</h2>
+
+<ol>
+  <li><strong>効率性向上</strong>
+    <ul>
+      <li>週1回の確認で済む</li>
+      <li>一括で計画を把握できる</li>
+      <li>週末にまとめて計画可能</li>
+    </ul>
+  </li>
+  <li><strong>柔軟性</strong>
+    <ul>
+      <li>各日個別にカスタマイズ可能</li>
+      <li>特定の日をスキップ可能</li>
+      <li>週の途中で変更不要</li>
+    </ul>
+  </li>
+  <li><strong>計画性</strong>
+    <ul>
+      <li>1週間の流れを俯瞰できる</li>
+      <li>戦略的なコンテンツ配置</li>
+      <li>一貫性のあるテーマ展開</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="-実装手順">🔧 実装手順</h2>
+
+<ol>
+  <li><strong>既存のGoogle Apps Scriptに上記コードを追加</strong></li>
+  <li><strong><code class="language-plaintext highlighter-rouge">setupWeeklyBatchScheduling()</code> を実行</strong></li>
+  <li><strong>月曜日に週次確認メールが届く</strong></li>
+  <li><strong>指定フォーマットで返信</strong></li>
+  <li><strong>毎日自動で記事が投稿される</strong></li>
+</ol>
+
+<h2 id="️-注意事項">⚠️ 注意事項</h2>
+
+<ul>
+  <li>返信は月曜日中に行う必要があります</li>
+  <li>未返信の場合はデフォルト設定で投稿</li>
+  <li>週の途中での変更は次週から反映</li>
+</ul>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>合同会社Leadfive</h3>
+        <p>人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。</p>
+        <div class="company-info">
+          <p>〒530-0001</p>
+          <p>大阪府大阪市北区梅田１－１３－１</p>
+          <p>大阪梅田ツインタワーズ・サウス１５階</p>
+          <p>TEL: <a href="tel:06-7713-6747">06-7713-6747</a></p>
+          <p>EMAIL: <a href="mailto:leadfive.138@gmail.com">leadfive.138@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://x.com/leadfive138" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>サービス</h4>
+        <ul class="footer-links">
+          <li><a href="/services/lp-optimization/">AI×心理学 LP最適化</a></li>
+          <li><a href="/services/customer-analysis/">顧客心理データ分析</a></li>
+          <li><a href="/services/ai-automation/">AI自動化マーケティング</a></li>
+          <li><a href="/services/integrated-marketing/">統合マーケティング戦略</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>会社情報</h4>
+        <ul class="footer-links">
+          <li><a href="/company/">会社概要</a></li>
+          <li><a href="/company/#mission">ミッション</a></li>
+          <li><a href="/company/#access">アクセス</a></li>
+          <li><a href="#" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>リソース</h4>
+        <ul class="footer-links">
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/case-studies/">導入事例</a></li>
+          <!-- <li><a href="/resources/whitepaper/">ホワイトペーパー</a></li> -->
+          <li><a href="/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 合同会社Leadfive. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContactModal()">&times;</span>
+      <div class="modal-header">
+        <h2>お問い合わせ</h2>
+        <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+      </div>
+      <div class="modal-body">
+        <form id="contactModalForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-company">会社名 <span class="required">*</span></label>
+              <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
+            </div>
+            <div class="form-group">
+              <label for="modal-name">お名前 <span class="required">*</span></label>
+              <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-email">メールアドレス <span class="required">*</span></label>
+              <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+            </div>
+            <div class="form-group">
+              <label for="modal-phone">電話番号</label>
+              <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
+            <select id="modal-inquiry-type" name="inquiry_type" required>
+              <option value="">選択してください</option>
+              <option value="service">サービスについて</option>
+              <option value="consultation">無料相談の申し込み</option>
+              <option value="quotation">見積もり依頼</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" name="privacy" value="agreed" required>
+              <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- AI Analysis Modal -->
+  <div id="ai-analysis-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAIAnalysis()">&times;</span>
+      <h2 style="text-align: center;">無料AI分析診断</h2>
+      <p style="text-align: center;">あなたのビジネスに最適な戦略を30秒で診断します</p>
+      
+      <form class="ai-analysis-form">
+        <div class="form-group">
+          <label for="business-type">業種を選択してください</label>
+          <select id="business-type" name="business-type" required>
+            <option value="">選択してください</option>
+            <option value="ec">EC・オンライン販売</option>
+            <option value="retail">実店舗・小売</option>
+            <option value="service">サービス業</option>
+            <option value="btob">BtoB・法人向け</option>
+            <option value="beauty">美容・サロン</option>
+            <option value="consulting">コンサルティング</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="monthly-revenue">月間売上規模</label>
+          <select id="monthly-revenue" name="monthly-revenue" required>
+            <option value="">選択してください</option>
+            <option value="under-100">100万円未満</option>
+            <option value="100-500">100万円〜500万円</option>
+            <option value="500-1000">500万円〜1000万円</option>
+            <option value="1000-5000">1000万円〜5000万円</option>
+            <option value="over-5000">5000万円以上</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="main-challenge">最も大きな課題</label>
+          <select id="main-challenge" name="main-challenge" required>
+            <option value="">選択してください</option>
+            <option value="traffic">集客・アクセス数の不足</option>
+            <option value="conversion">成約率・CVRの低さ</option>
+            <option value="retention">リピーター・LTV向上</option>
+            <option value="cost">広告費・獲得コストの高騰</option>
+            <option value="analysis">データ分析・改善方法</option>
+            <option value="automation">業務効率・自動化</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">メールアドレス（結果送信用）</label>
+          <input type="email" id="email" name="email" placeholder="example@company.com" required>
+        </div>
+        
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-large">
+            無料で診断結果を受け取る
+          </button>
+        </div>
+      </form>
+      
+      <p class="privacy-note">
+        ※診断結果は入力いただいたメールアドレスに送信されます<br>
+        ※個人情報は厳重に管理し、第三者に提供することはありません
+      </p>
+    </div>
+  </div>
+  
+  <style>
+  .ai-analysis-form {
+    margin-top: 2rem;
+  }
+  
+  .ai-analysis-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .ai-analysis-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .ai-analysis-form .form-group select,
+  .ai-analysis-form .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .ai-analysis-form .form-group select:focus,
+  .ai-analysis-form .form-group input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  }
+  
+  .ai-analysis-form .form-group option {
+    background: #1f2937;
+    color: #fff;
+  }
+  
+  .privacy-note {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      margin: 10% auto;
+      padding: 1.5rem;
+    }
+    
+    .ai-analysis-form .form-group select,
+    .ai-analysis-form .form-group input {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+  </style>
+  
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/contact-modal.js"></script>
+  <script src="/assets/js/contact-handler-gas.js"></script>
+  
+</body>
+</html>

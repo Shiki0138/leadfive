@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="baseurl" content="">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>📅 ブログ自動投稿 ワークフロー＆スケジュール管理 | AI×心理学で売上を科学する Leadfive</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="📅 ブログ自動投稿 ワークフロー＆スケジュール管理" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<meta property="og:description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<link rel="canonical" href="https://leadfive138.com/docs/BLOG_AUTOMATION_WORKFLOW/" />
+<meta property="og:url" content="https://leadfive138.com/docs/BLOG_AUTOMATION_WORKFLOW/" />
+<meta property="og:site_name" content="AI×心理学で売上を科学する Leadfive" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="📅 ブログ自動投稿 ワークフロー＆スケジュール管理" />
+<meta name="twitter:site" content="@leadfive" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。","headline":"📅 ブログ自動投稿 ワークフロー＆スケジュール管理","url":"https://leadfive138.com/docs/BLOG_AUTOMATION_WORKFLOW/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <!-- Critical CSS for faster mobile loading -->
+  <style>
+    /* Critical CSS */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+    body.blog-page { background-color: #ffffff; color: #374151; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); }
+    body.blog-page .site-header { background: #1e3a8a !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
+    body.blog-page .navbar, body.blog-page nav.navbar { background: #1e3a8a !important; background-color: #1e3a8a !important; }
+    body.blog-page .nav-link, body.blog-page nav.navbar .nav-link, body.blog-page nav.navbar a, body.blog-page .navbar a { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; padding: 0.5rem 1rem !important; border-radius: 6px !important; margin: 0 0.2rem !important; border: none !important; text-shadow: none !important; }
+    body.blog-page .navbar-nav .nav-item .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page a.nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    .blog-page .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page .navbar-nav { background: transparent !important; }
+    body.blog-page .navbar-menu { background: transparent !important; }
+    body.blog-page .navbar-brand .logo-text { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    .navbar { padding: 1rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .btn { display: inline-block; padding: 0.75rem 2rem; border: none; border-radius: 9999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
+    .btn-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #ffffff; }
+    @media (max-width: 768px) { .container { padding: 0 15px; } }
+  </style>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFLZV7QS');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <header class="site-header" >
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/" class="logo">
+          <span class="logo-text" >LeadFive</span>
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="navbar-menu" id="navbarMenu">
+        
+        <!-- Regular navigation for non-blog pages -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/#philosophy" class="nav-link">理念</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#services" class="nav-link">サービス</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#case-studies" class="nav-link">実績</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog/" class="nav-link">ブログ</a>
+          </li>
+          <li class="nav-item">
+            <a href="/company/" class="nav-link">会社概要</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="openContactForm(); return false;">お問い合わせ</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu is handled by main.js -->
+  
+  <main>
+    <h1 id="-ブログ自動投稿-ワークフロースケジュール管理">📅 ブログ自動投稿 ワークフロー＆スケジュール管理</h1>
+
+<h2 id="-システム全体のワークフロー">🔄 システム全体のワークフロー</h2>
+
+<pre><code class="language-mermaid">graph LR
+    A[キーワード入力] --&gt; B{投稿方法}
+    B --&gt;|GitHub Actions| C[即時実行]
+    B --&gt;|メール| D[定期チェック]
+    B --&gt;|API| E[プログラム実行]
+    
+    C --&gt; F[AI生成]
+    D --&gt; F
+    E --&gt; F
+    
+    F --&gt; G[SEO最適化]
+    G --&gt; H[画像生成]
+    H --&gt; I[内部リンク]
+    I --&gt; J[記事公開]
+    
+    J --&gt; K[通知]
+    K --&gt; L[分析レポート]
+</code></pre>
+
+<h2 id="-スケジュール投稿システム">📆 スケジュール投稿システム</h2>
+
+<h3 id="1-週間投稿カレンダー">1. 週間投稿カレンダー</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>曜日</th>
+      <th>時間</th>
+      <th>テーマ</th>
+      <th>ターゲット</th>
+      <th>本能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>月曜</td>
+      <td>7:00</td>
+      <td>週始めの戦略</td>
+      <td>経営者・マネージャー</td>
+      <td>hierarchy（地位向上）</td>
+    </tr>
+    <tr>
+      <td>火曜</td>
+      <td>12:00</td>
+      <td>実践テクニック</td>
+      <td>実務担当者</td>
+      <td>learning（学習欲）</td>
+    </tr>
+    <tr>
+      <td>水曜</td>
+      <td>7:00</td>
+      <td>データ分析</td>
+      <td>アナリスト</td>
+      <td>survival（生存欲）</td>
+    </tr>
+    <tr>
+      <td>木曜</td>
+      <td>15:00</td>
+      <td>最新トレンド</td>
+      <td>イノベーター</td>
+      <td>territorial（競争優位）</td>
+    </tr>
+    <tr>
+      <td>金曜</td>
+      <td>10:00</td>
+      <td>成功事例</td>
+      <td>意思決定者</td>
+      <td>hierarchy（地位向上）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="2-google-sheetsでの管理">2. Google Sheetsでの管理</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>スプレッドシート構成:
+| 投稿日 | キーワード | カテゴリー | 優先度 | ステータス | URL |
+|--------|-----------|------------|--------|-----------|-----|
+| 月曜日 | AI戦略立案 | AIマーケ | 高 | 予定 | - |
+| 火曜日 | LP改善手法 | 実践技術 | 中 | 予定 | - |
+</code></pre></div></div>
+
+<h3 id="3-自動実行スクリプトgas">3. 自動実行スクリプト（GAS）</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 毎朝6時に実行</span>
+<span class="kd">function</span> <span class="nx">dailyBlogScheduler</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">sheet</span> <span class="o">=</span> <span class="nx">SpreadsheetApp</span><span class="p">.</span><span class="nx">getActiveSheet</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDay</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">todaysPosts</span> <span class="o">=</span> <span class="nx">getTodaysSchedule</span><span class="p">(</span><span class="nx">sheet</span><span class="p">,</span> <span class="nx">today</span><span class="p">);</span>
+  
+  <span class="nx">todaysPosts</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">post</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">post</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">予定</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">triggerBlogGeneration</span><span class="p">(</span><span class="nx">post</span><span class="p">);</span>
+      <span class="nx">updateStatus</span><span class="p">(</span><span class="nx">sheet</span><span class="p">,</span> <span class="nx">post</span><span class="p">.</span><span class="nx">row</span><span class="p">,</span> <span class="dl">'</span><span class="s1">処理中</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-コンテンツ戦略フロー">🎯 コンテンツ戦略フロー</h2>
+
+<h3 id="フェーズ1-企画月初">フェーズ1: 企画（月初）</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. キーワードリサーチ
+   - Google Trends分析
+   - 競合サイト調査
+   - 検索ボリューム確認
+
+2. 月間テーマ設定
+   - 第1週: 基礎知識
+   - 第2週: 実践方法
+   - 第3週: 事例紹介
+   - 第4週: 応用・発展
+</code></pre></div></div>
+
+<h3 id="フェーズ2-生成週次">フェーズ2: 生成（週次）</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. バッチ生成（日曜夜）
+   - 翌週分を一括生成
+   - レビュー用ドラフト作成
+
+2. 品質チェック
+   - SEOスコア確認
+   - 事実確認
+   - リンク確認
+</code></pre></div></div>
+
+<h3 id="フェーズ3-公開日次">フェーズ3: 公開（日次）</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 自動公開
+   - 予定時刻に自動投稿
+   - SNS自動シェア
+
+2. 効果測定
+   - PV/UU追跡
+   - 滞在時間分析
+   - CVR測定
+</code></pre></div></div>
+
+<h2 id="-高度な自動化設定">🔧 高度な自動化設定</h2>
+
+<h3 id="1-github-actions-ワークフロー">1. GitHub Actions ワークフロー</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">📅 定期ブログ投稿</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="c1"># 毎日朝7時（JST）</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">22</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">generate-blog</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">今日の投稿を確認</span>
+        <span class="na">id</span><span class="pi">:</span> <span class="s">check-schedule</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">DAY=$(date +%A)</span>
+          <span class="s">echo "today=$DAY" &gt;&gt; $GITHUB_OUTPUT</span>
+          
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">キーワード取得</span>
+        <span class="na">id</span><span class="pi">:</span> <span class="s">get-keyword</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s"># Google Sheetsから今日のキーワードを取得</span>
+          <span class="s">KEYWORD=$(curl -s "$")</span>
+          <span class="s">echo "keyword=$KEYWORD" &gt;&gt; $GITHUB_OUTPUT</span>
+          
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ブログ生成</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">steps.get-keyword.outputs.keyword != ''</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">./.github/actions/generate-blog</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">keyword</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">api-key</span><span class="pi">:</span> <span class="s">$</span>
+</code></pre></div></div>
+
+<h3 id="2-メール自動応答システム">2. メール自動応答システム</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Gmail + GAS 連携</span>
+<span class="kd">function</span> <span class="nx">processEmailRequests</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">threads</span> <span class="o">=</span> <span class="nx">GmailApp</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="dl">'</span><span class="s1">subject:"ブログ投稿" is:unread</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="nx">threads</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">thread</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">thread</span><span class="p">.</span><span class="nx">getMessages</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kd">const</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">getPlainBody</span><span class="p">();</span>
+    
+    <span class="c1">// キーワード抽出</span>
+    <span class="kd">const</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nx">extractKeyword</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">schedule</span> <span class="o">=</span> <span class="nx">extractSchedule</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">keyword</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">schedule</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">immediate</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 即時投稿</span>
+        <span class="nx">generateBlogPost</span><span class="p">(</span><span class="nx">keyword</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// スケジュール登録</span>
+        <span class="nx">addToSchedule</span><span class="p">(</span><span class="nx">keyword</span><span class="p">,</span> <span class="nx">schedule</span><span class="p">);</span>
+      <span class="p">}</span>
+      
+      <span class="c1">// 確認メール送信</span>
+      <span class="nx">message</span><span class="p">.</span><span class="nx">reply</span><span class="p">(</span><span class="s2">`ブログ投稿を受け付けました。\nキーワード: </span><span class="p">${</span><span class="nx">keyword</span><span class="p">}</span><span class="s2">\n投稿予定: </span><span class="p">${</span><span class="nx">schedule</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="nx">thread</span><span class="p">.</span><span class="nx">markRead</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="3-slack連携通知">3. Slack連携通知</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 投稿完了通知</span>
+<span class="kd">function</span> <span class="nx">notifySlack</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">webhook</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">SLACK_WEBHOOK_URL</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">text</span><span class="p">:</span> <span class="dl">"</span><span class="s2">新しいブログが公開されました！</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">attachments</span><span class="p">:</span> <span class="p">[{</span>
+      <span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">good</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">title</span><span class="p">:</span> <span class="nx">post</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+      <span class="na">title_link</span><span class="p">:</span> <span class="nx">post</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span>
+      <span class="na">fields</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">カテゴリー</span><span class="dl">"</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="nx">post</span><span class="p">.</span><span class="nx">category</span><span class="p">,</span> <span class="na">short</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">文字数</span><span class="dl">"</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="nx">post</span><span class="p">.</span><span class="nx">wordCount</span><span class="p">,</span> <span class="na">short</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SEOスコア</span><span class="dl">"</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="nx">post</span><span class="p">.</span><span class="nx">seoScore</span><span class="p">,</span> <span class="na">short</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="na">footer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">LeadFive Blog System</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">ts</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span>
+    <span class="p">}]</span>
+  <span class="p">};</span>
+  
+  <span class="nx">fetch</span><span class="p">(</span><span class="nx">webhook</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-パフォーマンストラッキング">📊 パフォーマンストラッキング</h2>
+
+<h3 id="1-自動レポート生成">1. 自動レポート生成</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 週次レポート</span>
+<span class="kd">function</span> <span class="nx">generateWeeklyReport</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">posts</span> <span class="o">=</span> <span class="nx">getWeeksPosts</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">metrics</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">totalPosts</span><span class="p">:</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+    <span class="na">totalViews</span><span class="p">:</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">p</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">p</span><span class="p">.</span><span class="nx">views</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="na">avgEngagement</span><span class="p">:</span> <span class="nx">calculateAvgEngagement</span><span class="p">(</span><span class="nx">posts</span><span class="p">),</span>
+    <span class="na">topPost</span><span class="p">:</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">views</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">views</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="na">keywords</span><span class="p">:</span> <span class="nx">extractTopKeywords</span><span class="p">(</span><span class="nx">posts</span><span class="p">)</span>
+  <span class="p">};</span>
+  
+  <span class="kd">const</span> <span class="nx">report</span> <span class="o">=</span> <span class="nx">createReport</span><span class="p">(</span><span class="nx">metrics</span><span class="p">);</span>
+  <span class="nx">sendReportEmail</span><span class="p">(</span><span class="nx">report</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="2-abテスト自動化">2. A/Bテスト自動化</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// タイトルA/Bテスト</span>
+<span class="kd">function</span> <span class="nx">abTestTitles</span><span class="p">(</span><span class="nx">keyword</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">titleA</span> <span class="o">=</span> <span class="nx">generateTitle</span><span class="p">(</span><span class="nx">keyword</span><span class="p">,</span> <span class="dl">'</span><span class="s1">emotional</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">titleB</span> <span class="o">=</span> <span class="nx">generateTitle</span><span class="p">(</span><span class="nx">keyword</span><span class="p">,</span> <span class="dl">'</span><span class="s1">logical</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="c1">// 50%ずつ振り分け</span>
+  <span class="kd">const</span> <span class="nx">useA</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">selectedTitle</span> <span class="o">=</span> <span class="nx">useA</span> <span class="p">?</span> <span class="nx">titleA</span> <span class="p">:</span> <span class="nx">titleB</span><span class="p">;</span>
+  
+  <span class="c1">// 結果を記録</span>
+  <span class="nx">trackABTest</span><span class="p">({</span>
+    <span class="nx">keyword</span><span class="p">,</span>
+    <span class="na">variant</span><span class="p">:</span> <span class="nx">useA</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">:</span> <span class="nx">selectedTitle</span>
+  <span class="p">});</span>
+  
+  <span class="k">return</span> <span class="nx">selectedTitle</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-ベストプラクティス">🚀 ベストプラクティス</h2>
+
+<h3 id="1-コンテンツカレンダー戦略">1. コンテンツカレンダー戦略</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>月間テーマ例（12月）:
+第1週: 2025年のAIトレンド予測
+第2週: 年末の振り返りと改善点
+第3週: 来年の計画立案方法
+第4週: 新年の目標設定
+</code></pre></div></div>
+
+<h3 id="2-緊急投稿フロー">2. 緊急投稿フロー</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>トレンド発生時:
+1. Googleトレンド急上昇を検知
+2. 関連キーワードで即座に記事生成
+3. 1時間以内に公開
+4. SNSで拡散
+</code></pre></div></div>
+
+<h3 id="3-品質管理チェックリスト">3. 品質管理チェックリスト</h3>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />SEOスコア80点以上</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />内部リンク3本以上</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />画像alt属性設定</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />メタディスクリプション最適化</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />モバイル表示確認</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />表示速度3秒以内</li>
+</ul>
+
+<h2 id="-分析と改善">🔍 分析と改善</h2>
+
+<h3 id="月次振り返りテンプレート">月次振り返りテンプレート</h3>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## 2024年12月 ブログパフォーマンス</span>
+
+<span class="gu">### 📊 全体指標</span>
+<span class="p">-</span> 投稿数: 25記事
+<span class="p">-</span> 総PV: 45,000
+<span class="p">-</span> 平均滞在時間: 3:24
+<span class="p">-</span> CVR: 2.3%
+
+<span class="gu">### 🎯 トップパフォーマー</span>
+<span class="p">1.</span> 「ChatGPTで売上3倍」- 8,500PV
+<span class="p">2.</span> 「AI活用の落とし穴」- 6,200PV
+<span class="p">3.</span> 「2025年の準備」- 5,800PV
+
+<span class="gu">### 💡 改善点</span>
+<span class="p">-</span> 火曜日の投稿時間を12時→10時に変更
+<span class="p">-</span> 事例系コンテンツを週2回に増加
+<span class="p">-</span> 画像をより具体的なものに差し替え
+
+<span class="gu">### 📅 来月の計画</span>
+<span class="p">-</span> 新年特集シリーズ（5記事）
+<span class="p">-</span> インタビュー記事の追加
+<span class="p">-</span> 動画コンテンツとの連携
+</code></pre></div></div>
+
+<h2 id="-成功指標">🎉 成功指標</h2>
+
+<h3 id="kpi設定">KPI設定</h3>
+<ul>
+  <li><strong>量的指標</strong>: 月間100記事生成</li>
+  <li><strong>質的指標</strong>: 平均SEOスコア85点</li>
+  <li><strong>効果指標</strong>: オーガニック流入200%増</li>
+  <li><strong>効率指標</strong>: 記事作成時間90%削減</li>
+</ul>
+
+<p>これらの自動化により、高品質なコンテンツを継続的に提供し、ビジネス成長を加速させます。</p>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>合同会社Leadfive</h3>
+        <p>人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。</p>
+        <div class="company-info">
+          <p>〒530-0001</p>
+          <p>大阪府大阪市北区梅田１－１３－１</p>
+          <p>大阪梅田ツインタワーズ・サウス１５階</p>
+          <p>TEL: <a href="tel:06-7713-6747">06-7713-6747</a></p>
+          <p>EMAIL: <a href="mailto:leadfive.138@gmail.com">leadfive.138@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://x.com/leadfive138" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>サービス</h4>
+        <ul class="footer-links">
+          <li><a href="/services/lp-optimization/">AI×心理学 LP最適化</a></li>
+          <li><a href="/services/customer-analysis/">顧客心理データ分析</a></li>
+          <li><a href="/services/ai-automation/">AI自動化マーケティング</a></li>
+          <li><a href="/services/integrated-marketing/">統合マーケティング戦略</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>会社情報</h4>
+        <ul class="footer-links">
+          <li><a href="/company/">会社概要</a></li>
+          <li><a href="/company/#mission">ミッション</a></li>
+          <li><a href="/company/#access">アクセス</a></li>
+          <li><a href="#" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>リソース</h4>
+        <ul class="footer-links">
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/case-studies/">導入事例</a></li>
+          <!-- <li><a href="/resources/whitepaper/">ホワイトペーパー</a></li> -->
+          <li><a href="/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 合同会社Leadfive. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContactModal()">&times;</span>
+      <div class="modal-header">
+        <h2>お問い合わせ</h2>
+        <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+      </div>
+      <div class="modal-body">
+        <form id="contactModalForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-company">会社名 <span class="required">*</span></label>
+              <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
+            </div>
+            <div class="form-group">
+              <label for="modal-name">お名前 <span class="required">*</span></label>
+              <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-email">メールアドレス <span class="required">*</span></label>
+              <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+            </div>
+            <div class="form-group">
+              <label for="modal-phone">電話番号</label>
+              <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
+            <select id="modal-inquiry-type" name="inquiry_type" required>
+              <option value="">選択してください</option>
+              <option value="service">サービスについて</option>
+              <option value="consultation">無料相談の申し込み</option>
+              <option value="quotation">見積もり依頼</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" name="privacy" value="agreed" required>
+              <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- AI Analysis Modal -->
+  <div id="ai-analysis-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAIAnalysis()">&times;</span>
+      <h2 style="text-align: center;">無料AI分析診断</h2>
+      <p style="text-align: center;">あなたのビジネスに最適な戦略を30秒で診断します</p>
+      
+      <form class="ai-analysis-form">
+        <div class="form-group">
+          <label for="business-type">業種を選択してください</label>
+          <select id="business-type" name="business-type" required>
+            <option value="">選択してください</option>
+            <option value="ec">EC・オンライン販売</option>
+            <option value="retail">実店舗・小売</option>
+            <option value="service">サービス業</option>
+            <option value="btob">BtoB・法人向け</option>
+            <option value="beauty">美容・サロン</option>
+            <option value="consulting">コンサルティング</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="monthly-revenue">月間売上規模</label>
+          <select id="monthly-revenue" name="monthly-revenue" required>
+            <option value="">選択してください</option>
+            <option value="under-100">100万円未満</option>
+            <option value="100-500">100万円〜500万円</option>
+            <option value="500-1000">500万円〜1000万円</option>
+            <option value="1000-5000">1000万円〜5000万円</option>
+            <option value="over-5000">5000万円以上</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="main-challenge">最も大きな課題</label>
+          <select id="main-challenge" name="main-challenge" required>
+            <option value="">選択してください</option>
+            <option value="traffic">集客・アクセス数の不足</option>
+            <option value="conversion">成約率・CVRの低さ</option>
+            <option value="retention">リピーター・LTV向上</option>
+            <option value="cost">広告費・獲得コストの高騰</option>
+            <option value="analysis">データ分析・改善方法</option>
+            <option value="automation">業務効率・自動化</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">メールアドレス（結果送信用）</label>
+          <input type="email" id="email" name="email" placeholder="example@company.com" required>
+        </div>
+        
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-large">
+            無料で診断結果を受け取る
+          </button>
+        </div>
+      </form>
+      
+      <p class="privacy-note">
+        ※診断結果は入力いただいたメールアドレスに送信されます<br>
+        ※個人情報は厳重に管理し、第三者に提供することはありません
+      </p>
+    </div>
+  </div>
+  
+  <style>
+  .ai-analysis-form {
+    margin-top: 2rem;
+  }
+  
+  .ai-analysis-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .ai-analysis-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .ai-analysis-form .form-group select,
+  .ai-analysis-form .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .ai-analysis-form .form-group select:focus,
+  .ai-analysis-form .form-group input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  }
+  
+  .ai-analysis-form .form-group option {
+    background: #1f2937;
+    color: #fff;
+  }
+  
+  .privacy-note {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      margin: 10% auto;
+      padding: 1.5rem;
+    }
+    
+    .ai-analysis-form .form-group select,
+    .ai-analysis-form .form-group input {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+  </style>
+  
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/contact-modal.js"></script>
+  <script src="/assets/js/contact-handler-gas.js"></script>
+  
+</body>
+</html>

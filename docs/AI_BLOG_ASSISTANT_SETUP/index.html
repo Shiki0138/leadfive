@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="baseurl" content="">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AI ブログアシスタント セットアップガイド | AI×心理学で売上を科学する Leadfive</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="AI ブログアシスタント セットアップガイド" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<meta property="og:description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<link rel="canonical" href="https://leadfive138.com/docs/AI_BLOG_ASSISTANT_SETUP/" />
+<meta property="og:url" content="https://leadfive138.com/docs/AI_BLOG_ASSISTANT_SETUP/" />
+<meta property="og:site_name" content="AI×心理学で売上を科学する Leadfive" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AI ブログアシスタント セットアップガイド" />
+<meta name="twitter:site" content="@leadfive" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。","headline":"AI ブログアシスタント セットアップガイド","url":"https://leadfive138.com/docs/AI_BLOG_ASSISTANT_SETUP/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <!-- Critical CSS for faster mobile loading -->
+  <style>
+    /* Critical CSS */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+    body.blog-page { background-color: #ffffff; color: #374151; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); }
+    body.blog-page .site-header { background: #1e3a8a !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
+    body.blog-page .navbar, body.blog-page nav.navbar { background: #1e3a8a !important; background-color: #1e3a8a !important; }
+    body.blog-page .nav-link, body.blog-page nav.navbar .nav-link, body.blog-page nav.navbar a, body.blog-page .navbar a { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; padding: 0.5rem 1rem !important; border-radius: 6px !important; margin: 0 0.2rem !important; border: none !important; text-shadow: none !important; }
+    body.blog-page .navbar-nav .nav-item .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page a.nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    .blog-page .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page .navbar-nav { background: transparent !important; }
+    body.blog-page .navbar-menu { background: transparent !important; }
+    body.blog-page .navbar-brand .logo-text { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    .navbar { padding: 1rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .btn { display: inline-block; padding: 0.75rem 2rem; border: none; border-radius: 9999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
+    .btn-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #ffffff; }
+    @media (max-width: 768px) { .container { padding: 0 15px; } }
+  </style>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFLZV7QS');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <header class="site-header" >
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/" class="logo">
+          <span class="logo-text" >LeadFive</span>
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="navbar-menu" id="navbarMenu">
+        
+        <!-- Regular navigation for non-blog pages -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/#philosophy" class="nav-link">理念</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#services" class="nav-link">サービス</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#case-studies" class="nav-link">実績</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog/" class="nav-link">ブログ</a>
+          </li>
+          <li class="nav-item">
+            <a href="/company/" class="nav-link">会社概要</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="openContactForm(); return false;">お問い合わせ</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu is handled by main.js -->
+  
+  <main>
+    <h1 id="ai-ブログアシスタント-セットアップガイド">AI ブログアシスタント セットアップガイド</h1>
+
+<h2 id="-aiが毎朝5つの記事案を提案選ぶだけで投稿">🤖 AIが毎朝5つの記事案を提案！選ぶだけで投稿</h2>
+
+<h3 id="概要">概要</h3>
+
+<p>毎朝7時にAIが以下を分析して最適な記事案を提案：</p>
+<ul>
+  <li>現在のトレンド</li>
+  <li>曜日別の読者心理</li>
+  <li>過去の人気記事</li>
+  <li>競合の動向</li>
+</ul>
+
+<p>あなたは提案から選ぶだけ。10-15分で高品質な記事が自動投稿されます。</p>
+
+<h2 id="動作イメージ">動作イメージ</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>朝7時の通知:
+🌅 おはようございます！今日のブログ記事の提案です：
+
+1. 🔴 ChatGPTで売上を3倍にした3つの施策
+   実際の成功事例から学ぶAI活用の極意
+   👥 中小企業の経営者 | 📈 具体的な実装方法がわかる
+
+2. 🟡 8つの本能で解き明かす購買心理
+   なぜ人は衝動買いをしてしまうのか？
+   👥 ECサイト運営者 | 📈 CVR向上の具体策を習得
+
+3. 🔴 競合に差をつけるAI×心理学戦略
+   LeadFive独自のフレームワーク公開
+   👥 マーケティング責任者 | 📈 差別化戦略の立案
+
+[1. ChatGPTで売上を3倍にした...]
+[2. 8つの本能で解き明かす...]
+[3. 競合に差をつける...]
+[🔄 他の提案を見る]
+[⏭️ 今日はスキップ]
+</code></pre></div></div>
+
+<h2 id="セットアップ手順10分で完了">セットアップ手順（10分で完了）</h2>
+
+<h3 id="1-telegram-bot-を作成3分">1. Telegram Bot を作成（3分）</h3>
+
+<ol>
+  <li>Telegram で <a href="https://t.me/botfather">@BotFather</a> を開く</li>
+  <li><code class="language-plaintext highlighter-rouge">/newbot</code> と送信</li>
+  <li>Bot名を入力: <code class="language-plaintext highlighter-rouge">LeadFive AI Assistant</code></li>
+  <li>Username を入力: <code class="language-plaintext highlighter-rouge">leadfive_ai_bot</code></li>
+  <li><strong>Token を保存</strong>: <code class="language-plaintext highlighter-rouge">1234567890:ABCdefGHI...</code></li>
+</ol>
+
+<h3 id="2-chat-id-を取得1分">2. Chat ID を取得（1分）</h3>
+
+<ol>
+  <li>作成したBotにメッセージを送信</li>
+  <li>ブラウザでアクセス:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://api.telegram.org/bot[YOUR_TOKEN]/getUpdates
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">"chat":{"id":123456789}</code> の数字をメモ</li>
+</ol>
+
+<h3 id="3-github-設定3分">3. GitHub 設定（3分）</h3>
+
+<h4 id="personal-access-token">Personal Access Token:</h4>
+<ol>
+  <li>GitHub → Settings → Developer settings</li>
+  <li>Personal access tokens → Generate new token</li>
+  <li>権限: <code class="language-plaintext highlighter-rouge">repo</code>, <code class="language-plaintext highlighter-rouge">workflow</code></li>
+  <li>Token を保存</li>
+</ol>
+
+<h4 id="repository-secrets">Repository Secrets:</h4>
+<p>Settings → Secrets → Actions で追加:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ANTHROPIC_API_KEY</code>: Claude API キー</li>
+  <li>Bot用のトークンは後述のRailwayで設定</li>
+</ul>
+
+<h3 id="4-railway-でデプロイ3分">4. Railway でデプロイ（3分）</h3>
+
+<ol>
+  <li><a href="https://railway.app">Railway.app</a> にログイン</li>
+  <li>New Project → Deploy from GitHub repo</li>
+  <li>このリポジトリを選択</li>
+  <li>環境変数を設定:</li>
+</ol>
+
+<pre><code class="language-env">TELEGRAM_BOT_TOKEN=your_bot_token
+TELEGRAM_CHAT_ID=your_chat_id
+GITHUB_TOKEN=your_github_token
+GITHUB_OWNER=YOUR_GITHUB_USERNAME
+GITHUB_REPO=leadfive-demo
+ANTHROPIC_API_KEY=your_claude_api_key
+</code></pre>
+
+<ol>
+  <li>Deploy!</li>
+</ol>
+
+<h3 id="5-packagejson-を追加">5. package.json を追加</h3>
+
+<p>プロジェクトルートに作成:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leadfive-ai-blog-assistant"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scripts/telegram-blog-bot-v2.js"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node scripts/telegram-blog-bot-v2.js"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"node-telegram-bot-api"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.64.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"axios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.6.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"node-cron"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.0.3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@anthropic-ai/sdk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.20.0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"engines"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"node"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&gt;=18.0.0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="使い方">使い方</h2>
+
+<h3 id="基本操作">基本操作</h3>
+
+<ol>
+  <li><strong>毎朝7時</strong>: 5つの提案が届く</li>
+  <li><strong>タップして選択</strong>: 気に入った記事案を選ぶ</li>
+  <li><strong>カスタマイズ可能</strong>: 必要に応じて調整</li>
+  <li><strong>自動投稿</strong>: 10-15分で公開</li>
+</ol>
+
+<h3 id="コマンド">コマンド</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">/start</code> - 初期設定と説明</li>
+  <li><code class="language-plaintext highlighter-rouge">/propose</code> - 今すぐ提案を受け取る</li>
+  <li><code class="language-plaintext highlighter-rouge">/trends</code> - トレンド分析を表示</li>
+  <li><code class="language-plaintext highlighter-rouge">/performance</code> - 記事のパフォーマンス</li>
+</ul>
+
+<h3 id="カスタマイズオプション">カスタマイズオプション</h3>
+
+<p>選択後に表示される画面で：</p>
+<ul>
+  <li><strong>✅ このまま作成</strong>: そのまま記事を生成</li>
+  <li><strong>✏️ カスタマイズ</strong>: 以下を指定可能
+    <ul>
+      <li>タイトル変更</li>
+      <li>文字数指定</li>
+      <li>追加要素（図表、事例など）</li>
+      <li>トーンの調整</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="aiの提案ロジック">AIの提案ロジック</h2>
+
+<h3 id="曜日別の最適化">曜日別の最適化</h3>
+
+<ul>
+  <li><strong>月曜</strong>: モチベーション系、週始めの施策</li>
+  <li><strong>火曜</strong>: 実践的How-to、具体的手法</li>
+  <li><strong>水曜</strong>: データ分析、数値レポート</li>
+  <li><strong>木曜</strong>: トレンド分析、競合研究</li>
+  <li><strong>金曜</strong>: 週末学習向けコンテンツ</li>
+  <li><strong>土日</strong>: 戦略的思考、深い洞察</li>
+</ul>
+
+<h3 id="緊急度の判定">緊急度の判定</h3>
+
+<ul>
+  <li>🔴 <strong>高</strong>: トレンド性が高い、すぐ書くべき</li>
+  <li>🟡 <strong>中</strong>: 定番トピック、安定した需要</li>
+  <li>🟢 <strong>低</strong>: 深掘り系、じっくり読まれる</li>
+</ul>
+
+<h2 id="トラブルシューティング">トラブルシューティング</h2>
+
+<h3 id="bot-が応答しない">Bot が応答しない</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Railway のログを確認</span>
+railway logs
+</code></pre></div></div>
+
+<h3 id="提案の質を上げたい">提案の質を上げたい</h3>
+<p>環境変数に追加:</p>
+<pre><code class="language-env">COMPANY_FOCUS=B2B,SaaS,EC  # 重点業界
+CONTENT_STYLE=practical     # 実践重視
+</code></pre>
+
+<h3 id="投稿時間を変更">投稿時間を変更</h3>
+<p><code class="language-plaintext highlighter-rouge">telegram-blog-bot-v2.js</code> の cron を編集:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 朝6時に変更</span>
+<span class="nx">cron</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="dl">'</span><span class="s1">0 6 * * *</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</code></pre></div></div>
+
+<h2 id="高度な使い方">高度な使い方</h2>
+
+<h3 id="1-チーム利用">1. チーム利用</h3>
+<ul>
+  <li>グループチャットにBot追加</li>
+  <li>複数人で提案を議論</li>
+  <li>最終決定者が選択</li>
+</ul>
+
+<h3 id="2-abテスト">2. A/Bテスト</h3>
+<ul>
+  <li>同じトピックで2パターン作成</li>
+  <li>パフォーマンスを比較</li>
+  <li>勝ちパターンを学習</li>
+</ul>
+
+<h3 id="3-シリーズ記事">3. シリーズ記事</h3>
+<ul>
+  <li>カスタマイズで「全5回シリーズの第1回」と指定</li>
+  <li>自動的に続編も提案</li>
+</ul>
+
+<h2 id="効果測定">効果測定</h2>
+
+<p>Railway のダッシュボードで確認：</p>
+<ul>
+  <li>日別の投稿数</li>
+  <li>選択された提案の傾向</li>
+  <li>カスタマイズ率</li>
+  <li>スキップ率</li>
+</ul>
+
+<p>これらのデータから、AIが学習して提案の質が向上します。</p>
+
+<hr />
+
+<p>🎉 これで毎朝の記事作成が楽しみになります！</p>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>合同会社Leadfive</h3>
+        <p>人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。</p>
+        <div class="company-info">
+          <p>〒530-0001</p>
+          <p>大阪府大阪市北区梅田１－１３－１</p>
+          <p>大阪梅田ツインタワーズ・サウス１５階</p>
+          <p>TEL: <a href="tel:06-7713-6747">06-7713-6747</a></p>
+          <p>EMAIL: <a href="mailto:leadfive.138@gmail.com">leadfive.138@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://x.com/leadfive138" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>サービス</h4>
+        <ul class="footer-links">
+          <li><a href="/services/lp-optimization/">AI×心理学 LP最適化</a></li>
+          <li><a href="/services/customer-analysis/">顧客心理データ分析</a></li>
+          <li><a href="/services/ai-automation/">AI自動化マーケティング</a></li>
+          <li><a href="/services/integrated-marketing/">統合マーケティング戦略</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>会社情報</h4>
+        <ul class="footer-links">
+          <li><a href="/company/">会社概要</a></li>
+          <li><a href="/company/#mission">ミッション</a></li>
+          <li><a href="/company/#access">アクセス</a></li>
+          <li><a href="#" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>リソース</h4>
+        <ul class="footer-links">
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/case-studies/">導入事例</a></li>
+          <!-- <li><a href="/resources/whitepaper/">ホワイトペーパー</a></li> -->
+          <li><a href="/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 合同会社Leadfive. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContactModal()">&times;</span>
+      <div class="modal-header">
+        <h2>お問い合わせ</h2>
+        <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+      </div>
+      <div class="modal-body">
+        <form id="contactModalForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-company">会社名 <span class="required">*</span></label>
+              <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
+            </div>
+            <div class="form-group">
+              <label for="modal-name">お名前 <span class="required">*</span></label>
+              <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-email">メールアドレス <span class="required">*</span></label>
+              <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+            </div>
+            <div class="form-group">
+              <label for="modal-phone">電話番号</label>
+              <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
+            <select id="modal-inquiry-type" name="inquiry_type" required>
+              <option value="">選択してください</option>
+              <option value="service">サービスについて</option>
+              <option value="consultation">無料相談の申し込み</option>
+              <option value="quotation">見積もり依頼</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" name="privacy" value="agreed" required>
+              <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- AI Analysis Modal -->
+  <div id="ai-analysis-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAIAnalysis()">&times;</span>
+      <h2 style="text-align: center;">無料AI分析診断</h2>
+      <p style="text-align: center;">あなたのビジネスに最適な戦略を30秒で診断します</p>
+      
+      <form class="ai-analysis-form">
+        <div class="form-group">
+          <label for="business-type">業種を選択してください</label>
+          <select id="business-type" name="business-type" required>
+            <option value="">選択してください</option>
+            <option value="ec">EC・オンライン販売</option>
+            <option value="retail">実店舗・小売</option>
+            <option value="service">サービス業</option>
+            <option value="btob">BtoB・法人向け</option>
+            <option value="beauty">美容・サロン</option>
+            <option value="consulting">コンサルティング</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="monthly-revenue">月間売上規模</label>
+          <select id="monthly-revenue" name="monthly-revenue" required>
+            <option value="">選択してください</option>
+            <option value="under-100">100万円未満</option>
+            <option value="100-500">100万円〜500万円</option>
+            <option value="500-1000">500万円〜1000万円</option>
+            <option value="1000-5000">1000万円〜5000万円</option>
+            <option value="over-5000">5000万円以上</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="main-challenge">最も大きな課題</label>
+          <select id="main-challenge" name="main-challenge" required>
+            <option value="">選択してください</option>
+            <option value="traffic">集客・アクセス数の不足</option>
+            <option value="conversion">成約率・CVRの低さ</option>
+            <option value="retention">リピーター・LTV向上</option>
+            <option value="cost">広告費・獲得コストの高騰</option>
+            <option value="analysis">データ分析・改善方法</option>
+            <option value="automation">業務効率・自動化</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">メールアドレス（結果送信用）</label>
+          <input type="email" id="email" name="email" placeholder="example@company.com" required>
+        </div>
+        
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-large">
+            無料で診断結果を受け取る
+          </button>
+        </div>
+      </form>
+      
+      <p class="privacy-note">
+        ※診断結果は入力いただいたメールアドレスに送信されます<br>
+        ※個人情報は厳重に管理し、第三者に提供することはありません
+      </p>
+    </div>
+  </div>
+  
+  <style>
+  .ai-analysis-form {
+    margin-top: 2rem;
+  }
+  
+  .ai-analysis-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .ai-analysis-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .ai-analysis-form .form-group select,
+  .ai-analysis-form .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .ai-analysis-form .form-group select:focus,
+  .ai-analysis-form .form-group input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  }
+  
+  .ai-analysis-form .form-group option {
+    background: #1f2937;
+    color: #fff;
+  }
+  
+  .privacy-note {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      margin: 10% auto;
+      padding: 1.5rem;
+    }
+    
+    .ai-analysis-form .form-group select,
+    .ai-analysis-form .form-group input {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+  </style>
+  
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/contact-modal.js"></script>
+  <script src="/assets/js/contact-handler-gas.js"></script>
+  
+</body>
+</html>

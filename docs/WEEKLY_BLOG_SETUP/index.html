@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="baseurl" content="">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>週間ブログ自動投稿システム セットアップガイド | AI×心理学で売上を科学する Leadfive</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="週間ブログ自動投稿システム セットアップガイド" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<meta property="og:description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<link rel="canonical" href="https://leadfive138.com/docs/WEEKLY_BLOG_SETUP/" />
+<meta property="og:url" content="https://leadfive138.com/docs/WEEKLY_BLOG_SETUP/" />
+<meta property="og:site_name" content="AI×心理学で売上を科学する Leadfive" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="週間ブログ自動投稿システム セットアップガイド" />
+<meta name="twitter:site" content="@leadfive" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。","headline":"週間ブログ自動投稿システム セットアップガイド","url":"https://leadfive138.com/docs/WEEKLY_BLOG_SETUP/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <!-- Critical CSS for faster mobile loading -->
+  <style>
+    /* Critical CSS */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+    body.blog-page { background-color: #ffffff; color: #374151; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); }
+    body.blog-page .site-header { background: #1e3a8a !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
+    body.blog-page .navbar, body.blog-page nav.navbar { background: #1e3a8a !important; background-color: #1e3a8a !important; }
+    body.blog-page .nav-link, body.blog-page nav.navbar .nav-link, body.blog-page nav.navbar a, body.blog-page .navbar a { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; padding: 0.5rem 1rem !important; border-radius: 6px !important; margin: 0 0.2rem !important; border: none !important; text-shadow: none !important; }
+    body.blog-page .navbar-nav .nav-item .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page a.nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    .blog-page .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page .navbar-nav { background: transparent !important; }
+    body.blog-page .navbar-menu { background: transparent !important; }
+    body.blog-page .navbar-brand .logo-text { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    .navbar { padding: 1rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .btn { display: inline-block; padding: 0.75rem 2rem; border: none; border-radius: 9999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
+    .btn-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #ffffff; }
+    @media (max-width: 768px) { .container { padding: 0 15px; } }
+  </style>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFLZV7QS');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <header class="site-header" >
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/" class="logo">
+          <span class="logo-text" >LeadFive</span>
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="navbar-menu" id="navbarMenu">
+        
+        <!-- Regular navigation for non-blog pages -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/#philosophy" class="nav-link">理念</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#services" class="nav-link">サービス</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#case-studies" class="nav-link">実績</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog/" class="nav-link">ブログ</a>
+          </li>
+          <li class="nav-item">
+            <a href="/company/" class="nav-link">会社概要</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="openContactForm(); return false;">お問い合わせ</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu is handled by main.js -->
+  
+  <main>
+    <h1 id="週間ブログ自動投稿システム-セットアップガイド">週間ブログ自動投稿システム セットアップガイド</h1>
+
+<h2 id="システム概要">システム概要</h2>
+
+<p>週1回の確認メールで7日間連続自動投稿を実現するシステムです。</p>
+
+<h3 id="-動作フロー">🔄 動作フロー</h3>
+<ol>
+  <li><strong>毎週月曜日7時</strong> - Google Apps Scriptから週間計画メール送信</li>
+  <li><strong>メール返信</strong> - 「承認」で7日間の投稿スケジュール開始</li>
+  <li><strong>翌日朝9時から</strong> - 毎日1記事ずつ自動生成・投稿（7日間）</li>
+  <li><strong>完了</strong> - 次の月曜日に新しい週間計画メール</li>
+</ol>
+
+<h2 id="-セットアップ手順">🛠 セットアップ手順</h2>
+
+<h3 id="1-google-apps-script設定">1. Google Apps Script設定</h3>
+
+<h4 id="ファイルのアップロード">ファイルのアップロード</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 新しい週間システムファイルをGoogle Apps Scriptにアップロード</span>
+<span class="nb">cp </span>scripts/email-blog-automation-weekly.gs <span class="o">[</span>Google Apps Script プロジェクト]
+</code></pre></div></div>
+
+<h4 id="必要な設定変更">必要な設定変更</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">recipientEmail</span><span class="p">:</span> <span class="dl">'</span><span class="s1">your-actual-email@gmail.com</span><span class="dl">'</span><span class="p">,</span>    <span class="c1">// ← あなたのメールアドレス</span>
+  <span class="na">githubToken</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_GITHUB_TOKEN</span><span class="dl">'</span><span class="p">,</span>                 <span class="c1">// ← GitHub Personal Access Token  </span>
+  <span class="na">githubOwner</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_GITHUB_USERNAME</span><span class="dl">'</span><span class="p">,</span>              <span class="c1">// ← あなたのGitHubユーザー名</span>
+  <span class="na">githubRepo</span><span class="p">:</span> <span class="dl">'</span><span class="s1">leadfive-demo</span><span class="dl">'</span><span class="p">,</span>                      <span class="c1">// ← リポジトリ名</span>
+  <span class="na">anthropicApiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_ANTHROPIC_API_KEY</span><span class="dl">'</span>        <span class="c1">// ← Claude APIキー</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="トリガー設定">トリガー設定</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Google Apps Script で実行</span>
+<span class="kd">function</span> <span class="nx">setupWeeklyTriggers</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 毎週月曜日7時に提案送信</span>
+  <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">newTrigger</span><span class="p">(</span><span class="dl">'</span><span class="s1">sendWeeklyBlogProposal</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">timeBased</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">onWeekDay</span><span class="p">(</span><span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">WeekDay</span><span class="p">.</span><span class="nx">MONDAY</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">atHour</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+  
+  <span class="c1">// 10分ごとに返信チェック</span>
+  <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">newTrigger</span><span class="p">(</span><span class="dl">'</span><span class="s1">processWeeklyEmailReplies</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">timeBased</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">everyMinutes</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 実行してトリガーを設定</span>
+<span class="nx">setupWeeklyTriggers</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="2-github-actions設定">2. GitHub Actions設定</h3>
+
+<h4 id="必要なシークレット設定">必要なシークレット設定</h4>
+<p>GitHub Settings → Secrets and variables → Actions で以下を設定:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...        <span class="c"># Claude API キー</span>
+<span class="nv">UNSPLASH_API_KEY</span><span class="o">=</span>...                <span class="c"># 画像生成用（オプション）</span>
+<span class="nv">EMAIL_USERNAME</span><span class="o">=</span>your@gmail.com       <span class="c"># 通知メール送信用</span>
+<span class="nv">EMAIL_PASSWORD</span><span class="o">=</span>your-app-password    <span class="c"># Gmailアプリパスワード</span>
+<span class="nv">RECIPIENT_EMAIL</span><span class="o">=</span>your@gmail.com      <span class="c"># 通知受信用メールアドレス</span>
+</code></pre></div></div>
+
+<h4 id="ワークフローファイルの配置">ワークフローファイルの配置</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 既に作成済み</span>
+.github/workflows/weekly-blog-system.yml
+</code></pre></div></div>
+
+<h3 id="3-nodejs-スケジューラー設定">3. Node.js スケジューラー設定</h3>
+
+<h4 id="環境変数の設定">環境変数の設定</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># .env ファイルに追加</span>
+<span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
+<span class="nv">UNSPLASH_API_KEY</span><span class="o">=</span>...
+</code></pre></div></div>
+
+<h4 id="週間スケジューラーのテスト">週間スケジューラーのテスト</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>leadfive-demo
+
+<span class="c"># スケジュール初期化テスト</span>
+node scripts/weekly-blog-scheduler.js init
+
+<span class="c"># 日次投稿テスト</span>
+node scripts/weekly-blog-scheduler.js daily
+
+<span class="c"># 状況確認</span>
+node scripts/weekly-blog-scheduler.js status
+
+<span class="c"># 緊急停止テスト</span>
+node scripts/weekly-blog-scheduler.js stop
+</code></pre></div></div>
+
+<h2 id="-メールテンプレート例">📧 メールテンプレート例</h2>
+
+<h3 id="週間計画メール月曜日7時送信">週間計画メール（月曜日7時送信）</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>件名: 【LeadFive】08月12日からの週間ブログ計画 - 返信で承認
+
+内容:
+📅 08月12日からの週間ブログ計画
+翌日から7日間連続投稿
+
+お疲れさまでした！
+来週のブログ記事計画（7記事）をご提案します。
+「承認」と返信すると、翌日から7日間連続で投稿開始！
+
+📅 週間スケジュール
+1. 08/13(火) - AI戦略編
+   提案タイトル: AI戦略で売上3倍を実現する5つの方法
+   
+2. 08/14(水) - 実践テクニック編  
+   提案タイトル: 2025年最新版：実装方法完全ガイド
+   
+... (7日分)
+
+返信オプション:
+✅ 「承認」 → 7日間の自動投稿開始
+✏️ 「修正 [日数] [指示]」 → 部分修正
+❌ 「スキップ」 → 今週は投稿しない
+🔄 「再生成」 → 新しい7日間プランを作成
+</code></pre></div></div>
+
+<h3 id="承認確認メール">承認確認メール</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>件名: ✅ 週間ブログスケジュール設定完了
+
+7日間の自動投稿スケジュールを設定しました。
+
+📅 投稿開始: 明日朝9時から
+📝 投稿数: 7記事（連続投稿）
+🔗 進捗確認: [GitHub Actions URL]
+
+緊急停止が必要な場合は、「緊急停止」というタイトルでIssueを作成してください。
+</code></pre></div></div>
+
+<h2 id="-運用方法">🔧 運用方法</h2>
+
+<h3 id="通常の週次運用">通常の週次運用</h3>
+<ol>
+  <li><strong>月曜日朝7時</strong> - 自動的に週間計画メールが届く</li>
+  <li><strong>メール確認</strong> - 7日間の記事計画を確認</li>
+  <li><strong>返信</strong> - 「承認」または修正指示を返信</li>
+  <li><strong>自動実行</strong> - 翌日朝9時から7日間連続投稿</li>
+  <li><strong>進捗確認</strong> - GitHub ActionsやWebサイトで投稿状況を確認</li>
+</ol>
+
+<h3 id="修正カスタマイズ">修正・カスタマイズ</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 返信例</span>
+承認                                    <span class="c"># → そのまま7日間投稿開始</span>
+修正 3日目 事例をEC業界にして              <span class="c"># → 3日目の内容を修正</span>
+修正 全体 美容業界に特化して              <span class="c"># → 全体のテーマを修正  </span>
+スキップ                                <span class="c"># → 今週は投稿しない</span>
+再生成                                  <span class="c"># → 完全に新しいプランを作成</span>
+</code></pre></div></div>
+
+<h3 id="緊急停止方法">緊急停止方法</h3>
+<ol>
+  <li><strong>GitHub Issue作成</strong> - タイトルに「緊急停止」を含める</li>
+  <li><strong>自動実行</strong> - GitHub Actionsが緊急停止処理を実行</li>
+  <li><strong>確認メール</strong> - 停止完了通知が届く</li>
+</ol>
+
+<h2 id="-監視レポート機能">📊 監視・レポート機能</h2>
+
+<h3 id="自動生成されるレポート">自動生成されるレポート</h3>
+<ul>
+  <li><strong>日次投稿ログ</strong> - 毎日の投稿結果</li>
+  <li><strong>週次サマリー</strong> - 週間投稿統計</li>
+  <li><strong>エラーレポート</strong> - 投稿失敗時の詳細</li>
+</ul>
+
+<h3 id="手動確認コマンド">手動確認コマンド</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 現在の状況確認</span>
+node scripts/weekly-blog-scheduler.js status
+
+<span class="c"># GitHub Actionsでステータスレポート実行</span>
+<span class="c"># Repository → Actions → Weekly Blog System → Run workflow → status-check</span>
+</code></pre></div></div>
+
+<h2 id="-トラブルシューティング">🚨 トラブルシューティング</h2>
+
+<h3 id="よくある問題">よくある問題</h3>
+
+<h4 id="1-メールが送信されない">1. メールが送信されない</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Google Apps Script のログを確認</span>
+console.log<span class="o">()</span> の出力をチェック
+
+<span class="c"># トリガーが正しく設定されているか確認</span>
+ScriptApp.getProjectTriggers<span class="o">()</span> で確認
+</code></pre></div></div>
+
+<h4 id="2-github-actions-が実行されない">2. GitHub Actions が実行されない</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># シークレットが正しく設定されているか確認</span>
+<span class="c"># Repository → Settings → Secrets and variables → Actions</span>
+
+<span class="c"># ワークフローファイルの構文エラーをチェック</span>
+<span class="c"># Actions タブでエラーログを確認</span>
+</code></pre></div></div>
+
+<h4 id="3-記事生成エラー">3. 記事生成エラー</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># API キーの有効性を確認</span>
+curl <span class="nt">-H</span> <span class="s2">"x-api-key: YOUR_ANTHROPIC_API_KEY"</span> https://api.anthropic.com/v1/messages
+
+<span class="c"># ログファイルを確認</span>
+<span class="nb">tail</span> <span class="nt">-f</span> leadfive-demo/_data/weekly-schedule.json
+</code></pre></div></div>
+
+<h4 id="4-投稿が重複する">4. 投稿が重複する</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># スケジュールファイルをリセット</span>
+<span class="nb">rm </span>leadfive-demo/_data/weekly-schedule.json
+
+<span class="c"># スケジューラーを再初期化</span>
+node scripts/weekly-blog-scheduler.js init
+</code></pre></div></div>
+
+<h3 id="エラー時の対処法">エラー時の対処法</h3>
+<ol>
+  <li><strong>ログ確認</strong> - GitHub Actions の詳細ログをチェック</li>
+  <li><strong>手動実行</strong> - 各コンポーネントを個別にテスト</li>
+  <li><strong>設定見直し</strong> - API キーとシークレットの確認</li>
+  <li><strong>緊急停止</strong> - 問題が解決するまで投稿を停止</li>
+</ol>
+
+<h2 id="-カスタマイズ方法">📝 カスタマイズ方法</h2>
+
+<h3 id="記事テーマの変更">記事テーマの変更</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scripts/weekly-blog-scheduler.js</span>
+<span class="kd">const</span> <span class="nx">CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">WEEKLY_THEMES</span><span class="p">:</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span> <span class="na">theme</span><span class="p">:</span> <span class="dl">'</span><span class="s1">カスタムテーマ1</span><span class="dl">'</span><span class="p">,</span> <span class="na">focus</span><span class="p">:</span> <span class="dl">'</span><span class="s1">独自の内容</span><span class="dl">'</span><span class="p">,</span> <span class="na">keywords</span><span class="p">:</span> <span class="p">[...]</span> <span class="p">},</span>
+    <span class="c1">// ... 7日分をカスタマイズ</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="投稿時間の変更">投稿時間の変更</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Google Apps Script</span>
+<span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">newTrigger</span><span class="p">(</span><span class="dl">'</span><span class="s1">sendWeeklyBlogProposal</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">timeBased</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">onWeekDay</span><span class="p">(</span><span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">WeekDay</span><span class="p">.</span><span class="nx">TUESDAY</span><span class="p">)</span>  <span class="c1">// 火曜日に変更</span>
+  <span class="p">.</span><span class="nx">atHour</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>                             <span class="c1">// 8時に変更</span>
+  <span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="記事数の変更">記事数の変更</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scripts/weekly-blog-scheduler.js</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">day</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">day</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">day</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 7日 → 5日に変更</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-チェックリスト">📋 チェックリスト</h2>
+
+<h3 id="初期セットアップ完了確認">初期セットアップ完了確認</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Google Apps Script の設定完了</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />GitHub Secrets の設定完了</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />週間スケジューラーの動作確認</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />メール送信テスト実行</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />GitHub Actions の動作確認</li>
+</ul>
+
+<h3 id="運用開始前確認">運用開始前確認</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />トリガーの正常動作確認</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />メール受信テスト</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />返信処理テスト</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />記事生成テスト</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />緊急停止テスト</li>
+</ul>
+
+<h3 id="週次確認項目">週次確認項目</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />月曜日のメール受信</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />週間計画の内容確認</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />投稿状況の確認</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />エラーログのチェック</li>
+</ul>
+
+<p>このシステムで、週1回の確認だけで高品質なブログ記事を7日間連続で自動投稿できます！</p>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>合同会社Leadfive</h3>
+        <p>人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。</p>
+        <div class="company-info">
+          <p>〒530-0001</p>
+          <p>大阪府大阪市北区梅田１－１３－１</p>
+          <p>大阪梅田ツインタワーズ・サウス１５階</p>
+          <p>TEL: <a href="tel:06-7713-6747">06-7713-6747</a></p>
+          <p>EMAIL: <a href="mailto:leadfive.138@gmail.com">leadfive.138@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://x.com/leadfive138" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>サービス</h4>
+        <ul class="footer-links">
+          <li><a href="/services/lp-optimization/">AI×心理学 LP最適化</a></li>
+          <li><a href="/services/customer-analysis/">顧客心理データ分析</a></li>
+          <li><a href="/services/ai-automation/">AI自動化マーケティング</a></li>
+          <li><a href="/services/integrated-marketing/">統合マーケティング戦略</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>会社情報</h4>
+        <ul class="footer-links">
+          <li><a href="/company/">会社概要</a></li>
+          <li><a href="/company/#mission">ミッション</a></li>
+          <li><a href="/company/#access">アクセス</a></li>
+          <li><a href="#" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>リソース</h4>
+        <ul class="footer-links">
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/case-studies/">導入事例</a></li>
+          <!-- <li><a href="/resources/whitepaper/">ホワイトペーパー</a></li> -->
+          <li><a href="/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 合同会社Leadfive. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContactModal()">&times;</span>
+      <div class="modal-header">
+        <h2>お問い合わせ</h2>
+        <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+      </div>
+      <div class="modal-body">
+        <form id="contactModalForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-company">会社名 <span class="required">*</span></label>
+              <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
+            </div>
+            <div class="form-group">
+              <label for="modal-name">お名前 <span class="required">*</span></label>
+              <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-email">メールアドレス <span class="required">*</span></label>
+              <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+            </div>
+            <div class="form-group">
+              <label for="modal-phone">電話番号</label>
+              <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
+            <select id="modal-inquiry-type" name="inquiry_type" required>
+              <option value="">選択してください</option>
+              <option value="service">サービスについて</option>
+              <option value="consultation">無料相談の申し込み</option>
+              <option value="quotation">見積もり依頼</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" name="privacy" value="agreed" required>
+              <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- AI Analysis Modal -->
+  <div id="ai-analysis-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAIAnalysis()">&times;</span>
+      <h2 style="text-align: center;">無料AI分析診断</h2>
+      <p style="text-align: center;">あなたのビジネスに最適な戦略を30秒で診断します</p>
+      
+      <form class="ai-analysis-form">
+        <div class="form-group">
+          <label for="business-type">業種を選択してください</label>
+          <select id="business-type" name="business-type" required>
+            <option value="">選択してください</option>
+            <option value="ec">EC・オンライン販売</option>
+            <option value="retail">実店舗・小売</option>
+            <option value="service">サービス業</option>
+            <option value="btob">BtoB・法人向け</option>
+            <option value="beauty">美容・サロン</option>
+            <option value="consulting">コンサルティング</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="monthly-revenue">月間売上規模</label>
+          <select id="monthly-revenue" name="monthly-revenue" required>
+            <option value="">選択してください</option>
+            <option value="under-100">100万円未満</option>
+            <option value="100-500">100万円〜500万円</option>
+            <option value="500-1000">500万円〜1000万円</option>
+            <option value="1000-5000">1000万円〜5000万円</option>
+            <option value="over-5000">5000万円以上</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="main-challenge">最も大きな課題</label>
+          <select id="main-challenge" name="main-challenge" required>
+            <option value="">選択してください</option>
+            <option value="traffic">集客・アクセス数の不足</option>
+            <option value="conversion">成約率・CVRの低さ</option>
+            <option value="retention">リピーター・LTV向上</option>
+            <option value="cost">広告費・獲得コストの高騰</option>
+            <option value="analysis">データ分析・改善方法</option>
+            <option value="automation">業務効率・自動化</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">メールアドレス（結果送信用）</label>
+          <input type="email" id="email" name="email" placeholder="example@company.com" required>
+        </div>
+        
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-large">
+            無料で診断結果を受け取る
+          </button>
+        </div>
+      </form>
+      
+      <p class="privacy-note">
+        ※診断結果は入力いただいたメールアドレスに送信されます<br>
+        ※個人情報は厳重に管理し、第三者に提供することはありません
+      </p>
+    </div>
+  </div>
+  
+  <style>
+  .ai-analysis-form {
+    margin-top: 2rem;
+  }
+  
+  .ai-analysis-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .ai-analysis-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .ai-analysis-form .form-group select,
+  .ai-analysis-form .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .ai-analysis-form .form-group select:focus,
+  .ai-analysis-form .form-group input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  }
+  
+  .ai-analysis-form .form-group option {
+    background: #1f2937;
+    color: #fff;
+  }
+  
+  .privacy-note {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      margin: 10% auto;
+      padding: 1.5rem;
+    }
+    
+    .ai-analysis-form .form-group select,
+    .ai-analysis-form .form-group input {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+  </style>
+  
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/contact-modal.js"></script>
+  <script src="/assets/js/contact-handler-gas.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="baseurl" content="">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>📧 メール返信処理機能の追加 | AI×心理学で売上を科学する Leadfive</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="📧 メール返信処理機能の追加" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<meta property="og:description" content="人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。" />
+<link rel="canonical" href="https://leadfive138.com/docs/EMAIL_REPLY_HANDLER%202/" />
+<meta property="og:url" content="https://leadfive138.com/docs/EMAIL_REPLY_HANDLER%202/" />
+<meta property="og:site_name" content="AI×心理学で売上を科学する Leadfive" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="📧 メール返信処理機能の追加" />
+<meta name="twitter:site" content="@leadfive" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。","headline":"📧 メール返信処理機能の追加","url":"https://leadfive138.com/docs/EMAIL_REPLY_HANDLER%202/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+  <!-- Critical CSS for faster mobile loading -->
+  <style>
+    /* Critical CSS */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #0a0a0a; color: #ffffff; }
+    body.blog-page { background-color: #ffffff; color: #374151; }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); }
+    body.blog-page .site-header { background: #1e3a8a !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
+    body.blog-page .navbar, body.blog-page nav.navbar { background: #1e3a8a !important; background-color: #1e3a8a !important; }
+    body.blog-page .nav-link, body.blog-page nav.navbar .nav-link, body.blog-page nav.navbar a, body.blog-page .navbar a { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; padding: 0.5rem 1rem !important; border-radius: 6px !important; margin: 0 0.2rem !important; border: none !important; text-shadow: none !important; }
+    body.blog-page .navbar-nav .nav-item .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page a.nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    .blog-page .nav-link { color: #ffffff !important; background-color: #1e3a8a !important; background: #1e3a8a !important; }
+    body.blog-page .navbar-nav { background: transparent !important; }
+    body.blog-page .navbar-menu { background: transparent !important; }
+    body.blog-page .navbar-brand .logo-text { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    .navbar { padding: 1rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .btn { display: inline-block; padding: 0.75rem 2rem; border: none; border-radius: 9999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
+    .btn-primary { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #ffffff; }
+    @media (max-width: 768px) { .container { padding: 0 15px; } }
+  </style>
+  
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFLZV7QS');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <header class="site-header" >
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/" class="logo">
+          <span class="logo-text" >LeadFive</span>
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="navbar-menu" id="navbarMenu">
+        
+        <!-- Regular navigation for non-blog pages -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/#philosophy" class="nav-link">理念</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#services" class="nav-link">サービス</a>
+          </li>
+          <li class="nav-item">
+            <a href="/#case-studies" class="nav-link">実績</a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog/" class="nav-link">ブログ</a>
+          </li>
+          <li class="nav-item">
+            <a href="/company/" class="nav-link">会社概要</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="openContactForm(); return false;">お問い合わせ</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu is handled by main.js -->
+  
+  <main>
+    <h1 id="-メール返信処理機能の追加">📧 メール返信処理機能の追加</h1>
+
+<h2 id="-現在の状況">🚨 現在の状況</h2>
+<ul>
+  <li>AI提案メール送信：✅ 成功</li>
+  <li>メール返信処理：❌ まだ未実装</li>
+</ul>
+
+<h2 id="-返信処理機能を追加">🔧 返信処理機能を追加</h2>
+
+<p>既存コードの<strong>最後に</strong>以下を追加してください：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ===== 📧 メール返信処理システム =====</span>
+
+<span class="kd">function</span> <span class="nx">processEmailReplies</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// より正確な検索クエリでメールを検索</span>
+    <span class="kd">const</span> <span class="nx">threads</span> <span class="o">=</span> <span class="nx">GmailApp</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span>
+      <span class="s2">`to:</span><span class="p">${</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">recipientEmail</span><span class="p">}</span><span class="s2"> subject:"バズ予測提案" is:unread newer_than:2d`</span><span class="p">,</span>
+      <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span>
+    <span class="p">);</span>
+    
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`📬 検索結果: </span><span class="p">${</span><span class="nx">threads</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">件のスレッド`</span><span class="p">);</span>
+    
+    <span class="nx">threads</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">thread</span><span class="p">,</span> <span class="nx">threadIndex</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">messages</span> <span class="o">=</span> <span class="nx">thread</span><span class="p">.</span><span class="nx">getMessages</span><span class="p">();</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`📧 スレッド</span><span class="p">${</span><span class="nx">threadIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="nx">messages</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">件のメッセージ`</span><span class="p">);</span>
+      
+      <span class="c1">// 最新のメッセージから順に処理</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">messages</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">messages</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="kd">const</span> <span class="k">from</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">getFrom</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">subject</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">getSubject</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">isUnread</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">isUnread</span><span class="p">();</span>
+        
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`  📨 メッセージ</span><span class="p">${</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">: from=</span><span class="p">${</span><span class="k">from</span><span class="p">}</span><span class="s2">, subject=</span><span class="p">${</span><span class="nx">subject</span><span class="p">}</span><span class="s2">, unread=</span><span class="p">${</span><span class="nx">isUnread</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        
+        <span class="c1">// 自分からの返信で、未読で、バズ予測提案に関するもの</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">from</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">recipientEmail</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isUnread</span> <span class="o">&amp;&amp;</span> <span class="nx">subject</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1">バズ予測提案</span><span class="dl">'</span><span class="p">))</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="nx">bodyText</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">getPlainBody</span><span class="p">();</span>
+          <span class="kd">const</span> <span class="nx">replyLines</span> <span class="o">=</span> <span class="nx">bodyText</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="se">\n</span><span class="dl">'</span><span class="p">);</span>
+          <span class="kd">const</span> <span class="nx">firstLine</span> <span class="o">=</span> <span class="nx">replyLines</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">trim</span><span class="p">();</span>
+          
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`🔍 返信内容の最初の行: "</span><span class="p">${</span><span class="nx">firstLine</span><span class="p">}</span><span class="s2">"`</span><span class="p">);</span>
+          
+          <span class="c1">// 数字で始まる返信を検出（1-5の数字）</span>
+          <span class="kd">const</span> <span class="nx">numberMatch</span> <span class="o">=</span> <span class="nx">firstLine</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^</span><span class="se">([</span><span class="sr">1-5</span><span class="se">])</span><span class="sr">/</span><span class="p">);</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">numberMatch</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">selectedNumber</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">numberMatch</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`✅ 選択番号検出: </span><span class="p">${</span><span class="nx">selectedNumber</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+            
+            <span class="c1">// 最新の提案を取得</span>
+            <span class="kd">const</span> <span class="nx">latestProposalId</span> <span class="o">=</span> <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">getProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">latestProposalId</span><span class="dl">'</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">latestProposalId</span><span class="p">)</span> <span class="p">{</span>
+              <span class="kd">const</span> <span class="nx">proposalsJson</span> <span class="o">=</span> <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">getProperty</span><span class="p">(</span><span class="nx">latestProposalId</span><span class="p">);</span>
+              <span class="k">if</span> <span class="p">(</span><span class="nx">proposalsJson</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">const</span> <span class="nx">proposals</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">proposalsJson</span><span class="p">);</span>
+                
+                <span class="k">if</span> <span class="p">(</span><span class="nx">selectedNumber</span> <span class="o">&lt;=</span> <span class="nx">proposals</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="kd">const</span> <span class="nx">selectedProposal</span> <span class="o">=</span> <span class="nx">proposals</span><span class="p">[</span><span class="nx">selectedNumber</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+                  <span class="kd">const</span> <span class="nx">customInstruction</span> <span class="o">=</span> <span class="nx">firstLine</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">trim</span><span class="p">();</span> <span class="c1">// 数字以降のカスタマイズ指示</span>
+                  
+                  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`📝 選択された提案: </span><span class="p">${</span><span class="nx">selectedProposal</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+                  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`🛠️ カスタマイズ指示: "</span><span class="p">${</span><span class="nx">customInstruction</span><span class="p">}</span><span class="s2">"`</span><span class="p">);</span>
+                  
+                  <span class="c1">// 記事作成処理</span>
+                  <span class="kd">const</span> <span class="nx">success</span> <span class="o">=</span> <span class="nx">createBlogPost</span><span class="p">(</span><span class="nx">selectedProposal</span><span class="p">,</span> <span class="nx">customInstruction</span><span class="p">);</span>
+                  
+                  <span class="k">if</span> <span class="p">(</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// 成功の確認メール</span>
+                    <span class="nx">sendConfirmationEmail</span><span class="p">(</span><span class="nx">selectedProposal</span><span class="p">,</span> <span class="nx">customInstruction</span><span class="p">);</span>
+                    <span class="nx">message</span><span class="p">.</span><span class="nx">markRead</span><span class="p">();</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ 処理完了 - メッセージを既読にしました</span><span class="dl">'</span><span class="p">);</span>
+                  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ 記事作成に失敗</span><span class="dl">'</span><span class="p">);</span>
+                  <span class="p">}</span>
+                  
+                  <span class="k">return</span><span class="p">;</span> <span class="c1">// 処理完了のため終了</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`⚠️ 範囲外の番号: </span><span class="p">${</span><span class="nx">selectedNumber</span><span class="p">}</span><span class="s2"> (最大: </span><span class="p">${</span><span class="nx">proposals</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">)`</span><span class="p">);</span>
+                <span class="p">}</span>
+              <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ 提案データが見つかりません</span><span class="dl">'</span><span class="p">);</span>
+              <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ 最新の提案IDが見つかりません</span><span class="dl">'</span><span class="p">);</span>
+            <span class="p">}</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`⚠️ 数字で始まっていない返信: "</span><span class="p">${</span><span class="nx">firstLine</span><span class="p">}</span><span class="s2">"`</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">📧 メール返信処理完了</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ メール返信処理エラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 📝 記事作成システム =====</span>
+
+<span class="kd">function</span> <span class="nx">createBlogPost</span><span class="p">(</span><span class="nx">proposal</span><span class="p">,</span> <span class="nx">customInstruction</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">filename</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">today</span><span class="p">,</span> <span class="dl">'</span><span class="s1">JST</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">yyyy-MM-dd</span><span class="dl">'</span><span class="p">)}</span><span class="s2">-</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[^\w\s]</span><span class="sr">/gi</span><span class="p">,</span> <span class="dl">''</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">\s</span><span class="sr">+/g</span><span class="p">,</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()}</span><span class="s2">.md`</span><span class="p">;</span>
+    
+    <span class="c1">// 記事内容生成</span>
+    <span class="kd">const</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">generateBlogContent</span><span class="p">(</span><span class="nx">proposal</span><span class="p">,</span> <span class="nx">customInstruction</span><span class="p">);</span>
+    
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`📝 記事作成: </span><span class="p">${</span><span class="nx">filename</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`📄 文字数: </span><span class="p">${</span><span class="nx">content</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">文字`</span><span class="p">);</span>
+    
+    <span class="c1">// GitHub Actions をトリガー（トークンが設定されている場合）</span>
+    <span class="kd">const</span> <span class="nx">githubToken</span> <span class="o">=</span> <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">getProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">GITHUB_TOKEN</span><span class="dl">'</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">githubToken</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">success</span> <span class="o">=</span> <span class="nx">triggerGitHubActions</span><span class="p">(</span><span class="nx">proposal</span><span class="p">,</span> <span class="nx">customInstruction</span><span class="p">,</span> <span class="nx">content</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ GitHub Actions トリガー成功</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ GitHub Actions トリガー失敗</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">⚠️ GitHub Token未設定 - ローカルで記事を生成しました</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">記事内容:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">content</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">...</span><span class="dl">'</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ 記事作成エラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 📄 記事内容生成 =====</span>
+
+<span class="kd">function</span> <span class="nx">generateBlogContent</span><span class="p">(</span><span class="nx">proposal</span><span class="p">,</span> <span class="nx">customInstruction</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">dateStr</span> <span class="o">=</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">today</span><span class="p">,</span> <span class="dl">'</span><span class="s1">JST</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">yyyy-MM-dd</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="c1">// カスタマイズ指示に応じた内容調整</span>
+  <span class="kd">let</span> <span class="nx">focusArea</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">customInstruction</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1">データ</span><span class="dl">'</span><span class="p">))</span> <span class="nx">focusArea</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">データ・統計重視</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">customInstruction</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1">事例</span><span class="dl">'</span><span class="p">))</span> <span class="nx">focusArea</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">実例・ケーススタディ重視</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">customInstruction</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1">美容</span><span class="dl">'</span><span class="p">))</span> <span class="nx">focusArea</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">美容業界特化</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">customInstruction</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="dl">'</span><span class="s1">実践</span><span class="dl">'</span><span class="p">))</span> <span class="nx">focusArea</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">実践的手順重視</span><span class="dl">'</span><span class="p">;</span>
+  
+  <span class="kd">const</span> <span class="nx">content</span> <span class="o">=</span> <span class="s2">`---
+layout: blog-post
+title: "</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2">"
+date: </span><span class="p">${</span><span class="nx">dateStr</span><span class="p">}</span><span class="s2">
+categories: [</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">category</span><span class="p">}</span><span class="s2">]
+tags: [</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)}</span><span class="s2">]
+author: "LeadFive AI"
+description: "</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">description</span><span class="p">}</span><span class="s2">"
+image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&amp;h=630&amp;fit=crop"
+---
+
+# </span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2">
+
+## 🎯 この記事の要点
+
+**ターゲット読者**: </span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">target</span><span class="p">}</span><span class="s2">  
+**読了時間**: </span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">readTime</span><span class="p">}</span><span class="s2">  
+**緊急度**: </span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">urgency</span><span class="p">}</span><span class="s2">  
+</span><span class="p">${</span><span class="nx">focusArea</span> <span class="p">?</span> <span class="s2">`**重点ポイント**: </span><span class="p">${</span><span class="nx">focusArea</span><span class="p">}</span><span class="s2">`</span> <span class="p">:</span> <span class="dl">''</span><span class="p">}</span><span class="s2">
+
+## 📊 はじめに：なぜ今この話題なのか
+
+</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">description</span><span class="p">}</span><span class="s2">
+
+現在、</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">target</span><span class="p">}</span><span class="s2">の間で</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="s2">への注目が急速に高まっています。しかし、多くの企業が表面的な理解に留まり、本当の効果を得られていないのが現状です。
+
+## 💡 LeadFive独自の8つの本能アプローチ
+
+### 1. 生存本能 - リスク回避の心理
+</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">target</span><span class="p">}</span><span class="s2">が最も恐れるリスクを理解し、それを解決する提案をすることで信頼を獲得します。
+
+### 2. 競争本能 - 他社との差別化
+競合他社がまだ気づいていない</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="s2">の活用法を先取りすることで、圧倒的な優位性を築けます。
+
+### 3. 好奇心 - 新しい可能性への興味
+</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span><span class="s2">の新たな活用方法を示すことで、顧客の興味を引きつけます。
+
+## 🚀 実践的な活用方法
+
+### ステップ1: 現状分析
+まず、あなたの</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">target</span><span class="p">}</span><span class="s2">としての現在のポジションを把握しましょう。
+
+### ステップ2: 戦略立案
+</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="s2">を活用した具体的な戦略を立案します。
+
+### ステップ3: 実装開始
+小さく始めて、効果を確認しながらスケールアップしていきます。
+
+## 📈 期待できる効果
+
+この手法を実践することで、以下のような効果が期待できます：
+
+- **売上向上**: 平均して20-50%の改善
+- **効率化**: 作業時間を30-40%短縮
+- **顧客満足度**: リピート率15-25%向上
+
+## ⚠️ よくある失敗パターンと対策
+
+### 失敗パターン1: 表面的な導入
+多くの企業が犯す最大の間違いは、</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="s2">を表面的にしか理解せずに導入することです。
+
+**対策**: 根本的な仕組みを理解してから段階的に導入する
+
+### 失敗パターン2: 短期的な視点
+すぐに結果を求めすぎて、継続性を軽視してしまうケースです。
+
+**対策**: 中長期的な視点で取り組み、小さな改善を積み重ねる
+
+## 🎯 まとめ：今すぐ始められること
+
+</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">title</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/：.*/</span><span class="p">,</span> <span class="dl">''</span><span class="p">)}</span><span class="s2">を成功させるためには、以下の3つのポイントが重要です：
+
+1. **正しい理解**: 表面的でなく、本質を理解する
+2. **段階的実装**: 小さく始めて着実に拡大
+3. **継続的改善**: データを基に常に最適化
+
+## 🚀 LeadFiveでさらに効果を最大化
+
+LeadFiveでは、</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">target</span><span class="p">}</span><span class="s2">に特化したAI×心理学マーケティングサポートを提供しています。
+
+</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="s2">の導入から最適化まで、あなたのビジネスに合わせたカスタマイズされたソリューションで、確実な成果を実現します。
+
+### 📞 無料相談のご案内
+
+このブログを読んで「実際に導入してみたい」と思われた方は、ぜひ無料相談をご利用ください。あなたのビジネスに最適な</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="s2">活用戦略をご提案いたします。
+
+---
+
+**この記事はAI×心理学マーケティングの専門企業LeadFiveが、最新のトレンド分析と豊富な実例を基に作成しました。**
+
+</span><span class="p">${</span><span class="nx">customInstruction</span> <span class="p">?</span> <span class="s2">`\n**カスタマイズ**: </span><span class="p">${</span><span class="nx">customInstruction</span><span class="p">}</span><span class="s2">`</span> <span class="p">:</span> <span class="dl">''</span><span class="p">}</span><span class="s2">
+`</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="nx">content</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 🔗 GitHub Actions トリガー =====</span>
+
+<span class="kd">function</span> <span class="nx">triggerGitHubActions</span><span class="p">(</span><span class="nx">proposal</span><span class="p">,</span> <span class="nx">customInstruction</span><span class="p">,</span> <span class="nx">content</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">githubToken</span> <span class="o">=</span> <span class="nx">PropertiesService</span><span class="p">.</span><span class="nx">getScriptProperties</span><span class="p">().</span><span class="nx">getProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">GITHUB_TOKEN</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">githubToken</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">⚠️ GitHub Token が設定されていません</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">event_type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">create-blog-post</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">client_payload</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="nx">proposal</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+        <span class="na">description</span><span class="p">:</span> <span class="nx">proposal</span><span class="p">.</span><span class="nx">description</span><span class="p">,</span>
+        <span class="na">category</span><span class="p">:</span> <span class="nx">proposal</span><span class="p">.</span><span class="nx">category</span><span class="p">,</span>
+        <span class="na">target</span><span class="p">:</span> <span class="nx">proposal</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
+        <span class="na">keywords</span><span class="p">:</span> <span class="nx">proposal</span><span class="p">.</span><span class="nx">keywords</span><span class="p">,</span>
+        <span class="na">customInstruction</span><span class="p">:</span> <span class="nx">customInstruction</span> <span class="o">||</span> <span class="dl">''</span><span class="p">,</span>
+        <span class="na">content</span><span class="p">:</span> <span class="nx">content</span><span class="p">,</span>
+        <span class="na">timestamp</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">(),</span>
+        <span class="na">urgency</span><span class="p">:</span> <span class="nx">proposal</span><span class="p">.</span><span class="nx">urgency</span><span class="p">,</span>
+        <span class="na">buzzScore</span><span class="p">:</span> <span class="nx">proposal</span><span class="p">.</span><span class="nx">buzzScore</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+    
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">UrlFetchApp</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span>
+      <span class="s2">`https://api.github.com/repos/</span><span class="p">${</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">githubOwner</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">githubRepo</span><span class="p">}</span><span class="s2">/dispatches`</span><span class="p">,</span>
+      <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+          <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">githubToken</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+          <span class="dl">'</span><span class="s1">Accept</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/vnd.github.v3+json</span><span class="dl">'</span><span class="p">,</span>
+          <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="p">},</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">getResponseCode</span><span class="p">()</span> <span class="o">===</span> <span class="mi">204</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ GitHub Actions トリガー成功</span><span class="dl">'</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ GitHub API エラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">getContentText</span><span class="p">());</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ GitHub Actions トリガーエラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 📧 確認メール送信 =====</span>
+
+<span class="kd">function</span> <span class="nx">sendConfirmationEmail</span><span class="p">(</span><span class="nx">proposal</span><span class="p">,</span> <span class="nx">customInstruction</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">timeStr</span> <span class="o">=</span> <span class="nx">Utilities</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">(</span><span class="nx">now</span><span class="p">,</span> <span class="dl">'</span><span class="s1">JST</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">HH:mm</span><span class="dl">'</span><span class="p">);</span>
+  
+  <span class="kd">const</span> <span class="nx">htmlBody</span> <span class="o">=</span> <span class="s2">`
+    &lt;div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px;"&gt;
+      &lt;div style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 25px; border-radius: 12px; text-align: center; margin-bottom: 20px;"&gt;
+        &lt;h1 style="margin: 0; font-size: 24px;"&gt;✅ 記事作成開始！&lt;/h1&gt;
+        &lt;p style="margin: 10px 0 0 0; opacity: 0.9; font-size: 14px;"&gt;</span><span class="p">${</span><span class="nx">timeStr</span><span class="p">}</span><span class="s2"> 処理開始&lt;/p&gt;
+      &lt;/div&gt;
+      
+      &lt;div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px;"&gt;
+        &lt;h2 style="margin: 0 0 15px 0; color: #1e293b; font-size: 18px;"&gt;📝 選択された記事&lt;/h2&gt;
+        &lt;p style="margin: 0 0 10px 0; font-weight: 600; color: #3730a3; font-size: 16px;"&gt;</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2">&lt;/p&gt;
+        &lt;p style="margin: 0; color: #64748b; font-size: 14px;"&gt;</span><span class="p">${</span><span class="nx">proposal</span><span class="p">.</span><span class="nx">description</span><span class="p">}</span><span class="s2">&lt;/p&gt;
+        </span><span class="p">${</span><span class="nx">customInstruction</span> <span class="p">?</span> <span class="s2">`
+          &lt;div style="background: #e0f2fe; padding: 12px; border-radius: 6px; margin-top: 15px; border-left: 4px solid #0284c7;"&gt;
+            &lt;strong style="color: #0c4a6e; font-size: 14px;"&gt;🛠️ カスタマイズ指示:&lt;/strong&gt;
+            &lt;p style="margin: 5px 0 0 0; color: #075985; font-size: 14px;"&gt;</span><span class="p">${</span><span class="nx">customInstruction</span><span class="p">}</span><span class="s2">&lt;/p&gt;
+          &lt;/div&gt;
+        `</span> <span class="p">:</span> <span class="dl">''</span><span class="p">}</span><span class="s2">
+      &lt;/div&gt;
+      
+      &lt;div style="background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b; margin-bottom: 20px;"&gt;
+        &lt;p style="margin: 0; color: #92400e; font-size: 14px;"&gt;
+          ⏱️ &lt;strong&gt;予定時刻:&lt;/strong&gt; 10-15分後にGitHubに投稿されます
+        &lt;/p&gt;
+      &lt;/div&gt;
+      
+      &lt;div style="text-align: center;"&gt;
+        &lt;a href="https://github.com/</span><span class="p">${</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">githubOwner</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">CONFIG</span><span class="p">.</span><span class="nx">githubRepo</span><span class="p">}</span><span class="s2">" 
+           style="background: #8b5cf6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 600;"&gt;
+          GitHubで確認 →
+        &lt;/a&gt;
+      &lt;/div&gt;
+      
+      &lt;p style="text-align: center; color: #64748b; font-size: 12px; margin-top: 20px;"&gt;
+        🤖 LeadFive AI Blog Assistant | 自動記事生成システム
+      &lt;/p&gt;
+    &lt;/div&gt;
+  `</span><span class="p">;</span>
+  
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">MailApp</span><span class="p">.</span><span class="nx">sendEmail</span><span class="p">({</span>
+      <span class="na">to</span><span class="p">:</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">recipientEmail</span><span class="p">,</span>
+      <span class="na">subject</span><span class="p">:</span> <span class="dl">'</span><span class="s1">✅ ブログ記事作成開始 - LeadFive AI</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">htmlBody</span><span class="p">:</span> <span class="nx">htmlBody</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">botName</span>
+    <span class="p">});</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ 確認メール送信完了</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ 確認メール送信エラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== ⚙️ 自動チェックシステム =====</span>
+
+<span class="kd">function</span> <span class="nx">setupEmailMonitoring</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 既存のメール監視トリガーを削除</span>
+  <span class="kd">const</span> <span class="nx">triggers</span> <span class="o">=</span> <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">getProjectTriggers</span><span class="p">();</span>
+  <span class="nx">triggers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">trigger</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">trigger</span><span class="p">.</span><span class="nx">getHandlerFunction</span><span class="p">()</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">processEmailReplies</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">deleteTrigger</span><span class="p">(</span><span class="nx">trigger</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// 5分ごとに返信チェック</span>
+    <span class="nx">ScriptApp</span><span class="p">.</span><span class="nx">newTrigger</span><span class="p">(</span><span class="dl">'</span><span class="s1">processEmailReplies</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">timeBased</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">everyMinutes</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+      
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ 5分ごとのメール監視設定完了</span><span class="dl">'</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ メール監視設定エラー:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ===== 🧪 テスト関数 =====</span>
+
+<span class="kd">function</span> <span class="nx">testEmailProcessing</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">🧪 メール処理テスト開始...</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">processEmailReplies</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ メール処理テスト完了</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">testBlogCreation</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">🧪 記事作成テスト開始...</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">testProposal</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">テスト記事：ChatGPT活用マーケティング</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">description</span><span class="p">:</span> <span class="dl">"</span><span class="s2">テスト用の記事です</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">category</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AIマーケティング</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">target</span><span class="p">:</span> <span class="dl">"</span><span class="s2">中小企業経営者</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">keywords</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">ChatGPT</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">マーケティング</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">AI活用</span><span class="dl">"</span><span class="p">],</span>
+    <span class="na">urgency</span><span class="p">:</span> <span class="dl">"</span><span class="s2">中</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">buzzScore</span><span class="p">:</span> <span class="mi">75</span>
+  <span class="p">};</span>
+  
+  <span class="kd">const</span> <span class="nx">success</span> <span class="o">=</span> <span class="nx">createBlogPost</span><span class="p">(</span><span class="nx">testProposal</span><span class="p">,</span> <span class="dl">"</span><span class="s2">テスト実行</span><span class="dl">"</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">✅ 記事作成テスト成功</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">❌ 記事作成テスト失敗</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-設定手順">📋 設定手順</h2>
+
+<h3 id="1-コード追加">1. <strong>コード追加</strong></h3>
+<p>上記のコードを既存コードの最後に追加 → 保存</p>
+
+<h3 id="2-メール監視開始">2. <strong>メール監視開始</strong></h3>
+<p>関数選択で「<strong>setupEmailMonitoring</strong>」を選択 → ▶実行</p>
+
+<h3 id="3-テスト実行">3. <strong>テスト実行</strong></h3>
+<p>「<strong>testEmailProcessing</strong>」を実行してメール検索確認</p>
+
+<h3 id="4-実際のテスト">4. <strong>実際のテスト</strong></h3>
+<ol>
+  <li>AI提案メールを送信：「sendAIProposal」実行</li>
+  <li>届いたメールに「1」で返信</li>
+  <li>5分待つ → 確認メールが届く</li>
+</ol>
+
+<h2 id="-動作フロー">🎯 動作フロー</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. AI提案メール送信 → 2. ユーザーが「1」で返信 → 3. 5分後に自動検知 → 4. 記事作成開始 → 5. GitHub Actions実行 → 6. 確認メール送信
+</code></pre></div></div>
+
+<p>これで完全な自動システムが完成します！</p>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>合同会社Leadfive</h3>
+        <p>人間の8つの本能を理解し、AIで最適化。予測可能な成長をあなたのビジネスに。</p>
+        <div class="company-info">
+          <p>〒530-0001</p>
+          <p>大阪府大阪市北区梅田１－１３－１</p>
+          <p>大阪梅田ツインタワーズ・サウス１５階</p>
+          <p>TEL: <a href="tel:06-7713-6747">06-7713-6747</a></p>
+          <p>EMAIL: <a href="mailto:leadfive.138@gmail.com">leadfive.138@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://x.com/leadfive138" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg class="social-icon" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>サービス</h4>
+        <ul class="footer-links">
+          <li><a href="/services/lp-optimization/">AI×心理学 LP最適化</a></li>
+          <li><a href="/services/customer-analysis/">顧客心理データ分析</a></li>
+          <li><a href="/services/ai-automation/">AI自動化マーケティング</a></li>
+          <li><a href="/services/integrated-marketing/">統合マーケティング戦略</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>会社情報</h4>
+        <ul class="footer-links">
+          <li><a href="/company/">会社概要</a></li>
+          <li><a href="/company/#mission">ミッション</a></li>
+          <li><a href="/company/#access">アクセス</a></li>
+          <li><a href="#" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>リソース</h4>
+        <ul class="footer-links">
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/case-studies/">導入事例</a></li>
+          <!-- <li><a href="/resources/whitepaper/">ホワイトペーパー</a></li> -->
+          <li><a href="/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 合同会社Leadfive. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeContactModal()">&times;</span>
+      <div class="modal-header">
+        <h2>お問い合わせ</h2>
+        <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+      </div>
+      <div class="modal-body">
+        <form id="contactModalForm" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-company">会社名 <span class="required">*</span></label>
+              <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
+            </div>
+            <div class="form-group">
+              <label for="modal-name">お名前 <span class="required">*</span></label>
+              <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="modal-email">メールアドレス <span class="required">*</span></label>
+              <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+            </div>
+            <div class="form-group">
+              <label for="modal-phone">電話番号</label>
+              <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
+            <select id="modal-inquiry-type" name="inquiry_type" required>
+              <option value="">選択してください</option>
+              <option value="service">サービスについて</option>
+              <option value="consultation">無料相談の申し込み</option>
+              <option value="quotation">見積もり依頼</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
+            <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" name="privacy" value="agreed" required>
+              <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-large">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- AI Analysis Modal -->
+  <div id="ai-analysis-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAIAnalysis()">&times;</span>
+      <h2 style="text-align: center;">無料AI分析診断</h2>
+      <p style="text-align: center;">あなたのビジネスに最適な戦略を30秒で診断します</p>
+      
+      <form class="ai-analysis-form">
+        <div class="form-group">
+          <label for="business-type">業種を選択してください</label>
+          <select id="business-type" name="business-type" required>
+            <option value="">選択してください</option>
+            <option value="ec">EC・オンライン販売</option>
+            <option value="retail">実店舗・小売</option>
+            <option value="service">サービス業</option>
+            <option value="btob">BtoB・法人向け</option>
+            <option value="beauty">美容・サロン</option>
+            <option value="consulting">コンサルティング</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="monthly-revenue">月間売上規模</label>
+          <select id="monthly-revenue" name="monthly-revenue" required>
+            <option value="">選択してください</option>
+            <option value="under-100">100万円未満</option>
+            <option value="100-500">100万円〜500万円</option>
+            <option value="500-1000">500万円〜1000万円</option>
+            <option value="1000-5000">1000万円〜5000万円</option>
+            <option value="over-5000">5000万円以上</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="main-challenge">最も大きな課題</label>
+          <select id="main-challenge" name="main-challenge" required>
+            <option value="">選択してください</option>
+            <option value="traffic">集客・アクセス数の不足</option>
+            <option value="conversion">成約率・CVRの低さ</option>
+            <option value="retention">リピーター・LTV向上</option>
+            <option value="cost">広告費・獲得コストの高騰</option>
+            <option value="analysis">データ分析・改善方法</option>
+            <option value="automation">業務効率・自動化</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">メールアドレス（結果送信用）</label>
+          <input type="email" id="email" name="email" placeholder="example@company.com" required>
+        </div>
+        
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-large">
+            無料で診断結果を受け取る
+          </button>
+        </div>
+      </form>
+      
+      <p class="privacy-note">
+        ※診断結果は入力いただいたメールアドレスに送信されます<br>
+        ※個人情報は厳重に管理し、第三者に提供することはありません
+      </p>
+    </div>
+  </div>
+  
+  <style>
+  .ai-analysis-form {
+    margin-top: 2rem;
+  }
+  
+  .ai-analysis-form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .ai-analysis-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .ai-analysis-form .form-group select,
+  .ai-analysis-form .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .ai-analysis-form .form-group select:focus,
+  .ai-analysis-form .form-group input:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  }
+  
+  .ai-analysis-form .form-group option {
+    background: #1f2937;
+    color: #fff;
+  }
+  
+  .privacy-note {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      margin: 10% auto;
+      padding: 1.5rem;
+    }
+    
+    .ai-analysis-form .form-group select,
+    .ai-analysis-form .form-group input {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+  </style>
+  
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/contact-modal.js"></script>
+  <script src="/assets/js/contact-handler-gas.js"></script>
+  
+</body>
+</html>
