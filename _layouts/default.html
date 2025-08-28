@@ -261,5 +261,19 @@
   <script src="{{ site.baseurl }}/assets/js/main.js"></script>
   <script src="{{ site.baseurl }}/assets/js/contact-modal.js"></script>
   <script src="{{ site.baseurl }}/assets/js/contact-handler-gas.js"></script>
+  
+  <!-- HP改善分析システム -->
+  <script>
+  (function(){
+      var script = document.createElement('script');
+      script.src = 'https://hp-analytics-system.vercel.app/tracking-tag-production.js';
+      script.async = true;
+      script.onload = function() {
+          window.HPAnalytics.config.siteId = 'site_1756367787748_4c1a3x_aHR0cHM6';
+          window.HPAnalytics.config.debug = false;
+      };
+      document.head.appendChild(script);
+  })();
+  </script>
 </body>
 </html>
