@@ -18,8 +18,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.15; /* うっすらと表示 */
-  filter: brightness(0.3) contrast(1.2);
+  opacity: 0.55; /* 背景動画をうっすら見せる */
+  filter: brightness(0.6) contrast(1.5) saturate(1.1);
 }
 
 /* 動画オーバーレイ */
@@ -31,9 +31,9 @@
   height: 100vh;
   background: linear-gradient(
     135deg,
-    rgba(10, 10, 10, 0.8) 0%,
-    rgba(20, 20, 30, 0.7) 50%,
-    rgba(10, 10, 10, 0.8) 100%
+    rgba(15, 15, 20, 0.40) 0%,
+    rgba(25, 25, 35, 0.30) 50%,
+    rgba(15, 15, 20, 0.40) 100%
   );
   z-index: -1;
 }
@@ -74,7 +74,6 @@ body {
 
 .problem-section,
 .philosophy-section,
-.services-section,
 .case-studies-section,
 .why-now-section,
 .belief-section,
@@ -87,6 +86,20 @@ body {
   margin: 2vh;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* セクション内の可読性改善（白背景での薄い文字を濃く） */
+.philosophy-section .philosophy-text p,
+.philosophy-section .philosophy-text .lead {
+  color: #374151; /* Gray-700 ベースで視認性向上 */
+}
+
+.philosophy-section .instinct-card h4 {
+  color: #111827; /* Gray-900 タイトル濃く */
+}
+
+.philosophy-section .instinct-card p {
+  color: #374151; /* Gray-700 本文濃く */
 }
 
 /* ヒーローセクション特別スタイル */
@@ -242,7 +255,7 @@ body {
   }
   
   .video-background video {
-    opacity: 0.08; /* モバイルではより薄く */
+    opacity: 0.18; /* モバイルでもうっすら見える程度に */
   }
 }
 
@@ -291,6 +304,25 @@ body {
 
 .case-studies-section .case-studies-grid {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+/* デスクトップではサービスを2x2に固定してバランス改善 */
+@media (min-width: 768px) {
+  .services-section .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .services-section .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* フッターをスナップ対象の最終セクションとして扱う */
+.site-footer.fullscreen-section {
+  min-height: auto;
+  scroll-snap-align: end;
 }
 
 /* アクセシビリティ: 動画を無効にするオプション */

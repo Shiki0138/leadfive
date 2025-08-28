@@ -10,6 +10,8 @@ class PresentationScroll {
     this.isScrolling = false;
     this.touchStartY = 0;
     this.touchEndY = 0;
+    this.wheelAccumulator = 0;
+    this.wheelDirection = 0; // 1: down, -1: up
     
     this.init();
   }
@@ -38,7 +40,8 @@ class PresentationScroll {
       '.why-now-section',
       '.belief-section',
       '.final-cta-section',
-      '.access-section'
+      '.access-section',
+      'footer.site-footer'
     ];
 
     sectionSelectors.forEach((selector, index) => {
@@ -101,17 +104,29 @@ class PresentationScroll {
     if (this.isScrolling) return;
     
     const delta = e.deltaY;
-    const threshold = 50;
-    
-    if (Math.abs(delta) < threshold) return;
-    
-    if (delta > 0 && this.currentSection < this.sections.length - 1) {
+    const dir = Math.sign(delta);
+    const threshold = 8; // デスクトップ1回のスクロールで反応する感度
+
+    // 方向が変わったら累積をリセット
+    if (dir !== this.wheelDirection) {
+      this.wheelAccumulator = 0;
+      this.wheelDirection = dir;
+    }
+
+    this.wheelAccumulator += delta;
+
+    if (Math.abs(this.wheelAccumulator) < threshold) return;
+
+    if (this.wheelAccumulator > 0 && this.currentSection < this.sections.length - 1) {
       // 下へスクロール
       this.scrollToSection(this.currentSection + 1);
-    } else if (delta < 0 && this.currentSection > 0) {
+    } else if (this.wheelAccumulator < 0 && this.currentSection > 0) {
       // 上へスクロール
       this.scrollToSection(this.currentSection - 1);
     }
+
+    // 発火後は累積をリセット
+    this.wheelAccumulator = 0;
   }
 
   handleKeyboard(e) {
@@ -151,7 +166,7 @@ class PresentationScroll {
     
     this.touchEndY = e.changedTouches[0].clientY;
     const diff = this.touchStartY - this.touchEndY;
-    const threshold = 50;
+    const threshold = 30; // タッチスクロール感度も調整（50→30）
     
     if (Math.abs(diff) < threshold) return;
     
@@ -207,11 +222,11 @@ class PresentationScroll {
       history.pushState(null, '', `#${targetSection.id}`);
     }
     
-    // スクロール完了後の処理
+    // スクロール完了後の処理（待機時間を短縮）
     setTimeout(() => {
       this.isScrolling = false;
       this.triggerSectionAnimations(targetSection);
-    }, 1000);
+    }, 800); // 1000ms → 800ms に短縮で反応速度向上
     
     this.currentSection = index;
   }
