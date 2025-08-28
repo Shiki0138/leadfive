@@ -22,6 +22,11 @@ layout: default
       {% if page.excerpt %}
       <p class="post-excerpt">{{ page.excerpt }}</p>
       {% endif %}
+      {% if page.image %}
+      <div class="post-hero">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" loading="eager" width="1200" height="630" />
+      </div>
+      {% endif %}
     </div>
   </header>
 
@@ -203,6 +208,19 @@ layout: default
   margin: 0 auto;
   line-height: 1.7;
   font-weight: 400;
+}
+
+.post-hero {
+  max-width: 1000px;
+  margin: 2rem auto 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.post-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .post-content {

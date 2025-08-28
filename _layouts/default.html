@@ -271,8 +271,13 @@
       script.src = 'https://hp-analytics-system.vercel.app/tracking-tag-production.js';
       script.async = true;
       script.onload = function() {
-          window.HPAnalytics.config.siteId = 'site_1756367787748_4c1a3x_aHR0cHM6';
-          window.HPAnalytics.config.debug = false;
+          if (window.HPAnalytics) {
+              window.HPAnalytics.config.siteId = 'site_1756367787748_4c1a3x_aHR0cHM6';
+              window.HPAnalytics.config.debug = false;
+          }
+      };
+      script.onerror = function() {
+          console.log('HP Analytics system not available');
       };
       document.head.appendChild(script);
   })();

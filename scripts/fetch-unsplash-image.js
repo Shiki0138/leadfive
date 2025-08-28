@@ -8,7 +8,7 @@ const path = require('path');
 /**
  * Unsplash APIから関連画像を取得して保存
  */
-async function fetchUnsplashImage(keyword, outputPath) {
+async function fetchUnsplashImage(keyword, outputPath, options = {}) {
   const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY;
   
   if (!UNSPLASH_API_KEY) {
@@ -132,9 +132,16 @@ async function fetchUnsplashImage(keyword, outputPath) {
       ? photos.filter(p => p.likes > 10) 
       : photos;
     
-    // 完全にランダムに選択
-    const randomIndex = Math.floor(Math.random() * qualityPhotos.length);
-    const photo = qualityPhotos[randomIndex];
+    // 直近使用の除外リスト
+    const excludeSet = new Set(options.excludePhotoIds || []);
+
+    // 除外を考慮して選択
+    let candidatePool = qualityPhotos.filter(p => !excludeSet.has(p.id));
+    if (candidatePool.length === 0) {
+      candidatePool = qualityPhotos; // すべて除外される場合はプール全体から
+    }
+    const randomIndex = Math.floor(Math.random() * candidatePool.length);
+    const photo = candidatePool[randomIndex];
     
     console.log(`🔍 検索クエリ: ${searchQuery}`);
     console.log(`📸 選択された画像: ${photo.description || photo.alt_description || 'No description'}`);

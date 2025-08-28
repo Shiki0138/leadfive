@@ -10,6 +10,8 @@ const path = require('path');
 const https = require('https');
 const { execSync } = require('child_process');
 require('dotenv').config();
+const { fetchUnsplashImage } = require('./fetch-unsplash-image');
+const { generateUniqueImage } = require('./generate-unique-image');
 
 // 高度な設定
 const PREMIUM_CONFIG = {
@@ -594,6 +596,8 @@ class ContentQualityChecker {
 class PremiumArticleWriter {
   constructor(outputDir) {
     this.outputDir = outputDir;
+    this.imagesDir = path.join(__dirname, '../assets/images/blog');
+    this.usageLogPath = path.join(__dirname, '../logs/unsplash-usage.json');
   }
   
   async writeArticle(keyword, content, metadata) {
@@ -603,7 +607,46 @@ class PremiumArticleWriter {
     const filename = `${dateStr}-${slug}.md`;
     const filepath = path.join(this.outputDir, filename);
     
-    const frontMatter = this.generateFrontMatter(content, metadata);
+    // タイトル直下に表示するアイキャッチ画像を準備（1記事1枚・1週間の再利用禁止）
+    const featuredFilename = `${dateStr}-${slug}-featured.jpg`;
+    const featuredFsPath = path.join(this.imagesDir, featuredFilename);
+    const featuredWebPath = `/assets/images/blog/${featuredFilename}`;
+
+    // 直近7日間に使用したUnsplashのphoto_idを除外
+    let used = [];
+    try {
+      const raw = await fs.readFile(this.usageLogPath, 'utf8');
+      used = JSON.parse(raw);
+    } catch (_) {}
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const recentIds = new Set(used.filter(u => new Date(u.used_at) >= sevenDaysAgo).map(u => u.photo_id));
+
+    let selectedPhotoId = null;
+    try {
+      await fs.mkdir(this.imagesDir, { recursive: true });
+      const result = await fetchUnsplashImage(keyword, featuredFsPath, { excludePhotoIds: recentIds });
+      if (result && result.credit && result.credit.photo_id) {
+        selectedPhotoId = result.credit.photo_id;
+      }
+    } catch (e) {
+      // フォールバック：ユニーク画像生成
+      await generateUniqueImage(content.title, dateStr, featuredFsPath);
+      selectedPhotoId = `generated-${Math.random().toString(36).slice(2, 10)}`;
+    }
+
+    if (!selectedPhotoId) {
+      // 念のためのフォールバック
+      await generateUniqueImage(content.title, dateStr, featuredFsPath);
+      selectedPhotoId = `generated-${Math.random().toString(36).slice(2, 10)}`;
+    }
+
+    // 使用履歴を更新（7日以内のものを残す）
+    const newUsage = used.filter(u => new Date(u.used_at) >= sevenDaysAgo);
+    newUsage.push({ photo_id: selectedPhotoId, used_at: date.toISOString(), path: featuredWebPath, post: filename });
+    await fs.mkdir(path.dirname(this.usageLogPath), { recursive: true });
+    await fs.writeFile(this.usageLogPath, JSON.stringify(newUsage, null, 2));
+
+    const frontMatter = this.generateFrontMatter(content, metadata, featuredWebPath);
     const fullContent = `${frontMatter}\n\n${content.body}`;
     
     await fs.writeFile(filepath, fullContent, 'utf8');
@@ -621,7 +664,7 @@ class PremiumArticleWriter {
       .substring(0, 50);
   }
   
-  generateFrontMatter(content, metadata) {
+  generateFrontMatter(content, metadata, featuredImage) {
     return `---
 layout: blog-post
 title: "${content.title}"
@@ -638,6 +681,8 @@ premium: true
 serp_optimized: true
 ai_generated: true
 version: "3.0"
+image: "${featuredImage}"
+featured: true
 ---`;
   }
 }

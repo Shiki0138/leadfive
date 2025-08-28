@@ -5,6 +5,8 @@ const path = require('path');
 const axios = require('axios');
 const sharp = require('sharp');
 const { randomUUID } = require('crypto');
+const { fetchUnsplashImage } = require('../fetch-unsplash-image');
+const { generateUniqueImage } = require('../generate-unique-image');
 
 class ClaudeBlogGenerator {
   constructor(config) {
@@ -268,29 +270,9 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
   }
 
   async insertImages(content) {
-    console.log('🖼️ 画像生成・配置中...');
-    
-    let finalContent = content.content;
-    const imageMatches = finalContent.match(/\{\{IMAGE:([^}]+)\}\}/g) || [];
-    
-    for (let i = 0; i < imageMatches.length; i++) {
-      const match = imageMatches[i];
-      const description = match.match(/\{\{IMAGE:([^}]+)\}\}/)[1];
-      
-      // プレースホルダー画像を使用
-      const placeholderImages = [
-        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=630&fit=crop',
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop',
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop',
-        'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=630&fit=crop',
-        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=630&fit=crop'
-      ];
-      
-      const imageUrl = placeholderImages[i % placeholderImages.length];
-      const imageTag = `\n\n![${description}](${imageUrl})\n\n`;
-      finalContent = finalContent.replace(match, imageTag);
-    }
-    
+    console.log('🖼️ 画像プレースホルダーを削除（アイキャッチのみ運用）');
+    // 本文内の画像プレースホルダーは全て削除（タイトル直下のアイキャッチのみ使用）
+    const finalContent = content.content.replace(/\{\{IMAGE:[^}]+\}\}/g, '');
     return { ...content, content: finalContent };
   }
 
@@ -357,6 +339,51 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
     
     const filename = `${dateStr}-${slug}.md`;
     const filepath = path.join(this.postsDir, filename);
+
+    // タイトル直下に表示するアイキャッチ画像を用意
+    const featuredFilename = `${dateStr}-${slug}-featured.jpg`;
+    const featuredPathFs = path.join(this.imagesDir, featuredFilename);
+    const featuredPathWeb = `/assets/images/blog/${featuredFilename}`;
+
+    // 直近7日間のUnsplash使用履歴から重複を避ける
+    const usageLogPath = path.join(__dirname, '../../logs/unsplash-usage.json');
+    let used = [];
+    try {
+      const raw = await fs.readFile(usageLogPath, 'utf-8');
+      used = JSON.parse(raw);
+    } catch (_) {}
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const recentIds = new Set(
+      used.filter(u => new Date(u.used_at) >= sevenDaysAgo).map(u => u.photo_id)
+    );
+
+    let selectedPhotoId = null;
+    try {
+      await fs.mkdir(this.imagesDir, { recursive: true });
+      const result = await fetchUnsplashImage(this.keyword, featuredPathFs, { excludePhotoIds: recentIds });
+      if (result && result.credit && result.credit.photo_id) {
+        selectedPhotoId = result.credit.photo_id;
+      }
+    } catch (e) {
+      console.warn('Unsplash取得に失敗。フォールバック画像を生成します:', e.message);
+    }
+
+    if (!selectedPhotoId) {
+      // フォールバック：ユニーク画像を生成
+      await generateUniqueImage(content.title, dateStr, featuredPathFs);
+      selectedPhotoId = `generated-${randomUUID()}`;
+    }
+
+    // 使用履歴を更新（最新のみ保持し7日以前は整理）
+    const newUsage = used.filter(u => new Date(u.used_at) >= sevenDaysAgo);
+    newUsage.push({
+      photo_id: selectedPhotoId,
+      used_at: date.toISOString(),
+      path: featuredPathWeb,
+      post: filename
+    });
+    await fs.mkdir(path.dirname(usageLogPath), { recursive: true });
+    await fs.writeFile(usageLogPath, JSON.stringify(newUsage, null, 2));
     
     const frontMatter = `---
 layout: blog-post
@@ -366,7 +393,7 @@ categories: [${this.category}]
 tags: [${this.keyword}, AI活用, マーケティング, 業務効率化]
 description: "${content.description}"
 author: "LeadFive AI"
-image: "/assets/images/blog/${dateStr}-${this.keyword.replace(/\s+/g, '-')}-0.jpg"
+image: "${featuredPathWeb}"
 featured: true
 reading_time: ${Math.ceil(content.content.length / 500)}
 ---

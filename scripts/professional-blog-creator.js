@@ -18,6 +18,8 @@ const path = require('path');
 const readline = require('readline');
 const https = require('https');
 require('dotenv').config();
+const { fetchUnsplashImage } = require('./fetch-unsplash-image');
+const { generateUniqueImage } = require('./generate-unique-image');
 
 // プロフェッショナル設定
 const PRO_CONFIG = {
@@ -514,9 +516,7 @@ ${leadElements.cta}`;
       content += sectionContent;
       
       // 画像挿入（必要な場合）
-      if (heading.imageRequired) {
-        content += `\n\n![${heading.text}のイメージ]({{ site.baseurl }}/assets/images/blog/${this.createImageFilename(keyword, heading.text)})\n\n`;
-      }
+      // 画像は本文内に挿入しない（タイトル直下のアイキャッチのみ使用）
       
       // サブ見出し追加
       if (heading.subHeadings) {
@@ -550,38 +550,29 @@ ${leadElements.cta}`;
   generateFactualContent(keyword, heading) {
     return `${keyword}は、現代のビジネス環境において重要な戦略の一つとして位置づけられています。
 
-**主な特徴：**
-• 効率的な業務プロセスの実現
-• 顧客満足度の向上
+【ポイント】
+• 業務プロセスの効率化
+• 顧客体験の向上
 • 競合優位性の確保
-• ROIの最大化
+• 投資対効果（ROI）の可視化
 
-最新の市場調査によると、${keyword}を導入した企業の89%が1年以内に明確な成果を実感しており、その効果は業界を問わず確認されています。
-
-特に注目すべきは、従来の手法と比較して**平均187%**の改善率を記録している点です。これは単なる一時的な効果ではなく、継続的な成長を支える基盤となることを示しています。`;
+なお、本記事では無根拠な数値や誇張表現は用いません。評価指標の設計方法と、一次情報・公的機関・公式ドキュメント等の出典に基づく確認の仕方に重点を置いて解説します。`;
   }
   
   generateEvidenceContent(keyword, heading) {
-    return `${keyword}の効果を示すデータは、複数の信頼できる調査機関から報告されています。
+    return `${keyword}の効果検証は、客観的な指標と信頼できる出典に基づいて行う必要があります。
 
-**調査結果サマリー：**
+【効果検証に用いる代表的な指標】
+- 売上・粗利・LTV（財務KPI）
+- リード数・CVR・CPA（マーケKPI）
+- 工数・処理時間・エラー率（業務KPI）
 
-| 指標 | 導入前 | 導入後 | 改善率 |
-|------|---------|---------|---------|
-| 売上高 | 100% | 287% | +187% |
-| 顧客満足度 | 3.2/5 | 4.7/5 | +47% |
-| 業務効率 | 100% | 234% | +134% |
-| 新規顧客獲得 | 100% | 312% | +212% |
+【根拠の提示方法】
+1. 測定期間・条件を明記（例：導入前4週間→導入後8週間）
+2. 計測方法・データソースを明示（BIツール、CRM、会計システムなど）
+3. 出典URLを添える（公的統計・一次情報・公式ドキュメント）
 
-**具体的な成功事例：**
-
-**A社（製造業）の場合：**
-• 導入期間：6ヶ月
-• 投資額：300万円
-• 売上改善：+290%
-• 投資回収期間：4ヶ月
-
-この数値は決して特別なケースではありません。適切な戦略と実行により、多くの企業が同様の成果を達成しています。`;
+本文末尾に「参考文献」として、根拠に用いた出典を最大3件まで列挙してください。出典が取得できない場合は断定を避け、一般論として留めます。`;
   }
   
   generateCausalContent(keyword, heading) {
@@ -635,38 +626,24 @@ AI・データ分析技術の発達により、以前は不可能だった精密
   }
   
   generateCaseStudyContent(keyword, heading) {
-    return `実際に${keyword}で劇的な成果を上げた企業の事例をご紹介します。
+    return `実際の企業導入に近いケースを想定し、検討プロセスと成功要因を整理します（特定企業名や過度な数値は用いません）。
 
-**事例1：美容室チェーンB社**
+【背景（例）】
+- 業界：サービス業（中小規模）
+- 課題：集客コストの上昇と現場工数の増大
+- 目的：顧客体験の改善と業務効率の両立
 
-**背景：**
-• 業界：美容・サロン
-• 規模：店舗数15、従業員80名
-• 課題：新規顧客獲得に苦戦、リピート率低下
+【導入内容（例）】
+- ${keyword}の段階的導入（小規模検証→本番展開）
+- 計測設計（CVR・CPA・工数・満足度など）
+- 運用フローと権限の明確化
 
-**導入内容：**
-• ${keyword}システムの段階的導入
-• スタッフ向け研修プログラム
-• 顧客データ分析強化
+【成功要因】
+1. 測定可能なKPIと観察期間の設定
+2. 小さく始めて改善を積み上げる進め方
+3. 現場定着を意識したトレーニングとレビュー
 
-**結果：**
-• 新規顧客数：月平均50名 → 180名（+260%）
-• リピート率：35% → 78%（+123%）
-• 平均客単価：6,500円 → 9,200円（+42%）
-• 月間売上：450万円 → 1,280万円（+284%）
-
-**成功要因の分析：**
-
-1. **データドリブンなアプローチ**
-   顧客の行動パターンを詳細に分析し、個別最適化された提案を実現
-
-2. **スタッフのスキル向上**
-   専門的な研修により、サービス品質が大幅に向上
-
-3. **継続的な改善**
-   月次での効果測定と戦略調整を実施
-
-この事例が示すように、${keyword}は単なるツールではなく、ビジネス全体を変革する強力な戦略です。`;
+なお、効果の大小は業態・初期状態に大きく依存します。実施前に前提条件を明確化し、出典に基づく妥当性の検証を行ってください。`;
   }
   
   generateSolutionContent(keyword, heading) {
@@ -921,6 +898,7 @@ ${keyword}において、この要素は特に重要な役割を果たします�
 class BlogFileManager {
   constructor() {
     this.outputDir = path.join(__dirname, '../_posts');
+    this.imagesDir = path.join(__dirname, '../assets/images/blog');
   }
   
   async saveBlog(keyword, article) {
@@ -930,7 +908,46 @@ class BlogFileManager {
     const filename = `${dateStr}-${slug}.md`;
     const filepath = path.join(this.outputDir, filename);
     
-    const frontMatter = this.generateFrontMatter(article, keyword);
+    // タイトル直下に表示するアイキャッチ画像を準備
+    const featuredFilename = `${dateStr}-${slug}-featured.jpg`;
+    const featuredFsPath = path.join(this.imagesDir, featuredFilename);
+    const featuredWebPath = `/assets/images/blog/${featuredFilename}`;
+
+    // 直近7日間のUnsplash使用履歴から重複を避ける
+    const usageLogPath = path.join(__dirname, '../logs/unsplash-usage.json');
+    let used = [];
+    try {
+      const raw = await fs.readFile(usageLogPath, 'utf8');
+      used = JSON.parse(raw);
+    } catch (_) {}
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const recentIds = new Set(
+      used.filter(u => new Date(u.used_at) >= sevenDaysAgo).map(u => u.photo_id)
+    );
+
+    let selectedPhotoId = null;
+    try {
+      await fs.mkdir(this.imagesDir, { recursive: true });
+      const result = await fetchUnsplashImage(keyword, featuredFsPath, { excludePhotoIds: recentIds });
+      if (result && result.credit && result.credit.photo_id) {
+        selectedPhotoId = result.credit.photo_id;
+      }
+    } catch (e) {
+      log(`⚠️ Unsplash取得失敗。フォールバック生成に切替: ${e.message}`, 'yellow');
+    }
+
+    if (!selectedPhotoId) {
+      await generateUniqueImage(article.title, dateStr, featuredFsPath);
+      selectedPhotoId = `generated-${Math.random().toString(36).slice(2, 10)}`;
+    }
+
+    // 使用履歴を更新
+    const newUsage = used.filter(u => new Date(u.used_at) >= sevenDaysAgo);
+    newUsage.push({ photo_id: selectedPhotoId, used_at: date.toISOString(), path: featuredWebPath, post: filename });
+    await fs.mkdir(path.dirname(usageLogPath), { recursive: true });
+    await fs.writeFile(usageLogPath, JSON.stringify(newUsage, null, 2));
+
+    const frontMatter = this.generateFrontMatter(article, keyword, featuredWebPath);
     const fullContent = `${frontMatter}\n\n${article.lead}\n\n${article.content}`;
     
     await fs.writeFile(filepath, fullContent, 'utf8');
@@ -952,7 +969,7 @@ class BlogFileManager {
       .substring(0, 50);
   }
   
-  generateFrontMatter(article, keyword) {
+  generateFrontMatter(article, keyword, featuredImage) {
     return `---
 layout: blog-post
 title: "${article.title}"
@@ -970,6 +987,8 @@ serp_optimized: true
 internal_links: ${article.metrics.linkCount}
 images: ${article.images.length}
 version: "professional-1.0"
+image: "${featuredImage}"
+featured: true
 ---`;
   }
   

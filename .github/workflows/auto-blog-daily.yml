@@ -21,6 +21,7 @@ env:
   LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
 
 jobs:
   check-keyword-status:
@@ -312,6 +313,7 @@ jobs:
         cd scripts
         echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
         echo "GOOGLE_SERP_API_KEY=${{ secrets.GOOGLE_SERP_API_KEY }}" >> .env
+        echo "UNSPLASH_API_KEY=${{ secrets.UNSPLASH_API_KEY }}" >> .env
         
         KEYWORD="${{ needs.check-keyword-status.outputs.keyword }}"
         echo "Generating blog for keyword: $KEYWORD"
