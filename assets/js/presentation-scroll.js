@@ -244,6 +244,10 @@ class PresentationScroll {
         section.classList.add('visible');
       }
     });
+
+    // ヒーローセクション可視時の動画強調（bodyクラス切り替え）
+    const isHero = this.sections[index] && this.sections[index].classList.contains('hero-section');
+    document.body.classList.toggle('hero-active', !!isHero);
   }
 
   triggerSectionAnimations(section) {

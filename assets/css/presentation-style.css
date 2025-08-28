@@ -20,6 +20,7 @@
   object-fit: cover;
   opacity: 0.55; /* 背景動画をうっすら見せる */
   filter: brightness(0.6) contrast(1.5) saturate(1.1);
+  transition: opacity 0.4s ease;
 }
 
 /* 動画オーバーレイ */
@@ -36,6 +37,16 @@
     rgba(15, 15, 20, 0.40) 100%
   );
   z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+/* ヒーローセクション可視時は動画を強め・オーバーレイを薄く */
+body.hero-active .video-background video {
+  opacity: 0.7;
+}
+
+body.hero-active .video-overlay {
+  opacity: 0.25;
 }
 
 /* フルスクリーンセクション基本設定 */
@@ -256,6 +267,11 @@ body {
   
   .video-background video {
     opacity: 0.18; /* モバイルでもうっすら見える程度に */
+  }
+
+  /* モバイル時のヒーロー表示中の動画の見え方を微調整 */
+  body.hero-active .video-background video {
+    opacity: 0.28;
   }
 }
 
