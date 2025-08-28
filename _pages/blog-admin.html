@@ -220,6 +220,160 @@ permalink: /blog-admin/
     grid-template-columns: 1fr;
   }
 }
+
+.post-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.search-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.post-item {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.post-item:hover {
+  border-color: #8b5cf6;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.post-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.post-item-title {
+  font-weight: 600;
+  color: #111827;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.post-item-meta {
+  font-size: 0.875rem;
+  color: #6b7280;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.post-item-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btn-edit, .btn-delete, .btn-view {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-edit {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.btn-edit:hover {
+  background: #bfdbfe;
+}
+
+.btn-delete {
+  background: #fecaca;
+  color: #dc2626;
+}
+
+.btn-delete:hover {
+  background: #fca5a5;
+}
+
+.btn-view {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.btn-view:hover {
+  background: #a7f3d0;
+}
+
+.post-item-excerpt {
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.post-item-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.post-tag {
+  background: #f3f4f6;
+  color: #374151;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .post-management-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-controls {
+    flex-direction: column;
+  }
+  
+  .post-item-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .post-item-actions {
+    align-self: flex-start;
+  }
+}
 </style>
 
 <div class="admin-dashboard">
@@ -311,29 +465,29 @@ permalink: /blog-admin/
     </section>
 
     <section class="admin-section">
-      <h2 class="section-title">投稿キュー</h2>
-      <div class="queue-list">
-        <div class="queue-item">
-          <div>
-            <div class="queue-item-title">8つの本能を活用したSNSマーケティング戦略</div>
-            <div class="queue-item-date">2024年12月25日 10:00 予定</div>
-          </div>
-          <span class="queue-item-status status-scheduled">予約済み</span>
+      <h2 class="section-title">記事管理</h2>
+      <div class="post-management-header">
+        <div class="search-controls">
+          <input type="text" id="search-posts" class="form-input" placeholder="記事を検索..." style="width: 300px;">
+          <select id="filter-category" class="form-select" style="width: 150px;">
+            <option value="">全カテゴリ</option>
+            <option value="ai-marketing">AIマーケティング</option>
+            <option value="psychology">消費者心理</option>
+            <option value="case-study">導入事例</option>
+            <option value="tips">実践テクニック</option>
+          </select>
         </div>
-        <div class="queue-item">
-          <div>
-            <div class="queue-item-title">ChatGPTを使った顧客インサイト分析の実践ガイド</div>
-            <div class="queue-item-date">2024年12月23日 10:00 投稿済み</div>
-          </div>
-          <span class="queue-item-status status-published">公開中</span>
-        </div>
-        <div class="queue-item">
-          <div>
-            <div class="queue-item-title">2025年のAIマーケティングトレンド予測</div>
-            <div class="queue-item-date">下書き</div>
-          </div>
-          <span class="queue-item-status status-draft">下書き</span>
-        </div>
+        <button id="refresh-posts" class="btn-secondary">記事を更新</button>
+      </div>
+      
+      <div id="posts-list" class="posts-list">
+        <div class="loading-spinner">記事を読み込み中...</div>
+      </div>
+      
+      <div class="pagination-controls" id="pagination-controls" style="display: none;">
+        <button id="prev-page" class="btn-secondary">前のページ</button>
+        <span id="page-info">1 / 1</span>
+        <button id="next-page" class="btn-secondary">次のページ</button>
       </div>
     </section>
 
@@ -382,34 +536,61 @@ function updateStatistics() {
   document.querySelector('.stat-card:nth-child(3) .stat-number').textContent = stats.scheduled;
 }
 
-// 投稿キューを更新
-function updateQueue() {
-  const posts = postManager.posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10);
-  const queueList = document.querySelector('.queue-list');
+// 記事一覧を更新
+function updatePostsList() {
+  const searchTerm = document.getElementById('search-posts').value;
+  const category = document.getElementById('filter-category').value;
   
-  if (posts.length === 0) {
-    queueList.innerHTML = '<p style="text-align: center; color: #6b7280;">まだ投稿がありません</p>';
+  postManager.filterPosts(searchTerm, category);
+  const pagedData = postManager.getPagedPosts(postManager.currentPage);
+  
+  const postsList = document.getElementById('posts-list');
+  const paginationControls = document.getElementById('pagination-controls');
+  
+  if (pagedData.posts.length === 0) {
+    postsList.innerHTML = '<div class="loading-spinner">記事が見つかりません</div>';
+    paginationControls.style.display = 'none';
     return;
   }
   
-  queueList.innerHTML = posts.map(post => `
-    <div class="queue-item">
-      <div>
-        <div class="queue-item-title">${post.title}</div>
-        <div class="queue-item-date">
-          ${post.status === 'published' 
-            ? new Date(post.publishDate).toLocaleDateString('ja-JP') + ' 投稿済み'
-            : post.status === 'scheduled'
-            ? new Date(post.publishDate).toLocaleDateString('ja-JP') + ' ' + new Date(post.publishDate).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' }) + ' 予定'
-            : '下書き'
-          }
+  postsList.innerHTML = pagedData.posts.map(post => `
+    <div class="post-item" data-post-id="${post.id}">
+      <div class="post-item-header">
+        <div>
+          <div class="post-item-title">${post.title}</div>
+          <div class="post-item-meta">
+            <span>${new Date(post.date).toLocaleDateString('ja-JP')}</span>
+            <span>${post.categories.join(', ')}</span>
+            <span>${post.author}</span>
+            <span>${Math.round(post.content.length / 500)} min read</span>
+          </div>
+        </div>
+        <div class="post-item-actions">
+          <button class="btn-view" onclick="viewPost('${post.id}')">表示</button>
+          <button class="btn-edit" onclick="editPost('${post.id}')">編集</button>
+          <button class="btn-delete" onclick="deletePost('${post.id}')">削除</button>
         </div>
       </div>
-      <span class="queue-item-status status-${post.status}">
-        ${post.status === 'published' ? '公開中' : post.status === 'scheduled' ? '予約済み' : '下書き'}
-      </span>
+      
+      <div class="post-item-excerpt">
+        ${post.description || '説明がありません'}
+      </div>
+      
+      <div class="post-item-tags">
+        ${post.tags.map(tag => `<span class="post-tag">${tag}</span>`).join('')}
+      </div>
     </div>
   `).join('');
+  
+  // ページネーション更新
+  if (pagedData.totalPages > 1) {
+    document.getElementById('prev-page').disabled = pagedData.currentPage <= 1;
+    document.getElementById('next-page').disabled = pagedData.currentPage >= pagedData.totalPages;
+    document.getElementById('page-info').textContent = `${pagedData.currentPage} / ${pagedData.totalPages}`;
+    paginationControls.style.display = 'flex';
+  } else {
+    paginationControls.style.display = 'none';
+  }
 }
 
 // フォーム送信処理
@@ -494,16 +675,267 @@ function closePreview() {
   }, 300);
 }
 
-// 初期化
-document.addEventListener('DOMContentLoaded', function() {
-  updateStatistics();
-  updateQueue();
+// 記事を表示
+function viewPost(postId) {
+  const post = postManager.posts.find(p => p.id === postId);
+  if (post) {
+    window.open(post.downloadUrl || '#', '_blank');
+  }
+}
+
+// 記事を編集
+function editPost(postId) {
+  const post = postManager.posts.find(p => p.id === postId);
+  if (!post) return;
   
-  // 定期的に統計を更新
-  setInterval(() => {
+  showEditModal(post);
+}
+
+// 記事を削除
+async function deletePost(postId) {
+  const result = await postManager.deletePost(postId);
+  
+  if (result.success) {
+    window.showNotification(result.message, 'success');
     updateStatistics();
-    updateQueue();
-  }, 60000); // 1分ごと
+    updatePostsList();
+  } else {
+    window.showNotification(result.error || '削除に失敗しました', 'error');
+  }
+}
+
+// 編集モーダルを表示
+function showEditModal(post) {
+  // モーダルが存在しない場合は作成
+  let modal = document.getElementById('edit-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'edit-modal';
+    modal.className = 'edit-modal';
+    modal.innerHTML = `
+      <div class="edit-modal-content">
+        <div class="edit-modal-header">
+          <h2>記事編集</h2>
+          <button class="close-edit" onclick="closeEditModal()">×</button>
+        </div>
+        <div class="edit-modal-body">
+          <div class="edit-tabs">
+            <button class="edit-tab active" onclick="showEditTab('content')">記事内容</button>
+            <button class="edit-tab" onclick="showEditTab('frontmatter')">設定</button>
+          </div>
+          
+          <div id="edit-content-tab" class="edit-tab-content active">
+            <div id="editor-container" style="height: 500px; border: 1px solid #e5e7eb;"></div>
+          </div>
+          
+          <div id="edit-frontmatter-tab" class="edit-tab-content">
+            <div class="edit-form-grid">
+              <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" id="edit-title" class="form-input">
+              </div>
+              <div class="form-group">
+                <label>日付</label>
+                <input type="date" id="edit-date" class="form-input">
+              </div>
+              <div class="form-group">
+                <label>カテゴリー（カンマ区切り）</label>
+                <input type="text" id="edit-categories" class="form-input">
+              </div>
+              <div class="form-group">
+                <label>タグ（カンマ区切り）</label>
+                <input type="text" id="edit-tags" class="form-input">
+              </div>
+              <div class="form-group">
+                <label>説明</label>
+                <textarea id="edit-description" class="form-textarea"></textarea>
+              </div>
+              <div class="form-group">
+                <label>作者</label>
+                <input type="text" id="edit-author" class="form-input">
+              </div>
+            </div>
+          </div>
+          
+          <div class="edit-modal-footer">
+            <button class="btn-secondary" onclick="closeEditModal()">キャンセル</button>
+            <button class="btn-generate" onclick="savePost()">保存</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+  
+  // Monaco Editorを初期化（CDNから読み込み）
+  if (!window.monaco) {
+    loadMonacoEditor(() => setupEditor(post));
+  } else {
+    setupEditor(post);
+  }
+  
+  // フロントマターを設定
+  document.getElementById('edit-title').value = post.title || '';
+  document.getElementById('edit-date').value = post.date?.split('T')[0] || '';
+  document.getElementById('edit-categories').value = post.categories.join(', ') || '';
+  document.getElementById('edit-tags').value = post.tags.join(', ') || '';
+  document.getElementById('edit-description').value = post.description || '';
+  document.getElementById('edit-author').value = post.author || '';
+  
+  // 現在編集中の記事を保存
+  window.currentEditingPost = post;
+  
+  modal.style.display = 'block';
+  setTimeout(() => modal.classList.add('show'), 10);
+}
+
+// Monaco Editorを読み込み
+function loadMonacoEditor(callback) {
+  const script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js';
+  script.onload = () => {
+    require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs' } });
+    require(['vs/editor/editor.main'], callback);
+  };
+  document.head.appendChild(script);
+}
+
+// エディターを設定
+function setupEditor(post) {
+  const container = document.getElementById('editor-container');
+  container.innerHTML = '';
+  
+  window.monacoEditor = monaco.editor.create(container, {
+    value: post.content || '',
+    language: 'markdown',
+    theme: 'vs',
+    automaticLayout: true,
+    wordWrap: 'on',
+    minimap: { enabled: false },
+    scrollBeyondLastLine: false,
+    fontSize: 14
+  });
+}
+
+// タブ切り替え
+function showEditTab(tabName) {
+  document.querySelectorAll('.edit-tab').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.edit-tab-content').forEach(content => content.classList.remove('active'));
+  
+  document.querySelector(`[onclick="showEditTab('${tabName}')"]`).classList.add('active');
+  document.getElementById(`edit-${tabName}-tab`).classList.add('active');
+}
+
+// 編集モーダルを閉じる
+function closeEditModal() {
+  const modal = document.getElementById('edit-modal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+    if (window.monacoEditor) {
+      window.monacoEditor.dispose();
+    }
+  }, 300);
+}
+
+// 記事を保存
+async function savePost() {
+  const post = window.currentEditingPost;
+  if (!post) return;
+  
+  // フロントマターを取得
+  const title = document.getElementById('edit-title').value;
+  const date = document.getElementById('edit-date').value;
+  const categories = document.getElementById('edit-categories').value.split(',').map(c => c.trim()).filter(Boolean);
+  const tags = document.getElementById('edit-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+  const description = document.getElementById('edit-description').value;
+  const author = document.getElementById('edit-author').value;
+  
+  // Markdownコンテンツを取得
+  const bodyContent = window.monacoEditor ? window.monacoEditor.getValue() : '';
+  
+  // フロントマターの部分のみを更新
+  const frontMatterLines = [
+    '---',
+    `layout: ${post.frontMatter.layout || 'blog-post'}`,
+    `title: "${title}"`,
+    `date: ${date}T${new Date().toTimeString().split(' ')[0]}.000Z`,
+    `categories: [${categories.join(', ')}]`,
+    `tags: [${tags.join(', ')}]`,
+    `description: "${description}"`,
+    `author: "${author}"`,
+    '---',
+    ''
+  ];
+  
+  const updatedContent = frontMatterLines.join('\n') + bodyContent.replace(/^---[\s\S]*?---\n\n?/, '');
+  
+  // 保存処理
+  const saveBtn = document.querySelector('.edit-modal-footer .btn-generate');
+  const originalText = saveBtn.textContent;
+  saveBtn.textContent = '保存中...';
+  saveBtn.disabled = true;
+  
+  try {
+    const result = await postManager.updatePost(post.id, updatedContent);
+    
+    if (result.success) {
+      window.showNotification('記事が保存されました', 'success');
+      closeEditModal();
+      updatePostsList();
+      updateStatistics();
+    } else {
+      window.showNotification(result.error || '保存に失敗しました', 'error');
+    }
+  } catch (error) {
+    window.showNotification('保存中にエラーが発生しました', 'error');
+  } finally {
+    saveBtn.textContent = originalText;
+    saveBtn.disabled = false;
+  }
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded', async function() {
+  // GitHub認証チェック
+  if (!postManager.githubToken) {
+    const token = prompt('GitHub Personal Access Token を入力してください:');
+    if (token) {
+      postManager.setGitHubToken(token);
+    }
+  }
+  
+  // 記事を読み込み
+  await postManager.loadPostsFromGitHub();
+  
+  updateStatistics();
+  updatePostsList();
+  
+  // イベントリスナー設定
+  document.getElementById('search-posts').addEventListener('input', updatePostsList);
+  document.getElementById('filter-category').addEventListener('change', updatePostsList);
+  document.getElementById('refresh-posts').addEventListener('click', async () => {
+    document.getElementById('posts-list').innerHTML = '<div class="loading-spinner">記事を読み込み中...</div>';
+    await postManager.loadPostsFromGitHub();
+    updatePostsList();
+    updateStatistics();
+  });
+  
+  // ページネーション
+  document.getElementById('prev-page').addEventListener('click', () => {
+    if (postManager.currentPage > 1) {
+      postManager.currentPage--;
+      updatePostsList();
+    }
+  });
+  
+  document.getElementById('next-page').addEventListener('click', () => {
+    const totalPages = Math.ceil(postManager.filteredPosts.length / postManager.postsPerPage);
+    if (postManager.currentPage < totalPages) {
+      postManager.currentPage++;
+      updatePostsList();
+    }
+  });
 });
 </script>
 
@@ -572,5 +1004,147 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .preview-modal-body {
   padding: 2rem;
+}
+
+/* 編集モーダルのスタイル */
+.edit-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10001;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.edit-modal.show {
+  opacity: 1;
+}
+
+.edit-modal-content {
+  position: relative;
+  background: white;
+  margin: 2rem auto;
+  max-width: 1200px;
+  max-height: 90vh;
+  border-radius: 15px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.edit-modal-header h2 {
+  font-size: 1.5rem;
+  color: #111827;
+  margin: 0;
+}
+
+.close-edit {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #6b7280;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.close-edit:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.edit-modal-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+}
+
+.edit-tab {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.edit-tab.active {
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+}
+
+.edit-tab:hover {
+  color: #374151;
+}
+
+.edit-tab-content {
+  display: none;
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.edit-tab-content.active {
+  display: block;
+}
+
+.edit-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.edit-form-grid .form-group:nth-child(5),
+.edit-form-grid .form-group:nth-child(6) {
+  grid-column: 1 / -1;
+}
+
+.edit-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 2rem 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 768px) {
+  .edit-modal-content {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+  
+  .edit-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .edit-form-grid .form-group:nth-child(5),
+  .edit-form-grid .form-group:nth-child(6) {
+    grid-column: 1;
+  }
 }
 </style>

@@ -6,7 +6,18 @@
 class BlogPostManager {
   constructor() {
     this.generator = new AIBlogGenerator();
-    this.posts = this.loadPosts();
+    this.posts = [];
+    this.githubToken = localStorage.getItem('github_token');
+    this.repoOwner = 'Shiki0138';
+    this.repoName = 'leadfive';
+    this.currentPage = 1;
+    this.postsPerPage = 10;
+    this.filteredPosts = [];
+    this.init();
+  }
+  
+  async init() {
+    await this.loadPostsFromGitHub();
   }
 
   /**
@@ -165,11 +176,126 @@ class BlogPostManager {
   }
 
   /**
-   * 投稿を読み込み
+   * GitHubから記事を読み込み
+   */
+  async loadPostsFromGitHub() {
+    try {
+      const response = await fetch(`https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/_posts`, {
+        headers: this.githubToken ? {
+          'Authorization': `token ${this.githubToken}`,
+          'Accept': 'application/vnd.github.v3+json'
+        } : {
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`GitHub API Error: ${response.status}`);
+      }
+
+      const files = await response.json();
+      const posts = [];
+
+      for (const file of files.filter(f => f.name.endsWith('.md'))) {
+        try {
+          const post = await this.loadPostContent(file);
+          if (post) posts.push(post);
+        } catch (error) {
+          console.error(`Error loading post ${file.name}:`, error);
+        }
+      }
+
+      this.posts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      this.filteredPosts = [...this.posts];
+      
+      console.log(`Loaded ${this.posts.length} posts from GitHub`);
+      
+      return this.posts;
+    } catch (error) {
+      console.error('Error loading posts from GitHub:', error);
+      // フォールバック: ローカルストレージから読み込み
+      const saved = localStorage.getItem('blogPosts');
+      this.posts = saved ? JSON.parse(saved) : [];
+      this.filteredPosts = [...this.posts];
+      return this.posts;
+    }
+  }
+
+  /**
+   * 個別の記事コンテンツを読み込み
+   */
+  async loadPostContent(file) {
+    try {
+      const response = await fetch(file.download_url);
+      const content = await response.text();
+      
+      // フロントマターを解析
+      const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)/);
+      if (!frontMatterMatch) return null;
+
+      const frontMatter = this.parseFrontMatter(frontMatterMatch[1]);
+      const bodyContent = frontMatterMatch[2];
+
+      return {
+        id: file.sha,
+        filename: file.name,
+        path: file.path,
+        sha: file.sha,
+        title: frontMatter.title || 'Untitled',
+        date: frontMatter.date || file.name.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || '2025-01-01',
+        categories: frontMatter.categories || [],
+        tags: frontMatter.tags || [],
+        description: frontMatter.description || '',
+        author: frontMatter.author || 'Unknown',
+        content: content,
+        bodyContent: bodyContent,
+        frontMatter: frontMatter,
+        status: 'published', // GitHub上のファイルは公開済み
+        lastModified: file.last_modified || new Date().toISOString(),
+        size: file.size,
+        downloadUrl: file.download_url
+      };
+    } catch (error) {
+      console.error(`Error loading content for ${file.name}:`, error);
+      return null;
+    }
+  }
+
+  /**
+   * フロントマターをパース
+   */
+  parseFrontMatter(yamlString) {
+    const result = {};
+    const lines = yamlString.split('\n');
+    
+    for (const line of lines) {
+      const match = line.match(/^([^:]+):\s*(.*)$/);
+      if (match) {
+        const key = match[1].trim();
+        let value = match[2].trim();
+        
+        // 配列の処理
+        if (value.startsWith('[') && value.endsWith(']')) {
+          value = value.slice(1, -1).split(',').map(v => v.trim().replace(/['"]/g, ''));
+        }
+        // 文字列のクォート除去
+        else if ((value.startsWith('"') && value.endsWith('"')) || 
+                 (value.startsWith("'") && value.endsWith("'"))) {
+          value = value.slice(1, -1);
+        }
+        
+        result[key] = value;
+      }
+    }
+    
+    return result;
+  }
+
+  /**
+   * 投稿を読み込み（後方互換性のため残す）
    */
   loadPosts() {
-    const saved = localStorage.getItem('blogPosts');
-    return saved ? JSON.parse(saved) : [];
+    return this.posts;
   }
 
   /**
@@ -337,6 +463,182 @@ class BlogPostManager {
       )
       .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
       .slice(0, limit);
+  }
+
+  /**
+   * 記事を編集
+   */
+  async updatePost(postId, updatedContent) {
+    try {
+      const post = this.posts.find(p => p.id === postId);
+      if (!post) {
+        throw new Error('記事が見つかりません');
+      }
+
+      if (!this.githubToken) {
+        throw new Error('GitHub認証が必要です');
+      }
+
+      // GitHub APIで記事を更新
+      const response = await fetch(`https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${post.path}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${this.githubToken}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `記事更新: ${post.title}`,
+          content: btoa(unescape(encodeURIComponent(updatedContent))), // Base64エンコード
+          sha: post.sha
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`GitHub API Error: ${response.status} - ${errorData.message}`);
+      }
+
+      const result = await response.json();
+      
+      // ローカルの記事データを更新
+      const postIndex = this.posts.findIndex(p => p.id === postId);
+      if (postIndex !== -1) {
+        const updatedPost = await this.loadPostContent({
+          name: post.filename,
+          download_url: result.content.download_url,
+          sha: result.content.sha,
+          path: result.content.path,
+          size: result.content.size
+        });
+
+        if (updatedPost) {
+          this.posts[postIndex] = updatedPost;
+          this.filteredPosts = [...this.posts];
+        }
+      }
+
+      return {
+        success: true,
+        message: '記事が正常に更新されました',
+        post: this.posts[postIndex]
+      };
+
+    } catch (error) {
+      console.error('記事更新エラー:', error);
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
+
+  /**
+   * 記事を削除
+   */
+  async deletePost(postId) {
+    try {
+      const post = this.posts.find(p => p.id === postId);
+      if (!post) {
+        throw new Error('記事が見つかりません');
+      }
+
+      if (!this.githubToken) {
+        throw new Error('GitHub認証が必要です');
+      }
+
+      // 削除確認
+      if (!confirm(`記事「${post.title}」を削除しますか？この操作は取り消せません。`)) {
+        return { success: false, message: 'キャンセルされました' };
+      }
+
+      // GitHub APIで記事を削除
+      const response = await fetch(`https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${post.path}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `token ${this.githubToken}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `記事削除: ${post.title}`,
+          sha: post.sha
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`GitHub API Error: ${response.status} - ${errorData.message}`);
+      }
+
+      // ローカルから削除
+      this.posts = this.posts.filter(p => p.id !== postId);
+      this.filteredPosts = this.filteredPosts.filter(p => p.id !== postId);
+
+      return {
+        success: true,
+        message: '記事が正常に削除されました'
+      };
+
+    } catch (error) {
+      console.error('記事削除エラー:', error);
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
+
+  /**
+   * 記事を検索・フィルタ
+   */
+  filterPosts(searchTerm = '', category = '') {
+    this.filteredPosts = this.posts.filter(post => {
+      const matchesSearch = !searchTerm || 
+        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+
+      const matchesCategory = !category || 
+        post.categories.includes(category) ||
+        post.categories.some(cat => cat.toLowerCase().includes(category.toLowerCase()));
+
+      return matchesSearch && matchesCategory;
+    });
+
+    this.currentPage = 1; // 検索時は1ページ目にリセット
+    return this.filteredPosts;
+  }
+
+  /**
+   * ページネーション用の記事を取得
+   */
+  getPagedPosts(page = 1) {
+    const startIndex = (page - 1) * this.postsPerPage;
+    const endIndex = startIndex + this.postsPerPage;
+    
+    return {
+      posts: this.filteredPosts.slice(startIndex, endIndex),
+      currentPage: page,
+      totalPages: Math.ceil(this.filteredPosts.length / this.postsPerPage),
+      totalPosts: this.filteredPosts.length
+    };
+  }
+
+  /**
+   * GitHub認証を設定
+   */
+  setGitHubToken(token) {
+    this.githubToken = token;
+    localStorage.setItem('github_token', token);
+  }
+
+  /**
+   * GitHub認証を削除
+   */
+  removeGitHubToken() {
+    this.githubToken = null;
+    localStorage.removeItem('github_token');
   }
 }
 

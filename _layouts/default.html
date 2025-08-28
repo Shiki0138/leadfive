@@ -31,11 +31,7 @@
     @media (max-width: 768px) { .container { padding: 0 15px; } }
   </style>
   
-  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
-  <!-- Fallback for direct main.css -->
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <!-- Additional fallback with absolute path for GitHub Pages -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -50,8 +46,21 @@
     gtag('config', '{{ site.google_analytics }}');
   </script>
   {% endif %}
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFLZV7QS');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body{% if page.url contains '/blog/' or page.layout == 'blog-post' or page.layout == 'blog' %} class="blog-page"{% endif %}>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   {% include header.html %}
   
   <main>
@@ -69,7 +78,7 @@
         <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
       </div>
       <div class="modal-body">
-        <form id="contactModalForm" class="contact-form" action="https://formspree.io/f/xkgwrrqv" method="POST">
+        <form id="contactModalForm" class="contact-form">
           <div class="form-row">
             <div class="form-group">
               <label for="modal-company">会社名 <span class="required">*</span></label>
@@ -251,5 +260,6 @@
   
   <script src="{{ site.baseurl }}/assets/js/main.js"></script>
   <script src="{{ site.baseurl }}/assets/js/contact-modal.js"></script>
+  <script src="{{ site.baseurl }}/assets/js/contact-handler-gas.js"></script>
 </body>
 </html>

@@ -10,82 +10,94 @@ const CONFIG = {
   anthropicApiKey: 'YOUR_ANTHROPIC_API_KEY' // PropertiesService に保存推奨
 };
 
-// 毎週月曜日7時に実行される関数
-function sendWeeklyBlogProposals() {
+// 毎朝7時に実行される関数
+function sendDailyBlogProposals() {
   const proposals = generateProposals();
   const today = new Date();
   const dateStr = Utilities.formatDate(today, 'JST', 'MM月dd日');
   
-  // 週間ブログ計画を生成（7記事）
-  const weeklyPlan = generateWeeklyPlan();
-  
   // HTMLメールを作成
-  const htmlBody = createWeeklyPlanEmail(weeklyPlan, dateStr);
+  const htmlBody = createProposalEmail(proposals, dateStr);
   
   // メール送信
   MailApp.sendEmail({
     to: CONFIG.recipientEmail,
-    subject: `【LeadFive】${dateStr}からの週間ブログ計画 - 返信で承認`,
+    subject: `【LeadFive】${dateStr}のブログ提案 - 返信で選択`,
     htmlBody: htmlBody,
     name: 'LeadFive AIアシスタント'
   });
   
-  // 週間計画をスプレッドシートに保存（後で参照用）
-  saveWeeklyPlanToSheet(weeklyPlan);
+  // 提案をスプレッドシートに保存（後で参照用）
+  saveProposalsToSheet(proposals);
 }
 
-// 週間ブログ計画を生成（7記事）
-function generateWeeklyPlan() {
-  const startDate = new Date();
-  const weekDays = ['月', '火', '水', '木', '金', '土', '日'];
+// AI提案を生成
+function generateProposals() {
+  const dayOfWeek = new Date().getDay();
+  const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
   
-  // 曜日別のテーマ設定
-  const dailyThemes = {
-    0: { focus: 'AI戦略編', keywords: ['AI戦略', 'デジタル変革', '競合優位'] },
-    1: { focus: '実践テクニック編', keywords: ['ノウハウ', '実装方法', 'ツール活用'] },
-    2: { focus: 'データ分析編', keywords: ['データ分析', 'KPI', '成果測定'] },
-    3: { focus: 'トレンド編', keywords: ['最新トレンド', '業界動向', '未来予測'] },
-    4: { focus: '事例研究編', keywords: ['成功事例', '実績分析', 'ケーススタディ'] },
-    5: { focus: '学習コンテンツ編', keywords: ['基礎理論', '初心者向け', '入門ガイド'] },
-    6: { focus: '総合戦略編', keywords: ['統合戦略', '経営判断', '長期計画'] }
+  // 曜日別のテーマ
+  const themes = {
+    1: { focus: '週始めの戦略', keywords: ['計画', '目標', '戦略'] },
+    2: { focus: '実践テクニック', keywords: ['How-to', '手法', '実装'] },
+    3: { focus: 'データ分析', keywords: ['分析', '数値', 'KPI'] },
+    4: { focus: 'トレンド', keywords: ['最新', 'トレンド', '動向'] },
+    5: { focus: '成果共有', keywords: ['事例', '成果', '実績'] },
+    6: { focus: '学習コンテンツ', keywords: ['入門', '基礎', '理論'] },
+    0: { focus: '戦略思考', keywords: ['戦略', '未来', 'ビジョン'] }
   };
   
-  const weeklyPlan = [];
+  const theme = themes[dayOfWeek];
   
-  for (let i = 0; i < 7; i++) {
-    const date = new Date(startDate);
-    date.setDate(startDate.getDate() + i + 1); // 翌日から開始
-    const dayIndex = i;
-    const theme = dailyThemes[dayIndex];
-    
-    weeklyPlan.push({
-      day: i + 1,
-      dayName: weekDays[i],
-      date: date,
-      dateStr: Utilities.formatDate(date, 'JST', 'MM/dd(曜日名)'),
-      theme: theme.focus,
-      keywords: theme.keywords,
-      // サンプル記事タイトル（実際はAIで生成）
-      suggestedTitle: generateSampleTitle(theme.focus, theme.keywords[0]),
-      expectedLength: '2500-4000文字',
-      audience: '企業の意思決定者・マーケティング責任者'
-    });
-  }
-  
-  return weeklyPlan;
-}
-
-// サンプルタイトル生成
-function generateSampleTitle(theme, keyword) {
-  const titleTemplates = [
-    `${keyword}で売上3倍を実現する5つの方法`,
-    `【${new Date().getFullYear()}年最新】${keyword}完全ガイド`,
-    `${keyword}で失敗しないための7つのポイント`,
-    `なぜ今${keyword}が注目されるのか？従来手法との違い`,
-    `${keyword}導入でROI300%達成した企業の秘訣`
+  // Claude API を呼び出して提案生成（簡易版）
+  // 実際の実装では UrlFetchApp で API を呼び出す
+  return [
+    {
+      id: 1,
+      title: "ChatGPT活用で売上3倍を実現する5つのステップ",
+      description: "中小企業が実践できる具体的なAI活用法",
+      audience: "中小企業の経営者・マーケター",
+      urgency: "高",
+      readTime: "7分",
+      expectedResult: "AIツールの導入計画が立てられる"
+    },
+    {
+      id: 2,
+      title: "8つの本能を刺激するランディングページ設計術",
+      description: "心理学的アプローチでCVR267%改善の実例",
+      audience: "Webマーケター・デザイナー",
+      urgency: "中",
+      readTime: "10分",
+      expectedResult: "LP改善の具体的な方法がわかる"
+    },
+    {
+      id: 3,
+      title: "競合に差をつけるAI×心理学マーケティング",
+      description: "LeadFive独自のフレームワークを初公開",
+      audience: "マーケティング責任者",
+      urgency: "高",
+      readTime: "12分",
+      expectedResult: "差別化戦略が立案できる"
+    },
+    {
+      id: 4,
+      title: "顧客インサイトをAIで可視化する方法",
+      description: "アンケートでは見えない本音を掴む",
+      audience: "カスタマーサクセス・営業",
+      urgency: "中",
+      readTime: "8分",
+      expectedResult: "顧客理解が深まる"
+    },
+    {
+      id: 5,
+      title: "【保存版】AIツール選定チェックリスト",
+      description: "失敗しないための27のチェックポイント",
+      audience: "AI導入検討中の企業",
+      urgency: "低",
+      readTime: "5分",
+      expectedResult: "最適なツールを選べる"
+    }
   ];
-  
-  return titleTemplates[Math.floor(Math.random() * titleTemplates.length)];
 }
 
 // HTMLメールを作成
