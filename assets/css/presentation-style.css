@@ -49,6 +49,11 @@ body.hero-active .video-overlay {
   opacity: 0.25;
 }
 
+/* テーマによるオーバーレイ濃度の自動切替 */
+body.theme-light .video-overlay { opacity: 0.35; }
+body.theme-dark .video-overlay { opacity: 0.30; }
+body.theme-transparent .video-overlay { opacity: 0.30; }
+
 /* フルスクリーンセクション基本設定 */
 .fullscreen-section {
   width: 100vw;
@@ -90,13 +95,44 @@ body {
 .belief-section,
 .final-cta-section,
 .access-section {
-  background: rgba(255, 255, 255, 0.95);
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+}
+
+/* Surface utility: 半透明のカード面で情報を載せる */
+.surface {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: #1a1a1a;
-  backdrop-filter: blur(10px);
   border-radius: 20px;
-  margin: 2vh;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+}
+
+.surface--light { background: rgba(255, 255, 255, 0.9); }
+.surface--dark  { background: rgba(17, 24, 39, 0.7); color: rgba(255,255,255,0.92); }
+
+/* 白面系セクションは内側の container をカード化 */
+.problem-section > .container,
+.philosophy-section > .container,
+.case-studies-section > .container,
+.why-now-section > .container,
+.belief-section > .container,
+.final-cta-section > .container,
+.access-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 /* セクション内の可読性改善（白背景での薄い文字を濃く） */

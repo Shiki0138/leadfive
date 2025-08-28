@@ -246,8 +246,19 @@ class PresentationScroll {
     });
 
     // ヒーローセクション可視時の動画強調（bodyクラス切り替え）
-    const isHero = this.sections[index] && this.sections[index].classList.contains('hero-section');
+    const current = this.sections[index];
+    const isHero = current && current.classList.contains('hero-section');
     document.body.classList.toggle('hero-active', !!isHero);
+
+    // セクション種類に応じてテーマクラスを切り替え（オーバーレイ濃度調整）
+    document.body.classList.remove('theme-light', 'theme-dark', 'theme-transparent');
+    if (isHero) {
+      document.body.classList.add('theme-transparent');
+    } else if (current && current.classList.contains('services-section')) {
+      document.body.classList.add('theme-dark');
+    } else {
+      document.body.classList.add('theme-light');
+    }
   }
 
   triggerSectionAnimations(section) {
