@@ -445,15 +445,15 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem auto;
-            max-width: 900px;
+            gap: 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 700px;
         }
         
         .service-card {
             background: rgba(139, 92, 246, 0.08);
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 1.5rem;
+            border-radius: 12px;
             border: 1px solid rgba(139, 92, 246, 0.2);
             text-align: center;
             transition: all 0.3s ease;
@@ -466,8 +466,13 @@
         
         .service-card h3 {
             color: #8b5cf6;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .service-card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         
         /* 理由カード */
@@ -675,19 +680,19 @@
             }
             
             .service-card {
-                padding: 1.5rem;
+                padding: 1.2rem;
                 background: rgba(139, 92, 246, 0.12) !important;
                 border: 1px solid rgba(139, 92, 246, 0.3);
             }
             
             .service-card h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.8rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.6rem;
             }
             
             .service-card p {
-                font-size: 0.95rem;
-                line-height: 1.5;
+                font-size: 0.9rem;
+                line-height: 1.4;
             }
             
             /* フッター最適化 */
@@ -801,7 +806,7 @@
             </button>
             <ul class="navbar-nav" id="mobileNav">
                 <li><a href="#philosophy" class="nav-link" onclick="closeMobileMenu()">理念</a></li>
-                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">4つの変革</a></li>
+                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">LeadFiveの強み</a></li>
                 <li><a href="#instincts" class="nav-link" onclick="closeMobileMenu()">8つの本能</a></li>
                 <li><a href="#contact" class="nav-link" onclick="closeMobileMenu()">お問い合わせ</a></li>
             </ul>
@@ -947,9 +952,9 @@
     
     <!-- 5. サービスセクション -->
     <section id="services" class="services-section fullscreen-section">
-        <div class="container">
+        <div class="container" style="max-width: 800px; padding: 1.5rem;">
             <h2 class="section-title">
-                <span class="gradient-text">4つの変革サービス</span>
+                <span class="gradient-text">LeadFiveの強み</span>
             </h2>
             
             <div class="services-grid">
