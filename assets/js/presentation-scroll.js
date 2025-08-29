@@ -105,7 +105,7 @@ class PresentationScroll {
     
     const delta = e.deltaY;
     const dir = Math.sign(delta);
-    const threshold = 8; // デスクトップ1回のスクロールで反応する感度
+    const threshold = 3; // 1回のスクロールで反応するよう感度を大幅に向上
 
     // 方向が変わったら累積をリセット
     if (dir !== this.wheelDirection) {
@@ -113,14 +113,14 @@ class PresentationScroll {
       this.wheelDirection = dir;
     }
 
-    this.wheelAccumulator += delta;
+    this.wheelAccumulator += Math.abs(delta); // 絶対値で累積
 
-    if (Math.abs(this.wheelAccumulator) < threshold) return;
+    if (this.wheelAccumulator < threshold) return;
 
-    if (this.wheelAccumulator > 0 && this.currentSection < this.sections.length - 1) {
+    if (dir > 0 && this.currentSection < this.sections.length - 1) {
       // 下へスクロール
       this.scrollToSection(this.currentSection + 1);
-    } else if (this.wheelAccumulator < 0 && this.currentSection > 0) {
+    } else if (dir < 0 && this.currentSection > 0) {
       // 上へスクロール
       this.scrollToSection(this.currentSection - 1);
     }
@@ -226,7 +226,7 @@ class PresentationScroll {
     setTimeout(() => {
       this.isScrolling = false;
       this.triggerSectionAnimations(targetSection);
-    }, 800); // 1000ms → 800ms に短縮で反応速度向上
+    }, 600); // さらに600msに短縮して素早い反応に
     
     this.currentSection = index;
   }

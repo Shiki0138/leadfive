@@ -18,9 +18,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.55; /* 背景動画をうっすら見せる */
-  filter: brightness(0.6) contrast(1.5) saturate(1.1);
-  transition: opacity 0.4s ease;
+  opacity: 0.3; /* 動画の透明度を調整 - より見えやすく */
+  filter: brightness(0.8) contrast(1.2) saturate(1.2);
+  transition: opacity 0.8s ease;
 }
 
 /* 動画オーバーレイ */
@@ -42,7 +42,8 @@
 
 /* ヒーローセクション可視時は動画を強め・オーバーレイを薄く */
 body.hero-active .video-background video {
-  opacity: 0.7;
+  opacity: 0.6; /* ヒーロー時の動画を見えやすく */
+  filter: brightness(1) contrast(1.2) saturate(1.3);
 }
 
 body.hero-active .video-overlay {
@@ -117,18 +118,84 @@ body {
 .surface--dark  { background: rgba(17, 24, 39, 0.7); color: rgba(255,255,255,0.92); }
 
 /* 白面系セクションは内側の container をカード化 */
-.problem-section > .container,
-.philosophy-section > .container,
-.case-studies-section > .container,
-.why-now-section > .container,
-.belief-section > .container,
-.final-cta-section > .container,
+.problem-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.philosophy-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+}
+
+.case-studies-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.why-now-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(245, 158, 11, 0.08) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(239, 68, 68, 0.15);
+}
+
+.belief-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.final-cta-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
 .access-section > .container {
   max-width: 1100px;
   padding: 2rem 2rem;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #1a1a1a;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -138,34 +205,49 @@ body {
 /* セクション内の可読性改善（白背景での薄い文字を濃く） */
 .philosophy-section .philosophy-text p,
 .philosophy-section .philosophy-text .lead {
-  color: #374151; /* Gray-700 ベースで視認性向上 */
+  color: rgba(255, 255, 255, 0.95); /* グラデーション背景に合わせて白文字に */
+  font-weight: 500;
+  line-height: 1.8;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.philosophy-section .instinct-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .philosophy-section .instinct-card h4 {
-  color: #111827; /* Gray-900 タイトル濃く */
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
 }
 
 .philosophy-section .instinct-card p {
-  color: #374151; /* Gray-700 本文濃く */
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
 }
 
 /* Problem セクションの理由リスト文字色（白カード上で視認性を確保） */
 .problem-section .reasons-list li {
-  color: #374151;
+  color: #111827;
+  font-weight: 600;
 }
 
 /* Belief セクションの本文を濃く */
 .belief-section .message,
 .belief-section .representative-message p {
-  color: #374151;
+  color: #111827;
+  font-weight: 500;
 }
 
 /* Access セクションの見出しと住所テキストを濃く */
 .access-section .access-details h3 {
   color: #111827;
+  font-weight: 700;
 }
 .access-section .address-info p {
-  color: #374151;
+  color: #1f2937;
+  font-weight: 500;
 }
 
 /* ヒーローセクション特別スタイル */
@@ -321,12 +403,12 @@ body {
   }
   
   .video-background video {
-    opacity: 0.18; /* モバイルでもうっすら見える程度に */
+    opacity: 0.25; /* モバイルでも動画を見やすく */
   }
 
   /* モバイル時のヒーロー表示中の動画の見え方を微調整 */
   body.hero-active .video-background video {
-    opacity: 0.28;
+    opacity: 0.4; /* モバイルでも視認性向上 */
   }
 }
 
@@ -381,6 +463,8 @@ body {
 @media (min-width: 768px) {
   .services-section .services-grid {
     grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 900px;
+    margin: 0 auto;
   }
 }
 
@@ -392,8 +476,13 @@ body {
 
 /* フッターをスナップ対象の最終セクションとして扱う */
 .site-footer.fullscreen-section {
-  min-height: auto;
-  scroll-snap-align: end;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.95) 100%);
+  color: #ffffff;
 }
 
 /* ヒーローのキャンバスを弱めて動画を優先 */

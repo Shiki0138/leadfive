@@ -1,8 +1,1216 @@
----
-layout: home
-title: AI×心理学で売上を科学する | LeadFive
-description: LeadFiveは、AI技術と人間心理学を融合させた革新的なマーケティングコンサルティングを提供します。8つの本能に基づく科学的アプローチで、あなたのビジネスを次のステージへ導きます。
-keywords: "AI マーケティング, 心理学 マーケティング, 8つの本能, コンサルティング, 売上向上, CVR改善"
-canonical_url: "https://leadfive138.com/"
-schema_type: "Organization"
----
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI×心理学で売上を科学する | LeadFive</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="LeadFiveは、AI技術と人間心理学を融合させた革新的なマーケティングコンサルティングを提供します。8つの本能に基づく科学的アプローチで、あなたのビジネスを次のステージへ導きます。">
+    <meta name="keywords" content="AI マーケティング, 心理学 マーケティング, 8つの本能, コンサルティング, 売上向上, CVR改善">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* オープニング画面 */
+        .opening-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+        
+        .opening-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .opening-content {
+            text-align: center;
+            transform: scale(0.8);
+            opacity: 0;
+        }
+        
+        .opening-logo {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b);
+            background-size: 300% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 2rem;
+        }
+        
+        .opening-tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            transform: translateY(20px);
+        }
+        
+        .opening-loader {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            border-top: 3px solid #8b5cf6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* 動画背景 */
+        .video-background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            filter: brightness(0.6) contrast(1.2) saturate(1.0);
+            transition: all 0.8s ease;
+        }
+        
+        body.hero-active .video-background video {
+            opacity: 0.8;
+            filter: brightness(0.7) contrast(1.3) saturate(1.1);
+        }
+        
+        .video-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: linear-gradient(135deg,
+                rgba(15, 15, 20, 0.2) 0%,
+                rgba(25, 25, 35, 0.15) 50%,
+                rgba(15, 15, 20, 0.2) 100%);
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+        
+        body.hero-active .video-overlay { 
+            opacity: 0.3;
+        }
+        
+        /* フルスクリーンセクション */
+        .fullscreen-section {
+            width: 100vw; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            scroll-snap-align: start;
+            padding: 4rem 2rem;
+        }
+        
+        html { 
+            scroll-snap-type: y mandatory; 
+            scroll-behavior: smooth; 
+        }
+        
+        /* ヘッダー */
+        .site-header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .navbar-brand .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        .nav-link:hover {
+            color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.15);
+        }
+        
+        /* セクションコンテナ */
+        .container {
+            max-width: 900px;
+            width: 85%;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            margin-top: 2rem;
+        }
+        
+        /* セクション別背景 - より透明に */
+        .hero-section .container {
+            background: rgba(15, 15, 20, 0.3);
+            color: #ffffff;
+            text-align: center;
+        }
+        
+        .problem-section .container {
+            background: rgba(255, 255, 255, 0.6); /* より透明に */
+            color: #1a1a1a;
+        }
+        
+        .philosophy-section .container {
+            background: rgba(139, 92, 246, 0.2);
+            color: #ffffff;
+        }
+        
+        .services-section .container {
+            background: rgba(255, 255, 255, 0.85); /* サービス表示のため少し不透明に */
+            color: #1a1a1a;
+        }
+        
+        .instincts-section .container {
+            background: rgba(236, 72, 153, 0.2);
+            color: #ffffff;
+        }
+        
+        .why-now-section .container {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ffffff;
+        }
+        
+        .final-cta-section .container {
+            background: rgba(59, 130, 246, 0.2);
+            color: #ffffff;
+        }
+        
+        .access-section .container {
+            background: rgba(255, 255, 255, 0.7); /* より透明に */
+            color: #1a1a1a;
+        }
+        
+        .footer-section .container {
+            background: rgba(17, 24, 39, 0.9);
+            color: #ffffff;
+        }
+        
+        /* タイトル */
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* グラデーションテキスト */
+        .gradient-text {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b);
+            background-size: 300% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+        
+        .highlight { 
+            color: #8b5cf6; 
+            font-weight: 700; 
+        }
+        
+        /* ボタン */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.5);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* メトリクス */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1rem 0 0 0;
+            text-align: center;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ec4899;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* カードグリッド */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .card p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+        
+        /* 本能カード */
+        .instincts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        /* サービスカード */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+        }
+        
+        .service-card {
+            background: rgba(139, 92, 246, 0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        .service-card h3 {
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        /* 理由カード */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .reason-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .reason-card h3 {
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+        
+        /* アクセス情報 */
+        .access-content {
+            text-align: center;
+        }
+        
+        .map-container {
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+        
+        /* フッターリンク */
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .footer-links h4 {
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            line-height: 2;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #8b5cf6;
+        }
+        
+        /* セクションナビゲーション */
+        .section-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .section-nav-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+        
+        .section-nav-dot.active {
+            background: #8b5cf6;
+            border-color: rgba(139, 92, 246, 0.6);
+            transform: scale(1.4);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+        }
+        
+        .section-nav-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+        
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            html {
+                scroll-snap-type: none;
+            }
+            .opening-logo { font-size: 2.5rem; }
+            .opening-tagline { font-size: 1.2rem; }
+            
+            .fullscreen-section { 
+                padding: 2rem 1rem;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .container {
+                width: 95%;
+                padding: 1.5rem;
+                margin-top: 1rem;
+            }
+            
+            .hero-title { 
+                font-size: clamp(1.8rem, 6vw, 2.2rem); 
+            }
+            
+            .section-title {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+            }
+            
+            .section-nav { display: none; }
+            .navbar-nav { 
+                flex-direction: row;
+                font-size: 0.85rem;
+                gap: 0.8rem;
+            }
+            
+            .nav-link {
+                padding: 0.3rem 0.6rem;
+            }
+            
+            .cards-grid, 
+            .metrics-grid, 
+            .reasons-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .instincts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .video-background video {
+                opacity: 0.4;
+            }
+            
+            body.hero-active .video-background video {
+                opacity: 0.5;
+            }
+        }
+        
+        /* リストスタイル */
+        .benefits-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            list-style: none;
+        }
+        
+        .benefits-list li {
+            padding: 0.8rem 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .fallback-bg {
+            background: linear-gradient(135deg, #0f0f14 0%, #1a1a2e 50%, #16213e 100%);
+        }
+    </style>
+</head>
+<body class="hero-active">
+    <!-- オープニング画面 -->
+    <div class="opening-screen" id="opening">
+        <div class="opening-content">
+            <div class="opening-logo">LeadFive</div>
+            <div class="opening-tagline">Loading...</div>
+            <div class="opening-loader"></div>
+        </div>
+    </div>
+    
+    <!-- 動画背景 -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline preload="auto" id="background-video">
+            <source src="20250829_1716_Futuristic Office Coding_simple_compose_01k3tebsche7pbncc4mt41dx8n.mp4" type="video/mp4">
+            <source src="assets/videos/hero-background.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="video-overlay"></div>
+    
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="#" class="logo-text">LeadFive</a>
+            </div>
+            <ul class="navbar-nav">
+                <li><a href="#philosophy" class="nav-link">理念</a></li>
+                <li><a href="#services" class="nav-link">4つの変革</a></li>
+                <li><a href="#instincts" class="nav-link">8つの本能</a></li>
+                <li><a href="#contact" class="nav-link">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- 1. ヒーローセクション -->
+    <section id="hero" class="hero-section fullscreen-section">
+        <div class="container">
+            <p style="font-size: 1.8rem; font-weight: 700; line-height: 1.6; margin-bottom: 1.5rem; margin-top: 1rem; opacity: 0.95;">
+                LeadFiveは、<br>
+                <span class="gradient-text">生成AI</span>と<span class="gradient-text">行動心理</span>に強みを持つ、<br>
+                次世代のコンサルタントです。
+            </p>
+            
+            <p style="font-size: 1.4rem; font-weight: 500; line-height: 1.7; margin-bottom: 1rem; opacity: 0.9;">
+                マーケティング戦略を描くだけでなく、<br>
+                その解決策を生成AIで<span style="color: #8b5cf6; font-weight: 600;">システムに落とし込み</span>、<span style="color: #ec4899; font-weight: 600;">実装まで伴走</span>します。
+            </p>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <button class="btn btn-primary" onclick="scrollToContact()">無料相談はこちら</button>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-value" data-target="2.2">0x</span>
+                    <span class="metric-label">売上成長</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" data-target="267">0%</span>
+                    <span class="metric-label">CV率向上</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value" data-target="42">0%</span>
+                    <span class="metric-label">コスト削減</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 2. 問題提起セクション -->
+    <section id="problem" class="problem-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">
+                なぜ多くのビジネスが<span class="highlight">停滞</span>するのか？
+            </h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">😰</span>
+                    <h3>広告費増加、売上横ばい</h3>
+                    <p>競合増加で広告単価上昇。成果は出ない現実。</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🤖</span>
+                    <h3>AI導入も使いこなせない</h3>
+                    <p>「とりあえずChatGPT」では差がつかない。</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">📊</span>
+                    <h3>データあるも次手見えず</h3>
+                    <p>分析ツールの数値を眺めるだけの日々。</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; background: rgba(239, 68, 68, 0.1); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                <p style="color: #ef4444; font-weight: 700; font-size: 1.2rem;">
+                    これらを放置すると、1年後には取り返しのつかない差が生まれます
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 3. 解決策セクション -->
+    <section id="philosophy" class="philosophy-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">
+                解決の鍵は<span class="gradient-text">テクノロジー × 顧客理解</span>
+            </h2>
+            
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+                    最新のAI技術と、変わらない人間の本能。<br>
+                    この2つを掛け合わせることで、競合が真似できない強みが生まれます。
+                </p>
+                
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px;">
+                    <h3 style="color: #f59e0b; margin-bottom: 1rem;">真実</h3>
+                    <p style="font-size: 1.3rem; font-weight: 700;">
+                        <span class="gradient-text">人間の購買行動の95%は無意識</span>
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        データやロジックだけでは、人は動かない。<br>
+                        必要なのは、8つの本能に訴えかける科学的アプローチ。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 4. 8つの本能セクション -->
+    <section id="instincts" class="instincts-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">
+                変わらない<span class="gradient-text">人間の8つの本能</span>
+            </h2>
+            
+            <div class="instincts-grid">
+                <div class="card">
+                    <span class="card-icon">🛡️</span>
+                    <h3>生存本能</h3>
+                    <p>安全・安心を求める</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🍽️</span>
+                    <h3>食欲</h3>
+                    <p>満足を追求する</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">❤️</span>
+                    <h3>性的本能</h3>
+                    <p>魅力的でありたい</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">😡</span>
+                    <h3>危険回避本能</h3>
+                    <p>リスクを避ける</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">😌</span>
+                    <h3>快適性追求</h3>
+                    <p>楽をしたい</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">👑</span>
+                    <h3>優越本能</h3>
+                    <p>特別でありたい</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">👥</span>
+                    <h3>集団帰属本能</h3>
+                    <p>仲間でいたい</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🎯</span>
+                    <h3>承認欲求</h3>
+                    <p>認められたい</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 5. サービスセクション -->
+    <section id="services" class="services-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="gradient-text">4つの変革サービス</span>
+            </h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="card-icon">🤖</span>
+                    <h3>AI マーケティング</h3>
+                    <p>最新のAI技術でマーケティングを自動化し、予測分析・自動最適化・パーソナライゼーションを実現</p>
+                </div>
+                <div class="service-card">
+                    <span class="card-icon">🧠</span>
+                    <h3>心理学分析</h3>
+                    <p>8つの本能に基づいた科学的アプローチで顧客心理を深層理解し、行動を予測</p>
+                </div>
+                <div class="service-card">
+                    <span class="card-icon">📊</span>
+                    <h3>データ統合</h3>
+                    <p>散在するデータを統合プラットフォームで一元化し、リアルタイム分析で即座の意思決定を支援</p>
+                </div>
+                <div class="service-card">
+                    <span class="card-icon">🚀</span>
+                    <h3>戦略実行</h3>
+                    <p>分析結果を実際のビジネス成果に変える具体的ロードマップと6ヶ月間の継続サポート</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 6. Why Nowセクション -->
+    <section id="why-now" class="why-now-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span style="color: #ef4444;">なぜ今なのか？</span>
+            </h2>
+            
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 1rem;">⏰</span>
+                    <h3>AI進化は加速</h3>
+                    <p>1ヶ月の遅れが1年分の差になる時代</p>
+                </div>
+                <div class="reason-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 1rem;">📈</span>
+                    <h3>競合も動き始める</h3>
+                    <p>先行者利益は今この瞬間にある</p>
+                </div>
+                <div class="reason-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 1rem;">💰</span>
+                    <h3>投資対効果最高</h3>
+                    <p>最小投資で最大効果を得られる</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 7. 最終CTAセクション -->
+    <section id="contact" class="final-cta-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">
+                AI活用を味方につけた企業だけが<br>
+                次の時代を<span class="gradient-text">制する</span>
+            </h2>
+            
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h3 style="margin-bottom: 2rem;">今すぐ始める3つの理由</h3>
+                <ul class="benefits-list">
+                    <li>✓ 無料AI診断で、あなたのビジネスの可能性が分かる</li>
+                    <li>✓ 専門家による詳細な戦略提案が受けられる</li>
+                    <li>✓ 業界トップクラスの実績とノウハウを活用できる</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <button class="btn btn-primary" style="font-size: 1.3rem; padding: 1.2rem 3rem;">
+                    無料相談はこちら
+                </button>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 20px;">✓ AI導入20社以上の実績</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 20px;">✓ 満足度98.5%</span>
+                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 20px;">✓ 初回相談無料</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 8. アクセスセクション -->
+    <section id="access" class="access-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">アクセス</h2>
+            
+            <div class="access-content">
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #8b5cf6;">大阪梅田ツインタワーズ・サウス15階</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>JR「大阪」駅 徒歩3分</strong></p>
+                    <p style="font-size: 1.1rem;"><strong>地下鉄「梅田」駅 徒歩1分</strong></p>
+                </div>
+                
+                <div class="map-container">
+                    <iframe
+                        title="大阪梅田ツインタワーズ・サウス 地図"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.0987654321!2d135.4961!3d34.7024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z5aSn6Ziq5qKF55Sw44OE44Kk44Oz44K_44Ov44O844K644O744K144Km44K5!5e0!3m2!1sja!2sjp!4v1234567890"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-primary">お問い合わせはこちら</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 9. フッターセクション -->
+    <section id="footer" class="footer-section fullscreen-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="color: #8b5cf6; margin-bottom: 2rem;">LeadFive</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.8;">
+                    AI×心理学で、あなたのビジネスの可能性を最大化します。<br>
+                    まずは無料相談から始めませんか？
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <div>
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="/services/ai-marketing">AI マーケティング</a></li>
+                        <li><a href="/services/psychology-analysis">心理学分析</a></li>
+                        <li><a href="/services/data-integration">データ統合</a></li>
+                        <li><a href="/services/strategy-execution">戦略実行</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>企業情報</h4>
+                    <ul>
+                        <li><a href="/company">企業概要</a></li>
+                        <li><a href="/company/philosophy">経営理念</a></li>
+                        <li><a href="/company/team">チーム紹介</a></li>
+                        <li><a href="/news">ニュース</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>サポート</h4>
+                    <ul>
+                        <li><a href="/contact">お問い合わせ</a></li>
+                        <li><a href="/privacy">プライバシーポリシー</a></li>
+                        <li><a href="/terms">利用規約</a></li>
+                        <li><a href="/sitemap">サイトマップ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 3rem 0;">
+                <button class="btn btn-primary">
+                    無料相談のお申し込み
+                </button>
+            </div>
+            
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 2rem; color: rgba(255, 255, 255, 0.7); text-align: center;">
+                <p>&copy; 2024 LeadFive. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- セクションナビゲーション -->
+    <div class="section-nav">
+        <div class="section-nav-dot active" data-section="0"></div>
+        <div class="section-nav-dot" data-section="1"></div>
+        <div class="section-nav-dot" data-section="2"></div>
+        <div class="section-nav-dot" data-section="3"></div>
+        <div class="section-nav-dot" data-section="4"></div>
+        <div class="section-nav-dot" data-section="5"></div>
+        <div class="section-nav-dot" data-section="6"></div>
+        <div class="section-nav-dot" data-section="7"></div>
+        <div class="section-nav-dot" data-section="8"></div>
+    </div>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/TextPlugin.min.js"></script>
+    
+    <script>
+        // GSAP初期化
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // オープニングアニメーション
+        window.addEventListener('load', () => {
+            const openingTL = gsap.timeline();
+            
+            openingTL.to('.opening-content', {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "power3.out"
+            })
+            .to('.opening-tagline', {
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.5")
+            .to('.opening-screen', {
+                opacity: 0,
+                duration: 1,
+                delay: 2,
+                onComplete: () => {
+                    document.getElementById('opening').style.display = 'none';
+                    startMainAnimations();
+                }
+            });
+        });
+        
+        function startMainAnimations() {
+            // 動画の読み込み確認
+            const video = document.getElementById('background-video');
+            const videoContainer = document.querySelector('.video-background');
+            
+            video.addEventListener('error', () => {
+                console.log('Video failed to load, using fallback');
+                document.body.classList.add('fallback-bg');
+                videoContainer.style.display = 'none';
+            });
+            
+            video.addEventListener('loadeddata', () => {
+                console.log('Futuristic Office video loaded successfully');
+                video.play().catch(e => console.log('Video autoplay failed:', e));
+            });
+            
+            // ヒーローアニメーション
+            const heroTL = gsap.timeline({ delay: 0.5 });
+            
+            heroTL.from('.hero-title', {
+                opacity: 0,
+                y: 80,
+                duration: 1.2,
+                ease: "power3.out"
+            })
+            .from('.hero-section p', {
+                opacity: 0,
+                y: 40,
+                duration: 1,
+                ease: "power2.out"
+            }, "-=0.6")
+            .from('.hero-section .btn', {
+                scale: 0,
+                rotation: 360,
+                duration: 0.8,
+                ease: "back.out(1.7)",
+                stagger: 0.2
+            }, "-=0.4")
+            .from('.metric-card', {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power2.out"
+            }, "-=0.3");
+            
+            // メトリクスカウントアップ（修正版）
+            gsap.utils.toArray('.metric-value').forEach(el => {
+                const target = parseFloat(el.dataset.target);
+                const isPercent = el.textContent.includes('%');
+                const isMultiplier = el.textContent.includes('x');
+                
+                const counter = { value: 0 };
+                gsap.to(counter, {
+                    value: target,
+                    duration: 2,
+                    ease: "power2.out",
+                    delay: 2,
+                    onUpdate: function() {
+                        if (isMultiplier) {
+                            el.textContent = counter.value.toFixed(1) + 'x';
+                        } else if (isPercent) {
+                            el.textContent = Math.round(counter.value) + '%';
+                        } else {
+                            el.textContent = Math.round(counter.value);
+                        }
+                    }
+                });
+            });
+        }
+        
+        // セクションアニメーション
+        const sections = gsap.utils.toArray('.fullscreen-section');
+        sections.forEach((section, i) => {
+            if (i === 0) return; // ヒーローはスキップ
+            
+            const container = section.querySelector('.container');
+            
+            gsap.from(container, {
+                opacity: 0,
+                y: 60,
+                scale: 0.98,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // カードアニメーション
+            const cards = section.querySelectorAll('.card, .service-card, .reason-card, .metric-card');
+            if (cards.length) {
+                gsap.from(cards, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 60%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            }
+        });
+        
+        // ボタンインタラクション
+        gsap.utils.toArray('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                gsap.to(btn, { 
+                    scale: 1.05, 
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { 
+                    scale: 1, 
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+        
+        // カードホバー効果
+        gsap.utils.toArray('.card, .service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    y: -8,
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    y: 0,
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+        
+        // セクションナビゲーション
+        const dots = gsap.utils.toArray('.section-nav-dot');
+        const allSections = gsap.utils.toArray('.fullscreen-section');
+        
+        ScrollTrigger.batch(allSections, {
+            onEnter: (elements) => {
+                const index = allSections.indexOf(elements[0]);
+                updateActiveDot(index);
+            },
+            onEnterBack: (elements) => {
+                const index = allSections.indexOf(elements[0]);
+                updateActiveDot(index);
+            },
+            start: "top 50%",
+            end: "bottom 50%"
+        });
+        
+        function updateActiveDot(index) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        // ドットクリックでセクションジャンプ
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                allSections[index].scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+        
+        // ナビゲーション関数
+        window.scrollToServices = () => {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        };
+        
+        window.scrollToContact = () => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        };
+        
+        console.log('Final homepage with opening loaded successfully!');
+    </script>
+</body>
+</html>
