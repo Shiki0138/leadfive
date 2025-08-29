@@ -171,6 +171,49 @@
             text-decoration: none;
         }
         
+        /* ハンバーガーメニュー */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .hamburger {
+            width: 30px;
+            height: 24px;
+            position: relative;
+        }
+        
+        .hamburger span {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger span:nth-child(1) { top: 0; }
+        .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .hamburger span:nth-child(3) { bottom: 0; }
+        
+        .mobile-menu-toggle.active .hamburger span:nth-child(1) {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+        
+        .mobile-menu-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-toggle.active .hamburger span:nth-child(3) {
+            bottom: 50%;
+            transform: translateY(50%) rotate(-45deg);
+        }
+        
         .navbar-nav {
             display: flex;
             gap: 2rem;
@@ -531,9 +574,43 @@
         /* モバイル対応 */
         @media (max-width: 768px) {
             html {
-                scroll-snap-type: none;
+                scroll-snap-type: y proximity;
+                scroll-padding-top: 60px;
             }
-            .opening-logo { font-size: 2.5rem; }
+            
+            /* ハンバーガーメニュー表示 */
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .navbar-nav {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 60px);
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: right 0.3s ease;
+                overflow-y: auto;
+                z-index: 1000;
+            }
+            
+            .navbar-nav.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 0.8rem 1rem;
+                width: 100%;
+                text-align: left;
+            }
+            
+            .opening-logo { font-size: 2rem; }
             .opening-tagline { font-size: 1.2rem; }
             
             .fullscreen-section { 
@@ -548,12 +625,25 @@
                 margin-top: 1rem;
             }
             
+            /* ヒーローテキスト調整 */
+            .hero-section p:first-of-type {
+                font-size: 1.3rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .hero-section p:nth-of-type(2) {
+                font-size: 1.1rem !important;
+                line-height: 1.6 !important;
+            }
+            
             .hero-title { 
-                font-size: clamp(1.8rem, 6vw, 2.2rem); 
+                font-size: clamp(1.5rem, 5vw, 1.8rem); 
             }
             
             .section-title {
-                font-size: clamp(1.5rem, 5vw, 2rem);
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
             }
             
             .section-nav { display: none; }
@@ -581,21 +671,80 @@
             
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1.2rem;
             }
             
+            .service-card {
+                padding: 1.5rem;
+                background: rgba(139, 92, 246, 0.12) !important;
+                border: 1px solid rgba(139, 92, 246, 0.3);
+            }
+            
+            .service-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .service-card p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+            
+            /* フッター最適化 */
             .footer-links {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-                text-align: center;
+                gap: 1rem;
+            }
+            
+            .footer-column {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer-column:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+            
+            .footer-column h4 {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+                color: #8b5cf6;
+            }
+            
+            .footer-column ul {
+                font-size: 0.9rem;
+            }
+            
+            .footer-column li {
+                padding: 0.4rem 0;
             }
             
             .video-background video {
-                opacity: 0.4;
+                opacity: 0.3;
             }
             
             body.hero-active .video-background video {
-                opacity: 0.5;
+                opacity: 0.4;
+            }
+            
+            /* ボタンサイズ最適化 */
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+                min-height: 48px;
+            }
+            
+            /* モバイルで動画を非表示 */
+            @media (max-width: 480px) {
+                .video-background {
+                    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+                }
+                
+                .video-background video {
+                    display: none;
+                }
             }
         }
         
@@ -631,8 +780,8 @@
     <!-- 動画背景 -->
     <div class="video-background">
         <video autoplay muted loop playsinline preload="auto" id="background-video">
+            <source src="assets/videos/20250829_1716_Futuristic_Office_Coding.mp4" type="video/mp4">
             <source src="20250829_1716_Futuristic Office Coding_simple_compose_01k3tebsche7pbncc4mt41dx8n.mp4" type="video/mp4">
-            <source src="assets/videos/hero-background.mp4" type="video/mp4">
         </video>
     </div>
     <div class="video-overlay"></div>
@@ -643,11 +792,18 @@
             <div class="navbar-brand">
                 <a href="#" class="logo-text">LeadFive</a>
             </div>
-            <ul class="navbar-nav">
-                <li><a href="#philosophy" class="nav-link">理念</a></li>
-                <li><a href="#services" class="nav-link">4つの変革</a></li>
-                <li><a href="#instincts" class="nav-link">8つの本能</a></li>
-                <li><a href="#contact" class="nav-link">お問い合わせ</a></li>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <ul class="navbar-nav" id="mobileNav">
+                <li><a href="#philosophy" class="nav-link" onclick="closeMobileMenu()">理念</a></li>
+                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">4つの変革</a></li>
+                <li><a href="#instincts" class="nav-link" onclick="closeMobileMenu()">8つの本能</a></li>
+                <li><a href="#contact" class="nav-link" onclick="closeMobileMenu()">お問い合わせ</a></li>
             </ul>
         </nav>
     </header>
@@ -1208,6 +1364,27 @@
         
         window.scrollToContact = () => {
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        };
+        
+        // モバイルメニュー制御
+        window.toggleMobileMenu = () => {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            mobileNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // メニューが開いたときは背景スクロールを防ぐ
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        };
+        
+        window.closeMobileMenu = () => {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            mobileNav.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
         };
         
         console.log('Final homepage with opening loaded successfully!');
