@@ -41,12 +41,17 @@ body {
   font-family: 'Noto Sans JP', sans-serif;
   background-color: $deep-black;
   color: $white;
-  line-height: 1.6;
+  line-height: 1.7; // 読みやすさ向上
   overflow-x: hidden;
   min-height: 100%;
   position: relative;
   // Ensure scrolling is not blocked
   overflow-y: auto !important;
+
+  // PCでは文字サイズを少し大きく
+  @media (min-width: 1024px) {
+    font-size: 17px;
+  }
   
   // Prevent horizontal overflow on mobile
   @media (max-width: 768px) {
@@ -215,9 +220,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
-h1 { font-size: 3.5rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 2rem; }
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 h4 { font-size: 1.5rem; }
 h5 { font-size: 1.25rem; }
 h6 { font-size: 1rem; }
@@ -3080,4 +3085,3 @@ button[onclick*="openContactForm"],
   opacity: 1 !important;
   visibility: visible !important;
 }
-

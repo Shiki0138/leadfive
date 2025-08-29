@@ -377,6 +377,11 @@ body {
   scroll-snap-align: end;
 }
 
+/* ヒーローのキャンバスを弱めて動画を優先 */
+.hero-background canvas#neural-network-canvas {
+  opacity: 0.2;
+}
+
 /* アクセシビリティ: 動画を無効にするオプション */
 @media (prefers-reduced-motion: reduce) {
   .video-background video {
