@@ -262,21 +262,71 @@ class PresentationScroll {
   }
 
   triggerSectionAnimations(section) {
-    // セクション内の要素にアニメーションクラスを追加
-    const animatedElements = section.querySelectorAll('.service-card, .case-study-card, .instinct-card, .problem-card, .belief-card');
-    
-    animatedElements.forEach((element, index) => {
-      setTimeout(() => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        
-        requestAnimationFrame(() => {
-          element.style.opacity = '1';
-          element.style.transform = 'translateY(0)';
+    if (section.dataset.animeDone === 'true') return;
+    section.dataset.animeDone = 'true';
+
+    // reduce-motion の場合はアニメ省略
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // anime.js が無い場合や reduce-motion はフェードのみ
+    if (!window.anime || reduce) {
+      const fallbackEls = section.querySelectorAll('.service-card, .case-study-card, .instinct-card, .problem-card, .belief-card');
+      fallbackEls.forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+      return;
+    }
+
+    // セクション共通の入場アニメ
+    const items = section.querySelectorAll('.service-card, .case-study-card, .instinct-card, .problem-card, .belief-card');
+    if (items.length) {
+      anime({
+        targets: items,
+        opacity: [0, 1],
+        translateY: [30, 0],
+        duration: 700,
+        delay: anime.stagger(100, { start: 100 }),
+        easing: 'easeOutQuad'
+      });
+    }
+
+    // セクションタイトルの軽い入場
+    const title = section.querySelector('.section-title, .hero-title');
+    if (title) {
+      anime({
+        targets: title,
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 700,
+        easing: 'easeOutQuad'
+      });
+    }
+
+    // ヒーローのメトリクス数値アニメーション
+    if (section.classList.contains('hero-section')) {
+      const values = section.querySelectorAll('.success-preview .value');
+      values.forEach((el) => {
+        const raw = (el.textContent || '').trim();
+        const match = raw.match(/([0-9]+(?:\.[0-9]+)?)(.*)/);
+        if (!match) return;
+        const end = parseFloat(match[1]);
+        const suffix = match[2] || '';
+        const decimals = (match[1].split('.')[1] || '').length;
+        const obj = { val: 0 };
+        anime({
+          targets: obj,
+          val: end,
+          duration: 1600,
+          delay: 200,
+          easing: 'easeOutCubic',
+          update: () => {
+            const v = decimals ? obj.val.toFixed(decimals) : Math.round(obj.val).toString();
+            el.textContent = `${v}${suffix}`;
+          }
         });
-      }, index * 100);
-    });
+      });
+    }
   }
 
   startIntersectionObserver() {
