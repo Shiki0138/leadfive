@@ -6,8 +6,41 @@ permalink: /case-studies/
 ---
 
 <style>
+/* Add background video container */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85); /* Dark overlay to make text readable */
+  z-index: -1;
+}
+
+/* Ensure page has dark background */
+body {
+  background-color: #0a0a0a;
+  color: #e5e7eb; /* Light gray text for better readability */
+}
+
 .case-studies-hero {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05)); /* Reduced opacity */
   padding: 6rem 0;
   margin-bottom: 4rem;
   text-align: center;
@@ -23,14 +56,20 @@ permalink: /case-studies/
   background-clip: text;
 }
 
+.case-studies-hero p {
+  color: #e5e7eb;
+  font-size: 1.125rem;
+}
+
 .results-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
   padding: 3rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(20, 20, 20, 0.8);
   border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -55,6 +94,16 @@ permalink: /case-studies/
   font-size: 0.875rem;
 }
 
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .filter-section {
   margin-bottom: 3rem;
   text-align: center;
@@ -69,10 +118,10 @@ permalink: /case-studies/
 
 .filter-btn {
   padding: 0.5rem 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 9999px;
-  color: #fff;
+  color: #e5e7eb;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.875rem;
@@ -92,8 +141,8 @@ permalink: /case-studies/
 }
 
 .case-study-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(139, 92, 246, 0.2);
+  background: rgba(20, 20, 20, 0.9);
+  border: 2px solid rgba(139, 92, 246, 0.3);
   border-radius: 15px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -108,8 +157,13 @@ permalink: /case-studies/
 
 .case-study-header {
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.1));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.05));
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.case-study-header h3 {
+  color: #f3f4f6;
+  margin-top: 0.5rem;
 }
 
 .industry-tag {
@@ -123,6 +177,12 @@ permalink: /case-studies/
 
 .case-study-content {
   padding: 2rem;
+  color: #e5e7eb;
+}
+
+.case-study-content p {
+  color: #d1d5db;
+  line-height: 1.6;
 }
 
 .case-metrics {
@@ -175,10 +235,11 @@ permalink: /case-studies/
 }
 
 .testimonial-section {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(20, 20, 20, 0.8);
   padding: 3rem;
   border-radius: 20px;
   margin-bottom: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -202,10 +263,10 @@ permalink: /case-studies/
 }
 
 .testimonial-card {
-  background: #0a0a0a;
+  background: rgba(15, 15, 15, 0.95);
   padding: 2rem;
   border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   position: relative;
 }
 
@@ -248,9 +309,67 @@ permalink: /case-studies/
 .cta-section {
   text-align: center;
   padding: 4rem;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05));
   border-radius: 20px;
   margin-top: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #f3f4f6;
+}
+
+.cta-section p {
+  color: #d1d5db;
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #e5e7eb;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+}
+
+.btn-outline:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: #8b5cf6;
+}
+
+.btn-large {
+  padding: 1.25rem 2.5rem;
+  font-size: 1.125rem;
 }
 
 @media (max-width: 768px) {
@@ -360,6 +479,14 @@ permalink: /case-studies/
   }
 }
 </style>
+
+<!-- Background Video -->
+<div class="video-background">
+  <video autoplay muted loop playsinline>
+    <source src="{{ '/assets/videos/hero-background.mp4' | relative_url }}" type="video/mp4">
+  </video>
+</div>
+<div class="video-overlay"></div>
 
 <div class="case-studies-hero">
   <div class="container">
