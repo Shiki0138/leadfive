@@ -726,3 +726,45 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Initialize Case Studies slider (Swiper) and Process interactions
+function initCaseStudiesSlider() {
+  if (typeof Swiper === 'undefined') return;
+  const el = document.querySelector('.case-swiper');
+  if (!el) return;
+  try {
+    new Swiper('.case-swiper', {
+      loop: false,
+      speed: 550,
+      spaceBetween: 16,
+      slidesPerView: 1.1,
+      centeredSlidesBounds: true,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      breakpoints: {
+        640: { slidesPerView: 1.4, spaceBetween: 20 },
+        768: { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 24 }
+      }
+    });
+  } catch (e) {
+    console.warn('Swiper init failed:', e);
+  }
+}
+
+function initProcessSteps() {
+  const steps = document.querySelectorAll('#process .steps li');
+  if (!steps.length) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.2 });
+  steps.forEach(li => obs.observe(li));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCaseStudiesSlider();
+  initProcessSteps();
+});

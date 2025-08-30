@@ -770,6 +770,100 @@ section {
   }
 }
 
+.section.alt {
+  background: #0d0d0d;
+}
+
+.section-title-en {
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $gray-400;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-title-sub {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-lead {
+  text-align: center;
+  color: $gray-400;
+  margin-bottom: 1.5rem;
+}
+
+/* Case Studies (Swiper) */
+.case-swiper {
+  --swiper-navigation-color: #fff;
+  --swiper-pagination-color: #fff;
+  padding: 0.5rem 0 2rem;
+}
+
+.case-slide {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  height: auto;
+}
+
+.case-shot {
+  height: 160px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(59,130,246,0.15));
+}
+
+.case-meta {
+  color: $gray-400;
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.case-desc {
+  color: $gray-300;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Process (sticky steps) */
+.steps {
+  list-style: none;
+  margin: 1rem auto 0;
+  padding: 0;
+  max-width: 900px;
+  position: sticky;
+  top: 90px;
+}
+
+.steps li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  border-left: 3px solid rgba(139, 92, 246, 0.35);
+  margin-left: 0.5rem;
+}
+
+.steps li + li {
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.steps li span {
+  color: $gray-500;
+  min-width: 2rem;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .case-shot { height: 140px; }
+  .section-title-sub { font-size: 1.5rem; }
+  .steps { top: 72px; }
+}
+
 .section-title {
   text-align: center;
   margin-bottom: 3rem;

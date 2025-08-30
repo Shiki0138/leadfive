@@ -232,53 +232,66 @@ layout: default
   </div>
 </section>
 
-<!-- Case Studies Section -->
-<section id="case-studies" class="case-studies-section">
+<!-- 実績（スライダー） -->
+<section id="cases" class="section alt">
   <div class="container">
-    <h2 class="section-title">
-      <span class="gradient-text">変革の実例</span><br>
-      お客様と共に創った成功ストーリー
-    </h2>
-    
-    <div class="case-studies-grid">
-      {% for case in site.data.case_studies limit:3 %}
-      <div class="case-study-card">
-        <div class="case-header">
-          <span class="industry">{{ case.industry }}</span>
-          <h3>{{ case.title }}</h3>
+    <h2 class="section-title section-title-en" data-typing-en="Case Studies">Case Studies</h2>
+    <h3 class="section-title-sub">実績</h3>
+    <p class="section-lead">横にスワイプ/ドラッグしてご覧ください。</p>
+  </div>
+  <div class="container">
+    <div class="swiper case-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide case-slide">
+          <div class="case-shot" aria-hidden="true"></div>
+          <h3>分析機能付きランディングページを導入</h3>
+          <p class="case-meta">建築工務店｜A/Bテスト×複数LP</p>
+          <p class="case-desc">分析機能を備えたLPを複数運用し、継続的なA/Bテストで見込み客獲得を拡大。CPA最適化と学習サイクルを高速化。</p>
         </div>
-        
-        <div class="before-after">
-          <div class="before">
-            <h4>Before</h4>
-            <p class="situation">{{ case.before_situation }}</p>
-            <p class="emotion">{{ case.before_emotion }}</p>
-          </div>
-          
-          <div class="transformation">
-            <span class="arrow">→</span>
-          </div>
-          
-          <div class="after">
-            <h4>After</h4>
-            <p class="result">{{ case.after_result }}</p>
-            <p class="emotion">{{ case.after_emotion }}</p>
-          </div>
+        <div class="swiper-slide case-slide">
+          <div class="case-shot" aria-hidden="true"></div>
+          <h3>AI秘書を導入</h3>
+          <p class="case-meta">ヘアケアメーカー｜LINE連携</p>
+          <p class="case-desc">経営者と従業員をつなぐAI秘書をLINE上に実装。問い合わせ集約・社内フロー自動化で業務効率が改善。</p>
         </div>
-        
-        <div class="case-metrics">
-          <div class="metric">
-            <span class="label">{{ case.metric1_label }}</span>
-            <span class="value">{{ case.metric1_value }}</span>
-          </div>
-          <div class="metric">
-            <span class="label">{{ case.metric2_label }}</span>
-            <span class="value">{{ case.metric2_value }}</span>
-          </div>
+        <div class="swiper-slide case-slide">
+          <div class="case-shot" aria-hidden="true"></div>
+          <h3>見積もり作成システムを導入</h3>
+          <p class="case-meta">造園事業者｜テンプレ自動生成</p>
+          <p class="case-desc">現地情報/写真から見積テンプレを自動生成。メール送付〜追跡まで一元化し、作成時間短縮・受注率改善を実現。</p>
+        </div>
+        <div class="swiper-slide case-slide">
+          <div class="case-shot" aria-hidden="true"></div>
+          <h3>顧客管理システムを導入</h3>
+          <p class="case-meta">歯科クリニック｜予約/履歴/配信</p>
+          <p class="case-desc">予約・施術履歴・コミュニケーションを統合。リコール自動化と配信の最適化で再来院率向上と工数削減。</p>
+        </div>
+        <div class="swiper-slide case-slide">
+          <div class="case-shot" aria-hidden="true"></div>
+          <h3>オンラインサロンのアプリを作成</h3>
+          <p class="case-meta">コミュニティ｜課金/配信/チャット</p>
+          <p class="case-desc">会員アプリで課金・コンテンツ配信・チャットを統合。行動ベースのレコメンドで継続率とLTVを向上。</p>
         </div>
       </div>
-      {% endfor %}
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
+  </div>
+</section>
+
+<!-- 進め方（ピン留めスクロール） -->
+<section id="process" class="section">
+  <div class="container">
+    <h2 class="section-title" data-animate="fade-up">進め方</h2>
+    <ol class="steps" data-steps>
+      <li><span>0.</span> クイック診断（30分）— 阻害要因を特定</li>
+      <li><span>1.</span> ディープ真空ワーク — 行動/価値仮説を合意</li>
+      <li><span>2.</span> スプリント設計 — KPI/実験/実装バックログ化</li>
+      <li><span>3.</span> PoC開発（約4週）— 動くものを提供</li>
+      <li><span>4.</span> 計測/改善 — ダッシュボード導入→AB</li>
+      <li><span>5.</span> 内製化支援 — プロンプト/手順/研修/移管</li>
+    </ol>
   </div>
 </section>
 
