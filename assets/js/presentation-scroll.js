@@ -17,6 +17,12 @@ class PresentationScroll {
   }
 
   init() {
+    // トップページ以外では実行しない
+    if (window.location.pathname !== '/' && window.location.pathname !== '/index.html' && window.location.pathname !== '') {
+      console.log('Presentation scroll disabled for non-homepage');
+      return;
+    }
+    
     this.setupSections();
     this.createSectionNavigation();
     this.bindEvents();

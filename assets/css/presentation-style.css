@@ -55,8 +55,8 @@ body.theme-light .video-overlay { opacity: 0.35; }
 body.theme-dark .video-overlay { opacity: 0.30; }
 body.theme-transparent .video-overlay { opacity: 0.30; }
 
-/* フルスクリーンセクション基本設定 */
-.fullscreen-section {
+/* フルスクリーンセクション基本設定 - ホームページのみ */
+body.homepage .fullscreen-section {
   width: 100vw;
   min-height: 100vh;
   display: flex;
@@ -68,8 +68,8 @@ body.theme-transparent .video-overlay { opacity: 0.30; }
   box-sizing: border-box;
 }
 
-/* スクロールスナップ設定 */
-html {
+/* スクロールスナップ設定 - ホームページのみ */
+body.homepage {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }

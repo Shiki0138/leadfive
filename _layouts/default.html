@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/presentation-style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/footer-fix.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/homepage-only.css' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -57,7 +58,7 @@
   })(window,document,'script','dataLayer','GTM-KFLZV7QS');</script>
   <!-- End Google Tag Manager -->
 </head>
-<body{% if page.url contains '/blog/' or page.layout == 'blog-post' or page.layout == 'blog' %} class="blog-page"{% endif %}>
+<body class="{% if page.url == '/' or page.url == '/index.html' %}homepage{% endif %}{% if page.url contains '/blog/' or page.layout == 'blog-post' or page.layout == 'blog' %} blog-page{% endif %}">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
