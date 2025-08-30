@@ -816,7 +816,7 @@
     
     <!-- 1. ヒーローセクション -->
     <section id="hero" class="hero-section fullscreen-section">
-        <div class="container">
+        <div class="container" style="opacity: 0;">
             <p style="font-size: 1.8rem; font-weight: 700; line-height: 1.6; margin-bottom: 1.5rem; margin-top: 1rem; opacity: 0.95;">
                 LeadFiveは、<br>
                 <span class="gradient-text">生成AI</span>と<span class="gradient-text">行動心理</span>に強みを持つ、<br>
@@ -829,10 +829,10 @@
             </p>
             
             <div class="metrics-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 600px; margin: 2rem auto;">
-                <div class="metric-card">
+                <div class="metric-card" style="opacity: 0;">
                     <span style="font-size: 1.5rem; font-weight: 700; color: #8b5cf6;">マーケティング</span>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card" style="opacity: 0;">
                     <span style="font-size: 1.5rem; font-weight: 700; color: #ec4899;">AI活用<br><span style="font-size: 1rem;">(システム開発)</span></span>
                 </div>
             </div>
@@ -1188,23 +1188,22 @@
             });
             
             // ヒーローアニメーション
-            const heroTL = gsap.timeline({ delay: 0.5 });
+            const heroTL = gsap.timeline({ delay: 0.2 });
             
-            heroTL.from('.hero-title', {
-                opacity: 0,
-                y: 80,
-                duration: 1.2,
-                ease: "power3.out"
+            // まずコンテナを表示
+            heroTL.to('.hero-section .container', {
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out"
             })
             .from('.hero-section p', {
                 opacity: 0,
                 y: 40,
                 duration: 1,
                 ease: "power2.out"
-            }, "-=0.6")
-            .from('.metric-card', {
-                y: 50,
-                opacity: 0,
+            }, "-=0.3")
+            .to('.metric-card', {
+                opacity: 1,
                 duration: 0.8,
                 stagger: 0.15,
                 ease: "power2.out"
