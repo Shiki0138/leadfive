@@ -2524,6 +2524,9 @@ section {
   padding: 4rem 0 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 5rem;
+  position: relative; // Ensure it's not fixed/sticky
+  width: 100%;
+  clear: both;
   
   @media (max-width: 768px) {
     padding: 3rem 0 2rem;
