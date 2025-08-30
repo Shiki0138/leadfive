@@ -6,15 +6,51 @@ permalink: /company/
 ---
 
 <style>
+/* Add background video container */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85); /* Dark overlay to make text readable */
+  z-index: -1;
+}
+
+/* Ensure page has dark background */
+body {
+  background-color: #0a0a0a;
+  color: #e5e7eb; /* Light gray text for better readability */
+}
+
 .company-page {
   padding: 6rem 0;
+  position: relative;
+  z-index: 1;
 }
 
 .company-header {
   text-align: center;
   margin-bottom: 4rem;
   padding: 4rem 0;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
 }
 
@@ -28,12 +64,12 @@ permalink: /company/
 }
 
 .message-section {
-  background: #fff;
-  color: #111827;
+  background: rgba(20, 20, 20, 0.9);
+  color: #e5e7eb;
   padding: 4rem 0;
   margin: 0 0 4rem;
-  border-top: 4px solid #0a0a0a;
-  border-bottom: 4px solid #0a0a0a;
+  border-top: 2px solid rgba(139, 92, 246, 0.3);
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -81,7 +117,7 @@ permalink: /company/
 .message-text {
   font-size: 1.125rem;
   line-height: 1.8;
-  color: #4b5563;
+  color: #d1d5db;
 }
 
 .company-info-section {
@@ -90,8 +126,8 @@ permalink: /company/
 
 .info-table {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(20, 20, 20, 0.9);
+  border: 2px solid rgba(139, 92, 246, 0.3);
   border-radius: 15px;
   overflow-x: auto;
 }
@@ -118,6 +154,11 @@ permalink: /company/
   background: rgba(139, 92, 246, 0.1);
   font-weight: 600;
   width: 30%;
+  color: #e5e7eb;
+}
+
+.info-table td {
+  color: #d1d5db;
 }
 
 .info-table tr:last-child th,
@@ -140,9 +181,10 @@ permalink: /company/
 }
 
 .philosophy-section {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(20, 20, 20, 0.9);
   padding: 4rem 3rem;
   border-radius: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
   margin-bottom: 4rem;
 }
 
@@ -169,10 +211,21 @@ permalink: /company/
 .philosophy-card {
   text-align: center;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(20, 20, 20, 0.8);
   border-radius: 15px;
   border: 2px solid rgba(139, 92, 246, 0.2);
   transition: all 0.3s ease;
+  color: #e5e7eb;
+}
+
+.philosophy-card h3 {
+  color: #f3f4f6;
+  margin-bottom: 1rem;
+}
+
+.philosophy-card p {
+  color: #d1d5db;
+  line-height: 1.6;
 }
 
 .philosophy-card:hover {
@@ -196,11 +249,21 @@ permalink: /company/
 }
 
 .access-map {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(20, 20, 20, 0.9);
   padding: 3rem;
   border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
   text-align: center;
   margin-bottom: 2rem;
+  color: #e5e7eb;
+}
+
+.access-map h3 {
+  color: #f3f4f6;
+}
+
+.access-map p {
+  color: #d1d5db;
 }
 
 @media (max-width: 768px) {
@@ -293,7 +356,7 @@ permalink: /company/
   }
   
   .info-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(20, 20, 20, 0.9);
     border: 2px solid rgba(139, 92, 246, 0.2);
     border-radius: 10px;
     padding: 1rem;
@@ -373,6 +436,14 @@ permalink: /company/
   }
 }
 </style>
+
+<!-- Background Video -->
+<div class="video-background">
+  <video autoplay muted loop playsinline>
+    <source src="{{ '/assets/videos/hero-background.mp4' | relative_url }}" type="video/mp4">
+  </video>
+</div>
+<div class="video-overlay"></div>
 
 <div class="company-page">
   <div class="container">
