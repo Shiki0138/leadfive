@@ -1165,7 +1165,31 @@
         </div>
     </section>
 
-    <!-- 8. アクセスセクション -->
+    <!-- 8. FAQセクション（先に表示） -->
+    <section id="faq" class="faq-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>初回相談や診断は本当に無料ですか？</h3>
+                    <p>はい。課題整理と改善仮説の提示までは無料です。最短24時間以内にご連絡します。</p>
+                </div>
+                <div class="card">
+                    <h3>成果が出るまでの期間は？</h3>
+                    <p>90日で主要指標（CVR/CPA/商談化率）に変化が見える設計を基本としています。</p>
+                </div>
+                <div class="card">
+                    <h3>どの業界に対応できますか？</h3>
+                    <p>BtoB/BtoC双方の実績があります。まずは無料診断で現状を把握し、最適な進め方をご提案します。</p>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:1.5rem;">
+                <a href="/contact" class="btn btn-primary" aria-label="無料診断を依頼する">無料診断を依頼する</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. アクセスセクション（FAQの後） -->
     <section id="access" class="access-section fullscreen-section">
         <div class="container">
             <h2 class="section-title">アクセス</h2>
@@ -1194,33 +1218,7 @@
         </div>
     </section>
 
-    
-
-    <!-- 8. FAQセクション（フッター直前に移動） -->
-    <section id="faq" class="faq-section fullscreen-section">
-        <div class="container">
-            <h2 class="section-title">よくある質問</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>初回相談や診断は本当に無料ですか？</h3>
-                    <p>はい。課題整理と改善仮説の提示までは無料です。最短24時間以内にご連絡します。</p>
-                </div>
-                <div class="card">
-                    <h3>成果が出るまでの期間は？</h3>
-                    <p>90日で主要指標（CVR/CPA/商談化率）に変化が見える設計を基本としています。</p>
-                </div>
-                <div class="card">
-                    <h3>どの業界に対応できますか？</h3>
-                    <p>BtoB/BtoC双方の実績があります。まずは無料診断で現状を把握し、最適な進め方をご提案します。</p>
-                </div>
-            </div>
-            <div style="text-align:center; margin-top:1.5rem;">
-                <a href="/contact" class="btn btn-primary" aria-label="無料診断を依頼する">無料診断を依頼する</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. フッターセクション -->
+    <!-- 10. フッターセクション -->
     <section id="footer" class="footer-section fullscreen-section">
         <div class="container">
             <div style="text-align: center; margin-bottom: 3rem;">
@@ -1378,6 +1376,35 @@
                 ease: "power2.out",
                 delay: 2
             });
+
+            // Servicesセクションのスクロール連動表示（安定表示のため専用トリガー）
+            try {
+                gsap.from('#services .section-title', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    immediateRender: false,
+                    scrollTrigger: {
+                        trigger: '#services',
+                        start: 'top 70%',
+                        once: true
+                    }
+                });
+                gsap.from('#services .service-card', {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: 'power2.out',
+                    immediateRender: false,
+                    scrollTrigger: {
+                        trigger: '#services',
+                        start: 'top 65%',
+                        once: true
+                    }
+                });
+            } catch (e) { console.warn('Services animation setup skipped:', e); }
         }
         
         // セクションアニメーション
@@ -1393,6 +1420,7 @@
                 scale: 0.98,
                 duration: 1,
                 ease: "power3.out",
+                immediateRender: false,
                 scrollTrigger: {
                     trigger: section,
                     start: "top 70%",
@@ -1409,6 +1437,7 @@
                     duration: 0.6,
                     stagger: 0.1,
                     ease: "power2.out",
+                    immediateRender: false,
                     scrollTrigger: {
                         trigger: section,
                         start: "top 60%",
