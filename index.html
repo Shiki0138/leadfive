@@ -191,12 +191,14 @@
             display: flex; align-items: center; justify-content: center;
             position: relative;
             scroll-snap-align: start;
+            scroll-margin-top: 80px; /* 固定ヘッダー分オフセット */
             padding: 4rem 2rem;
         }
         
         html { 
-            scroll-snap-type: y mandatory; 
+            scroll-snap-type: y proximity; /* mandatoryだとセクションを飛ばすことがある */
             scroll-behavior: smooth; 
+            scroll-padding-top: 80px; /* 固定ヘッダー考慮 */
         }
         
         /* ヘッダー */
@@ -708,6 +710,7 @@
                 padding: 2rem 1rem;
                 height: auto;
                 min-height: 100vh;
+                scroll-margin-top: 72px;
             }
             
             .container {
@@ -1320,6 +1323,10 @@
                 onComplete: () => {
                     document.getElementById('opening').style.display = 'none';
                     startMainAnimations();
+                    if (window.ScrollTrigger) {
+                        // オーバーレイ除去後に再計算（セクションの見落とし防止）
+                        setTimeout(() => ScrollTrigger.refresh(), 50);
+                    }
                 }
             });
         });
