@@ -6,8 +6,42 @@
     <title>AI×心理学で売上を科学する | LeadFive</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="LeadFiveは、AI技術と人間心理学を融合させた革新的なマーケティングコンサルティングを提供します。8つの本能に基づく科学的アプローチで、あなたのビジネスを次のステージへ導きます。">
-    <meta name="keywords" content="AI マーケティング, 心理学 マーケティング, 8つの本能, コンサルティング, 売上向上, CVR改善">
+    <meta name="description" content="BtoBの新規リード獲得を科学。AI×心理学でCVRを最大化し、90日で“問い合わせ3倍”へ。まずは無料診断から。">
+    <meta name="keywords" content="AI マーケティング, 心理学 マーケティング, 8つの本能, コンサルティング, 売上向上, CVR改善, リード獲得">
+    <link rel="canonical" href="https://leadfive138.com/">
+    <meta property="og:site_name" content="LeadFive">
+    <meta property="og:title" content="BtoBのリード獲得を科学｜AI×心理学でCVR改善｜LeadFive">
+    <meta property="og:description" content="AI×心理学でCVRを最大化。90日で“問い合わせ3倍”へ。まずは無料診断から。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leadfive138.com/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LeadFive",
+      "url": "https://leadfive138.com",
+      "logo": "https://leadfive138.com/favicon.ico",
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "telephone": "06-7713-6747",
+        "email": "leadfive.138@gmail.com",
+        "areaServed": "JP",
+        "availableLanguage": ["ja"]
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://leadfive138.com",
+      "name": "LeadFive"
+    }
+    </script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -160,6 +194,8 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
+        .nav-cta-li { list-style: none; }
+        .navbar .nav-cta { padding: 0.6rem 1rem; font-weight: 800; }
         
         .navbar-brand .logo-text {
             font-size: 1.8rem;
@@ -366,6 +402,20 @@
             transform: translateY(-3px);
         }
         
+        /* 固定（モバイル）CTA */
+        .sticky-cta {
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            display: none;
+            gap: 0.8rem;
+            justify-content: center;
+            padding: 0.6rem 0.8rem;
+            background: rgba(10,10,10,0.85);
+            border-top: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
         /* メトリクス */
         .metrics-grid {
             display: grid;
@@ -771,6 +821,10 @@
         .fallback-bg {
             background: linear-gradient(135deg, #0f0f14 0%, #1a1a2e 50%, #16213e 100%);
         }
+        @media (max-width: 768px) {
+            body { padding-bottom: 76px; }
+            .sticky-cta { display: flex; }
+        }
     </style>
 </head>
 <body class="homepage hero-active">
@@ -784,7 +838,7 @@
     </div>
     
     <!-- 動画背景 -->
-    <div class="video-background">
+    <div class="video-background" aria-hidden="true">
         <video autoplay muted loop playsinline preload="auto" id="background-video">
             <source src="assets/videos/20250829_1716_Futuristic_Office_Coding.mp4" type="video/mp4">
             <source src="20250829_1716_Futuristic Office Coding_simple_compose_01k3tebsche7pbncc4mt41dx8n.mp4" type="video/mp4">
@@ -810,6 +864,7 @@
                 <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">LeadFiveの強み</a></li>
                 <li><a href="#instincts" class="nav-link" onclick="closeMobileMenu()">8つの本能</a></li>
                 <li><a href="#contact" class="nav-link" onclick="closeMobileMenu()">お問い合わせ</a></li>
+                <li class="nav-cta-li"><a href="/contact" class="btn btn-primary nav-cta" onclick="closeMobileMenu()" aria-label="無料診断を依頼する">無料診断</a></li>
             </ul>
         </nav>
     </header>
@@ -817,6 +872,7 @@
     <!-- 1. ヒーローセクション -->
     <section id="hero" class="hero-section fullscreen-section">
         <div class="container" style="opacity: 0;">
+            <h1 class="hero-title">売上を伸ばすAI×心理戦略。<span class="gradient-text">90日で問い合わせ3倍</span>へ。</h1>
             <p style="font-size: 1.8rem; font-weight: 700; line-height: 1.6; margin-bottom: 1.5rem; margin-top: 1rem; opacity: 0.95;">
                 LeadFiveは、<br>
                 <span class="gradient-text">生成AI</span>と<span class="gradient-text">行動心理</span>に強みを持つ、<br>
@@ -835,6 +891,11 @@
                 <div class="metric-card" style="opacity: 0;">
                     <span style="font-size: 1.5rem; font-weight: 700; color: #ec4899;">AI活用<br><span style="font-size: 1rem;">(システム開発)</span></span>
                 </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="/contact" class="btn btn-primary" aria-label="無料診断を依頼する">無料診断を依頼する</a>
+                <a href="/case-studies/" class="btn btn-secondary" aria-label="事例を見る">事例を見る</a>
             </div>
         </div>
     </section>
@@ -1028,9 +1089,9 @@
             </div>
             
             <div style="text-align: center; margin-bottom: 2rem;">
-                <button class="btn btn-primary" style="font-size: 1.3rem; padding: 1.2rem 3rem;">
-                    無料相談はこちら
-                </button>
+                <a class="btn btn-primary" href="/contact" aria-label="無料診断を依頼する" style="font-size: 1.2rem; padding: 1rem 2.4rem;">
+                    無料診断を依頼する（24時間以内にご連絡）
+                </a>
             </div>
             
             <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
@@ -1069,7 +1130,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- 9. フッターセクション -->
     <section id="footer" class="footer-section fullscreen-section">
         <div class="container">
@@ -1077,7 +1138,7 @@
                 <h2 style="color: #8b5cf6; margin-bottom: 2rem;">LeadFive</h2>
                 <p style="font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.8;">
                     AI×心理学で、あなたのビジネスの可能性を最大化します。<br>
-                    まずは無料相談から始めませんか？
+                    まずは無料診断から始めませんか？
                 </p>
             </div>
             
@@ -1110,8 +1171,8 @@
             </div>
             
             <div style="text-align: center; margin: 3rem 0;">
-                <a href="/contact" class="btn btn-primary">
-                    無料相談のお申し込み
+                <a href="/contact" class="btn btn-primary" aria-label="無料診断を依頼する">
+                    無料診断を依頼する
                 </a>
             </div>
             
@@ -1120,7 +1181,13 @@
             </div>
         </div>
     </section>
-    
+
+    <!-- Sticky Mobile CTA -->
+    <div class="sticky-cta" role="region" aria-label="固定CTA">
+        <a href="/contact" class="btn btn-primary" aria-label="無料診断">無料診断</a>
+        <a href="/case-studies/" class="btn btn-secondary" aria-label="事例を見る">事例を見る</a>
+    </div>
+
     <!-- セクションナビゲーション -->
     <div class="section-nav">
         <div class="section-nav-dot active" data-section="0"></div>
