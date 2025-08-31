@@ -196,7 +196,7 @@
         }
         
         html { 
-            scroll-snap-type: y proximity; /* mandatoryだとセクションを飛ばすことがある */
+            scroll-snap-type: y mandatory; /* セクションごとに停止 */
             scroll-behavior: smooth; 
             scroll-padding-top: 80px; /* 固定ヘッダー考慮 */
         }
@@ -208,7 +208,7 @@
             z-index: 1000;
             background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(20px);
-            padding: 0.5rem 0;
+            padding: 0.3rem 0; /* さらに高さをコンパクトに */
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -464,9 +464,13 @@
         
         .metric-card {
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
+            padding: 1.2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center; /* ボックス内の上下中央寄せ */
+            min-height: 84px;
         }
         
         .metric-value {
@@ -1148,17 +1152,31 @@
                     <span class="card-icon">🏷️</span>
                     <h3>美容室チェーン</h3>
                     <p>LP最適化とAI接客導入でCVR+128%、予約数2.1倍</p>
-                    <p><a href="/case-studies/beauty-salon/" class="nav-link" style="padding-left:0;">事例を見る →</a></p>
+                    <div class="badges" style="margin: .75rem 0 1rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                      <span style="background:rgba(139,92,246,.2); border:1px solid rgba(139,92,246,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">CVR +128%</span>
+                      <span style="background:rgba(236,72,153,.2); border:1px solid rgba(236,72,153,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">予約数 2.1倍</span>
+                    </div>
+                    <a href="/case-studies/beauty-salon/" class="btn btn-secondary" aria-label="美容室チェーンの事例へ">詳しくはこちら</a>
                 </div>
                 <div class="card">
                     <span class="card-icon">💼</span>
                     <h3>BtoB SaaS</h3>
                     <p>問い合わせ単価▲36%、商談化率+58%、パイプラインを可視化</p>
+                    <div class="badges" style="margin: .75rem 0 1rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                      <span style="background:rgba(34,197,94,.2); border:1px solid rgba(34,197,94,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">CPA -36%</span>
+                      <span style="background:rgba(59,130,246,.2); border:1px solid rgba(59,130,246,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">商談化率 +58%</span>
+                    </div>
+                    <a href="/case-studies/" class="btn btn-secondary" aria-label="事例一覧へ">詳しくはこちら</a>
                 </div>
                 <div class="card">
                     <span class="card-icon">🛒</span>
                     <h3>EC/D2C</h3>
                     <p>8本能訴求の新LPで初回転換+64%、定期継続率+22%</p>
+                    <div class="badges" style="margin: .75rem 0 1rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                      <span style="background:rgba(236,72,153,.2); border:1px solid rgba(236,72,153,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">初回CVR +64%</span>
+                      <span style="background:rgba(250,204,21,.2); border:1px solid rgba(250,204,21,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">継続率 +22%</span>
+                    </div>
+                    <a href="/case-studies/" class="btn btn-secondary" aria-label="事例一覧へ">詳しくはこちら</a>
                 </div>
             </div>
         </div>
@@ -1232,10 +1250,10 @@
                 <div>
                     <h4>サービス</h4>
                     <ul>
-                        <li><a href="#services">AI マーケティング</a></li>
-                        <li><a href="#services">心理学分析</a></li>
-                        <li><a href="#services">データ統合</a></li>
-                        <li><a href="#services">戦略実行</a></li>
+                        <li><a href="#services">マーケティングサポート</a></li>
+                        <li><a href="#services">DXツール開発・提供</a></li>
+                        <li><a href="#services">AI活用サポート</a></li>
+                        <li><a href="#services">WEB/SNS広告サポート</a></li>
                     </ul>
                 </div>
                 <div>
