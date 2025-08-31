@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://shiki0138.github.io/leadfive/sitemap.xml
+Sitemap: https://leadfive138.com/sitemap.xml
 
 # Disallow development files
 Disallow: /scripts/
