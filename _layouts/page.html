@@ -11,7 +11,8 @@ layout: default
   min-height: calc(100vh - 400px); /* Ensure footer is visible */
   padding-top: 80px; /* Account for fixed header */
   margin-bottom: 3rem;
-  background: #ffffff;
+  background: transparent; /* inherit site dark background */
+  color: inherit; /* avoid white-on-white issue */
 }
 
 @media (max-width: 768px) {
