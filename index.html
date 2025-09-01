@@ -1248,7 +1248,7 @@
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="color: #8b5cf6; margin-bottom: 2rem;">LeadFive</h2>
                 <p style="font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.8;">
-                    AI×心理学で、あなたのビジネスの可能性を最大化します。<br>
+                    AI×マーケティングで、あなたのビジネスの可能性を最大化します。<br>
                     まずはお問い合わせから始めませんか？
                 </p>
             </div>
@@ -1476,28 +1476,28 @@
 
             // Servicesセクションのスクロール連動表示（安定表示のため専用トリガー）
             try {
+                // Safety: ensure visible by default
+                gsap.set('#services .section-title, #services .service-card', { opacity: 1 });
                 gsap.from('#services .section-title', {
-                    opacity: 0,
-                    y: 30,
-                    duration: 0.8,
+                    y: 24,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    immediateRender: false,
+                    scrollTrigger: {
+                        trigger: '#services',
+                        start: 'top 75%',
+                        once: true
+                    }
+                });
+                gsap.from('#services .service-card', {
+                    y: 32,
+                    duration: 0.5,
+                    stagger: 0.08,
                     ease: 'power2.out',
                     immediateRender: false,
                     scrollTrigger: {
                         trigger: '#services',
                         start: 'top 70%',
-                        once: true
-                    }
-                });
-                gsap.from('#services .service-card', {
-                    opacity: 0,
-                    y: 40,
-                    duration: 0.6,
-                    stagger: 0.1,
-                    ease: 'power2.out',
-                    immediateRender: false,
-                    scrollTrigger: {
-                        trigger: '#services',
-                        start: 'top 65%',
                         once: true
                     }
                 });
