@@ -279,8 +279,8 @@ window.addEventListener('load', () => {
 });
 
 // Add CSS for loading states
-const style = document.createElement('style');
-style.textContent = `
+const chStyleEl = document.createElement('style');
+chStyleEl.textContent = `
   .alert {
     padding: 1rem;
     margin-bottom: 1rem;
@@ -322,4 +322,4 @@ style.textContent = `
     }
   }
 `;
-document.head.appendChild(style);
+document.head.appendChild(chStyleEl);

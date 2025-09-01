@@ -3,8 +3,9 @@
 
 class ContactFormGAS {
   constructor() {
-    // Google Apps ScriptのWeb App URL（設定後に更新してください）
-    this.gasEndpoint = 'YOUR_GAS_WEB_APP_URL'; // 例: https://script.google.com/macros/s/xxxxx/exec
+    // Google Apps ScriptのWeb App URL
+    // 実際のGAS Web App URLに置き換えてください
+    this.gasEndpoint = 'https://script.google.com/macros/s/AKfycbyojOMN9Oj1rkktDa30HX3tYJx4jH-1BwJWhCeU6hEPjCQy0l9YXlsrylxMx0rzhW4l/exec';
     this.init();
   }
 
@@ -231,8 +232,8 @@ window.addEventListener('load', () => {
 });
 
 // スタイル追加
-const style = document.createElement('style');
-style.textContent = `
+const gasStyleEl = document.createElement('style');
+gasStyleEl.textContent = `
   .form-alert {
     padding: 1rem;
     margin-bottom: 1rem;
@@ -264,4 +265,4 @@ style.textContent = `
     }
   }
 `;
-document.head.appendChild(style);
+document.head.appendChild(gasStyleEl);

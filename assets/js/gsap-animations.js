@@ -473,8 +473,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // スタイル追加
-const style = document.createElement('style');
-style.textContent = `
+const gsapAnimStyleEl = document.createElement('style');
+gsapAnimStyleEl.textContent = `
   /* Word wrap for text animations */
   .word-wrap {
     display: inline-block;
@@ -510,4 +510,4 @@ style.textContent = `
     transform-style: preserve-3d;
   }
 `;
-document.head.appendChild(style);
+document.head.appendChild(gsapAnimStyleEl);

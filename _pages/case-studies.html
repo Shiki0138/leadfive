@@ -730,11 +730,13 @@ function filterCases(category) {
       });
     });
 
-    gsap.from('.featured-case', {
-      opacity: 0, y: 30, duration: 0.7, ease: 'power2.out',
-      scrollTrigger: { trigger: '.featured-case', start: 'top 85%' },
-      immediateRender: false
-    });
+    if (document.querySelector('.featured-case')) {
+      gsap.from('.featured-case', {
+        opacity: 0, y: 30, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: '.featured-case', start: 'top 85%' },
+        immediateRender: false
+      });
+    }
 
     gsap.utils.toArray('.testimonial-card').forEach((el, i)=>{
       gsap.from(el, {

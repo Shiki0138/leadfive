@@ -664,8 +664,8 @@ window.showNotification = function(message, type = 'info') {
 
 // スタイルを追加
 if (typeof document !== 'undefined') {
-  const style = document.createElement('style');
-  style.textContent = `
+  const bpmStyleEl = document.createElement('style');
+  bpmStyleEl.textContent = `
     .notification {
       position: fixed;
       top: 20px;
@@ -732,7 +732,7 @@ if (typeof document !== 'undefined') {
       color: #92400e;
     }
   `;
-  document.head.appendChild(style);
+  document.head.appendChild(bpmStyleEl);
 }
 
 // エクスポート
