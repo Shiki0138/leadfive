@@ -41,6 +41,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   
+  <style>
+    /* Dark theme overrides for all non-blog pages to avoid white-on-white */
+    body:not(.blog-page) .page-content,
+    body:not(.blog-page) section,
+    body:not(.blog-page) .content,
+    body:not(.blog-page) .card,
+    body:not(.blog-page) .container,
+    body:not(.blog-page) .glass-card,
+    body:not(.blog-page) .service-card,
+    body:not(.blog-page) .featured-case,
+    body:not(.blog-page) .case-study-card,
+    body:not(.blog-page) .cta-section,
+    body:not(.blog-page) .testimonial-card {
+      background-color: transparent !important;
+      color: #e5e7eb !important;
+    }
+    body:not(.blog-page) p { color: #d1d5db; }
+    body:not(.blog-page) a { color: #93c5fd; }
+    body:not(.blog-page) h1, body:not(.blog-page) h2, body:not(.blog-page) h3 { color: #ffffff; }
+    /* Soften overly bright gradients behind text */
+    body:not(.blog-page) .case-studies-hero,
+    body:not(.blog-page) .svc-hero {
+      position: relative;
+    }
+    body:not(.blog-page) .case-studies-hero::after,
+    body:not(.blog-page) .svc-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,.25), rgba(0,0,0,.45));
+      pointer-events: none;
+    }
+  </style>
+  
   {% if site.google_analytics and jekyll.environment == 'production' %}
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>

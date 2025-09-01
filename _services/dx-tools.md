@@ -64,8 +64,8 @@ permalink: /services/dx-tools/
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
 <script>
   gsap.registerPlugin(ScrollTrigger);
+  gsap.set('.metric,.card',{opacity:1});
   gsap.utils.toArray('.metric,.card').forEach(el=>{
-    gsap.from(el,{opacity:0,y:24,duration:.6,scrollTrigger:{trigger:el,start:'top 85%'},immediateRender:false});
+    gsap.from(el,{y:24,duration:.6,scrollTrigger:{trigger:el,start:'top 85%'},immediateRender:false});
   })
 </script>
-
