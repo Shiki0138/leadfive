@@ -25,7 +25,10 @@
     "generate-images": "node scripts/generate-business-images.js",
     "enhance-design": "npm run generate-images && npm run build",
     "monitor:start": "node scripts/monitor.js",
-    "performance:test": "lighthouse https://leadfive.com --budget-path=./lighthouse-budget.json --output=html --output-path=./test-results/lighthouse-report.html"
+    "performance:test": "lighthouse https://leadfive.com --budget-path=./lighthouse-budget.json --output=html --output-path=./test-results/lighthouse-report.html",
+    "blog:generate": "node scripts/blog-automation/enhanced-blog-system.js",
+    "blog:maintenance": "node scripts/weekly-blog-maintenance.js",
+    "blog:internal-links": "node scripts/blog-automation/enhanced-blog-system.js dummy --internal-links"
   },
   "repository": {
     "type": "git",
@@ -43,6 +46,7 @@
     "animejs": "^4.1.3",
     "axios": "^1.11.0",
     "dotenv": "^16.6.1",
+    "js-yaml": "^4.1.0",
     "sharp": "^0.34.3",
     "uuid": "^10.0.0"
   },
