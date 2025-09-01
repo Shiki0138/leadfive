@@ -302,21 +302,58 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
   }
 
   async insertImages(content) {
-    console.log('🖼️ 画像プレースホルダーを削除（アイキャッチのみ運用）');
-    // 本文内の画像プレースホルダーは全て削除（タイトル直下のアイキャッチのみ使用）
-    const finalContent = content.content.replace(/\{\{IMAGE:[^}]+\}\}/g, '');
-    return { ...content, content: finalContent };
+    console.log('🖼️ 画像プレースホルダーを処理中...');
+    
+    let processedContent = content.content;
+    const imageMatches = processedContent.match(/\{\{IMAGE:([^}]+)\}\}/g) || [];
+    const usedImages = new Set();
+    
+    // 過去7日間の使用履歴を読み込み
+    const weeklyImageHistory = await this.loadWeeklyImageHistory();
+    
+    for (let i = 0; i < imageMatches.length; i++) {
+      const match = imageMatches[i];
+      const imageDescription = match.match(/\{\{IMAGE:([^}]+)\}\}/)[1];
+      
+      // 同一記事内で使用済みの場合は削除
+      if (usedImages.has(imageDescription)) {
+        processedContent = processedContent.replace(match, '');
+        continue;
+      }
+      
+      // 画像を取得
+      const imageUrl = await this.fetchImageForSection(imageDescription, weeklyImageHistory);
+      if (imageUrl) {
+        // 画像をダウンロードして保存
+        const localPath = await this.downloadAndSaveImage(imageUrl, i + 1);
+        processedContent = processedContent.replace(match, `\n\n![${imageDescription}](${localPath})\n\n`);
+        usedImages.add(imageDescription);
+        
+        // 履歴を更新
+        await this.updateWeeklyImageHistory(imageUrl, imageDescription);
+      } else {
+        // 画像が見つからない場合は削除
+        processedContent = processedContent.replace(match, '');
+      }
+    }
+    
+    return { ...content, content: processedContent };
   }
 
-  async fetchImage(query) {
+  async fetchImageForSection(description, weeklyHistory) {
     try {
-      // キーワードから適切な画像検索クエリを生成
-      const imageQuery = this.generateImageQuery(query);
+      // セクション内容に基づいた検索クエリを生成
+      const imageQuery = this.generateSectionImageQuery(description);
+      
+      // 過去7日間に使用した画像IDを除外
+      const excludeIds = weeklyHistory
+        .filter(h => new Date(h.used_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000))
+        .map(h => h.photo_id);
       
       const response = await axios.get('https://api.unsplash.com/search/photos', {
         params: {
           query: imageQuery,
-          per_page: 1,
+          per_page: 10, // 複数取得して選択
           orientation: 'landscape'
         },
         headers: {
@@ -324,17 +361,79 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
         }
       });
       
-      if (response.data.results.length > 0) {
-        return response.data.results[0].urls.regular;
+      // 使用済みでない画像を選択
+      const availableImages = response.data.results.filter(
+        img => !excludeIds.includes(img.id)
+      );
+      
+      if (availableImages.length > 0) {
+        return availableImages[0].urls.regular;
       }
       
-      // フォールバック: プレースホルダー画像
-      return `https://via.placeholder.com/1200x630?text=${encodeURIComponent(query)}`;
+      return null;
       
     } catch (error) {
       console.warn('Unsplash API error:', error.message);
-      return `https://via.placeholder.com/1200x630?text=${encodeURIComponent(query)}`;
+      return null;
     }
+  }
+
+  generateSectionImageQuery(description) {
+    // セクションの説明から適切な検索クエリを生成
+    const sectionMapping = {
+      '成功事例': 'business success celebration team',
+      '実践方法': 'business workflow process diagram',
+      'データ分析': 'data visualization analytics dashboard',
+      '戦略': 'business strategy planning meeting',
+      'ツール': 'modern software dashboard interface',
+      '課題解決': 'problem solving teamwork office',
+      'ベネフィット': 'business growth chart success',
+      'トレンド': 'technology trends innovation future',
+      'ワークフロー': 'efficient workflow automation',
+      'コラボレーション': 'team collaboration modern office'
+    };
+    
+    for (const [key, value] of Object.entries(sectionMapping)) {
+      if (description.includes(key)) {
+        return value;
+      }
+    }
+    
+    // デフォルト
+    return 'professional business modern office';
+  }
+
+  async loadWeeklyImageHistory() {
+    const historyPath = path.join(__dirname, '../../logs/weekly-image-history.json');
+    try {
+      const data = await fs.readFile(historyPath, 'utf-8');
+      return JSON.parse(data);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  async updateWeeklyImageHistory(imageUrl, description) {
+    const historyPath = path.join(__dirname, '../../logs/weekly-image-history.json');
+    const history = await this.loadWeeklyImageHistory();
+    
+    // URLから画像IDを抽出
+    const photoIdMatch = imageUrl.match(/photo-([\w-]+)/);
+    const photoId = photoIdMatch ? photoIdMatch[1] : imageUrl;
+    
+    history.push({
+      photo_id: photoId,
+      used_at: new Date().toISOString(),
+      description: description,
+      url: imageUrl
+    });
+    
+    // 7日以上古いエントリを削除
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const recentHistory = history.filter(h => new Date(h.used_at) > sevenDaysAgo);
+    
+    await fs.mkdir(path.dirname(historyPath), { recursive: true });
+    await fs.writeFile(historyPath, JSON.stringify(recentHistory, null, 2));
   }
 
   async downloadAndSaveImage(url, index) {
