@@ -434,6 +434,543 @@
             opacity: 0.9;
         }
         
+        /* 問題提起セクション */
+        .problem-section {
+            background: rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        
+        .problem-story {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .story-item {
+            text-align: center;
+        }
+        
+        .story-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .story-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .story-item p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .story-item .highlight {
+            color: #ef4444;
+            font-weight: 700;
+        }
+        
+        .insight-box {
+            background: rgba(103, 126, 234, 0.1);
+            border: 2px solid rgba(103, 126, 234, 0.3);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .insight-box h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .insight-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* 成果数値セクション */
+        #cases {
+            background: rgba(26, 26, 26, 0.8);
+            position: relative;
+        }
+        
+        /* Why Now簡潔化 */
+        .why-now-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .why-now-section {
+            background: rgba(26, 26, 42, 0.8);
+            position: relative;
+        }
+        
+        .why-now-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .why-now-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .why-now-card h3 {
+            font-size: 1.2rem;
+            color: #ef4444;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* サービス簡潔化 */
+        .services-section {
+            background: rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        
+        .services-grid-simple {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid-simple {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .service-simple {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(103, 126, 234, 0.3);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .service-simple h3 {
+            font-size: 1.1rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* プロセスセクション */
+        #process {
+            background: rgba(26, 26, 42, 0.8);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 実績セクション強化 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-period {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 0.25rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* タイムライン */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 100%;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            width: 120px;
+            text-align: center;
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: calc(50% + 30px);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-date {
+            left: calc(50% + 30px);
+        }
+        
+        .timeline-content {
+            width: 40%;
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .timeline-item.active .timeline-content {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .timeline-content p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+        
+        .urgency-box {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .urgency-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .urgency-text {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        /* サービス強化スタイル */
+        .service-result {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+        
+        /* 信頼性セクション */
+        .trust-section {
+            background: rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .trust-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .trust-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .trust-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .trust-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        
+        .trust-card li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .trust-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .section-lead {
+            color: #999;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        /* CTA強化スタイル */
+        .final-cta-section {
+            background: rgba(26, 26, 26, 0.8);
+            position: relative;
+        }
+        
+        .offer-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .offer-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .offer-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .offer-value {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .offer-contents {
+            background: rgba(0,0,0,0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .offer-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+        
+        .offer-check {
+            font-size: 1.5rem;
+            color: #10b981;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .offer-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .offer-item p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .bonus-offer {
+            background: rgba(255,255,255,0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .bonus-label {
+            color: #fbbf24;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .bonus-offer h4 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-action {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .btn-large {
+            font-size: 1.5rem !important;
+            padding: 1.5rem 4rem !important;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+            animation: pulse-button 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-button {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .urgency-notice {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #fbbf24;
+        }
+        
+        .remaining {
+            font-weight: 700;
+            color: #ef4444;
+            font-size: 1.3rem;
+        }
+        
+        .guarantee-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: rgba(255,255,255,0.1);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* アクセスセクション */
+        .access-section {
+            background: rgba(26, 26, 42, 0.8);
+            position: relative;
+        }
+        
+        /* フッターセクション */
+        .footer-section {
+            background: rgba(10, 10, 10, 0.9);
+            position: relative;
+        }
+        
         /* 本能カード */
         .instincts-grid {
             display: grid;
@@ -771,6 +1308,292 @@
         .fallback-bg {
             background: linear-gradient(135deg, #0f0f14 0%, #1a1a2e 50%, #16213e 100%);
         }
+        /* 実績セクション */
+        #cases {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 0;
+        }
+        
+        #case-studies {
+            background: rgba(0, 0, 0, 0.7);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 0;
+        }
+        
+        .case-swiper {
+            margin-top: 3rem;
+            padding: 0 1rem;
+            max-width: 1600px;
+            width: 100%;
+        }
+        
+        .swiper-slide {
+            height: auto;
+        }
+        
+        .section.alt {
+            background-color: #1a1a1a;
+        }
+        
+        .section-title-en {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .section-title-sub {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #999;
+            margin-bottom: 2rem;
+        }
+        
+        .section-lead {
+            color: #999;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .case-slide {
+            background: linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            min-height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-shot {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+        
+        .case-slide h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .case-meta {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .case-desc {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .swiper-pagination {
+            position: relative;
+            margin-top: 2rem;
+        }
+        
+        .swiper-pagination-bullet {
+            background: #666;
+            opacity: 0.5;
+            width: 8px;
+            height: 8px;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #667eea;
+            opacity: 1;
+        }
+        
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: #667eea;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .swiper-button-prev:after,
+        .swiper-button-next:after {
+            font-size: 20px;
+        }
+        
+        /* 進め方セクション */
+        #process {
+            background: rgba(26, 26, 42, 0.8);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .steps {
+            list-style: none;
+            max-width: 800px;
+            margin: 4rem auto 0;
+            position: relative;
+        }
+        
+        .steps li {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.3;
+            transition: all 0.5s ease;
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .steps li.active {
+            opacity: 1;
+            transform: translateX(20px);
+        }
+        
+        .steps li span {
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: 700;
+        }
+        
+        /* フルスクリーンセクション調整 */
+        .fullscreen-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 0;
+            box-sizing: border-box;
+        }
+        
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .fullscreen-section {
+                padding: 2rem 0;
+                min-height: 100vh;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+            
+            .section-title-en {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1.4rem !important;
+            }
+            
+            .problem-story {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .timeline-container {
+                padding: 1rem 0;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                margin-bottom: 2rem;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-date {
+                position: relative !important;
+                left: auto !important;
+                right: auto !important;
+                margin-bottom: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .instincts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            
+            .case-slide {
+                min-height: 320px;
+            }
+            
+            .steps li {
+                font-size: 1.1rem;
+                padding-left: 2.5rem;
+            }
+            
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .swiper-button-prev,
+            .swiper-button-next {
+                display: none;
+            }
+            
+            .offer-box {
+                padding: 1.5rem;
+            }
+            
+            .offer-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .instincts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body class="homepage hero-active">
@@ -872,176 +1695,232 @@
         </div>
     </section>
     
-    <!-- 3. 解決策セクション -->
-    <section id="philosophy" class="philosophy-section fullscreen-section">
+    <!-- 3. 成果数値セクション -->
+    <section id="cases" class="section alt fullscreen-section">
         <div class="container">
             <h2 class="section-title">
-                解決の鍵は<span class="gradient-text">テクノロジー × 顧客理解</span>
+                <span class="gradient-text">導入企業の87%</span>が<br>
+                6ヶ月で売上150%達成
             </h2>
             
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
-                    最新のAI技術と、変わらない人間の本能。<br>
-                    この2つを掛け合わせることで、競合が真似できない強みが生まれます。
-                </p>
-                
-                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px;">
-                    <h3 style="color: #f59e0b; margin-bottom: 1rem;">真実</h3>
-                    <p style="font-size: 1.3rem; font-weight: 700;">
-                        <span class="gradient-text">人間の購買行動の95%は無意識</span>
-                    </p>
-                    <p style="margin-top: 1rem;">
-                        データやロジックだけでは、人は動かない。<br>
-                        必要なのは、8つの本能に訴えかける科学的アプローチ。
-                    </p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">238%</div>
+                    <div class="stat-label">平均売上成長率</div>
+                    <div class="stat-period">（6ヶ月後）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.2倍</div>
+                    <div class="stat-label">広告費用対効果</div>
+                    <div class="stat-period">（改善率）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">32%</div>
+                    <div class="stat-label">人件費削減</div>
+                    <div class="stat-period">（業務効率化）</div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- 4. 8つの本能セクション -->
-    <section id="instincts" class="instincts-section fullscreen-section">
+    <!-- 4. 導入事例スライドショー -->
+    <section id="case-studies" class="case-studies-section fullscreen-section">
         <div class="container">
-            <h2 class="section-title">
-                変わらない<span class="gradient-text">人間の8つの本能</span>
-            </h2>
-            
-            <div class="instincts-grid">
-                <div class="card">
-                    <span class="card-icon">🛡️</span>
-                    <h3>生存本能</h3>
-                    <p>安全・安心を求める</p>
+            <h2 class="section-title">導入事例</h2>
+            <div class="swiper case-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide case-slide">
+                        <div class="case-shot" aria-hidden="true"></div>
+                        <h3>分析機能付きランディングページを導入</h3>
+                        <p class="case-meta">建築工務店｜A/Bテスト×複数LP</p>
+                        <p class="case-desc">分析機能を備えたLPを複数運用し、継続的なA/Bテストで見込み客獲得を拡大。<strong>CPA65%削減、CVR2.8倍</strong>を実現。</p>
+                    </div>
+                    <div class="swiper-slide case-slide">
+                        <div class="case-shot" aria-hidden="true"></div>
+                        <h3>AI秘書を導入</h3>
+                        <p class="case-meta">ヘアケアメーカー｜LINE連携</p>
+                        <p class="case-desc">経営者と従業員をつなぐAI秘書をLINE上に実装。<strong>問い合わせ対応時間90%削減、売上185%成長</strong>。</p>
+                    </div>
+                    <div class="swiper-slide case-slide">
+                        <div class="case-shot" aria-hidden="true"></div>
+                        <h3>見積もり作成システムを導入</h3>
+                        <p class="case-meta">造園事業者｜テンプレ自動生成</p>
+                        <p class="case-desc">現地情報/写真から見積テンプレを自動生成。<strong>作成時間80%短縮、受注率45%向上</strong>。</p>
+                    </div>
+                    <div class="swiper-slide case-slide">
+                        <div class="case-shot" aria-hidden="true"></div>
+                        <h3>顧客管理システムを導入</h3>
+                        <p class="case-meta">歯科クリニック｜予約/履歴/配信</p>
+                        <p class="case-desc">予約・施術履歴・コミュニケーションを統合。<strong>再来院率58%向上、月商210%成長</strong>。</p>
+                    </div>
+                    <div class="swiper-slide case-slide">
+                        <div class="case-shot" aria-hidden="true"></div>
+                        <h3>オンラインサロンのアプリを作成</h3>
+                        <p class="case-meta">コミュニティ｜課金/配信/チャット</p>
+                        <p class="case-desc">会員アプリで課金・コンテンツ配信・チャットを統合。<strong>継続率85%、LTV3.2倍向上</strong>。</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <span class="card-icon">🍽️</span>
-                    <h3>食欲</h3>
-                    <p>満足を追求する</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">❤️</span>
-                    <h3>性的本能</h3>
-                    <p>魅力的でありたい</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">😡</span>
-                    <h3>危険回避本能</h3>
-                    <p>リスクを避ける</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">😌</span>
-                    <h3>快適性追求</h3>
-                    <p>楽をしたい</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">👑</span>
-                    <h3>優越本能</h3>
-                    <p>特別でありたい</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">👥</span>
-                    <h3>集団帰属本能</h3>
-                    <p>仲間でいたい</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">🎯</span>
-                    <h3>承認欲求</h3>
-                    <p>認められたい</p>
-                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </div>
     </section>
     
-    <!-- 5. サービスセクション -->
-    <section id="services" class="services-section fullscreen-section">
-        <div class="container" style="max-width: 800px; padding: 1.5rem;">
-            <h2 class="section-title">
-                <span class="gradient-text">LeadFiveの強み</span>
-            </h2>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <span class="card-icon">🤖</span>
-                    <h3>AI マーケティング</h3>
-                    <p>最新のAI技術でマーケティングを自動化し、予測分析・自動最適化・パーソナライゼーションを実現</p>
-                </div>
-                <div class="service-card">
-                    <span class="card-icon">🧠</span>
-                    <h3>心理学分析</h3>
-                    <p>8つの本能に基づいた科学的アプローチで顧客心理を深層理解し、行動を予測</p>
-                </div>
-                <div class="service-card">
-                    <span class="card-icon">📊</span>
-                    <h3>データ統合</h3>
-                    <p>散在するデータを統合プラットフォームで一元化し、リアルタイム分析で即座の意思決定を支援</p>
-                </div>
-                <div class="service-card">
-                    <span class="card-icon">🚀</span>
-                    <h3>戦略実行</h3>
-                    <p>分析結果を実際のビジネス成果に変える具体的ロードマップと6ヶ月間の継続サポート</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 6. Why Nowセクション -->
+    <!-- 5. Why Nowセクション（簡潔化） -->
     <section id="why-now" class="why-now-section fullscreen-section">
         <div class="container">
             <h2 class="section-title">
                 <span style="color: #ef4444;">なぜ今なのか？</span>
             </h2>
             
-            <div class="reasons-grid">
-                <div class="reason-card">
-                    <span style="font-size: 2rem; display: block; margin-bottom: 1rem;">⏰</span>
-                    <h3>AI進化は加速</h3>
-                    <p>1ヶ月の遅れが1年分の差になる時代</p>
+            <div class="why-now-grid">
+                <div class="why-now-card">
+                    <div class="why-now-icon">⏰</div>
+                    <h3>AI市場の急成長</h3>
+                    <p>2024年は実用フェーズへ。<br>先行者利益は今だけ。</p>
                 </div>
-                <div class="reason-card">
-                    <span style="font-size: 2rem; display: block; margin-bottom: 1rem;">📈</span>
-                    <h3>競合も動き始める</h3>
-                    <p>先行者利益は今この瞬間にある</p>
+                <div class="why-now-card">
+                    <div class="why-now-icon">📈</div>
+                    <h3>競合との差が拡大</h3>
+                    <p>AI活用企業の売上は<br>平均2.3倍に成長中。</p>
                 </div>
-                <div class="reason-card">
-                    <span style="font-size: 2rem; display: block; margin-bottom: 1rem;">💰</span>
-                    <h3>投資対効果最高</h3>
-                    <p>最小投資で最大効果を得られる</p>
+                <div class="why-now-card">
+                    <div class="why-now-icon">💰</div>
+                    <h3>投資対効果最大</h3>
+                    <p>今なら最小コストで<br>最大効果を実現。</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- 7. 最終CTAセクション -->
+    <!-- 6. ソリューションセクション -->
+    <section id="services" class="services-section fullscreen-section">
+        <div class="container" style="max-width: 900px; padding: 1.5rem;">
+            <h2 class="section-title">
+                <span class="gradient-text">LeadFiveの3つの強み</span>
+            </h2>
+            
+            <div class="services-grid-simple">
+                <div class="service-simple">
+                    <div class="service-icon">🧠</div>
+                    <h3>顧客理解×マーケティング</h3>
+                    <p>人間心理とデータ分析を融合。<br>売上成長率平均238%を実現。</p>
+                </div>
+                <div class="service-simple">
+                    <div class="service-icon">🤖</div>
+                    <h3>生成AIツール開発</h3>
+                    <p>DXシステムをオーダーメイドで開発。<br>業務効率化とコスト削減を実現。</p>
+                </div>
+                <div class="service-simple">
+                    <div class="service-icon">🚀</div>
+                    <h3>AI導入支援</h3>
+                    <p>戦略策定から実装まで伴走。<br>成果が出るまでサポート。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 7. 進め方（ピン留めスクロール） -->
+    <section id="process" class="section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title" data-animate="fade-up">
+                <span class="gradient-text">リスクフリー</span>で始められる理由
+            </h2>
+            <ol class="steps" data-steps>
+                <li><span>0.</span> 無料AI診断（30分）— 貴社の可能性を数値化</li>
+                <li><span>1.</span> 成果保証付き提案 — 3ヶ月で成果がなければ全額返金</li>
+                <li><span>2.</span> スモールスタート — 最小限の投資で効果を確認</li>
+                <li><span>3.</span> 伴走型サポート — 専任コンサルタントが週次フォロー</li>
+                <li><span>4.</span> 透明性の確保 — 全てのプロセスを可視化</li>
+                <li><span>5.</span> 内製化支援 — 最終的に自社で運用可能に</li>
+            </ol>
+        </div>
+    </section>
+    
+    <!-- 8. 信頼性強化セクション -->
+    <section id="trust" class="trust-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">
+                選ばれる<span class="gradient-text">3つの理由</span>
+            </h2>
+            
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon">🏆</div>
+                    <h3>圧倒的な実績</h3>
+                    <p><strong>223社</strong>の導入実績<br>
+                    売上成長率<strong>187%</strong><br>
+                    満足度<strong>98.5%</strong></p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🛡️</div>
+                    <h3>3つの安心保証</h3>
+                    <p>成果が出なければ<strong>全額返金</strong><br>
+                    専任コンサルが<strong>週次サポート</strong><br>
+                    いつでも<strong>解約可能</strong></p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🌟</div>
+                    <h3>多様な業界実績</h3>
+                    <p>建設、製造、医療、小売<br>
+                    サービス、ITなど<br>
+                    <strong>幅広い業界で成果</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 9. 最終CTAセクション -->
     <section id="contact" class="final-cta-section fullscreen-section">
         <div class="container">
             <h2 class="section-title">
-                AI活用を味方につけた企業だけが<br>
-                次の時代を<span class="gradient-text">制する</span>
+                ビジネスを<span class="gradient-text">再現性のあるもの</span>に
             </h2>
             
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <h3 style="margin-bottom: 2rem;">今すぐ始める3つの理由</h3>
-                <ul class="benefits-list">
-                    <li>✓ 無料AI診断で、あなたのビジネスの可能性が分かる</li>
-                    <li>✓ 専門家による詳細な戦略提案が受けられる</li>
-                    <li>✓ 業界トップクラスの実績とノウハウを活用できる</li>
-                </ul>
+            <div class="offer-box">
+                <h3 class="offer-title">「AI売上診断レポート」を無料プレゼント</h3>
+                
+                <div class="offer-contents">
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <div>
+                            <h4>あなたの業界でのAI活用可能性スコア</h4>
+                            <p>競合との差別化ポイントを明確化</p>
+                        </div>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <div>
+                            <h4>競合に勝つための具体的な3つの戦略</h4>
+                            <p>即実践可能なアクションプラン付き</p>
+                        </div>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <div>
+                            <h4>6ヶ月で売上150%を実現するロードマップ</h4>
+                            <p>成功事例ベースの再現性の高い手法</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <button class="btn btn-primary" style="font-size: 1.3rem; padding: 1.2rem 3rem;">
-                    無料相談はこちら
+            <div class="cta-action">
+                <button class="btn btn-primary btn-large">
+                    無料でAI診断を受ける
                 </button>
             </div>
             
-            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 20px;">✓ AI導入20社以上の実績</span>
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 20px;">✓ 満足度98.5%</span>
-                <span style="background: rgba(255, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 20px;">✓ 初回相談無料</span>
+            <div class="guarantee-badges">
+                <span class="badge">🛡️ 成果保証</span>
+                <span class="badge">🔒 情報守秘</span>
+                <span class="badge">⏱️ 30分で完了</span>
             </div>
         </div>
     </section>
     
-    <!-- 8. アクセスセクション -->
+    <!-- 10. アクセスセクション -->
     <section id="access" class="access-section fullscreen-section">
         <div class="container">
             <h2 class="section-title">アクセス</h2>
@@ -1070,7 +1949,7 @@
         </div>
     </section>
     
-    <!-- 9. フッターセクション -->
+    <!-- 11. フッターセクション -->
     <section id="footer" class="footer-section fullscreen-section">
         <div class="container">
             <div style="text-align: center; margin-bottom: 3rem;">
@@ -1132,12 +2011,18 @@
         <div class="section-nav-dot" data-section="6"></div>
         <div class="section-nav-dot" data-section="7"></div>
         <div class="section-nav-dot" data-section="8"></div>
+        <div class="section-nav-dot" data-section="9"></div>
+        <div class="section-nav-dot" data-section="10"></div>
     </div>
     
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/TextPlugin.min.js"></script>
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script>
         // GSAP初期化
@@ -1360,6 +2245,107 @@
         };
         
         console.log('Final homepage with opening loaded successfully!');
+        // Swiper初期化 - ユニークなアニメーション
+        const caseSwiper = new Swiper('.case-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            effect: 'coverflow',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    effect: 'slide',
+                },
+                1024: {
+                    slidesPerView: 3,
+                    effect: 'slide',
+                },
+                1440: {
+                    slidesPerView: 4,
+                    effect: 'slide',
+                },
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            speed: 800,
+        });
+        
+        // タイピングアニメーション for Case Studies
+        const typingElements = document.querySelectorAll('[data-typing-en]');
+        typingElements.forEach(element => {
+            const text = element.getAttribute('data-typing-en');
+            element.textContent = '';
+            let index = 0;
+            let hasTyped = false;
+            
+            const typeWriter = () => {
+                if (index < text.length) {
+                    element.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+            
+            // 要素が表示されたらアニメーション開始
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasTyped) {
+                        hasTyped = true;
+                        typeWriter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(element);
+        });
+        
+        // 進め方セクション - ピン留めスクロール
+        const processSection = document.querySelector('#process');
+        const steps = document.querySelectorAll('.steps li');
+        
+        if (processSection && steps.length > 0) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: processSection,
+                    start: "top top",
+                    end: "bottom top",
+                    pin: true,
+                    scrub: 1,
+                    onUpdate: self => {
+                        const progress = self.progress;
+                        const activeIndex = Math.floor(progress * steps.length);
+                        
+                        steps.forEach((step, index) => {
+                            if (index <= activeIndex) {
+                                step.classList.add('active');
+                            } else {
+                                step.classList.remove('active');
+                            }
+                        });
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
