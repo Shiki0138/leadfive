@@ -6,7 +6,7 @@ permalink: /terms/
 ---
 
 <style>
-  .legal { max-width: 900px; margin: 1.5rem auto; padding: 1rem; }
+  .legal { max-width: 900px; margin: 1.5rem auto; padding: 1rem; background: rgba(0,0,0,0.35); border-radius: 12px; }
   .legal h1 { font-size: 1.5rem; margin-bottom: .6rem; color: #fff; }
   .legal h2 { font-size: 1.05rem; margin: 1rem 0 .5rem; color: #fff; }
   .legal p, .legal li { color: #d1d5db; line-height: 1.8; }
@@ -15,9 +15,9 @@ permalink: /terms/
 
   @media (max-width: 768px) {
     .legal { padding: .75rem; }
-    .legal h1 { font-size: 1.35rem; }
-    .legal h2 { font-size: 1rem; }
-    .legal p, .legal li { line-height: 1.7; }
+    .legal h1 { font-size: 1.3rem; }
+    .legal h2 { font-size: 0.98rem; }
+    .legal p, .legal li { line-height: 1.75; font-size: 1rem; }
   }
 </style>
 
