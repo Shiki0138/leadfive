@@ -6,12 +6,19 @@ permalink: /terms/
 ---
 
 <style>
-  .legal { max-width: 900px; margin: 2rem auto; padding: 1rem; }
-  .legal h1 { font-size: 1.75rem; margin-bottom: .75rem; }
-  .legal h2 { font-size: 1.125rem; margin: 1.25rem 0 .5rem; }
+  .legal { max-width: 900px; margin: 1.5rem auto; padding: 1rem; }
+  .legal h1 { font-size: 1.5rem; margin-bottom: .6rem; color: #fff; }
+  .legal h2 { font-size: 1.05rem; margin: 1rem 0 .5rem; color: #fff; }
   .legal p, .legal li { color: #d1d5db; line-height: 1.8; }
   .legal ul { padding-left: 1.25rem; }
   .legal time { color: #9ca3af; font-size: .9rem; }
+
+  @media (max-width: 768px) {
+    .legal { padding: .75rem; }
+    .legal h1 { font-size: 1.35rem; }
+    .legal h2 { font-size: 1rem; }
+    .legal p, .legal li { line-height: 1.7; }
+  }
 </style>
 
 <section class="legal">
