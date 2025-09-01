@@ -690,22 +690,21 @@
             .navbar-nav {
                 position: fixed;
                 top: 60px;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: calc(100vh - 60px);
+                left: 0;
+                right: 0;
                 background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                transition: right 0.3s ease;
-                overflow-y: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                padding: 0.5rem 0.75rem;
+                gap: 0.5rem;
+                transform: translateY(-120%);
+                transition: transform 0.3s ease;
                 z-index: 1000;
             }
-            
-            .navbar-nav.active {
-                right: 0;
-            }
+            .navbar-nav.active { transform: translateY(0); }
             
             .nav-link {
                 font-size: 1.1rem;
@@ -732,19 +731,16 @@
             
             /* ヒーローテキスト調整 */
             .hero-section p:first-of-type {
-                font-size: 1.3rem !important;
-                line-height: 1.5 !important;
-                margin-bottom: 1rem !important;
-            }
-            
-            .hero-section p:nth-of-type(2) {
                 font-size: 1.1rem !important;
-                line-height: 1.6 !important;
+                line-height: 1.5 !important;
+                margin-bottom: 0.8rem !important;
+            }
+            .hero-section p:nth-of-type(2) {
+                font-size: 1rem !important;
+                line-height: 1.5 !important;
             }
             
-            .hero-title { 
-                font-size: clamp(1.5rem, 5vw, 1.8rem); 
-            }
+            .hero-title { font-size: clamp(1.4rem, 4.5vw, 1.6rem); }
             
             .section-title {
                 font-size: 1.5rem;
@@ -774,32 +770,15 @@
                 gap: 1rem;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-            }
+            .services-grid { grid-template-columns: 1fr; gap: 0.8rem; }
             
-            .service-card {
-                padding: 1.2rem;
-                background: rgba(139, 92, 246, 0.12) !important;
-                border: 1px solid rgba(139, 92, 246, 0.3);
-            }
+            .service-card { padding: 1rem; background: rgba(139,92,246,0.12) !important; }
             
-            .service-card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.6rem;
-            }
-            
-            .service-card p {
-                font-size: 0.9rem;
-                line-height: 1.4;
-            }
+            .service-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+            .service-card p { font-size: 0.9rem; line-height: 1.4; }
             
             /* フッター最適化 */
-            .footer-links {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
+            .footer-links { grid-template-columns: 1fr; gap: 1rem; }
             
             .footer-column {
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -826,20 +805,14 @@
                 padding: 0.4rem 0;
             }
             
-            .video-background video {
-                opacity: 0.3;
-            }
+            .video-background video { opacity: 0.3; }
             
             body.hero-active .video-background video {
                 opacity: 0.4;
             }
             
             /* ボタンサイズ最適化 */
-            .btn {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-                min-height: 48px;
-            }
+            .btn { padding: 0.7rem 1.6rem; font-size: 0.95rem; min-height: 44px; }
             
             /* モバイルで動画を非表示 */
             @media (max-width: 480px) {
@@ -851,6 +824,33 @@
                     display: none;
                 }
             }
+            /* Hero metric cards font sizing */
+            .metrics-grid .metric-card span { font-size: 1.2rem !important; }
+            .metrics-grid .metric-card span span { font-size: 0.9rem !important; }
+
+            /* Hide inline hero CTAs to avoid overlap with sticky footer */
+            .hero-inline-ctas { display: none; }
+
+            /* Problem section smaller cards */
+            .problem-section .card { padding: 0.9rem; min-height: 88px; }
+            .problem-section .card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+            .problem-section .card p { font-size: 0.9rem; }
+
+            /* Philosophy section smaller paragraph */
+            .philosophy-section .container p { font-size: 0.95rem !important; line-height: 1.5 !important; }
+
+            /* Instincts grid smaller tiles */
+            .instincts-grid { gap: 0.6rem; }
+            .instincts-grid > div { padding: 0.6rem; min-height: 72px; }
+
+            /* Why-now smaller reason cards */
+            .reasons-grid .reason-card { padding: 0.9rem; min-height: 88px; }
+
+            /* Final CTA title smaller (2 lines目安) */
+            .final-cta-section .section-title { font-size: 1.25rem; line-height: 1.3; }
+
+            /* Footer lead text smaller */
+            .footer-section p { font-size: 1rem !important; }
         }
         
         /* リストスタイル */
@@ -941,7 +941,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 1rem;">
+            <div class="hero-inline-ctas" style="text-align: center; margin-top: 1rem;">
                 <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary" aria-label="お問い合わせフォームを開く">お問い合わせ</a>
                 <a href="/case-studies/" class="btn btn-secondary" aria-label="事例を見る">事例を見る</a>
             </div>
@@ -1301,76 +1301,7 @@
         <a href="/case-studies/" class="btn btn-secondary" aria-label="事例を見る">事例を見る</a>
     </div>
 
-    <!-- Contact Modal (inline for this page) -->
-    <div id="contact-modal" class="modal" aria-hidden="true" role="dialog" aria-label="お問い合わせフォーム">
-      <div class="modal-content">
-        <span class="close" onclick="closeContactModal()" aria-label="閉じる">&times;</span>
-        <div class="modal-header">
-          <h2>お問い合わせ</h2>
-          <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
-        </div>
-        <div class="modal-body">
-          <form id="contactModalForm" class="contact-form">
-            <div class="form-row" style="display:flex; gap:1rem;">
-              <div class="form-group" style="flex:1;">
-                <label for="modal-company">会社名 <span class="required">*</span></label>
-                <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
-              </div>
-              <div class="form-group" style="flex:1;">
-                <label for="modal-name">お名前 <span class="required">*</span></label>
-                <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
-              </div>
-            </div>
-            <div class="form-row" style="display:flex; gap:1rem;">
-              <div class="form-group" style="flex:1;">
-                <label for="modal-email">メールアドレス <span class="required">*</span></label>
-                <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
-              </div>
-              <div class="form-group" style="flex:1;">
-                <label for="modal-phone">電話番号</label>
-                <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
-              <select id="modal-inquiry-type" name="inquiry_type" required>
-                <option value="">選択してください</option>
-                <option value="service">サービスについて</option>
-                <option value="consultation">ご相談</option>
-                <option value="quotation">見積もり依頼</option>
-                <option value="other">その他</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
-              <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
-            </div>
-            <div class="form-group checkbox-group">
-              <label>
-                <input type="checkbox" name="privacy" value="agreed" required>
-                <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
-              </label>
-            </div>
-            <button type="submit" class="btn btn-primary btn-large">送信する</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <style>
-      .modal { display: none; position: fixed; z-index: 2000; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); opacity: 0; transition: opacity .3s ease; }
-      .modal.active { display: block; opacity: 1; }
-      .modal-content { position: relative; background: rgba(10,10,10,0.95); margin: 5% auto; padding: 2rem; border-radius: 20px; width: 90%; max-width: 600px; border: 1px solid rgba(255,255,255,0.1); }
-      .modal-header h2 { margin: 0 0 .5rem; }
-      .modal-header p { color: rgba(255,255,255,0.7); margin: 0 0 1rem; }
-      .close { position: absolute; right: 1rem; top: 1rem; font-size: 2rem; color: rgba(255,255,255,0.7); cursor: pointer; }
-      .close:hover { color: #fff; }
-      .contact-form label { display:block; margin:.25rem 0 .25rem; font-weight:600; }
-      .contact-form input, .contact-form textarea, .contact-form select { width:100%; padding:.75rem; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); color:#fff; }
-      .contact-form .field-error { color: #fca5a5; font-size: .85rem; margin-top: .25rem; }
-      .btn-large { padding: .9rem 1.6rem; font-size: 1.05rem; }
-      @media (max-width: 768px){ .modal-content{ width:95%; margin:10% auto; padding:1.5rem } .form-row{flex-direction:column} }
-    </style>
+    
 
     <!-- セクションナビゲーション -->
     <div class="section-nav">

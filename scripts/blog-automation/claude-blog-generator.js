@@ -161,6 +161,38 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
     return 'informational';
   }
 
+  generateImageQuery(keyword) {
+    // キーワードに基づいて適切な画像検索クエリを生成
+    const keywordLower = keyword.toLowerCase();
+    
+    // マーケティング関連のマッピング
+    const imageMapping = {
+      'ai': 'artificial intelligence technology digital',
+      'データ分析': 'data analytics dashboard charts',
+      'マーケティング': 'digital marketing strategy business',
+      '戦略': 'business strategy planning meeting',
+      'デジタル': 'digital transformation technology',
+      '自動化': 'automation workflow process',
+      'dx': 'digital transformation office',
+      '成功事例': 'business success growth chart',
+      'ツール': 'software tools dashboard',
+      'ノウハウ': 'knowledge sharing team collaboration',
+      'トレンド': 'trending technology innovation',
+      '基礎': 'education learning concept',
+      '統合': 'integration connection network'
+    };
+    
+    // キーワードに含まれる単語をチェック
+    for (const [key, value] of Object.entries(imageMapping)) {
+      if (keyword.includes(key)) {
+        return value;
+      }
+    }
+    
+    // デフォルトはビジネス関連の汎用的なクエリ
+    return 'modern business technology office';
+  }
+
   parseGeneratedContent(text) {
     const sections = {
       searchIntent: '',
@@ -278,9 +310,12 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
 
   async fetchImage(query) {
     try {
+      // キーワードから適切な画像検索クエリを生成
+      const imageQuery = this.generateImageQuery(query);
+      
       const response = await axios.get('https://api.unsplash.com/search/photos', {
         params: {
-          query: `${query} business professional`,
+          query: imageQuery,
           per_page: 1,
           orientation: 'landscape'
         },
@@ -351,7 +386,10 @@ ${context.recentPosts.length > 0 ? `最近の記事:\n${context.recentPosts.map(
     try {
       const raw = await fs.readFile(usageLogPath, 'utf-8');
       used = JSON.parse(raw);
-    } catch (_) {}
+    } catch (e) {
+      // ログファイルがない場合は空配列で続行
+      console.log('Unsplash使用履歴ファイルが見つかりません。新規作成します。');
+    }
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     const recentIds = new Set(
       used.filter(u => new Date(u.used_at) >= sevenDaysAgo).map(u => u.photo_id)
