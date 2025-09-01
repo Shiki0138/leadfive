@@ -3,7 +3,7 @@
   "created": "2025-08-16T00:00:00Z",
   "status": "active",
   "current_week": 1,
-  "posts_remaining": 7,
+  "posts_remaining": 5,
   "schedule": [
     {
       "day": 1,
@@ -29,9 +29,11 @@
         "実装方法",
         "ツール活用"
       ],
-      "status": "pending",
+      "status": "completed",
       "audience": "企業の意思決定者・マーケティング責任者",
-      "expected_length": "2500-4000文字"
+      "expected_length": "2500-4000文字",
+      "generated_at": "2025-09-01T10:53:05.354Z",
+      "filename": "2025-09-01-2025年最新ノウハウ完全ガイド.md"
     },
     {
       "day": 3,

@@ -159,46 +159,44 @@ permalink: /privacy/
   font-size: 1.125rem;
 }
 
-.privacy-content {
-  padding: 0 0 4rem;
-  background: #ffffff;
-  color: #1f2937;
-}
+
+/* Switch to dark theme for readability */
+.privacy-content { padding: 0 0 4rem; background: transparent; color: #e5e7eb; }
 
 .content-wrapper {
   max-width: 800px;
   margin: 0 auto;
-  background: #ffffff;
+  background: transparent;
   padding: 3rem;
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
 .last-updated {
-  color: #6b7280;
+  color: #9ca3af;
   font-size: 0.875rem;
   margin-bottom: 3rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .privacy-section {
   margin-bottom: 3rem;
   padding: 2rem;
-  background: #f9fafb;
+  background: rgba(255,255,255,0.06);
   border-radius: 15px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
 .privacy-section h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #111827;
+  color: #ffffff;
   font-weight: 700;
 }
 
 .privacy-section p {
-  color: #374151;
+  color: #d1d5db;
   line-height: 1.8;
   margin-bottom: 1rem;
 }
@@ -212,7 +210,7 @@ permalink: /privacy/
 .privacy-section li {
   position: relative;
   padding: 0.5rem 0;
-  color: #4b5563;
+  color: #cbd5e1;
 }
 
 .privacy-section li::before {
@@ -224,30 +222,29 @@ permalink: /privacy/
 }
 
 .privacy-section a {
-  color: #8b5cf6;
+  color: #93c5fd;
   text-decoration: none;
   transition: color 0.3s ease;
   font-weight: 500;
 }
 
 .privacy-section a:hover {
-  color: #ec4899;
+  color: #60a5fa;
   text-decoration: underline;
 }
 
 .contact-info {
   margin-top: 1rem;
   padding: 2rem;
-  background: #fff;
+  background: rgba(255,255,255,0.03);
   border-radius: 12px;
-  border: 2px solid #8b5cf6;
-  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
 .contact-info p {
   margin: 0;
   line-height: 1.8;
-  color: #1f2937;
+  color: #e5e7eb;
 }
 
 @media (max-width: 768px) {
@@ -260,8 +257,6 @@ permalink: /privacy/
     margin: 0 1rem;
   }
   
-  .privacy-section {
-    padding: 1.5rem;
-  }
+  .privacy-section { padding: 1.5rem; }
 }
 </style>

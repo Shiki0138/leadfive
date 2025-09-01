@@ -1,4 +1,4 @@
-<header class="site-header" {% if page.url contains '/blog/' or page.layout == 'blog-post' or page.layout == 'blog' %}style="background: #1e3a8a !important;"{% endif %}>
+<header class="site-header" style="background: rgba(10,10,10,0.6); backdrop-filter: blur(20px); padding: 0.2rem 0;">
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
@@ -14,51 +14,30 @@
       </button>
       
       <div class="navbar-menu" id="navbarMenu">
-        {% if page.url contains '/blog/' or page.layout == 'blog-post' or page.layout == 'blog' %}
-        <!-- Blog navigation with categories for ALL blog pages -->
+        <!-- Unified navigation for all pages -->
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/blog/" class="nav-link" style="color: #ffffff !important;">全ての記事</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/blog/category/aiマーケティング/" class="nav-link" style="color: #ffffff !important;">AIマーケティング</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/blog/category/美容業界/" class="nav-link" style="color: #ffffff !important;">美容業界</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/blog/category/データ分析/" class="nav-link" style="color: #ffffff !important;">データ分析</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/blog/category/ai活用/" class="nav-link" style="color: #ffffff !important;">AI活用</a>
-          </li>
+          <li class="nav-item"><a href="{{ site.baseurl }}/#philosophy" class="nav-link">理念</a></li>
+          <li class="nav-item"><a href="{{ site.baseurl }}/#services" class="nav-link">強み</a></li>
+          <li class="nav-item"><a href="{{ site.baseurl }}/case-studies/" class="nav-link">事例</a></li>
+          <li class="nav-item"><a href="{{ site.baseurl }}/blog/" class="nav-link">ブログ</a></li>
+          <li class="nav-item"><a href="#" class="btn btn-primary nav-cta" onclick="openContactForm(); return false;">お問い合わせ</a></li>
         </ul>
-        {% else %}
-        <!-- Regular navigation for non-blog pages -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/#philosophy" class="nav-link">理念</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/#services" class="nav-link">サービス</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/#cases" class="nav-link">実績</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/blog/" class="nav-link">ブログ</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ site.baseurl }}/company/" class="nav-link">会社概要</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" onclick="openContactForm(); return false;">お問い合わせ</a>
-          </li>
-        </ul>
-        {% endif %}
       </div>
     </div>
   </nav>
 </header>
+
+<style>
+/* Normalize header height and vertical centering across pages */
+.site-header .logo-text,
+.site-header .nav-link,
+.site-header .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  line-height: 1;
+}
+.site-header .nav-link { padding: 0 10px; }
+</style>
 
 <!-- Mobile menu is handled by main.js -->

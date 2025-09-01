@@ -2061,6 +2061,7 @@ section {
   backdrop-filter: blur(5px);
   opacity: 0;
   transition: opacity 0.3s ease;
+  overflow-y: auto;
   
   &.active {
     display: block;
@@ -2078,6 +2079,9 @@ section {
   max-width: 600px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: modalSlideIn 0.3s ease;
+  max-height: calc(100vh - 12vh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .close {

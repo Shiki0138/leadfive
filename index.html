@@ -6,8 +6,67 @@
     <title>AI×心理学で売上を科学する | LeadFive</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="LeadFiveは、AI技術と人間心理学を融合させた革新的なマーケティングコンサルティングを提供します。8つの本能に基づく科学的アプローチで、あなたのビジネスを次のステージへ導きます。">
-    <meta name="keywords" content="AI マーケティング, 心理学 マーケティング, 8つの本能, コンサルティング, 売上向上, CVR改善">
+    <meta name="description" content="BtoBの新規リード獲得を科学。AI×心理学でCVRを最大化し、90日で“問い合わせ3倍”へ。まずはお問い合わせください。">
+    <meta name="keywords" content="AI マーケティング, 心理学 マーケティング, 8つの本能, コンサルティング, 売上向上, CVR改善, リード獲得">
+    <link rel="canonical" href="https://leadfive138.com/">
+    <meta property="og:site_name" content="LeadFive">
+    <meta property="og:title" content="BtoBのリード獲得を科学｜AI×心理学でCVR改善｜LeadFive">
+    <meta property="og:description" content="AI×心理学でCVRを最大化。90日で“問い合わせ3倍”へ。まずはお問い合わせください。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leadfive138.com/">
+    <meta property="og:image" content="https://leadfive138.com/assets/images/ogp.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://leadfive138.com/assets/images/ogp.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LeadFive",
+      "url": "https://leadfive138.com",
+      "logo": "https://leadfive138.com/favicon.ico",
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "telephone": "06-7713-6747",
+        "email": "leadfive.138@gmail.com",
+        "areaServed": "JP",
+        "availableLanguage": ["ja"]
+      }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://leadfive138.com",
+      "name": "LeadFive"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "初回相談や診断は本当に無料ですか？",
+          "acceptedAnswer": {"@type": "Answer", "text": "はい。課題整理と改善仮説の提示までは無料です。最短24時間以内にご連絡します。"}
+        },
+        {
+          "@type": "Question",
+          "name": "成果が出るまでの期間はどれくらいですか？",
+          "acceptedAnswer": {"@type": "Answer", "text": "90日で主要指標（CVR/CPA/商談化率）に変化が見える設計を基本としています。"}
+        },
+        {
+          "@type": "Question",
+          "name": "BtoB/BtoCどちらにも対応できますか？",
+          "acceptedAnswer": {"@type": "Answer", "text": "はい。BtoBのリード獲得、およびBtoCのLTV最大化プロジェクト双方の実績があります。"}
+        }
+      ]
+    }
+    </script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,12 +191,14 @@
             display: flex; align-items: center; justify-content: center;
             position: relative;
             scroll-snap-align: start;
+            scroll-margin-top: 80px; /* 固定ヘッダー分オフセット */
             padding: 4rem 2rem;
         }
         
         html { 
-            scroll-snap-type: y mandatory; 
+            scroll-snap-type: y mandatory; /* セクションごとに停止 */
             scroll-behavior: smooth; 
+            scroll-padding-top: 80px; /* 固定ヘッダー考慮 */
         }
         
         /* ヘッダー */
@@ -145,9 +206,9 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.85);
+            background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(20px);
-            padding: 1rem 0;
+            padding: 0.2rem 0; /* さらに高さをコンパクトに */
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -160,6 +221,8 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
+        .nav-cta-li { list-style: none; }
+        .navbar .nav-cta { padding: 0.6rem 1rem; font-weight: 800; }
         
         .navbar-brand .logo-text {
             font-size: 1.8rem;
@@ -225,8 +288,15 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 0.7rem;
             border-radius: 8px;
+        }
+
+        /* PC表示でナビのテキストを上下中央に、さらに高さを抑える */
+        @media (min-width: 769px) {
+            .navbar-brand, .navbar-nav { align-items: center; }
+            .navbar .logo-text { display: inline-flex; align-items: center; height: 36px; line-height: 1; }
+            .nav-link, .nav-cta { display: inline-flex; align-items: center; height: 36px; padding: 0 10px; line-height: 1; }
         }
         
         .nav-link:hover {
@@ -273,7 +343,17 @@
             background: rgba(236, 72, 153, 0.2);
             color: #ffffff;
         }
-        
+
+        .proof-section .container {
+            background: rgba(34, 197, 94, 0.18);
+            color: #ffffff;
+        }
+
+        .faq-section .container {
+            background: rgba(255, 255, 255, 0.75);
+            color: #1a1a1a;
+        }
+
         .why-now-section .container {
             background: rgba(239, 68, 68, 0.2);
             color: #ffffff;
@@ -366,6 +446,20 @@
             transform: translateY(-3px);
         }
         
+        /* 固定（モバイル）CTA */
+        .sticky-cta {
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            display: none;
+            gap: 0.8rem;
+            justify-content: center;
+            padding: 0.6rem 0.8rem;
+            background: rgba(10,10,10,0.85);
+            border-top: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
         /* メトリクス */
         .metrics-grid {
             display: grid;
@@ -377,9 +471,13 @@
         
         .metric-card {
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
+            padding: 1.2rem;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center; /* ボックス内の上下中央寄せ */
+            min-height: 84px;
         }
         
         .metric-value {
@@ -592,22 +690,21 @@
             .navbar-nav {
                 position: fixed;
                 top: 60px;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: calc(100vh - 60px);
+                left: 0;
+                right: 0;
                 background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                transition: right 0.3s ease;
-                overflow-y: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                padding: 0.5rem 0.75rem;
+                gap: 0.5rem;
+                transform: translateY(-120%);
+                transition: transform 0.3s ease;
                 z-index: 1000;
             }
-            
-            .navbar-nav.active {
-                right: 0;
-            }
+            .navbar-nav.active { transform: translateY(0); }
             
             .nav-link {
                 font-size: 1.1rem;
@@ -623,6 +720,7 @@
                 padding: 2rem 1rem;
                 height: auto;
                 min-height: 100vh;
+                scroll-margin-top: 72px;
             }
             
             .container {
@@ -633,19 +731,16 @@
             
             /* ヒーローテキスト調整 */
             .hero-section p:first-of-type {
-                font-size: 1.3rem !important;
-                line-height: 1.5 !important;
-                margin-bottom: 1rem !important;
-            }
-            
-            .hero-section p:nth-of-type(2) {
                 font-size: 1.1rem !important;
-                line-height: 1.6 !important;
+                line-height: 1.5 !important;
+                margin-bottom: 0.8rem !important;
+            }
+            .hero-section p:nth-of-type(2) {
+                font-size: 1rem !important;
+                line-height: 1.5 !important;
             }
             
-            .hero-title { 
-                font-size: clamp(1.5rem, 5vw, 1.8rem); 
-            }
+            .hero-title { font-size: clamp(1.4rem, 4.5vw, 1.6rem); }
             
             .section-title {
                 font-size: 1.5rem;
@@ -675,32 +770,15 @@
                 gap: 1rem;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-            }
+            .services-grid { grid-template-columns: 1fr; gap: 0.8rem; }
             
-            .service-card {
-                padding: 1.2rem;
-                background: rgba(139, 92, 246, 0.12) !important;
-                border: 1px solid rgba(139, 92, 246, 0.3);
-            }
+            .service-card { padding: 1rem; background: rgba(139,92,246,0.12) !important; }
             
-            .service-card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.6rem;
-            }
-            
-            .service-card p {
-                font-size: 0.9rem;
-                line-height: 1.4;
-            }
+            .service-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+            .service-card p { font-size: 0.9rem; line-height: 1.4; }
             
             /* フッター最適化 */
-            .footer-links {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
+            .footer-links { grid-template-columns: 1fr; gap: 1rem; }
             
             .footer-column {
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -727,20 +805,14 @@
                 padding: 0.4rem 0;
             }
             
-            .video-background video {
-                opacity: 0.3;
-            }
+            .video-background video { opacity: 0.3; }
             
             body.hero-active .video-background video {
                 opacity: 0.4;
             }
             
             /* ボタンサイズ最適化 */
-            .btn {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-                min-height: 48px;
-            }
+            .btn { padding: 0.7rem 1.6rem; font-size: 0.95rem; min-height: 44px; }
             
             /* モバイルで動画を非表示 */
             @media (max-width: 480px) {
@@ -752,6 +824,33 @@
                     display: none;
                 }
             }
+            /* Hero metric cards font sizing */
+            .metrics-grid .metric-card span { font-size: 1.2rem !important; }
+            .metrics-grid .metric-card span span { font-size: 0.9rem !important; }
+
+            /* Hide inline hero CTAs to avoid overlap with sticky footer */
+            .hero-inline-ctas { display: none; }
+
+            /* Problem section smaller cards */
+            .problem-section .card { padding: 0.9rem; min-height: 88px; }
+            .problem-section .card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+            .problem-section .card p { font-size: 0.9rem; }
+
+            /* Philosophy section smaller paragraph */
+            .philosophy-section .container p { font-size: 0.95rem !important; line-height: 1.5 !important; }
+
+            /* Instincts grid smaller tiles */
+            .instincts-grid { gap: 0.6rem; }
+            .instincts-grid > div { padding: 0.6rem; min-height: 72px; }
+
+            /* Why-now smaller reason cards */
+            .reasons-grid .reason-card { padding: 0.9rem; min-height: 88px; }
+
+            /* Final CTA title smaller (2 lines目安) */
+            .final-cta-section .section-title { font-size: 1.25rem; line-height: 1.3; }
+
+            /* Footer lead text smaller */
+            .footer-section p { font-size: 1rem !important; }
         }
         
         /* リストスタイル */
@@ -771,6 +870,10 @@
         .fallback-bg {
             background: linear-gradient(135deg, #0f0f14 0%, #1a1a2e 50%, #16213e 100%);
         }
+        @media (max-width: 768px) {
+            body { padding-bottom: 76px; }
+            .sticky-cta { display: flex; }
+        }
     </style>
 </head>
 <body class="homepage hero-active">
@@ -784,7 +887,7 @@
     </div>
     
     <!-- 動画背景 -->
-    <div class="video-background">
+    <div class="video-background" aria-hidden="true">
         <video autoplay muted loop playsinline preload="auto" id="background-video">
             <source src="assets/videos/20250829_1716_Futuristic_Office_Coding.mp4" type="video/mp4">
             <source src="20250829_1716_Futuristic Office Coding_simple_compose_01k3tebsche7pbncc4mt41dx8n.mp4" type="video/mp4">
@@ -807,9 +910,10 @@
             </button>
             <ul class="navbar-nav" id="mobileNav">
                 <li><a href="#philosophy" class="nav-link" onclick="closeMobileMenu()">理念</a></li>
-                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">LeadFiveの強み</a></li>
-                <li><a href="#instincts" class="nav-link" onclick="closeMobileMenu()">8つの本能</a></li>
-                <li><a href="#contact" class="nav-link" onclick="closeMobileMenu()">お問い合わせ</a></li>
+                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">強み</a></li>
+                <li><a href="/case-studies/" class="nav-link" onclick="closeMobileMenu()">事例</a></li>
+                <li><a href="/blog/" class="nav-link" onclick="closeMobileMenu()">ブログ</a></li>
+                <li class="nav-cta-li"><a href="#" class="btn btn-primary nav-cta" onclick="openContactForm(); closeMobileMenu(); return false;" aria-label="お問い合わせフォームを開く">お問い合わせ</a></li>
             </ul>
         </nav>
     </header>
@@ -835,6 +939,11 @@
                 <div class="metric-card" style="opacity: 0;">
                     <span style="font-size: 1.5rem; font-weight: 700; color: #ec4899;">AI活用<br><span style="font-size: 1rem;">(システム開発)</span></span>
                 </div>
+            </div>
+
+            <div class="hero-inline-ctas" style="text-align: center; margin-top: 1rem;">
+                <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary" aria-label="お問い合わせフォームを開く">お問い合わせ</a>
+                <a href="/case-studies/" class="btn btn-secondary" aria-label="事例を見る">事例を見る</a>
             </div>
         </div>
     </section>
@@ -955,29 +1064,29 @@
     <section id="services" class="services-section fullscreen-section">
         <div class="container" style="max-width: 800px; padding: 1.5rem;">
             <h2 class="section-title">
-                <span class="gradient-text">LeadFiveの強み</span>
+                <span class="gradient-text">強み</span>
             </h2>
             
             <div class="services-grid">
                 <div class="service-card">
-                    <span class="card-icon">🤖</span>
-                    <h3>AI マーケティング</h3>
-                    <p>最新のAI技術でマーケティングを自動化し、予測分析・自動最適化・パーソナライゼーションを実現</p>
+                    <span class="card-icon">📈</span>
+                    <h3>マーケティングサポート</h3>
+                    <p>戦略設計から実装・計測・改善まで一気通貫。CVR改善、CPA最適化、LTV最大化まで伴走支援します。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">🧠</span>
-                    <h3>心理学分析</h3>
-                    <p>8つの本能に基づいた科学的アプローチで顧客心理を深層理解し、行動を予測</p>
+                    <span class="card-icon">🧩</span>
+                    <h3>AIを活用したDXツールの開発</h3>
+                    <p>業務自動化やデータ連携のための内製ツール/AI機能を開発。ワークフロー最適化や社内ナレッジ活用を加速。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">📊</span>
-                    <h3>データ統合</h3>
-                    <p>散在するデータを統合プラットフォームで一元化し、リアルタイム分析で即座の意思決定を支援</p>
+                    <span class="card-icon">🤝</span>
+                    <h3>AI活用支援</h3>
+                    <p>生成AIの活用設計から運用定着まで。プロンプト設計、ガバナンス、教育/トレーニングで成果につなげます。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">🚀</span>
-                    <h3>戦略実行</h3>
-                    <p>分析結果を実際のビジネス成果に変える具体的ロードマップと6ヶ月間の継続サポート</p>
+                    <span class="card-icon">📣</span>
+                    <h3>WEB/SNS運用サポート</h3>
+                    <p>Web/LP/SNS/広告運用を設計・実行。コンテンツ/クリエイティブ最適化から配信・レポーティング自動化まで対応。</p>
                 </div>
             </div>
         </div>
@@ -1028,9 +1137,9 @@
             </div>
             
             <div style="text-align: center; margin-bottom: 2rem;">
-                <button class="btn btn-primary" style="font-size: 1.3rem; padding: 1.2rem 3rem;">
-                    無料相談はこちら
-                </button>
+                <a class="btn btn-primary" href="#" onclick="openContactForm(); return false;" aria-label="お問い合わせフォームを開く" style="font-size: 1.2rem; padding: 1rem 2.4rem;">
+                    お問い合わせ（24時間以内にご連絡）
+                </a>
             </div>
             
             <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
@@ -1041,7 +1150,70 @@
         </div>
     </section>
     
-    <!-- 8. アクセスセクション -->
+    <!-- 3. 実績/事例サマリセクション（移動） -->
+    <section id="proof" class="proof-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">マーケティングと生成AIを導入した事例</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">🏷️</span>
+                    <h3>美容室チェーン</h3>
+                    <p>LP最適化とAI接客導入でCVR+128%、予約数2.1倍</p>
+                    <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                      <span style="background:rgba(139,92,246,.2); border:1px solid rgba(139,92,246,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">CVR +128%</span>
+                      <span style="background:rgba(236,72,153,.2); border:1px solid rgba(236,72,153,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">予約数 2.1倍</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-icon">💼</span>
+                    <h3>BtoB SaaS</h3>
+                    <p>問い合わせ単価▲36%、商談化率+58%、パイプラインを可視化</p>
+                    <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                      <span style="background:rgba(34,197,94,.2); border:1px solid rgba(34,197,94,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">CPA -36%</span>
+                      <span style="background:rgba(59,130,246,.2); border:1px solid rgba(59,130,246,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">商談化率 +58%</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🛒</span>
+                    <h3>EC/D2C</h3>
+                    <p>8本能訴求の新LPで初回転換+64%、定期継続率+22%</p>
+                    <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                      <span style="background:rgba(236,72,153,.2); border:1px solid rgba(236,72,153,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">初回CVR +64%</span>
+                      <span style="background:rgba(250,204,21,.2); border:1px solid rgba(250,204,21,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">継続率 +22%</span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:1rem;">
+                <a href="/case-studies/" class="btn btn-secondary" aria-label="事例一覧へ">事例を詳しく見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FAQセクション（先に表示） -->
+    <section id="faq" class="faq-section fullscreen-section">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>初回相談や診断は本当に無料ですか？</h3>
+                    <p>はい。課題整理と改善仮説の提示までは無料です。最短24時間以内にご連絡します。</p>
+                </div>
+                <div class="card">
+                    <h3>成果が出るまでの期間は？</h3>
+                    <p>90日で主要指標（CVR/CPA/商談化率）に変化が見える設計を基本としています。</p>
+                </div>
+                <div class="card">
+                    <h3>どの業界に対応できますか？</h3>
+                    <p>BtoB/BtoC双方の実績があります。まずはお問い合わせで現状を把握し、最適な進め方をご提案します。</p>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:1.5rem;">
+                <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary" aria-label="お問い合わせフォームを開く">お問い合わせ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. アクセスセクション（FAQの後） -->
     <section id="access" class="access-section fullscreen-section">
         <div class="container">
             <h2 class="section-title">アクセス</h2>
@@ -1064,20 +1236,20 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 2rem;">
-                    <a href="/contact" class="btn btn-primary">お問い合わせはこちら</a>
+                    <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary">お問い合わせはこちら</a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- 9. フッターセクション -->
+
+    <!-- 10. フッターセクション -->
     <section id="footer" class="footer-section fullscreen-section">
         <div class="container">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="color: #8b5cf6; margin-bottom: 2rem;">LeadFive</h2>
                 <p style="font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.8;">
-                    AI×心理学で、あなたのビジネスの可能性を最大化します。<br>
-                    まずは無料相談から始めませんか？
+                    AI×マーケティングで、あなたのビジネスの可能性を最大化します。<br>
+                    まずはお問い合わせから始めませんか？
                 </p>
             </div>
             
@@ -1085,10 +1257,10 @@
                 <div>
                     <h4>サービス</h4>
                     <ul>
-                        <li><a href="#services">AI マーケティング</a></li>
-                        <li><a href="#services">心理学分析</a></li>
-                        <li><a href="#services">データ統合</a></li>
-                        <li><a href="#services">戦略実行</a></li>
+                        <li><a href="/services/marketing-support/">マーケティングサポート</a></li>
+                        <li><a href="/services/dx-tools/">DXツール開発・提供</a></li>
+                        <li><a href="/services/ai-adoption/">AI活用サポート</a></li>
+                        <li><a href="/services/web-sns-ads/">WEB/SNS広告サポート</a></li>
                     </ul>
                 </div>
                 <div>
@@ -1103,15 +1275,15 @@
                     <h4>サポート</h4>
                     <ul>
                         <li><a href="/contact">お問い合わせ</a></li>
-                        <li><a href="/privacy">プライバシーポリシー</a></li>
-                        <li><a href="/terms">利用規約</a></li>
+                        <li><a href="/privacy/">プライバシーポリシー</a></li>
+                        <li><a href="/terms/">利用規約</a></li>
                     </ul>
                 </div>
             </div>
             
             <div style="text-align: center; margin: 3rem 0;">
-                <a href="/contact" class="btn btn-primary">
-                    無料相談のお申し込み
+                <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary" aria-label="お問い合わせフォームを開く">
+                    お問い合わせ
                 </a>
             </div>
             
@@ -1120,7 +1292,17 @@
             </div>
         </div>
     </section>
+
     
+
+    <!-- Sticky Mobile CTA -->
+    <div class="sticky-cta" role="region" aria-label="固定CTA">
+        <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary" aria-label="お問い合わせフォームを開く">お問い合わせ</a>
+        <a href="/case-studies/" class="btn btn-secondary" aria-label="事例を見る">事例を見る</a>
+    </div>
+
+    
+
     <!-- セクションナビゲーション -->
     <div class="section-nav">
         <div class="section-nav-dot active" data-section="0"></div>
@@ -1138,6 +1320,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/TextPlugin.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/contact-modal.js"></script>
     
     <script>
         // GSAP初期化
@@ -1165,6 +1349,10 @@
                 onComplete: () => {
                     document.getElementById('opening').style.display = 'none';
                     startMainAnimations();
+                    if (window.ScrollTrigger) {
+                        // オーバーレイ除去後に再計算（セクションの見落とし防止）
+                        setTimeout(() => ScrollTrigger.refresh(), 50);
+                    }
                 }
             });
         });
@@ -1216,6 +1404,35 @@
                 ease: "power2.out",
                 delay: 2
             });
+
+            // Servicesセクションのスクロール連動表示（安定表示のため専用トリガー）
+            try {
+                // Safety: ensure visible by default
+                gsap.set('#services .section-title, #services .service-card', { opacity: 1 });
+                gsap.from('#services .section-title', {
+                    y: 24,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    immediateRender: false,
+                    scrollTrigger: {
+                        trigger: '#services',
+                        start: 'top 75%',
+                        once: true
+                    }
+                });
+                gsap.from('#services .service-card', {
+                    y: 32,
+                    duration: 0.5,
+                    stagger: 0.08,
+                    ease: 'power2.out',
+                    immediateRender: false,
+                    scrollTrigger: {
+                        trigger: '#services',
+                        start: 'top 70%',
+                        once: true
+                    }
+                });
+            } catch (e) { console.warn('Services animation setup skipped:', e); }
         }
         
         // セクションアニメーション
@@ -1231,6 +1448,7 @@
                 scale: 0.98,
                 duration: 1,
                 ease: "power3.out",
+                immediateRender: false,
                 scrollTrigger: {
                     trigger: section,
                     start: "top 70%",
@@ -1247,6 +1465,7 @@
                     duration: 0.6,
                     stagger: 0.1,
                     ease: "power2.out",
+                    immediateRender: false,
                     scrollTrigger: {
                         trigger: section,
                         start: "top 60%",
