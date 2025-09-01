@@ -128,16 +128,32 @@
         
         /* フルスクリーンセクション */
         .fullscreen-section {
-            width: 100vw; height: 100vh;
+            width: 100vw; 
+            min-height: 100vh;
+            min-height: -webkit-fill-available; /* iOS対応 */
             display: flex; align-items: center; justify-content: center;
             position: relative;
             scroll-snap-align: start;
             padding: 4rem 2rem;
         }
         
+        /* iOS Safari対応 */
+        @supports (-webkit-touch-callout: none) {
+            .fullscreen-section {
+                min-height: -webkit-fill-available;
+            }
+        }
+        
         html { 
-            scroll-snap-type: y mandatory; 
+            scroll-snap-type: y proximity; /* mandatoryをproximityに変更 */
             scroll-behavior: smooth; 
+        }
+        
+        /* モバイルではスクロールスナップを無効化 */
+        @media (max-width: 768px) {
+            html {
+                scroll-snap-type: none;
+            }
         }
         
         /* ヘッダー */
@@ -255,8 +271,9 @@
         }
         
         .problem-section .container {
-            background: rgba(255, 255, 255, 0.6); /* より透明に */
+            background: rgba(255, 255, 255, 0.95); /* より不透明に */
             color: #1a1a1a;
+            backdrop-filter: blur(10px);
         }
         
         .philosophy-section .container {
@@ -285,8 +302,9 @@
         }
         
         .access-section .container {
-            background: rgba(255, 255, 255, 0.7); /* より透明に */
+            background: rgba(255, 255, 255, 0.95); /* より不透明に */
             color: #1a1a1a;
+            backdrop-filter: blur(10px);
         }
         
         .footer-section .container {
@@ -1117,7 +1135,7 @@
         /* モバイル対応 */
         @media (max-width: 768px) {
             html {
-                scroll-snap-type: y proximity;
+                scroll-snap-type: none;
                 scroll-padding-top: 60px;
             }
             
@@ -1283,10 +1301,35 @@
             @media (max-width: 480px) {
                 .video-background {
                     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+                    display: block;
                 }
                 
                 .video-background video {
                     display: none;
+                }
+            }
+            
+            /* タッチ領域の最適化 */
+            .mobile-menu-toggle {
+                min-width: 48px;
+                min-height: 48px;
+                padding: 12px;
+            }
+            
+            .btn {
+                min-height: 48px;
+                min-width: 48px;
+                padding: 12px 24px;
+            }
+            
+            /* プログレッシブエンハンスメント */
+            @media (hover: none) {
+                .card:hover {
+                    transform: none;
+                }
+                
+                .btn:hover {
+                    transform: none;
                 }
             }
         }
@@ -1610,7 +1653,7 @@
     <div class="video-background">
         <video autoplay muted loop playsinline preload="auto" id="background-video">
             <source src="assets/videos/20250829_1716_Futuristic_Office_Coding.mp4" type="video/mp4">
-            <source src="20250829_1716_Futuristic Office Coding_simple_compose_01k3tebsche7pbncc4mt41dx8n.mp4" type="video/mp4">
+            <source src="assets/videos/hero-background.mp4" type="video/mp4">
         </video>
     </div>
     <div class="video-overlay"></div>
@@ -1621,7 +1664,11 @@
             <div class="navbar-brand">
                 <a href="#" class="logo-text">LeadFive</a>
             </div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-toggle" 
+                    onclick="toggleMobileMenu()" 
+                    aria-label="メニューを開く"
+                    aria-expanded="false"
+                    aria-controls="mobileNav">
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -1629,9 +1676,11 @@
                 </div>
             </button>
             <ul class="navbar-nav" id="mobileNav">
-                <li><a href="#philosophy" class="nav-link" onclick="closeMobileMenu()">理念</a></li>
-                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">LeadFiveの強み</a></li>
+                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">サービス</a></li>
                 <li><a href="#instincts" class="nav-link" onclick="closeMobileMenu()">8つの本能</a></li>
+                <li><a href="#cases" class="nav-link" onclick="closeMobileMenu()">実績</a></li>
+                <li><a href="/blog/" class="nav-link" onclick="closeMobileMenu()">ブログ</a></li>
+                <li><a href="/company/" class="nav-link" onclick="closeMobileMenu()">会社概要</a></li>
                 <li><a href="#contact" class="nav-link" onclick="closeMobileMenu()">お問い合わせ</a></li>
             </ul>
         </nav>
@@ -2059,10 +2108,12 @@
             const video = document.getElementById('background-video');
             const videoContainer = document.querySelector('.video-background');
             
-            video.addEventListener('error', () => {
-                console.log('Video failed to load, using fallback');
+            video.addEventListener('error', (e) => {
+                console.error('Video failed to load:', e.target.error);
                 document.body.classList.add('fallback-bg');
                 videoContainer.style.display = 'none';
+                // フォールバック用のグラデーション背景を適用
+                document.body.style.background = 'linear-gradient(135deg, #0f0f14 0%, #1a1a2e 50%, #16213e 100%)';
             });
             
             video.addEventListener('loadeddata', () => {
@@ -2231,8 +2282,13 @@
             mobileNav.classList.toggle('active');
             menuToggle.classList.toggle('active');
             
+            // アクセシビリティ属性の更新
+            const isExpanded = mobileNav.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.setAttribute('aria-label', isExpanded ? 'メニューを閉じる' : 'メニューを開く');
+            
             // メニューが開いたときは背景スクロールを防ぐ
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            document.body.style.overflow = isExpanded ? 'hidden' : '';
         };
         
         window.closeMobileMenu = () => {
@@ -2244,7 +2300,28 @@
             document.body.style.overflow = '';
         };
         
-        console.log('Final homepage with opening loaded successfully!');
+        // モバイル最適化関数
+        function optimizeForMobile() {
+            if (window.innerWidth <= 768) {
+                // モバイルでのアニメーション最適化
+                document.body.classList.add('mobile-optimized');
+                
+                // 480px以下では動画を無効化
+                if (window.innerWidth <= 480) {
+                    const videos = document.querySelectorAll('video');
+                    videos.forEach(video => {
+                        video.pause();
+                        video.style.display = 'none';
+                    });
+                }
+            }
+        }
+
+        // ロード時とリサイズ時に実行
+        window.addEventListener('load', optimizeForMobile);
+        window.addEventListener('resize', optimizeForMobile);
+        
+        console.log('Enhanced homepage with UI/UX fixes loaded successfully!');
         // Swiper初期化 - ユニークなアニメーション
         const caseSwiper = new Swiper('.case-swiper', {
             slidesPerView: 1,

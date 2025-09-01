@@ -1,0 +1,3106 @@
+---
+---
+
+// Variables
+$deep-black: #0a0a0a;
+$neural-purple: #8b5cf6;
+$synapse-blue: #3b82f6;
+$impulse-pink: #ec4899;
+$insight-cyan: #06b6d4;
+$white: #ffffff;
+$dark-blue: #1e3a8a;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  height: 100%;
+}
+
+// Prevent auto-scroll on page load
+html, body {
+  overflow-anchor: none;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: $deep-black;
+  color: $white;
+  line-height: 1.7; // 読みやすさ向上
+  overflow-x: hidden;
+  min-height: 100%;
+  position: relative;
+  // Ensure scrolling is not blocked
+  overflow-y: auto !important;
+
+  // PCでは文字サイズを少し大きく
+  @media (min-width: 1024px) {
+    font-size: 17px;
+  }
+  
+  // Prevent horizontal overflow on mobile
+  @media (max-width: 768px) {
+    overflow-x: hidden !important;
+  }
+}
+
+// Blog pages specific styling (simplified - content only)
+  background-color: $white;
+  color: $gray-800;
+}
+  
+  // Scroll animation effect
+  .site-header {
+    transition: all 0.3s ease-in-out !important;
+    
+    &.scrolled {
+      background: rgba(30, 58, 138, 0.95) !important;
+      backdrop-filter: blur(20px) !important;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+  
+  // Mobile menu for blog pages
+  .mobile-menu {
+    background: $dark-blue;
+    
+    .mobile-nav-link {
+      color: $white;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}
+
+// Blog post content styling
+.blog-post-content {
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $dark-blue;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
+      margin-top: 2.5rem;
+    }
+  }
+}
+
+// Blog page button styles
+  .btn-primary {
+    background: linear-gradient(135deg, $neural-purple, $impulse-pink) !important;
+    color: $white !important;
+    border: none !important;
+  }
+  
+  .navbar-cta .btn {
+    background: linear-gradient(135deg, $neural-purple, $impulse-pink) !important;
+    color: $white !important;
+    border: none !important;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+  
+  @media (max-width: 1024px) {
+    padding: 0 24px;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0 20px;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0 16px;
+  }
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+// Utility classes
+.gradient-text {
+  background: linear-gradient(135deg, $neural-purple, $synapse-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-danger {
+  color: #ef4444;
+}
+
+.text-danger-blink {
+  color: #ef4444;
+  animation: softBlink 2s ease-in-out infinite;
+}
+
+@keyframes softBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.highlight {
+  color: $neural-purple;
+  font-weight: 700;
+}
+
+// Glass effect
+.glass-card { 
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, $neural-purple, $impulse-pink);
+  color: $white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: $white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-large {
+  padding: 1rem 3rem;
+  font-size: 1.125rem;
+}
+
+// Fix for CTA section buttons
+.final-cta-section {
+  .btn-secondary {
+    background: $white;
+    color: $dark-blue;
+    border: 2px solid $dark-blue;
+    font-weight: 600;
+    
+    &:hover {
+      background: $dark-blue;
+      color: $white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+    }
+  }
+}
+
+.btn-sm {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+}
+
+// Header
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999; // Increased z-index to ensure header is on top
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  
+  // Blog pages override - more subtle design
+    background: $dark-blue !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.navbar {
+  padding: 1rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+  }
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  @media (max-width: 768px) {
+    position: relative;
+  }
+}
+
+.navbar-brand .logo {
+  font-size: 1.75rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.navbar-brand .logo-text {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  
+    color: #ffffff !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: initial !important;
+    text-shadow: none;
+  }
+}
+
+.navbar-toggler {
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1rem; // Increased padding for better touch area
+  margin: -0.5rem; // Adjusted negative margin
+  z-index: 10002; // Higher than navbar-menu and modals
+  position: relative; // Ensure z-index works
+  -webkit-tap-highlight-color: transparent; // Remove tap highlight on iOS
+  touch-action: manipulation; // Improve touch responsiveness
+  
+  @media (max-width: 768px) {
+    display: flex;
+  }
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+.navbar-toggler span {
+  width: 22px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  border-radius: 1px;
+  transform-origin: center;
+  
+    background: #8b5cf6 !important;
+  }
+}
+
+// Hamburger animation
+.navbar-toggler.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggler.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 6rem 2rem 2rem;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 10000; // Higher than header to ensure menu is on top
+    
+      background: $dark-blue;
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    &.active {
+      right: 0;
+    }
+  }
+  
+  // Mobile overlay
+  @media (max-width: 768px) {
+    &.active::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+      animation: fadeIn 0.3s ease;
+    }
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+.nav-item {
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: transparent !important;
+  
+  @media (max-width: 768px) {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    display: block;
+    border: 1px solid transparent;
+    background: transparent !important;
+    
+      color: $white !important;
+      background: transparent !important;
+    }
+  }
+  
+    color: $white !important;
+    background-color: $dark-blue !important;
+    background: $dark-blue !important;
+    border: none !important;
+    text-shadow: none !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px !important;
+    margin: 0 0.25rem !important;
+  }
+  
+    color: $white !important;
+    background-color: rgba(30, 58, 138, 1.0) !important;
+    background: rgba(30, 58, 138, 1.0) !important;
+    transform: translateY(-1px) !important;
+  }
+}
+
+.nav-link:hover {
+  color: $white;
+  background: rgba(139, 92, 246, 0.1);
+  transform: translateY(-1px);
+  
+  @media (max-width: 768px) {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+}
+
+.navbar-cta {
+  @media (max-width: 768px) {
+    width: 100%;
+    
+    .btn {
+      width: 100%;
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+// Hero Section
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 6rem 0 4rem;
+  
+  @media (max-width: 768px) {
+    padding: 3.5rem 0 3rem; // Reduced top padding by ~1cm (from 5rem to 3.5rem)
+  }
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero-background canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width: 768px) {
+    min-height: calc(100vh - 120px);
+    justify-content: flex-start;
+    padding: 16rem 0 180px; // Increased top padding by additional 1.8cm (11.5rem + 4.5rem = 16rem)
+  }
+}
+
+.empathy-message {
+  margin-bottom: 2rem;
+}
+
+.empathy-message p {
+  font-size: 1.25rem;
+  color: $gray-400;
+  font-weight: 300;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    flex: 0 0 auto;
+    margin-top: 7rem; // Added total 2.8cm (7rem) margin to move title down
+    line-height: 1.2;
+    padding: 0 1rem;
+    text-align: center;
+    
+    // Better mobile positioning for first view
+    br {
+      display: none; // Remove line break on small screens
+    }
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: $gray-300;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: auto;
+    padding: 0 1rem;
+    line-height: 1.5;
+  }
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 4rem;
+  
+  @media (max-width: 768px) {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    margin-bottom: 0;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 100;
+    
+    .btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 0.875rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.success-preview {
+  max-width: 600px;
+  margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    display: none; // Hide on mobile to save space
+  }
+}
+
+.preview-title {
+  font-size: 1.125rem;
+  color: $neural-purple;
+  margin-bottom: 1.5rem;
+}
+
+.preview-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric .value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, $neural-purple, $synapse-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.metric .label {
+  font-size: 0.875rem;
+  color: $gray-400;
+}
+
+// Section styles
+section {
+  padding: 5rem 0;
+  position: relative;
+  
+  @media (max-width: 768px) {
+    padding: 4rem 0;
+  }
+  
+  // Section divider
+  &:not(:last-child)::after { 
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(139, 92, 246, 0.2);
+    box-shadow: 0 1px 5px rgba(139, 92, 246, 0.1);
+    
+    @media (max-width: 768px) {
+      display: none; // Clean separation with borders instead
+    }
+  }
+}
+
+.section.alt {
+  background: #0d0d0d;
+}
+
+.section-title-en {
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $gray-400;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-title-sub {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-lead {
+  text-align: center;
+  color: $gray-400;
+  margin-bottom: 1.5rem;
+}
+
+/* Case Studies (Swiper) */
+.case-swiper {
+  --swiper-navigation-color: #fff;
+  --swiper-pagination-color: #fff;
+  padding: 0.5rem 0 2rem;
+}
+
+.case-slide {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  height: auto;
+}
+
+.case-shot {
+  height: 160px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(59,130,246,0.15));
+}
+
+.case-meta {
+  color: $gray-400;
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.case-desc {
+  color: $gray-300;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Process (sticky steps) */
+.steps {
+  list-style: none;
+  margin: 1rem auto 0;
+  padding: 0;
+  max-width: 900px;
+  position: sticky;
+  top: 90px;
+}
+
+.steps li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  border-left: 3px solid rgba(139, 92, 246, 0.35);
+  margin-left: 0.5rem;
+}
+
+.steps li + li {
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.steps li span {
+  color: $gray-500;
+  min-width: 2rem;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .case-shot { height: 140px; }
+  .section-title-sub { font-size: 1.5rem; }
+  .steps { top: 72px; }
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+// New sections for updated design
+.reasons-list {
+  margin: 2rem auto;
+  max-width: 600px;
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  li {
+    display: inline-block;
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+    color: $gray-300;
+    font-size: 1.125rem;
+    
+    &::before {
+      content: '•';
+      color: $neural-purple;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.warning-message {
+  margin: 3rem auto;
+  text-align: center;
+  max-width: 800px;
+  
+  // Add proper spacing below blinking text
+  @media (max-width: 768px) {
+    margin: 10rem auto 10rem; // Increased spacing to about 4cm top and bottom (added 1cm each: 7.5rem + 2.5rem = 10rem)
+    padding: 0 1rem;
+  }
+  
+  p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.6;
+    
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+      margin-bottom: 2rem; // Extra space after blinking warning
+    }
+  }
+}
+
+.solution-bridge { 
+  margin: 4rem auto;
+  padding: 2rem;
+  max-width: 800px;
+  background: rgba(139, 92, 246, 0.08);
+  border-radius: 20px;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+  
+  // Better mobile spacing and margins
+  @media (max-width: 768px) {
+    margin: 3rem auto 3.5rem; // Top and bottom spacing
+    padding: 2rem 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    margin: 2.5rem auto 3rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+  }
+  
+  p {
+    font-size: 1.125rem;
+    color: $gray-300;
+    line-height: 1.8;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Problem Section
+.problem-section { 
+  background: $deep-black;
+  border-top: 2px solid rgba(59, 130, 246, 0.3);
+  border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+  position: relative;
+  padding: 4rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0; // Better mobile spacing
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2.5rem 0;
+  }
+}
+.problem-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.2);
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.problem-card {
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.problem-card:hover {
+  transform: translateY(-5px);
+}
+
+.problem-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05) translateY(-2px);
+  }
+  
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    display: none;
+    border-radius: 20px;
+  }
+  
+  .emoji-fallback {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  
+  // When image is available
+  &.has-image {
+    img {
+      display: block;
+    }
+    .emoji-fallback {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    width: 70px;
+    height: 70px;
+    
+    img {
+      width: 70px;
+      height: 70px;
+    }
+    
+    .emoji-fallback {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.problem-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.problem-card p {
+  color: $gray-400;
+}
+
+.truth-reveal {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  
+  // Better mobile spacing
+  @media (max-width: 768px) {
+    margin: 8rem auto 3rem; // 8rem top (約2cm追加), 3rem bottom
+    padding: 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    margin: 2.5rem auto;
+    padding: 1rem;
+  }
+}
+
+.truth-reveal h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.truth-reveal p {
+  font-size: 1.125rem;
+  color: $gray-300;
+  line-height: 1.8;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+// Philosophy Section
+.philosophy-section { 
+  position: relative;
+  padding: 5rem 0;
+  
+  @media (max-width: 768px) {
+    margin: 3rem 0; // Better spacing on mobile
+    padding: 3rem 0; // Adjusted padding
+  }
+  
+  @media (max-width: 480px) {
+    margin: 2.5rem 0;
+    padding: 2.5rem 0;
+  }
+  
+  .section-title {
+    
+    .gradient-text {
+      background: linear-gradient(135deg, $neural-purple, $synapse-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+}
+
+.philosophy-content {
+  display: grid;
+  gap: 3rem;
+}
+
+.philosophy-text {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.philosophy-text .lead {
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: $gray-300;
+  line-height: 1.8;
+}
+
+.philosophy-text p {
+  color: $gray-300;
+  line-height: 1.8;
+}
+
+.instincts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  
+  // Mobile: Force 2x4 grid layout for 8 instincts
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem; // Reduced gap for better mobile spacing
+    max-width: 100%;
+    padding: 0; // Remove extra padding to use full width
+  }
+  
+  @media (max-width: 480px) {
+    gap: 0.5rem; // Even smaller gap for very small screens
+    grid-template-columns: repeat(2, 1fr); // Ensure 2 columns
+  }
+}
+
+.instinct-card { 
+  text-align: center;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  
+  h4 {
+    color: $white;
+    
+    @media (max-width: 768px) {
+      font-size: 0.875rem; // Smaller font for mobile 2-column layout
+      margin-bottom: 0.25rem;
+    }
+  }
+  
+  p {
+    color: $gray-400;
+    
+    @media (max-width: 768px) {
+      font-size: 0.75rem; // Smaller description text
+      line-height: 1.3;
+    }
+  }
+  
+  // Better mobile sizing and spacing for 2x4 grid
+  @media (max-width: 768px) {
+    padding: 1rem 0.5rem; // Reduced padding for compact display
+    min-height: 130px; // Consistent height for 2x4 grid
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.75rem 0.4rem; // Even more compact for small screens
+    min-height: 110px;
+    border-radius: 10px;
+  }
+}
+
+.instinct-card:hover { 
+  transform: scale(1.05);
+  border-color: $neural-purple;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.instinct-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.15);
+  
+  // Mobile optimized sizing for 2x4 grid
+  @media (max-width: 768px) {
+    width: 45px; // Smaller for 2 column layout
+    height: 45px;
+    margin-bottom: 0.5rem;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 40px; // Even smaller for tiny screens
+    height: 40px;
+    margin-bottom: 0.4rem;
+    border-radius: 10px;
+  }
+  
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: none;
+    
+    @media (max-width: 768px) {
+      width: 32px;
+      height: 32px;
+    }
+    
+    @media (max-width: 480px) {
+      width: 28px;
+      height: 28px;
+    }
+  }
+  
+  .emoji-fallback {
+    font-size: 2rem;
+    line-height: 1;
+    
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 1.4rem;
+    }
+  }
+  
+  // When image is available
+  &.has-image {
+    img {
+      display: block;
+    }
+    .emoji-fallback {
+      display: none;
+    }
+  }
+}
+
+.instinct-card h4 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+  }
+}
+
+.instinct-card p {
+  font-size: 0.875rem;
+  color: $gray-400;
+  
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+  }
+}
+
+// Services Section - Enhanced with better contrast
+.services-section { 
+  background: $deep-black;
+  position: relative;
+  border-top: 2px solid rgba(139, 92, 246, 0.3);
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 -2px 10px rgba(139, 92, 246, 0.2);
+  }
+  
+  // Add subtle pattern overlay for texture
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 400px;
+  
+  // 背景画像を各サービスに設定 - より高品質でビジネス向けの画像
+  &:nth-child(1) {
+    background-image: linear-gradient(rgba(10, 10, 10, 0.4), rgba(139, 92, 246, 0.2)), 
+                      url('{{ site.baseurl }}/assets/images/services/ai-analysis-business.jpg');
+  }
+  
+  &:nth-child(2) {
+    background-image: linear-gradient(rgba(10, 10, 10, 0.4), rgba(59, 130, 246, 0.2)), 
+                      url('{{ site.baseurl }}/assets/images/services/conversion-optimization.jpg');
+  }
+  
+  &:nth-child(3) {
+    background-image: linear-gradient(rgba(10, 10, 10, 0.4), rgba(236, 72, 153, 0.2)), 
+                      url('{{ site.baseurl }}/assets/images/services/automation-systems.jpg');
+  }
+  
+  &:nth-child(4) {
+    background-image: linear-gradient(rgba(10, 10, 10, 0.4), rgba(6, 182, 212, 0.2)), 
+                      url('{{ site.baseurl }}/assets/images/services/strategic-consulting.jpg');
+  }
+  
+  // 文字の可視性を確保するためのオーバーレイ - よりプロフェッショナルな見た目
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 10, 0.75) 0%,
+      rgba(139, 92, 246, 0.1) 30%,
+      rgba(10, 10, 10, 0.2) 70%,
+      rgba(10, 10, 10, 0.85) 100%
+    );
+    z-index: 1;
+    backdrop-filter: blur(1px);
+  }
+  
+  // カード内のコンテンツを前面に表示
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.service-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+  
+  &::before {
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 10, 0.65) 0%,
+      rgba(139, 92, 246, 0.2) 30%,
+      rgba(10, 10, 10, 0.1) 70%,
+      rgba(10, 10, 10, 0.75) 100%
+    );
+    backdrop-filter: blur(2px);
+  }
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+}
+
+.service-subtitle {
+  color: $gray-300;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+}
+
+.service-story { 
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.story-hook {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.service-story p {
+  color: $gray-300;
+  font-size: 0.875rem;
+}
+
+.service-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.service-features li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-features strong {
+  font-size: 0.875rem;
+}
+
+.service-features .metric {
+  font-size: 0.75rem;
+  color: $neural-purple;
+  font-weight: 600;
+}
+
+.btn-service {
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+// Case Studies Section - WHITE BACKGROUND for testimonial credibility
+.case-studies-section { 
+  position: relative;
+  padding: 5rem 0;
+  
+  .section-title {
+    
+    .gradient-text {
+      background: linear-gradient(135deg, $neural-purple, $synapse-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+}
+
+.case-studies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.case-study-card { 
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.case-study-card:hover { 
+  transform: translateY(-5px);
+  border-color: $neural-purple;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+}
+
+.case-header {
+  margin-bottom: 1.5rem;
+}
+
+.industry {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(139, 92, 246, 0.2);
+  color: $neural-purple;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.case-header h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  color: $white;
+}
+
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.before, .after {
+  text-align: center;
+}
+
+.before h4, .after h4 {
+  font-size: 0.875rem;
+  color: $gray-600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.situation, .result {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.before .situation {
+  color: #ef4444;
+}
+
+.after .result {
+  color: #10b981;
+}
+
+.emotion {
+  font-size: 0.875rem;
+  color: $gray-600;
+  font-style: italic;
+}
+
+.transformation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  font-size: 1.5rem;
+  color: $neural-purple;
+  font-weight: bold;
+}
+
+.case-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.case-metrics .metric {
+  text-align: center;
+}
+
+.case-metrics .label {
+  display: block;
+  font-size: 0.75rem;
+  color: $gray-400;
+  margin-bottom: 0.25rem;
+}
+
+.case-metrics .value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $neural-purple;
+}
+
+// Why Now Section
+.why-now-section { 
+  background: $deep-black;
+  border-top: 2px solid rgba(239, 68, 68, 0.3);
+  border-bottom: 2px solid rgba(239, 68, 68, 0.3);
+  position: relative;
+}
+.why-now-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.2);
+}
+
+.future-letter-container {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.letter-choice {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.choice-btn {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: $white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.choice-btn:hover,
+.choice-btn.active {
+  background: $neural-purple;
+  border-color: $neural-purple;
+}
+
+.future-letter {
+  @extend .glass-card;
+  text-align: left;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.future-letter h3 {
+  color: $neural-purple;
+  margin-bottom: 1rem;
+}
+
+.future-letter p {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.signature {
+  font-style: italic;
+  color: $gray-400;
+  text-align: right;
+  margin-bottom: 0 !important;
+}
+
+.urgency-factors h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.factors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.factor { 
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.factor:hover {
+  transform: translateY(-5px);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.factor-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.factor h4 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.factor p {
+  color: $gray-400;
+  font-size: 0.875rem;
+}
+
+// Belief Section - Enhanced with subtle white accent
+.belief-section { 
+  background: $deep-black;
+  position: relative;
+  border-top: 2px solid rgba(139, 92, 246, 0.3);
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.representative-message {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.quote {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  position: relative;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border-left: 4px solid $neural-purple;
+}
+
+.quote::before {
+  content: '"';
+  font-size: 4rem;
+  color: $neural-purple;
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  line-height: 1;
+}
+
+.message {
+  font-size: 1.125rem;
+  color: $gray-300;
+  line-height: 1.8;
+}
+
+.beliefs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.belief-card { 
+  text-align: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+  // Enhanced glass effect with subtle business imagery
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, 
+      rgba(139, 92, 246, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      rgba(59, 130, 246, 0.05) 100%);
+    backdrop-filter: blur(8px);
+    z-index: 0;
+    opacity: 0.8;
+  }
+  
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  // Professional background patterns for each belief
+  &:nth-child(1) {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 80%, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
+      z-index: 1;
+    }
+  }
+  
+  &:nth-child(2) {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      z-index: 1;
+    }
+  }
+  
+  &:nth-child(3) {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+      z-index: 1;
+    }
+  }
+  
+  &:nth-child(4) {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+      z-index: 1;
+    }
+  }
+}
+
+.belief-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+  
+  &::before {
+    opacity: 1;
+    background: linear-gradient(135deg, 
+      rgba(139, 92, 246, 0.08) 0%,
+      rgba(255, 255, 255, 0.04) 50%,
+      rgba(59, 130, 246, 0.08) 100%);
+  }
+}
+
+.belief-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.belief-card h3 {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.belief-card p {
+  color: $gray-400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+// Final CTA Section - WHITE BACKGROUND for strong emphasis
+.final-cta-section { 
+  background: $white;
+  border-top: 4px solid $deep-black;
+  border-bottom: 4px solid $deep-black;
+  color: $gray-900;
+  position: relative;
+  box-shadow: none;
+  margin-top: 3rem;
+  
+  .cta-title {
+    
+    .gradient-text {
+      background: linear-gradient(135deg, $neural-purple, $synapse-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .highlight {
+      color: $neural-purple;
+    }
+  }
+  
+  .cta-subtitle {
+    color: $gray-700;
+    
+    .highlight {
+      color: $neural-purple;
+      font-weight: 700;
+    }
+  }
+  
+  .cta-benefits {
+    h3 {
+      }
+    
+    li {
+      color: $gray-700;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    }
+  }
+  
+  .trust-indicators {
+    color: $gray-600;
+  }
+}
+
+.cta-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.cta-subtitle {
+  font-size: 1.25rem;
+  color: $gray-300;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.cta-benefits {
+  margin-bottom: 3rem;
+}
+
+.cta-benefits h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-benefits ul {
+  list-style: none;
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.cta-benefits li {
+  padding: 0.75rem 0;
+  font-size: 1.125rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-benefits li:last-child {
+  border-bottom: none;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  align-items: center;
+}
+
+.trust-indicators {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: $gray-400;
+}
+
+// Modal styles
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  &.active {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  position: relative;
+  background: rgba(10, 10, 10, 0.95);
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: modalSlideIn 0.3s ease;
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 2rem;
+  color: $gray-400;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: $white;
+}
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: translateY(-50px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+// Responsive Design - Mobile First Approach
+// Additional visual improvements
+.glass-card {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+// Enhanced section separation with white accent sections
+.section-divider { 
+  height: 3px;
+  background: $neural-purple;
+  margin: 4rem auto;
+  max-width: 100px;
+  border-radius: 1.5px;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+  
+  @media (max-width: 768px) { 
+    margin: 3rem auto;
+    max-width: 80px;
+    height: 2px;
+  }
+}
+
+// White accent sections for better visual hierarchy - SHARP BOUNDARIES
+.philosophy-section,
+.case-studies-section,
+.final-cta-section {
+  position: relative;
+  
+  // Ensure no gradient dividers - sharp borders only
+  &::after {
+    display: none;
+  }
+  
+  // Add clear visual break with additional contrast
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: $deep-black;
+    z-index: 10;
+  }
+}
+
+// Enhanced section dividers with mobile scroll optimization
+section {
+  padding: 5rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    
+    &.hero-section {
+      min-height: 100vh;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 0;
+  }
+}
+
+// Better visual hierarchy on mobile
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    line-height: 1.3;
+    padding: 0 1rem;
+    
+    br {
+      display: none;
+    }
+  }
+  
+  .glass-card {
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.03);
+    margin: 0 1rem;
+  }
+  
+  // Enhanced spacing for white sections on mobile - MAINTAIN SHARP BORDERS
+  .philosophy-section,
+  .case-studies-section,
+  .final-cta-section {
+    margin: 2rem 0;
+    border-top-width: 4px; // Keep sharp borders on mobile
+    border-bottom-width: 4px;
+    border-color: $deep-black;
+    
+    .container {
+      padding: 0 1rem;
+    }
+    
+    // Ensure ::before pseudo-element is maintained on mobile
+    &::before {
+      height: 2px;
+      background: $deep-black;
+    }
+  }
+}
+
+// Mobile-specific styles
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px; // Better mobile padding for readability
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+  
+  .navbar {
+    padding: 0.75rem 0;
+  }
+  
+  .navbar-brand .logo {
+    font-size: 1.25rem;
+  }
+  
+  .hero-section {
+    padding: 4rem 0 0;
+    min-height: 100vh;
+  }
+  
+  .hero-content {
+    height: calc(100vh - 4rem);
+  }
+  
+  .empathy-message {
+    flex: 0 0 auto;
+    margin-bottom: 1rem;
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  .preview-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .problem-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  // Instinct grid already handled in main instincts-grid section above
+  // Removed duplicate styles for cleaner code
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .case-studies-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .before-after {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .transformation {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+  
+  .factors-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .beliefs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-title {
+    font-size: 2rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .trust-indicators {
+    gap: 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .letter-choice {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .choice-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: flex;
+    z-index: 1001;
+    
+    &.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    &.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    &.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+  }
+  
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    padding: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .navbar-menu.active {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .navbar-cta {
+    width: 100%;
+  }
+  
+  .navbar-cta .btn {
+    width: 100%;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .instincts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .case-metrics {
+    grid-template-columns: 1fr;
+  }
+  
+  .quote {
+    font-size: 1.25rem;
+    padding: 1.5rem;
+  }
+  
+  .modal-content {
+    margin: 10% auto;
+    padding: 1.5rem;
+  }
+  
+  // Home page specific mobile fixes
+  .problem-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .factors-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .factor {
+    padding: 1.5rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .service-card {
+    margin: 0;
+  }
+  
+  .before-after {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .transformation {
+    transform: rotate(90deg);
+    margin: 1rem 0;
+  }
+  
+  .case-study-card {
+    padding: 1.5rem;
+  }
+  
+  .representative-message {
+    padding: 0 1rem;
+  }
+  
+  .beliefs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  // Blog category mobile fixes
+  .category-tabs {
+    padding: 0.75rem;
+    gap: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  
+  .category-tabs::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .category-tabs::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+  }
+  
+  .category-tabs::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 3px;
+  }
+  
+  .category-tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-width: fit-content;
+    flex-shrink: 0;
+  }
+  
+  // CTA buttons mobile layout
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .cta-buttons .btn,
+  .cta-buttons a {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+  
+}
+
+@media (max-width: 640px) {
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .preview-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .instincts-grid {
+    grid-template-columns: repeat(2, 1fr); // Keep 2 columns on small mobile too
+  }
+}
+
+// Access Section Styles
+.access-section {
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.05), transparent);
+  padding: 4rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+}
+
+.access-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.access-info {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin: 2rem auto 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 500px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 1.75rem 1.25rem;
+    gap: 0.75rem;
+    margin: 1.5rem 1rem 2rem;
+    max-width: calc(100% - 2rem);
+  }
+}
+
+.access-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+.access-details {
+  text-align: left;
+  
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: $white;
+    
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+  }
+}
+
+.address-info {
+  p {
+    color: $gray-300;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    
+    @media (max-width: 768px) {
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.access-section .btn {
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+// Footer Styles
+.site-footer {
+  background: linear-gradient(to bottom, $deep-black, rgba(17, 24, 39, 0.95));
+  color: $white;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 5rem;
+  position: relative; // Ensure it's not fixed/sticky
+  width: 100%;
+  clear: both;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 0 2rem;
+    margin-top: 3rem;
+  }
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+}
+
+.company-info {
+  a {
+    color: $gray-300;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: $neural-purple;
+      text-decoration: underline;
+    }
+  }
+}
+
+.footer-section {
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, $neural-purple, $synapse-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: $gray-200;
+  }
+  
+  p {
+    color: $gray-400;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    
+    @media (max-width: 640px) {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  li {
+    margin-bottom: 0.75rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  a {
+    color: $gray-400;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: $neural-purple;
+      transform: translateX(5px);
+    }
+  }
+}
+
+.company-info {
+  margin-top: 1rem;
+  
+  p {
+    color: $gray-400;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  
+  a {
+    color: $gray-400;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: $neural-purple;
+    }
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  
+  @media (max-width: 640px) {
+    justify-content: center;
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: $neural-purple;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  
+  p {
+    color: $gray-500;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+}
+
+// Enhanced responsive design for footer
+@media (max-width: 480px) {
+  .footer-content {
+    gap: 1.5rem;
+  }
+  
+  .footer-section {
+    h3 {
+      font-size: 1.25rem;
+    }
+    
+    h4 {
+      font-size: 1rem;
+    }
+    
+    p {
+      font-size: 0.875rem;
+    }
+  }
+  
+  .footer-links a {
+    font-size: 0.875rem;
+  }
+  
+  .social-links {
+    gap: 0.75rem;
+    
+    a {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  
+  .social-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// Additional mobile optimization for new sections
+@media (max-width: 768px) {
+  .reasons-list ul {
+    display: block;
+    text-align: left;
+  }
+  
+  .reasons-list li {
+    display: block;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  .warning-message {
+    margin: 10rem auto; // Further increased to match main rule (about 4cm top and bottom)
+    padding: 0 1rem;
+    
+    p {
+      font-size: 1.125rem;
+    }
+  }
+  
+  .solution-bridge {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Section spacing for mobile "one section per scroll" with better balance
+@media (max-width: 768px) {
+  .problem-section,
+  .philosophy-section,
+  .services-section,
+  .case-studies-section,
+  .why-now-section,
+  .belief-section,
+  .final-cta-section {
+    padding: 3rem 0;
+    min-height: auto; // Remove forced 100vh for better content flow
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-section {
+    min-height: 100vh;
+    padding-bottom: 0;
+  }
+  
+  // Philosophy section needs extra spacing for 8-instinct grid
+  .philosophy-section {
+    padding: 3.5rem 0;
+    
+    .container {
+      padding: 0 15px;
+    }
+  }
+  
+  // Problem section spacing improvements
+  .problem-section {
+    padding: 3rem 0 3.5rem;
+    
+    .container {
+      padding: 0 15px;
+    }
+  }
+}
+
+// Contact Modal Styles
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99999; // Higher than everything
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  overflow-y: auto; // Allow scrolling in modal
+  -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+  
+  &.active {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: $deep-black;
+  margin: 5% auto;
+  padding: 0;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  
+  .modal.active & {
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, $neural-purple, $impulse-pink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  p {
+    color: $gray-400;
+    font-size: 1rem;
+  }
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.close {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  font-size: 2rem;
+  font-weight: 300;
+  color: $gray-400;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1;
+  
+  &:hover {
+    color: $white;
+  }
+}
+
+// Contact Form Styles
+.contact-form {
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    
+    @media (max-width: 568px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: $white;
+      font-size: 0.875rem;
+      
+      .required {
+        color: $impulse-pink;
+      }
+    }
+    
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: $white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      
+      &::placeholder {
+        color: $gray-500;
+      }
+      
+      &:focus {
+        outline: none;
+        border-color: $neural-purple;
+        background: rgba(139, 92, 246, 0.05);
+      }
+      
+      &.error {
+        border-color: #ef4444;
+        background: rgba(239, 68, 68, 0.05);
+      }
+      
+      &.valid {
+        border-color: #10b981;
+        background: rgba(16, 185, 129, 0.05);
+      }
+    }
+    
+    select {
+      cursor: pointer;
+      
+      option {
+        background: $deep-black;
+        color: $white;
+      }
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+  
+  .checkbox-group {
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 400;
+      
+      input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5rem;
+      }
+      
+      a {
+        color: $neural-purple;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  .btn-large {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+
+.field-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.form-message {
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  
+  &.success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+  }
+  
+  &.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+  }
+}
+
+.success-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  
+  .success-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: $white;
+  }
+  
+  p {
+    color: $gray-300;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.form-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+// Modal responsive styles
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 10% auto;
+    width: 95%;
+  }
+  
+  .modal-header,
+  .modal-body {
+    padding: 1.5rem;
+  }
+}
+
+// Contact Modal Trigger Button Fix
+.contact-modal-trigger {
+  background: linear-gradient(135deg, $neural-purple, $impulse-pink) !important;
+  color: $white !important;
+  border: none !important;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+  }
+  
+  // Ensure visibility on white backgrounds
+  &.on-white {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    }
+  }
+}
+
+// Fix for any contact buttons that might be invisible
+button[onclick*="openContactForm"],
+.btn-contact,
+.contact-btn,
+.contact-trigger {
+  background: linear-gradient(135deg, $neural-purple, $impulse-pink) !important;
+  color: $white !important;
+  border: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
