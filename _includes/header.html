@@ -1,4 +1,4 @@
-<header class="site-header" style="background: rgba(10,10,10,0.6); backdrop-filter: blur(20px); padding: 8px 0;">
+<header class="site-header" style="background: rgba(10,10,10,0.6); backdrop-filter: blur(20px); padding: 0.2rem 0;">
   <nav class="navbar">
     <div class="container">
       <div class="navbar-brand">
@@ -26,5 +26,18 @@
     </div>
   </nav>
 </header>
+
+<style>
+/* Normalize header height and vertical centering across pages */
+.site-header .logo-text,
+.site-header .nav-link,
+.site-header .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  line-height: 1;
+}
+.site-header .nav-link { padding: 0 10px; }
+</style>
 
 <!-- Mobile menu is handled by main.js -->

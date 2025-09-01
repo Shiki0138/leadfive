@@ -480,6 +480,10 @@ body {
 }
 </style>
 
+<!-- GSAP for scroll animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+
 <!-- Background Video -->
 <div class="video-background">
   <video autoplay muted loop playsinline>
@@ -680,10 +684,7 @@ body {
     <p>AI×心理学の力で、確かな成果を実現しませんか？</p>
     <div class="cta-buttons">
       <button class="btn btn-primary btn-large" onclick="openContactForm()">
-        無料相談を申し込む
-      </button>
-      <button class="btn btn-outline btn-large" onclick="openContactForm()">
-        無料相談はこちら
+        お問い合わせ
       </button>
     </div>
   </section>
@@ -707,4 +708,40 @@ function filterCases(category) {
     }
   });
 }
+</script>
+
+<!-- Scroll animations -->
+<script>
+  (function(){
+    if (!window.gsap) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('.results-summary .result-stat', {
+      opacity: 0, y: 20, duration: 0.6, stagger: 0.1,
+      scrollTrigger: { trigger: '.results-summary', start: 'top 80%' },
+      immediateRender: false
+    });
+
+    gsap.utils.toArray('.case-study-card').forEach((el)=>{
+      gsap.from(el, {
+        opacity: 0, y: 30, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+        immediateRender: false
+      });
+    });
+
+    gsap.from('.featured-case', {
+      opacity: 0, y: 30, duration: 0.7, ease: 'power2.out',
+      scrollTrigger: { trigger: '.featured-case', start: 'top 85%' },
+      immediateRender: false
+    });
+
+    gsap.utils.toArray('.testimonial-card').forEach((el, i)=>{
+      gsap.from(el, {
+        opacity: 0, y: 20, duration: 0.5, delay: (i%3)*0.05,
+        scrollTrigger: { trigger: el, start: 'top 90%' },
+        immediateRender: false
+      });
+    });
+  })();
 </script>
