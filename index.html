@@ -208,7 +208,7 @@
             z-index: 1000;
             background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(20px);
-            padding: 0.3rem 0; /* さらに高さをコンパクトに */
+            padding: 0.2rem 0; /* さらに高さをコンパクトに */
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -288,8 +288,15 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            padding: 0.4rem 0.8rem;
+            padding: 0.3rem 0.7rem;
             border-radius: 8px;
+        }
+
+        /* PC表示でナビのテキストを上下中央に、さらに高さを抑える */
+        @media (min-width: 769px) {
+            .navbar-brand, .navbar-nav { align-items: center; }
+            .navbar .logo-text { display: inline-flex; align-items: center; height: 36px; line-height: 1; }
+            .nav-link, .nav-cta { display: inline-flex; align-items: center; height: 36px; padding: 0 10px; line-height: 1; }
         }
         
         .nav-link:hover {
@@ -903,7 +910,7 @@
             </button>
             <ul class="navbar-nav" id="mobileNav">
                 <li><a href="#philosophy" class="nav-link" onclick="closeMobileMenu()">理念</a></li>
-                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">LeadFiveの強み</a></li>
+                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">強み</a></li>
                 <li><a href="/case-studies/" class="nav-link" onclick="closeMobileMenu()">事例</a></li>
                 <li><a href="/blog/" class="nav-link" onclick="closeMobileMenu()">ブログ</a></li>
                 <li class="nav-cta-li"><a href="#" class="btn btn-primary nav-cta" onclick="openContactForm(); closeMobileMenu(); return false;" aria-label="お問い合わせフォームを開く">お問い合わせ</a></li>
@@ -1057,29 +1064,29 @@
     <section id="services" class="services-section fullscreen-section">
         <div class="container" style="max-width: 800px; padding: 1.5rem;">
             <h2 class="section-title">
-                <span class="gradient-text">LeadFiveの強み</span>
+                <span class="gradient-text">強み</span>
             </h2>
             
             <div class="services-grid">
                 <div class="service-card">
-                    <span class="card-icon">🤖</span>
-                    <h3>AI マーケティング</h3>
-                    <p>最新のAI技術でマーケティングを自動化し、予測分析・自動最適化・パーソナライゼーションを実現</p>
+                    <span class="card-icon">📈</span>
+                    <h3>マーケティングサポート</h3>
+                    <p>戦略設計から実装・計測・改善まで一気通貫。CVR改善、CPA最適化、LTV最大化まで伴走支援します。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">🧠</span>
-                    <h3>心理学分析</h3>
-                    <p>8つの本能に基づいた科学的アプローチで顧客心理を深層理解し、行動を予測</p>
+                    <span class="card-icon">🧩</span>
+                    <h3>AIを活用したDXツールの開発</h3>
+                    <p>業務自動化やデータ連携のための内製ツール/AI機能を開発。ワークフロー最適化や社内ナレッジ活用を加速。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">📊</span>
-                    <h3>データ統合</h3>
-                    <p>散在するデータを統合プラットフォームで一元化し、リアルタイム分析で即座の意思決定を支援</p>
+                    <span class="card-icon">🤝</span>
+                    <h3>AI活用支援</h3>
+                    <p>生成AIの活用設計から運用定着まで。プロンプト設計、ガバナンス、教育/トレーニングで成果につなげます。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">🚀</span>
-                    <h3>戦略実行</h3>
-                    <p>分析結果を実際のビジネス成果に変える具体的ロードマップと6ヶ月間の継続サポート</p>
+                    <span class="card-icon">📣</span>
+                    <h3>WEB/SNS運用サポート</h3>
+                    <p>Web/LP/SNS/広告運用を設計・実行。コンテンツ/クリエイティブ最適化から配信・レポーティング自動化まで対応。</p>
                 </div>
             </div>
         </div>
@@ -1152,32 +1159,32 @@
                     <span class="card-icon">🏷️</span>
                     <h3>美容室チェーン</h3>
                     <p>LP最適化とAI接客導入でCVR+128%、予約数2.1倍</p>
-                    <div class="badges" style="margin: .75rem 0 1rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                    <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
                       <span style="background:rgba(139,92,246,.2); border:1px solid rgba(139,92,246,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">CVR +128%</span>
                       <span style="background:rgba(236,72,153,.2); border:1px solid rgba(236,72,153,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">予約数 2.1倍</span>
                     </div>
-                    <a href="/case-studies/beauty-salon/" class="btn btn-secondary" aria-label="美容室チェーンの事例へ">詳しくはこちら</a>
                 </div>
                 <div class="card">
                     <span class="card-icon">💼</span>
                     <h3>BtoB SaaS</h3>
                     <p>問い合わせ単価▲36%、商談化率+58%、パイプラインを可視化</p>
-                    <div class="badges" style="margin: .75rem 0 1rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                    <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
                       <span style="background:rgba(34,197,94,.2); border:1px solid rgba(34,197,94,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">CPA -36%</span>
                       <span style="background:rgba(59,130,246,.2); border:1px solid rgba(59,130,246,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">商談化率 +58%</span>
                     </div>
-                    <a href="/case-studies/" class="btn btn-secondary" aria-label="事例一覧へ">詳しくはこちら</a>
                 </div>
                 <div class="card">
                     <span class="card-icon">🛒</span>
                     <h3>EC/D2C</h3>
                     <p>8本能訴求の新LPで初回転換+64%、定期継続率+22%</p>
-                    <div class="badges" style="margin: .75rem 0 1rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                    <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
                       <span style="background:rgba(236,72,153,.2); border:1px solid rgba(236,72,153,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">初回CVR +64%</span>
                       <span style="background:rgba(250,204,21,.2); border:1px solid rgba(250,204,21,.4); padding:.25rem .6rem; border-radius:999px; font-size:.85rem;">継続率 +22%</span>
                     </div>
-                    <a href="/case-studies/" class="btn btn-secondary" aria-label="事例一覧へ">詳しくはこちら</a>
                 </div>
+            </div>
+            <div style="text-align:center; margin-top:1rem;">
+                <a href="/case-studies/" class="btn btn-secondary" aria-label="事例一覧へ">事例を詳しく見る</a>
             </div>
         </div>
     </section>
@@ -1268,8 +1275,8 @@
                     <h4>サポート</h4>
                     <ul>
                         <li><a href="/contact">お問い合わせ</a></li>
-                        <li><a href="/privacy">プライバシーポリシー</a></li>
-                        <li><a href="/terms">利用規約</a></li>
+                        <li><a href="/privacy/">プライバシーポリシー</a></li>
+                        <li><a href="/terms/">利用規約</a></li>
                     </ul>
                 </div>
             </div>
