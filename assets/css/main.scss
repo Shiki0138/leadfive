@@ -2200,7 +2200,8 @@ section {
 }
 
 // Enhanced section dividers with mobile scroll optimization
-section {
+// Restrict full-viewport section behavior to homepage only
+body.homepage section {
   padding: 5rem 0;
   
   @media (max-width: 768px) {

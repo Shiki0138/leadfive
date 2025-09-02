@@ -166,6 +166,7 @@ function initNeuralNetworkCanvas() {
 function initMobileMenu() {
   const toggler = document.querySelector('.navbar-toggler') || document.querySelector('.mobile-menu-toggle');
   const menu = document.querySelector('.navbar-menu') || document.querySelector('.navbar-nav');
+  const menus = Array.from(document.querySelectorAll('.navbar-menu, .navbar-nav'));
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .nav-cta');
   if (!toggler || !menu) return;
 
@@ -177,36 +178,65 @@ function initMobileMenu() {
     document.body.appendChild(backdrop);
   }
 
-  // Reset existing listeners by cloning
-  const clone = toggler.cloneNode(true);
-  toggler.parentNode.replaceChild(clone, toggler);
-  const newToggler = document.querySelector('.navbar-toggler') || document.querySelector('.mobile-menu-toggle');
+  // Use existing toggler element (avoid cloning to preserve inline handlers)
+  const newToggler = toggler;
 
   function openMenu() {
-    menu.classList.add('active');
+    menus.forEach(m => m.classList.add('active'));
     backdrop.classList.add('active');
     newToggler.classList.add('active');
+    newToggler.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
     document.body.style.width = '100%';
   }
   function closeMenu() {
-    menu.classList.remove('active');
+    menus.forEach(m => m.classList.remove('active'));
     backdrop.classList.remove('active');
     newToggler.classList.remove('active');
+    newToggler.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.width = '';
   }
-  newToggler.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  function toggleMenu(e) {
+    if (e) {
+      // On iOS/Safari, avoid ghost click by preventing default on touchend
+      if (e.type === 'touchend') e.preventDefault();
+      e.stopPropagation();
+    }
     if (menu.classList.contains('active')) closeMenu(); else openMenu();
-  });
+  }
+  newToggler.addEventListener('click', toggleMenu, { passive: false });
+  newToggler.addEventListener('touchend', toggleMenu, { passive: false });
+  if (window.PointerEvent) {
+    newToggler.addEventListener('pointerup', toggleMenu, { passive: false });
+  }
+  // Event delegation as a safety net (covers cloned/rehydrated nodes)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.navbar-toggler');
+    if (btn) {
+      toggleMenu(e);
+    }
+  }, { passive: false });
+  document.addEventListener('touchend', (e) => {
+    const btn = e.target.closest('.navbar-toggler');
+    if (btn) {
+      toggleMenu(e);
+    }
+  }, { passive: false });
+  if (window.PointerEvent) {
+    document.addEventListener('pointerup', (e) => {
+      const btn = e.target.closest('.navbar-toggler');
+      if (btn) toggleMenu(e);
+    }, { passive: false });
+  }
   backdrop.addEventListener('click', closeMenu);
   navLinks.forEach(link => link.addEventListener('click', closeMenu));
   // Expose globally for inline calls
+  window.openMobileMenu = openMenu;
   window.closeMobileMenu = closeMenu;
+  window.toggleNavbarMenu = toggleMenu;
 }
 
 // Smooth scroll for anchor links
