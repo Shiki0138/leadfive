@@ -76,6 +76,145 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: #0a0a0a;
+            margin: 5% auto;
+            padding: 0;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: #aaa;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+        
+        .modal .close:hover {
+            color: #8b5cf6;
+        }
+        
+        .modal-header {
+            padding: 2rem 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .required {
+            color: #ef4444;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 1.5rem;
+            }
+        }
+        
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #0a0a0a;
@@ -1291,6 +1430,67 @@
         <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary" aria-label="お問い合わせフォームを開く">お問い合わせ</a>
         <a href="/case-studies/" class="btn btn-secondary" aria-label="事例を見る">事例を見る</a>
     </div>
+    
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeContactModal()">&times;</span>
+            <div class="modal-header">
+                <h2>お問い合わせ</h2>
+                <p>お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+            </div>
+            <div class="modal-body">
+                <form id="contactModalForm" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modal-company">会社名 <span class="required">*</span></label>
+                            <input type="text" id="modal-company" name="company" required placeholder="株式会社〇〇">
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-name">お名前 <span class="required">*</span></label>
+                            <input type="text" id="modal-name" name="name" required placeholder="山田 太郎">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modal-email">メールアドレス <span class="required">*</span></label>
+                            <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-phone">電話番号</label>
+                            <input type="tel" id="modal-phone" name="phone" placeholder="06-1234-5678">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modal-inquiry-type">お問い合わせ種別 <span class="required">*</span></label>
+                        <select id="modal-inquiry-type" name="inquiry_type" required>
+                            <option value="">選択してください</option>
+                            <option value="service">サービスについて</option>
+                            <option value="consultation">無料相談の申し込み</option>
+                            <option value="quotation">見積もり依頼</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modal-message">お問い合わせ内容 <span class="required">*</span></label>
+                        <textarea id="modal-message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" name="privacy" value="agreed" required>
+                            <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">送信する</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     
 
@@ -1313,6 +1513,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/TextPlugin.min.js"></script>
     <script src="/assets/js/main.js"></script>
     <script src="/assets/js/contact-modal.js"></script>
+    <script src="/assets/js/contact-handler-gas.js"></script>
     
     <script>
         // GSAP初期化
