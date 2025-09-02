@@ -253,23 +253,31 @@ class GSAPAnimationSystem {
   }
 
   setupMouseParallax() {
+    const heroContentEl = document.querySelector('.hero-content');
+    const instinctCards = document.querySelectorAll('.instinct-card');
+    if (!heroContentEl && instinctCards.length === 0) return;
+
     document.addEventListener('mousemove', (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
 
-      gsap.to('.hero-content', {
-        x: x * 20,
-        y: y * 20,
-        duration: 1,
-        ease: "power2.out"
-      });
+      if (heroContentEl) {
+        gsap.to(heroContentEl, {
+          x: x * 20,
+          y: y * 20,
+          duration: 1,
+          ease: "power2.out"
+        });
+      }
 
-      gsap.to('.instinct-card', {
-        x: (i) => x * 10 * (i % 2 ? 1 : -1),
-        y: (i) => y * 10 * (i % 2 ? -1 : 1),
-        duration: 1.5,
-        ease: "power2.out"
-      });
+      if (instinctCards.length) {
+        gsap.to(instinctCards, {
+          x: (i) => x * 10 * (i % 2 ? 1 : -1),
+          y: (i) => y * 10 * (i % 2 ? -1 : 1),
+          duration: 1.5,
+          ease: "power2.out"
+        });
+      }
     });
   }
 
