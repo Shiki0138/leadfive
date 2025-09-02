@@ -45,6 +45,10 @@
 
 /* Mobile nav behavior on non-home pages only */
 @media (max-width: 768px) {
+  /* Make sure the hamburger button itself is shown */
+  body:not(.homepage) .site-header .mobile-menu-toggle,
+  body:not(.homepage) .site-header .navbar-toggler { display: inline-flex; align-items: center; justify-content: center; }
+
   body:not(.homepage) .site-header .navbar-nav {
     display: none;
     position: fixed; top: 60px; left: 0; right: 0;
