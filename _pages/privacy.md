@@ -4,11 +4,20 @@ title: プライバシーポリシー | LeadFive
 permalink: /privacy/
 ---
 
-<div class="container" style="padding-top: 4rem;">
-  <div class="contact-header" style="text-align:center; margin-bottom: 2rem;">
+<!-- Background video to match case studies -->
+<div class="video-background">
+  <video autoplay muted loop playsinline>
+    <source src="{{ '/assets/videos/hero-background.mp4' | relative_url }}" type="video/mp4">
+  </video>
+</div>
+<div class="video-overlay"></div>
+
+<div class="case-studies-hero">
+  <div class="container">
     <h1>プライバシーポリシー</h1>
     <p>Privacy Policy</p>
   </div>
+  
 </div>
 
 <div class="container">
@@ -136,8 +145,14 @@ permalink: /privacy/
 </div>
 
 <style>
-/* Contact-like header (same tone as contact page) */
-.contact-header h1 {
+/* Hero style aligned with case studies */
+.case-studies-hero {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05));
+  padding: 6rem 0;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+.case-studies-hero h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #8b5cf6, #ec4899);
@@ -145,7 +160,7 @@ permalink: /privacy/
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.contact-header p { color: #e5e7eb; font-size: 1.05rem; }
+.case-studies-hero p { color: #e5e7eb; font-size: 1.125rem; }
 
 /* Content panel styled like case studies sections */
 .legal-content { background: rgba(20, 20, 20, 0.8); padding: 3rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 4rem; }
@@ -161,7 +176,8 @@ permalink: /privacy/
 .contact-info { margin-top: 1rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); }
 .contact-info p { margin: 0; color: #e5e7eb; line-height: 1.8; }
 @media (max-width: 768px) {
-  .contact-header h1 { font-size: 2rem; }
+  .case-studies-hero { padding: 4rem 0 3rem; }
+  .case-studies-hero h1 { font-size: 2rem; }
   .legal-content { padding: 1.5rem; margin: 0 0.5rem 3rem; }
 }
 </style>
