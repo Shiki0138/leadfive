@@ -449,7 +449,7 @@ body {
   <div class="container">
     <div class="company-header">
       <h1>会社概要</h1>
-      <p>AI×心理学で、ビジネスの未来を科学する</p>
+      <p>AI×マーケティングで、ビジネスの未来を科学する</p>
     </div>
 
     <section class="message-section">
@@ -501,7 +501,7 @@ body {
         <tr>
           <th>事業内容</th>
           <td>
-            ・AI×心理学マーケティングコンサルティング<br>
+            ・AI×マーケティングコンサルティング<br>
             ・LP最適化サービス<br>
             ・AIプロンプトエンジニアリング<br>
             ・マーケティング自動化支援<br>
@@ -538,7 +538,7 @@ body {
         </div>
         <div class="info-card">
           <h4>事業内容</h4>
-          <p>・AI×心理学マーケティングコンサルティング<br>
+          <p>・AI×マーケティングコンサルティング<br>
           ・LP最適化サービス<br>
           ・AIプロンプトエンジニアリング<br>
           ・マーケティング自動化支援<br>
@@ -558,7 +558,7 @@ body {
         <div class="philosophy-card">
           <span class="philosophy-icon">🚀</span>
           <h3>ミッション</h3>
-          <p>AI×心理学で、マーケティングの不確実性をゼロにする</p>
+          <p>AI×マーケティングで、マーケティングの不確実性をゼロにする</p>
         </div>
         <div class="philosophy-card">
           <span class="philosophy-icon">💡</span>

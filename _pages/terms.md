@@ -5,20 +5,11 @@ description: 本ウェブサイトのご利用にあたっての規約を定め�
 permalink: /terms/
 ---
 
-<!-- Background video to align with case studies page -->
-<div class="video-background">
-  <video autoplay muted loop playsinline>
-    <source src="{{ '/assets/videos/hero-background.mp4' | relative_url }}" type="video/mp4">
-  </video>
-</div>
-<div class="video-overlay"></div>
-
-<div class="case-studies-hero">
-  <div class="container">
+<div class="container" style="padding-top: 4rem;">
+  <div class="contact-header" style="text-align:center; margin-bottom: 2rem;">
     <h1>利用規約</h1>
     <p>Terms of Service</p>
   </div>
-  
 </div>
 
 <div class="container">
@@ -68,19 +59,8 @@ permalink: /terms/
 </div>
 
 <style>
-/* Background video and overlay to match privacy */
-.video-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
-.video-background video { width: 100%; height: 100%; object-fit: cover; }
-.video-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
-
-/* Hero style aligned with privacy/case-studies */
-.case-studies-hero {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05));
-  padding: 6rem 0;
-  margin-bottom: 4rem;
-  text-align: center;
-}
-.case-studies-hero h1 {
+/* Contact-like header (same tone as contact page) */
+.contact-header h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #8b5cf6, #ec4899);
@@ -88,9 +68,9 @@ permalink: /terms/
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.case-studies-hero p { color: #e5e7eb; font-size: 1.125rem; }
+.contact-header p { color: #e5e7eb; font-size: 1.05rem; }
 
-/* Content panel styled like privacy */
+/* Content panel */
 .legal-content { background: rgba(20, 20, 20, 0.8); padding: 3rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 4rem; }
 .last-updated { color: #9ca3af; font-size: 0.875rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .legal-section { margin-bottom: 2rem; }
@@ -102,8 +82,7 @@ permalink: /terms/
 .legal-section a { color: #93c5fd; text-decoration: none; }
 .legal-section a:hover { text-decoration: underline; color: #60a5fa; }
 @media (max-width: 768px) {
-  .case-studies-hero { padding: 4rem 0 3rem; }
-  .case-studies-hero h1 { font-size: 2rem; }
+  .contact-header h1 { font-size: 2rem; }
   .legal-content { padding: 1.5rem; margin: 0 0.5rem 3rem; }
 }
 </style>
