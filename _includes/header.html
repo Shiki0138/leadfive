@@ -49,6 +49,17 @@
   body:not(.homepage) .site-header .mobile-menu-toggle,
   body:not(.homepage) .site-header .navbar-toggler { display: inline-flex; align-items: center; justify-content: center; }
 
+  /* Ensure visible burger geometry on subpages */
+  body:not(.homepage) .site-header .mobile-menu-toggle .hamburger {
+    width: 28px; height: 20px; position: relative; display: inline-block;
+  }
+  body:not(.homepage) .site-header .mobile-menu-toggle .hamburger span {
+    position: absolute; left: 0; width: 100%; height: 2px; background: #ffffff; border-radius: 1px;
+  }
+  body:not(.homepage) .site-header .mobile-menu-toggle .hamburger span:nth-child(1) { top: 0; }
+  body:not(.homepage) .site-header .mobile-menu-toggle .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  body:not(.homepage) .site-header .mobile-menu-toggle .hamburger span:nth-child(3) { bottom: 0; }
+
   body:not(.homepage) .site-header .navbar-nav {
     display: none;
     position: fixed; top: 60px; left: 0; right: 0;
@@ -67,32 +78,37 @@
 // Fallback: ensure hamburger works on non-home pages independently of main.js
 document.addEventListener('DOMContentLoaded', function() {
   try {
-    var btn = document.querySelector('.site-header .mobile-menu-toggle') || document.getElementById('navbarToggler');
-    var nav = document.getElementById('mobileNav');
-    if (!btn || !nav) return;
-    function open() {
-      nav.classList.add('active');
-      btn.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function close() {
-      nav.classList.remove('active');
-      btn.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    function toggle(e) {
-      if (e) { e.preventDefault(); e.stopPropagation(); }
-      if (nav.classList.contains('active')) close(); else open();
-    }
-    btn.addEventListener('click', toggle, { passive: false });
-    btn.addEventListener('touchend', toggle, { passive: false });
-    if (window.PointerEvent) btn.addEventListener('pointerup', toggle, { passive: false });
-    document.addEventListener('click', function(e) {
-      if (nav.classList.contains('active') && !e.target.closest('#mobileNav') && !e.target.closest('.mobile-menu-toggle')) close();
-    }, { passive: true });
-    // Expose for inline calls (compat with onclick)
-    window.closeMobileMenu = window.closeMobileMenu || close;
-    window.toggleNavbarMenu = window.toggleNavbarMenu || toggle;
+    // If main.js initialized menu, skip fallback binding
+    if (window.__MOBILE_MENU_READY__) return;
+    // Defer slightly to let main.js run first and set the guard
+    setTimeout(function() {
+      if (window.__MOBILE_MENU_READY__) return;
+      var btn = document.querySelector('.site-header .mobile-menu-toggle') || document.getElementById('navbarToggler');
+      var nav = document.getElementById('mobileNav');
+      if (!btn || !nav) return;
+      function open() {
+        nav.classList.add('active');
+        btn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        nav.classList.remove('active');
+        btn.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      function toggle(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        if (nav.classList.contains('active')) close(); else open();
+      }
+      // Keep fallback minimal: click only to reduce double-trigger risk
+      btn.addEventListener('click', toggle, { passive: false });
+      document.addEventListener('click', function(e) {
+        if (nav.classList.contains('active') && !e.target.closest('#mobileNav') && !e.target.closest('.mobile-menu-toggle')) close();
+      }, { passive: true });
+      // Expose for inline calls (compat with onclick)
+      window.closeMobileMenu = window.closeMobileMenu || close;
+      window.toggleNavbarMenu = window.toggleNavbarMenu || toggle;
+    }, 120);
   } catch (err) { /* no-op */ }
 });
 </script>

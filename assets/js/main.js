@@ -170,6 +170,10 @@ function initMobileMenu() {
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .nav-cta');
   if (!toggler || !menu) return;
 
+  // Signal that the official mobile menu init is in control
+  // Allows header fallback JS to skip binding to avoid double toggles on mobile
+  window.__MOBILE_MENU_READY__ = true;
+
   // Backdrop
   let backdrop = document.querySelector('.menu-backdrop');
   if (!backdrop) {
@@ -228,6 +232,22 @@ function initMobileMenu() {
   if (window.PointerEvent) {
     document.addEventListener('pointerup', (e) => {
       const btn = e.target.closest('.navbar-toggler');
+      if (btn) toggleMenu(e);
+    }, { passive: false });
+  }
+
+  // Also handle home page's .mobile-menu-toggle inline button
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.mobile-menu-toggle');
+    if (btn) toggleMenu(e);
+  }, { passive: false });
+  document.addEventListener('touchend', (e) => {
+    const btn = e.target.closest('.mobile-menu-toggle');
+    if (btn) toggleMenu(e);
+  }, { passive: false });
+  if (window.PointerEvent) {
+    document.addEventListener('pointerup', (e) => {
+      const btn = e.target.closest('.mobile-menu-toggle');
       if (btn) toggleMenu(e);
     }, { passive: false });
   }
