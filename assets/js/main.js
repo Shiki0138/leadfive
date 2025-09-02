@@ -164,55 +164,49 @@ function initNeuralNetworkCanvas() {
 
 // Mobile menu toggle with improved functionality
 function initMobileMenu() {
-  const toggler = document.querySelector('.navbar-toggler');
-  const menu = document.querySelector('.navbar-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  if (toggler && menu) {
-    // Remove any existing listeners first
-    toggler.replaceWith(toggler.cloneNode(true));
-    const newToggler = document.querySelector('.navbar-toggler');
-    
-    newToggler.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      menu.classList.toggle('active');
-      newToggler.classList.toggle('active');
-      
-      // Handle body scroll lock
-      if (menu.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-      } else {
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-      }
-    });
-    
-    // Close menu when clicking nav links
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('active');
-        newToggler.classList.remove('active');
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-      });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !newToggler.contains(e.target)) {
-        menu.classList.remove('active');
-        newToggler.classList.remove('active');
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-      }
-    });
+  const toggler = document.querySelector('.navbar-toggler') || document.querySelector('.mobile-menu-toggle');
+  const menu = document.querySelector('.navbar-menu') || document.querySelector('.navbar-nav');
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .nav-cta');
+  if (!toggler || !menu) return;
+
+  // Backdrop
+  let backdrop = document.querySelector('.menu-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.className = 'menu-backdrop';
+    document.body.appendChild(backdrop);
   }
+
+  // Reset existing listeners by cloning
+  const clone = toggler.cloneNode(true);
+  toggler.parentNode.replaceChild(clone, toggler);
+  const newToggler = document.querySelector('.navbar-toggler') || document.querySelector('.mobile-menu-toggle');
+
+  function openMenu() {
+    menu.classList.add('active');
+    backdrop.classList.add('active');
+    newToggler.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+  }
+  function closeMenu() {
+    menu.classList.remove('active');
+    backdrop.classList.remove('active');
+    newToggler.classList.remove('active');
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+  }
+  newToggler.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (menu.classList.contains('active')) closeMenu(); else openMenu();
+  });
+  backdrop.addEventListener('click', closeMenu);
+  navLinks.forEach(link => link.addEventListener('click', closeMenu));
+  // Expose globally for inline calls
+  window.closeMobileMenu = closeMenu;
 }
 
 // Smooth scroll for anchor links
