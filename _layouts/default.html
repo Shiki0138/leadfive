@@ -87,6 +87,14 @@
     body:not(.homepage):not(.blog-page) .legal-content {
       background: rgba(20,20,20,0.88) !important;
     }
+
+    /* On mobile, make background video even more subtle for readability */
+    @media (max-width: 768px) {
+      body:not(.homepage):not(.blog-page) .video-background video { opacity: 0.20 !important; }
+      body:not(.homepage):not(.blog-page) .video-overlay { opacity: 0.65 !important; }
+      body:not(.homepage):not(.blog-page) .page-content { background: rgba(10,10,10,0.60) !important; }
+      body:not(.homepage):not(.blog-page) .legal-content { background: rgba(20,20,20,0.92) !important; }
+    }
   </style>
   
   {% if site.google_analytics and jekyll.environment == 'production' %}
