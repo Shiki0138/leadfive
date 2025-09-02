@@ -174,6 +174,18 @@ function initMobileMenu() {
   // Allows header fallback JS to skip binding to avoid double toggles on mobile
   window.__MOBILE_MENU_READY__ = true;
 
+  // Re-entry guard to avoid double-toggle from pointerup + click on mobile
+  let lastToggleAt = 0;
+  const toggleGuard = (e) => {
+    const now = Date.now();
+    if (now - lastToggleAt < 350) {
+      if (e) { try { e.preventDefault(); e.stopPropagation(); } catch(_){} }
+      return true;
+    }
+    lastToggleAt = now;
+    return false;
+  };
+
   // Backdrop
   let backdrop = document.querySelector('.menu-backdrop');
   if (!backdrop) {
@@ -209,6 +221,7 @@ function initMobileMenu() {
       if (e.type === 'touchend') e.preventDefault();
       e.stopPropagation();
     }
+    if (toggleGuard(e)) return;
     if (menu.classList.contains('active')) closeMenu(); else openMenu();
   }
   newToggler.addEventListener('click', toggleMenu, { passive: false });
