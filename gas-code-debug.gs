@@ -21,9 +21,13 @@ function doPost(e) {
     const result = saveToSpreadsheet(data);
     console.log('スプレッドシート保存結果:', result);
     
-    // メール通知を送信
+    // メール通知を送信（管理者向け）
     sendNotificationEmail(data);
-    console.log('メール送信完了');
+    console.log('管理者向けメール送信完了');
+    
+    // 送信者への確認メールを送信
+    sendConfirmationEmail(data);
+    console.log('送信者向け確認メール送信完了');
     
     // 成功レスポンス
     const response = {
@@ -262,6 +266,141 @@ ${SpreadsheetApp.getActiveSpreadsheet().getUrl()}
   });
   
   console.log('メール送信完了');
+}
+
+// 送信者への確認メールを送信
+function sendConfirmationEmail(data) {
+  console.log('sendConfirmationEmail開始');
+  
+  const recipient = data.email;
+  const subject = `【LeadFive】お問い合わせを承りました - ${data.name}様`;
+  
+  // HTMLメール本文（送信者向け）
+  const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #8b5cf6; color: white; padding: 20px; border-radius: 10px 10px 0 0; }
+    .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; border-radius: 0 0 10px 10px; }
+    .info-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .info-table th { text-align: left; padding: 10px; background: #e5e7eb; width: 30%; }
+    .info-table td { padding: 10px; background: white; }
+    .message-box { background: white; padding: 20px; border-left: 4px solid #8b5cf6; margin: 20px 0; }
+    .footer { text-align: center; margin-top: 30px; color: #6b7280; font-size: 12px; }
+    .highlight-box { background: rgba(139, 92, 246, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2 style="margin: 0;">お問い合わせを承りました</h2>
+      <p style="margin: 5px 0 0 0;">ありがとうございます、${data.name}様</p>
+    </div>
+    
+    <div class="content">
+      <p>この度は、LeadFiveにお問い合わせいただき、誠にありがとうございます。</p>
+      
+      <div class="highlight-box">
+        <h3 style="color: #8b5cf6; margin-top: 0;">📧 お問い合わせ内容を確認いたしました</h3>
+        <p style="margin-bottom: 0;"><strong>1-2営業日以内</strong>に担当者よりご連絡いたします。</p>
+      </div>
+      
+      <h3 style="color: #8b5cf6;">お送りいただいた内容</h3>
+      <table class="info-table">
+        <tr>
+          <th>会社名</th>
+          <td>${data.company || '未記入'}</td>
+        </tr>
+        <tr>
+          <th>お名前</th>
+          <td>${data.name}</td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td>${data.email}</td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td>${data.phone || '未記入'}</td>
+        </tr>
+        <tr>
+          <th>お問い合わせ種別</th>
+          <td>${data.inquiry_type || '未選択'}</td>
+        </tr>
+      </table>
+      
+      <h3 style="color: #8b5cf6;">お問い合わせ内容</h3>
+      <div class="message-box">
+        ${data.message.replace(/\n/g, '<br>')}
+      </div>
+      
+      <div style="background: rgba(59, 130, 246, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0;">
+        <h3 style="color: #3b82f6; margin-top: 0;">📞 お急ぎの場合</h3>
+        <p style="margin-bottom: 5px;"><strong>電話:</strong> <a href="tel:06-7713-6747">06-7713-6747</a></p>
+        <p style="margin-bottom: 0;"><strong>営業時間:</strong> 平日 9:00-18:00</p>
+      </div>
+      
+      <div class="footer">
+        <p><strong>合同会社LeadFive</strong></p>
+        <p>〒530-0001 大阪府大阪市北区梅田1-13-1<br>大阪梅田ツインタワーズ・サウス15階</p>
+        <p>このメールは自動送信されています。</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+`;
+
+  // プレーンテキスト版（送信者向け）
+  const textBody = `
+${data.name}様
+
+この度は、LeadFiveにお問い合わせいただき、誠にありがとうございます。
+
+お問い合わせ内容を確認いたしました。
+1-2営業日以内に担当者よりご連絡いたします。
+
+━━━━━━━━━━━━━━━━━━━━━━
+■ お送りいただいた内容
+━━━━━━━━━━━━━━━━━━━━━━
+会社名: ${data.company || '未記入'}
+お名前: ${data.name}
+メール: ${data.email}
+電話番号: ${data.phone || '未記入'}
+お問い合わせ種別: ${data.inquiry_type || '未選択'}
+
+■ お問い合わせ内容
+━━━━━━━━━━━━━━━━━━━━━━
+${data.message}
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+【お急ぎの場合】
+電話: 06-7713-6747
+営業時間: 平日 9:00-18:00
+
+━━━━━━━━━━━━━━━━━━━━━━
+合同会社LeadFive
+〒530-0001 大阪府大阪市北区梅田1-13-1
+大阪梅田ツインタワーズ・サウス15階
+
+このメールは自動送信されています。
+`;
+
+  console.log('確認メール送信先:', recipient);
+  console.log('確認メール件名:', subject);
+  
+  // メール送信
+  GmailApp.sendEmail(recipient, subject, textBody, {
+    htmlBody: htmlBody,
+    name: 'LeadFive',
+    replyTo: 'leadfive.138@gmail.com'
+  });
+  
+  console.log('確認メール送信完了');
 }
 
 // テスト関数（手動実行用）

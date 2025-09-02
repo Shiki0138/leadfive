@@ -125,6 +125,12 @@
 
   // Submit form
   function submitForm(form) {
+    // GAS専用ハンドラーが存在する場合はそれに任せる
+    if (window.contactFormGAS) {
+      console.log('Using GAS handler for form submission');
+      return;
+    }
+    
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     
@@ -133,7 +139,7 @@
     submitBtn.disabled = true;
     form.classList.add('form-loading');
 
-    // Prepare form data
+    // Fallback: 直接Formspreeを使用（GASハンドラーが無い場合）
     const formData = new FormData(form);
     const data = {
       company: formData.get('company'),
@@ -147,32 +153,27 @@
       _to: 'leadfive.138@gmail.com'
     };
 
-    // Send to Google Apps Script
-    const gasEndpoint = 'https://script.google.com/macros/s/AKfycbyojOMN9Oj1rkktDa30HX3tYJx4jH-1BwJWhCeU6hEPjCQy0l9YXlsrylxMx0rzhW4l/exec';
-    
-    fetch(gasEndpoint, {
+    // Fallback to Formspree
+    fetch('https://formspree.io/f/xkgwrrqv', {
       method: 'POST',
-      mode: 'no-cors',
+      body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'text/plain'
-      },
-      body: JSON.stringify({
-        ...data,
-        timestamp: new Date().toLocaleString('ja-JP'),
-        source_url: window.location.href,
-        user_agent: navigator.userAgent.substring(0, 100)
-      })
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
     })
     .then(response => {
-      // no-corsモードでは常にOKとみなす
-      showSuccessMessage();
-      form.reset();
-      setTimeout(() => {
-        window.closeContactModal();
-      }, 3000);
+      if (response.ok) {
+        showSuccessMessage();
+        form.reset();
+        setTimeout(() => {
+          window.closeContactModal();
+        }, 3000);
+      } else {
+        throw new Error('送信に失敗しました');
+      }
     })
     .catch(error => {
-      // Show error message
       showFormMessage('送信に失敗しました。もう一度お試しください。', 'error');
     })
     .finally(() => {
