@@ -64,7 +64,8 @@
     display: none;
     position: fixed; top: 60px; left: 0; right: 0;
     background: rgba(10,10,10,0.98); backdrop-filter: blur(10px);
-    padding: 2rem; z-index: 1001;
+    padding: 2rem; z-index: 10005; /* ensure on top of all overlays */
+    pointer-events: auto;
     flex-direction: column; gap: 1rem;
   }
   body:not(.homepage) .site-header .navbar-nav.active {
@@ -78,11 +79,11 @@
 // Fallback: ensure hamburger works on non-home pages independently of main.js
 document.addEventListener('DOMContentLoaded', function() {
   try {
-    // If main.js initialized menu, skip fallback binding
-    if (window.__MOBILE_MENU_READY__) return;
-    // Defer slightly to let main.js run first and set the guard
+    // Prefer main.js implementation; if it's not ready, provide a minimal fallback
+    if (typeof window.toggleNavbarMenu === 'function') return;
+    // Defer slightly to let main.js attach and expose toggleNavbarMenu
     setTimeout(function() {
-      if (window.__MOBILE_MENU_READY__) return;
+      if (typeof window.toggleNavbarMenu === 'function') return;
       var btn = document.querySelector('.site-header .mobile-menu-toggle') || document.getElementById('navbarToggler');
       var nav = document.getElementById('mobileNav');
       if (!btn || !nav) return;
