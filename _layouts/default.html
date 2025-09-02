@@ -31,7 +31,7 @@
     @media (max-width: 768px) { .container { padding: 0 15px; } }
   </style>
   
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <!-- Swiper CSS for Case Studies slider -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
   <!-- Removed missing CSS files to avoid 404s on subpages -->
@@ -312,7 +312,7 @@
   </style>
   
   <!-- Vendor: anime.js -->
-  <script src="{{ site.baseurl }}/assets/vendor/anime.min.js"></script>
+  <script src="{{ '/assets/vendor/anime.min.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
@@ -320,11 +320,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/MotionPathPlugin.min.js"></script>
   <!-- Swiper JS for Case Studies slider -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <script src="{{ site.baseurl }}/assets/js/main.js"></script>
-  <script src="{{ site.baseurl }}/assets/js/contact-modal.js"></script>
-  <script src="{{ site.baseurl }}/assets/js/contact-handler-gas.js"></script>
-  <script src="{{ site.baseurl }}/assets/js/presentation-scroll.js"></script>
-  <script src="{{ site.baseurl }}/assets/js/gsap-animations.js"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  <script src="{{ '/assets/js/contact-modal.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  <script src="{{ '/assets/js/contact-handler-gas.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  <script src="{{ '/assets/js/presentation-scroll.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+  <script src="{{ '/assets/js/gsap-animations.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
   
   <!-- HP改善分析システム -->
   <script>
