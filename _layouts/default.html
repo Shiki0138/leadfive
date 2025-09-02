@@ -40,18 +40,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   
   <style>
-    /* Dark theme overrides for all non-blog pages to avoid white-on-white */
-    body:not(.blog-page) .page-content,
-    body:not(.blog-page) section,
-    body:not(.blog-page) .content,
-    body:not(.blog-page) .card,
-    body:not(.blog-page) .container,
-    body:not(.blog-page) .glass-card,
-    body:not(.blog-page) .service-card,
-    body:not(.blog-page) .featured-case,
-    body:not(.blog-page) .case-study-card,
-    body:not(.blog-page) .cta-section,
-    body:not(.blog-page) .testimonial-card {
+    /* Dark theme overrides for non-home, non-blog pages */
+    body:not(.homepage):not(.blog-page) .page-content,
+    body:not(.homepage):not(.blog-page) section,
+    body:not(.homepage):not(.blog-page) .content,
+    body:not(.homepage):not(.blog-page) .card,
+    body:not(.homepage):not(.blog-page) .container,
+    body:not(.homepage):not(.blog-page) .glass-card,
+    body:not(.homepage):not(.blog-page) .service-card,
+    body:not(.homepage):not(.blog-page) .featured-case,
+    body:not(.homepage):not(.blog-page) .case-study-card,
+    body:not(.homepage):not(.blog-page) .cta-section,
+    body:not(.homepage):not(.blog-page) .testimonial-card {
       background-color: transparent !important;
       color: #e5e7eb !important;
     }
@@ -69,6 +69,23 @@
       position: absolute; inset: 0;
       background: radial-gradient(ellipse at center, rgba(0,0,0,.25), rgba(0,0,0,.45));
       pointer-events: none;
+    }
+
+    /* Subpages (not home, not blog): make video faint and content panels more readable */
+    body:not(.homepage):not(.blog-page) .video-background video {
+      opacity: 0.45 !important;
+      filter: brightness(0.65) contrast(1.15) saturate(1.0);
+    }
+    body:not(.homepage):not(.blog-page) .video-overlay {
+      opacity: 0.45 !important;
+    }
+    /* Give page-content a subtle dark backing so video is only faintly visible */
+    body:not(.homepage):not(.blog-page) .page-content {
+      background: rgba(12,12,12,0.5) !important;
+    }
+    /* Legal pages panels slightly more opaque */
+    body:not(.homepage):not(.blog-page) .legal-content {
+      background: rgba(20,20,20,0.88) !important;
     }
   </style>
   
