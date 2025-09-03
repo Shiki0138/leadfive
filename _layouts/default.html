@@ -90,10 +90,11 @@
 
     /* On mobile, make background video even more subtle for readability */
     @media (max-width: 768px) {
-      body:not(.homepage):not(.blog-page) .video-background video { opacity: 0.20 !important; }
-      body:not(.homepage):not(.blog-page) .video-overlay { opacity: 0.65 !important; }
-      body:not(.homepage):not(.blog-page) .page-content { background: rgba(10,10,10,0.60) !important; }
-      body:not(.homepage):not(.blog-page) .legal-content { background: rgba(20,20,20,0.92) !important; }
+      /* Make background video faint but still visible on smartphones */
+      body:not(.homepage):not(.blog-page) .video-background video { opacity: 0.35 !important; }
+      body:not(.homepage):not(.blog-page) .video-overlay { opacity: 0.35 !important; }
+      body:not(.homepage):not(.blog-page) .page-content { background: rgba(10,10,10,0.40) !important; }
+      body:not(.homepage):not(.blog-page) .legal-content { background: rgba(20,20,20,0.90) !important; }
     }
   </style>
   
@@ -321,13 +322,33 @@
   
   <!-- Vendor: anime.js -->
   <script src="{{ '/assets/vendor/anime.min.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/TextPlugin.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/MotionPathPlugin.min.js"></script>
+  <!-- GSAP CDN - Enhanced for GitHub Pages compatibility -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js" 
+          integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer"
+          onerror="console.warn('GSAP main library failed to load from CDN')"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js" 
+          integrity="sha512-OzC82YiH3UmMMs6Ydd9f2i7mS+UFL5f977iIoJ6oy07AJT+ePds9QOEtqXztSH29Nzua59fYS36knmMcv79GOg==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer"
+          onerror="console.warn('GSAP ScrollTrigger failed to load from CDN')"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/TextPlugin.min.js" 
+          integrity="sha512-h7p6qPjUqtfJPqVOqbxsjSQPXWJ8uaA6/Wb1yfgz7iGqo6Z/T2gLrqY8jN7Xo3LN3Zl1ySprO56wUa6k9lFXQ==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer"
+          onerror="console.warn('GSAP TextPlugin failed to load from CDN')"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/MotionPathPlugin.min.js" 
+          integrity="sha512-D8y6tUtOxWI2j02FQ8sV7pVpYNKY32K57LVQjSkT6KEnVvH9PENnJHl+LLxF7jqBLYW6iQs7Y6bJCDtDW5kP5g==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer"
+          onerror="console.warn('GSAP MotionPathPlugin failed to load from CDN')"></script>
   <!-- Swiper JS for Case Studies slider -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" 
+          integrity="sha512-i8JrGk6fvTFsxwu88y0VW7oEKVaT9c4V6fE+P8aKbkiAJUO+bkLTmklwq22nq/lJ9qoYy5hLl/AJvDCF1H2iA==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer"
+          onerror="console.warn('Swiper.js failed to load from CDN')"></script>
   <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
   <script src="{{ '/assets/js/contact-modal.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
   <script src="{{ '/assets/js/contact-handler-gas.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
