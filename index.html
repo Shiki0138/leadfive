@@ -266,6 +266,24 @@
             -webkit-text-fill-color: transparent;
             animation: gradientShift 3s ease-in-out infinite;
             margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+        }
+        
+        .typing-cursor {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899, #f59e0b);
+            background-size: 300% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: 
+                gradientShift 3s ease-in-out infinite,
+                blink 1s infinite;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
         
         .opening-tagline {
@@ -875,7 +893,10 @@
                 color: #8b5cf6;
             }
             
-            .opening-logo { font-size: 2rem; }
+            .opening-logo { 
+                font-size: 2rem; 
+                font-family: 'JetBrains Mono', 'Courier New', monospace;
+            }
             .opening-tagline { font-size: 1.2rem; }
             
             .fullscreen-section { 
@@ -1053,7 +1074,10 @@
     <!-- オープニング画面 -->
     <div class="opening-screen" id="opening">
         <div class="opening-content">
-            <div class="opening-logo">LeadFive</div>
+            <div class="opening-logo">
+                <span id="typing-text"></span>
+                <span class="typing-cursor">|</span>
+            </div>
             <div class="opening-tagline">Loading...</div>
             <div class="opening-loader"></div>
         </div>
@@ -1563,34 +1587,59 @@
         // GSAP初期化
         gsap.registerPlugin(ScrollTrigger);
         
+        // タイピングアニメーション関数
+        function typeWriter(text, element, speed = 150) {
+            return new Promise((resolve) => {
+                let i = 0;
+                const timer = setInterval(() => {
+                    element.textContent = text.slice(0, i + 1);
+                    i++;
+                    if (i >= text.length) {
+                        clearInterval(timer);
+                        resolve();
+                    }
+                }, speed);
+            });
+        }
+        
         // オープニングアニメーション
-        window.addEventListener('load', () => {
+        window.addEventListener('load', async () => {
             const openingTL = gsap.timeline();
+            const typingTextElement = document.getElementById('typing-text');
             
             openingTL.to('.opening-content', {
                 opacity: 1,
                 scale: 1,
                 duration: 1,
                 ease: "power3.out"
-            })
-            .to('.opening-tagline', {
-                y: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.5")
-            .to('.opening-screen', {
-                opacity: 0,
-                duration: 1,
-                delay: 2,
-                onComplete: () => {
-                    document.getElementById('opening').style.display = 'none';
-                    startMainAnimations();
-                    if (window.ScrollTrigger) {
-                        // オーバーレイ除去後に再計算（セクションの見落とし防止）
-                        setTimeout(() => ScrollTrigger.refresh(), 50);
-                    }
-                }
             });
+            
+            // タイピングアニメーション開始（1秒後）
+            setTimeout(async () => {
+                await typeWriter('LeadFive', typingTextElement, 120);
+                
+                // タイピング完了後、次のアニメーションへ
+                setTimeout(() => {
+                    openingTL.to('.opening-tagline', {
+                        y: 0,
+                        duration: 0.8,
+                        ease: "power2.out"
+                    })
+                    .to('.opening-screen', {
+                        opacity: 0,
+                        duration: 1,
+                        delay: 2,
+                        onComplete: () => {
+                            document.getElementById('opening').style.display = 'none';
+                            startMainAnimations();
+                            if (window.ScrollTrigger) {
+                                // オーバーレイ除去後に再計算（セクションの見落とし防止）
+                                setTimeout(() => ScrollTrigger.refresh(), 50);
+                            }
+                        }
+                    });
+                }, 800);
+            }, 1000);
         });
         
         function startMainAnimations() {
