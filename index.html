@@ -363,9 +363,17 @@
         }
         
         html { 
-            scroll-snap-type: y mandatory; /* セクションごとに停止 */
+            scroll-snap-type: y proximity; /* スマホ対応のため proximity に変更 */
             scroll-behavior: smooth; 
             scroll-padding-top: 80px; /* 固定ヘッダー考慮 */
+            -webkit-overflow-scrolling: touch; /* iOS スクロール改善 */
+        }
+        
+        /* デスクトップではより強い snap を適用 */
+        @media (min-width: 769px) {
+            html {
+                scroll-snap-type: y mandatory;
+            }
         }
         
         /* ヘッダー */
@@ -1239,6 +1247,24 @@
             /* Footer lead text smaller */
             .footer-section p { font-size: 1rem !important; }
             
+            /* スマホでのスクロール改善 */
+            html {
+                scroll-snap-type: none; /* スマホでは snap を軽減 */
+                overscroll-behavior: contain; /* バウンス防止 */
+            }
+            
+            body {
+                overscroll-behavior: contain;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* セクション高さをスマホで調整 */
+            .fullscreen-section {
+                min-height: 100vh;
+                min-height: 100dvh; /* 動的ビューポート対応 */
+                height: auto;
+            }
+            
             /* ポートフォリオセクション - モバイル対応 */
             .portfolio-section { padding: 3rem 1rem; min-height: auto; }
             .portfolio-grid {
@@ -1255,7 +1281,7 @@
             .development-strength-section .section-title span:nth-child(1) { font-size: 1.2rem !important; }
             .development-strength-section .section-title span:nth-child(2) { font-size: 1.0rem !important; }
             .development-strength-section .section-title span:nth-child(3) { font-size: 1.2rem !important; }
-            .development-strength-section > .container > div > p { font-size: 1.1rem !important; }
+            .development-strength-section > .container > div > p { font-size: 1.0rem !important; }
             .development-strength-section .card h3 { font-size: 1.1rem !important; }
             .development-strength-section .card p { font-size: 0.9rem !important; }
             
@@ -1329,6 +1355,7 @@
             <ul class="navbar-nav" id="mobileNav">
                 <li><a href="#philosophy" class="nav-link" onclick="closeMobileMenu()">理念</a></li>
                 <li><a href="#services" class="nav-link" onclick="closeMobileMenu()">強み</a></li>
+                <li><a href="#portfolio" class="nav-link" onclick="closeMobileMenu()">ポートフォリオ</a></li>
                 <li><a href="/case-studies/" class="nav-link" onclick="closeMobileMenu()">事例</a></li>
                 <li><a href="/blog/" class="nav-link" onclick="closeMobileMenu()">ブログ</a></li>
                 <li class="nav-cta-li"><a href="#" class="btn btn-primary nav-cta" onclick="openContactForm(); closeMobileMenu(); return false;" aria-label="お問い合わせフォームを開く">お問い合わせ</a></li>
@@ -1770,7 +1797,7 @@
                     ※ 開発実績やご相談についてはお気軽にお問い合わせください
                 </p>
                 
-                <a href="#" onclick="openContactModal(); return false;" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
                     開発実績・ご相談はこちら
                 </a>
             </div>
