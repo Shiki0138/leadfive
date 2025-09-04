@@ -506,6 +506,12 @@
             color: #1a1a1a;
         }
         
+        .portfolio-section .container {
+            background: rgba(20, 30, 50, 0.9);
+            color: #ffffff;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
         .instincts-section .container {
             background: rgba(236, 72, 153, 0.2);
             color: #ffffff;
@@ -714,6 +720,180 @@
             gap: 1.5rem;
             margin: 1.5rem auto;
             max-width: 700px;
+        }
+        
+        /* ポートフォリオセクション */
+        .portfolio-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 6rem 2rem;
+            z-index: 10;
+            scroll-snap-align: start;
+            scroll-margin-top: 80px;
+        }
+        
+        /* ポートフォリオグリッド */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            cursor: pointer;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.15);
+        }
+        
+        .portfolio-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-card:hover .portfolio-image img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(236, 72, 153, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 1.5rem;
+        }
+        
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-overlay h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+        
+        .portfolio-overlay p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .portfolio-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+        
+        .portfolio-tech span {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+        
+        .portfolio-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .portfolio-link {
+            color: #8b5cf6;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .portfolio-link:hover {
+            color: #ec4899;
+        }
+        
+        /* Coming Soon カード */
+        .portfolio-card.coming-soon {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .portfolio-placeholder {
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(139, 92, 246, 0.1);
+            text-align: center;
+        }
+        
+        .portfolio-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .portfolio-placeholder h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+        
+        .portfolio-placeholder p {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
         }
         
         .service-card {
@@ -956,6 +1136,16 @@
             
             .services-grid { grid-template-columns: 1fr; gap: 0.8rem; }
             
+            .portfolio-grid { 
+                grid-template-columns: 1fr; 
+                gap: 1.5rem;
+            }
+            
+            .portfolio-card {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+            
             .service-card { padding: 1rem; background: rgba(139,92,246,0.12) !important; }
             
             .service-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
@@ -1042,6 +1232,13 @@
 
             /* Footer lead text smaller */
             .footer-section p { font-size: 1rem !important; }
+            
+            /* ポートフォリオセクション - モバイル対応 */
+            .portfolio-section { padding: 3rem 1rem; min-height: auto; }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
         
         /* リストスタイル */
@@ -1285,6 +1482,187 @@
                     <span class="card-icon">📣</span>
                     <h3>WEB/SNS運用サポート</h3>
                     <p>Web/LP/SNS/広告運用を設計・実行。コンテンツ/クリエイティブ最適化から配信・レポーティング自動化まで対応。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 5.5. ポートフォリオセクション -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container" style="max-width: 1000px;">
+            <h2 class="section-title">
+                <span class="gradient-text">開発実績</span>
+                <span style="color: #ffffff;">・ポートフォリオ</span>
+            </h2>
+            <p style="text-align: center; margin-bottom: 3rem; color: #ffffff; opacity: 0.9; font-size: 1.1rem;">
+                生成AIを活用した革新的なDXシステムの開発事例をご紹介します
+            </p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card" data-url="https://hexamind-ai.vercel.app/">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder" style="background: linear-gradient(135deg, #1e3a8a, #3b82f6); height: 220px;">
+                            <span class="portfolio-icon">🧠</span>
+                            <h3 style="color: white;">AI経営軍師</h3>
+                            <p style="color: rgba(255,255,255,0.8);">クリックしてシステムを体験</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">経営支援AI</span>
+                            <h3>AI経営軍師</h3>
+                            <p>経営者向け意思決定支援システム。AI執行役員会議で戦略的ディスカッションを実現。</p>
+                            <div class="portfolio-tech">
+                                <span>Next.js</span>
+                                <span>OpenAI GPT-4</span>
+                                <span>Vercel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>AI経営軍師</h3>
+                        <p>経営戦略の意思決定をAIが支援する革新的なシステム</p>
+                        <a href="https://hexamind-ai.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
+                            システムを体験 →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-url="https://ai-secretary-ten.vercel.app/lp">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder" style="background: linear-gradient(135deg, #16a34a, #22c55e); height: 220px;">
+                            <span class="portfolio-icon">👩‍💼</span>
+                            <h3 style="color: white;">AI秘書</h3>
+                            <p style="color: rgba(255,255,255,0.8);">クリックして詳細を確認</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">業務効率化AI</span>
+                            <h3>AI秘書</h3>
+                            <p>LINEベースの高機能AI秘書。スケジューリング、調査、進捗管理まで包括的にサポート。</p>
+                            <div class="portfolio-tech">
+                                <span>LINE Bot</span>
+                                <span>OpenAI GPT-4</span>
+                                <span>Next.js</span>
+                                <span>Vercel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>AI秘書</h3>
+                        <p>LINEで使える高機能AI秘書 - スケジューリングから業務進捗管理まで</p>
+                        <a href="https://ai-secretary-ten.vercel.app/lp" target="_blank" rel="noopener" class="portfolio-link">
+                            詳細を見る →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-url="https://app.fleeks.jp/">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder" style="background: linear-gradient(135deg, #7c3aed, #a855f7); height: 220px;">
+                            <span class="portfolio-icon">📈</span>
+                            <h3 style="color: white;">FLEEKS</h3>
+                            <p style="color: rgba(255,255,255,0.8);">クリックしてプラットフォームを確認</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">オンラインサロン</span>
+                            <h3>FLEEKS</h3>
+                            <p>ローカルビジネス向けオンラインサロンプラットフォーム。動画・ブログ・教育コンテンツを統合管理。</p>
+                            <div class="portfolio-tech">
+                                <span>教育プラットフォーム</span>
+                                <span>コンテンツ管理</span>
+                                <span>会員制サイト</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>FLEEKS</h3>
+                        <p>ローカルビジネスの成功を支援するオンラインサロンプラットフォーム</p>
+                        <a href="https://app.fleeks.jp/" target="_blank" rel="noopener" class="portfolio-link">
+                            プラットフォームを見る →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-url="https://subsidy-seven.vercel.app/">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder" style="background: linear-gradient(135deg, #ea580c, #f97316); height: 220px;">
+                            <span class="portfolio-icon">📋</span>
+                            <h3 style="color: white;">補助金申請AI</h3>
+                            <p style="color: rgba(255,255,255,0.8);">クリックしてシステムを体験</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">申請支援AI</span>
+                            <h3>ものづくり補助金申請書生成システム</h3>
+                            <p>1週間かかっていた申請書作成を4時間に短縮。AIが事業戦略を読み取り、高品質な申請書を自動生成。</p>
+                            <div class="portfolio-tech">
+                                <span>文書自動生成</span>
+                                <span>OpenAI GPT-4</span>
+                                <span>Next.js</span>
+                                <span>Vercel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>補助金申請AI</h3>
+                        <p>ものづくり補助金申請書を簡単に作成できるAIシステム</p>
+                        <a href="https://subsidy-seven.vercel.app/" target="_blank" rel="noopener" class="portfolio-link">
+                            システムを体験 →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-url="https://dental-system-ochre.vercel.app/dashboard">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder" style="background: linear-gradient(135deg, #06b6d4, #0891b2); height: 220px;">
+                            <span class="portfolio-icon">🦷</span>
+                            <h3 style="color: white;">歯科予約管理</h3>
+                            <p style="color: rgba(255,255,255,0.8);">クリックしてシステムを確認</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">予約管理システム</span>
+                            <h3>歯科予約管理システム</h3>
+                            <p>予約管理・顧客管理にLINEリマインド機能を統合。定期検診受診率向上で売上アップに貢献。</p>
+                            <div class="portfolio-tech">
+                                <span>LINE連携</span>
+                                <span>予約管理</span>
+                                <span>顧客管理</span>
+                                <span>Vercel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>歯科予約管理</h3>
+                        <p>LINEリマインド機能で定期検診受診率を向上させる管理システム</p>
+                        <a href="https://dental-system-ochre.vercel.app/dashboard" target="_blank" rel="noopener" class="portfolio-link">
+                            システムを確認 →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card" data-url="#">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder" style="background: linear-gradient(135deg, #15803d, #22c55e); height: 220px;">
+                            <span class="portfolio-icon">🌿</span>
+                            <h3 style="color: white;">Garden DX</h3>
+                            <p style="color: rgba(255,255,255,0.8);">造園業界をデジタル化</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">見積もり管理</span>
+                            <h3>Garden DX - 造園見積もりシステム</h3>
+                            <p>造園事業所向け見積もり・請求書作成支援システム。見積書作成時間を大幅削減し、業務効率化を実現。</p>
+                            <div class="portfolio-tech">
+                                <span>見積もり自動化</span>
+                                <span>請求書作成</span>
+                                <span>業務効率化</span>
+                                <span>DX支援</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Garden DX</h3>
+                        <p>造園事業所向け見積もり・請求書作成支援システム</p>
+                        <a href="#" class="portfolio-link" onclick="alert('詳細についてはお問い合わせください'); return false;">
+                            詳細を問い合わせ →
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1842,6 +2220,19 @@
         window.scrollToContact = () => {
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         };
+        
+        // ポートフォリオカードクリックイベント
+        document.addEventListener('DOMContentLoaded', () => {
+            const portfolioCards = document.querySelectorAll('.portfolio-card[data-url]');
+            portfolioCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const url = card.dataset.url;
+                    if (url) {
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                    }
+                });
+            });
+        });
         
         // モバイルメニュー制御とbackdrop追加
         window.toggleMobileMenu = () => {
