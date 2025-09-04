@@ -1,0 +1,232 @@
+name: 🚀 毎日自動ブログ投稿
+
+on:
+  schedule:
+    # 毎日午前9時（JST）に実行
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: '手動実行時のキーワード'
+        required: false
+        type: string
+      test_mode:
+        description: 'テストモード'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  generate-daily-blog:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 リポジトリチェックアウト
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 📅 日付情報取得
+      id: date-info
+      run: |
+        # 日本時間で計算
+        DATE=$(TZ='Asia/Tokyo' date '+%Y-%m-%d')
+        DAY=$(TZ='Asia/Tokyo' date '+%A' | tr '[:upper:]' '[:lower:]')
+        TIMESTAMP=$(TZ='Asia/Tokyo' date '+%Y-%m-%dT%H:%M:%S.000Z')
+        
+        echo "date=$DATE" >> $GITHUB_OUTPUT
+        echo "day=$DAY" >> $GITHUB_OUTPUT
+        echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+        
+        echo "今日の日付: $DATE ($DAY)"
+    
+    - name: 🎯 キーワード選択
+      id: select-keyword
+      run: |
+        # 曜日別キーワード戦略
+        case "${{ steps.date-info.outputs.day }}" in
+          "monday")
+            KEYWORDS=("AI マーケティング 最新トレンド" "生成AI 活用法 マーケティング" "ChatGPT ビジネス活用 事例")
+            THEME="AIマーケティング"
+            ;;
+          "tuesday")
+            KEYWORDS=("消費者心理 8つの本能 活用" "購買行動 心理学 分析" "顧客インサイト AI 発見")
+            THEME="消費者心理"
+            ;;
+          "wednesday")
+            KEYWORDS=("AI導入 成功事例 中小企業" "デジタル変革 事例 製造業" "CVR改善 成功事例 EC")
+            THEME="成功事例"
+            ;;
+          "thursday")
+            KEYWORDS=("SEO対策 AI活用 2025" "SNSマーケティング 自動化 方法" "メールマーケティング AI 最適化")
+            THEME="実践テクニック"
+            ;;
+          "friday")
+            KEYWORDS=("マーケティングトレンド 2025 予測" "AI技術 最新動向 ビジネス" "デジタルマーケティング 未来")
+            THEME="トレンド分析"
+            ;;
+          "saturday")
+            KEYWORDS=("美容業界 AI活用 完全ガイド" "不動産業界 デジタル変革" "飲食業界 マーケティング自動化")
+            THEME="業界別ガイド"
+            ;;
+          "sunday")
+            KEYWORDS=("マーケティング戦略 AI時代" "ビジネス成長 AI活用 戦略" "競争優位 構築 方法")
+            THEME="戦略立案"
+            ;;
+        esac
+        
+        # 手動キーワードがあればそれを使用
+        if [ -n "${{ inputs.keyword }}" ]; then
+          SELECTED_KEYWORD="${{ inputs.keyword }}"
+        else
+          # ランダムに選択
+          SELECTED_KEYWORD=${KEYWORDS[$RANDOM % ${#KEYWORDS[@]}]}
+        fi
+        
+        echo "keyword=$SELECTED_KEYWORD" >> $GITHUB_OUTPUT
+        echo "theme=$THEME" >> $GITHUB_OUTPUT
+        
+        echo "選択されたキーワード: $SELECTED_KEYWORD"
+        echo "テーマ: $THEME"
+    
+    - name: 🚀 ブログ記事生成
+      id: generate-blog
+      run: |
+        # 記事ファイル名生成
+        DATE="${{ steps.date-info.outputs.date }}"
+        KEYWORD="${{ steps.select-keyword.outputs.keyword }}"
+        THEME="${{ steps.select-keyword.outputs.theme }}"
+        
+        # ファイル名を日本語から英数字に変換
+        SAFE_KEYWORD=$(echo "$KEYWORD" | tr ' ' '-' | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]//g')
+        FILENAME="${DATE}-${SAFE_KEYWORD}.md"
+        FILEPATH="_posts/$FILENAME"
+        
+        # タイトル生成
+        TITLE="【2025年最新】${KEYWORD}の完全ガイド"
+        
+        # 記事内容生成
+        cat > "$FILEPATH" << 'EOF'
+        ---
+        layout: blog-post
+        title: "$TITLE"
+        date: ${{ steps.date-info.outputs.timestamp }}
+        categories: [$THEME]
+        tags: [$(echo "$KEYWORD" | tr ' ' ','), AI活用, マーケティング, 業務効率化]
+        description: "$TITLE"
+        author: "LeadFive AI"
+        image: "/assets/images/blog/${FILENAME%.md}-featured.jpg"
+        featured: true
+        reading_time: 3
+        ---
+        
+        # $TITLE
+        
+        $KEYWORDに関する最新の情報と実践的な活用方法をご紹介します。AI技術の進歩により、従来のアプローチが大きく変化している今、最新のトレンドを把握することが成功の鍵となります。
+        
+        ## ${KEYWORD}の重要性
+        
+        現代のビジネス環境において、$KEYWORDは企業の競争優位性を決定する重要な要素となっています。特に以下の点で大きな変化が起きています：
+        
+        1. **効率化の実現**: AI技術により従来の手作業が自動化
+        2. **精度の向上**: データ分析により意思決定の質が向上
+        3. **コスト削減**: 自動化により運営コストの大幅削減
+        
+        ## 実践的な活用方法
+        
+        ### 基本的なアプローチ
+        
+        $KEYWORDを効果的に活用するためには、以下のステップを踏むことが重要です：
+        
+        - **現状分析**: 既存の課題とニーズの把握
+        - **戦略立案**: 目標設定と実行計画の策定  
+        - **実装**: 段階的な導入と効果測定
+        - **改善**: 結果に基づく継続的な最適化
+        
+        ### 成功のポイント
+        
+        実際に$KEYWORDで成果を上げている企業の共通点：
+        
+        1. **明確な目標設定**: KPIを具体的に定義
+        2. **段階的導入**: リスクを最小化しながら拡大
+        3. **継続的改善**: 定期的な見直しと最適化
+        
+        ## まとめ
+        
+        $KEYWORDは、適切に活用すれば大きな成果をもたらす可能性を秘めています。重要なのは：
+        
+        - 自社の状況に合わせた戦略的な導入
+        - 継続的な学習と改善
+        - 最新トレンドへの対応
+        
+        今すぐ$KEYWORDの活用を始めて、ビジネスの成長を加速させましょう。
+        
+        ---
+        
+        *LeadFiveでは、$KEYWORDの導入支援を行っています。お気軽にご相談ください。*
+        EOF
+        
+        # 変数置換
+        sed -i.bak "s/\$TITLE/$TITLE/g" "$FILEPATH"
+        sed -i.bak "s/\$KEYWORD/$KEYWORD/g" "$FILEPATH" 
+        sed -i.bak "s/\$THEME/$THEME/g" "$FILEPATH"
+        rm "${FILEPATH}.bak" 2>/dev/null || true
+        
+        echo "success=true" >> $GITHUB_OUTPUT
+        echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+        echo "title=$TITLE" >> $GITHUB_OUTPUT
+        echo "filepath=$FILEPATH" >> $GITHUB_OUTPUT
+        
+        echo "記事生成完了: $FILEPATH"
+    
+    - name: 🔨 Jekyll ビルド
+      if: steps.generate-blog.outputs.success == 'true'
+      run: |
+        # Rubyセットアップ
+        bundle install --quiet
+        
+        # Jekyll ビルド
+        bundle exec jekyll build
+        
+        echo "Jekyll ビルド完了"
+    
+    - name: 📤 変更をコミット・プッシュ
+      if: steps.generate-blog.outputs.success == 'true' && inputs.test_mode != true
+      run: |
+        git config --local user.email "leadfive-bot@actions.com"
+        git config --local user.name "LeadFive Auto Blog Bot"
+        
+        # 生成されたファイルを追加
+        git add _posts/
+        git add _site/ || true
+        
+        # コミット
+        COMMIT_MSG="🤖 自動ブログ投稿: ${{ steps.generate-blog.outputs.title }}"
+        git commit -m "$COMMIT_MSG" || echo "コミットする変更がありません"
+        
+        # プッシュ
+        git push origin main
+        
+        echo "記事を正常に投稿しました"
+    
+    - name: 📱 成功通知
+      if: steps.generate-blog.outputs.success == 'true'
+      run: |
+        echo "✅ ブログ記事生成完了!"
+        echo "📝 タイトル: ${{ steps.generate-blog.outputs.title }}"
+        echo "🎯 キーワード: ${{ steps.select-keyword.outputs.keyword }}"
+        echo "📁 ファイル: ${{ steps.generate-blog.outputs.filename }}"
+        echo "⏰ 投稿時刻: $(TZ='Asia/Tokyo' date)"
+        
+        # 必要に応じてSlack/LINE通知を追加可能
+        
+    - name: 🚨 エラー通知
+      if: failure()
+      run: |
+        echo "❌ ブログ生成でエラーが発生しました"
+        echo "詳細はGitHub Actionsログをご確認ください"
