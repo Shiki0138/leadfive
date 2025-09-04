@@ -2,7 +2,7 @@ name: 🚀 毎日自動ブログ投稿
 
 on:
   schedule:
-    # 毎日午前9時（JST）に実行
+    # 毎日午前9時（JST）に実行 (UTC 0:00 = JST 9:00)
     - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
