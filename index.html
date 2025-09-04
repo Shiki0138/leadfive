@@ -826,14 +826,40 @@
                 display: block;
             }
             
-            .navbar-nav { display: none; }
-            .navbar-nav.active { display: flex; }
+            .navbar-nav { 
+                display: none;
+            }
+            .navbar-nav.active { 
+                display: flex !important;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(10,10,10,0.98);
+                backdrop-filter: blur(10px);
+                padding: 2rem;
+                z-index: 10005;
+                flex-direction: column;
+                gap: 1rem;
+                pointer-events: auto;
+            }
             
             .nav-link {
                 font-size: 1.1rem;
                 padding: 0.8rem 1rem;
                 width: 100%;
                 text-align: left;
+                color: #ffffff !important;
+                border: none;
+                border-radius: 0;
+                background: transparent;
+                transition: all 0.3s ease;
+                display: block;
+            }
+            
+            .nav-link:hover {
+                background: rgba(139, 92, 246, 0.2);
+                color: #8b5cf6;
             }
             
             .opening-logo { font-size: 2rem; }
@@ -928,23 +954,23 @@
                 padding: 0.4rem 0;
             }
             
-            .video-background video { opacity: 0.3; }
+            .video-background video { opacity: 0.6; }
             
             body.hero-active .video-background video {
-                opacity: 0.4;
+                opacity: 0.7;
             }
             
             /* ボタンサイズ最適化 */
             .btn { padding: 0.7rem 1.6rem; font-size: 0.95rem; min-height: 44px; }
             
-            /* モバイルで動画を非表示 */
+            /* モバイルで動画透明度調整 */
             @media (max-width: 480px) {
-                .video-background {
-                    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+                .video-background video {
+                    opacity: 0.5;
                 }
                 
-                .video-background video {
-                    display: none;
+                body.hero-active .video-background video {
+                    opacity: 0.6;
                 }
             }
             /* Hero metric cards font sizing */
@@ -1378,7 +1404,8 @@
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="color: #8b5cf6; margin-bottom: 2rem;">LeadFive</h2>
                 <p style="font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.8;">
-                    AI×マーケティングで、あなたのビジネスの可能性を最大化します。<br>
+                    マーケティングとAIを掛け合わせ、<br>
+                    予測可能な成長をあなたのビジネスに。<br>
                     まずはお問い合わせから始めませんか？
                 </p>
             </div>
@@ -1749,25 +1776,70 @@
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         };
         
-        // モバイルメニュー制御
+        // モバイルメニュー制御とbackdrop追加
         window.toggleMobileMenu = () => {
             const mobileNav = document.getElementById('mobileNav');
             const menuToggle = document.querySelector('.mobile-menu-toggle');
             
-            mobileNav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+            // Backdropを作成または取得
+            let backdrop = document.querySelector('.menu-backdrop');
+            if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'menu-backdrop';
+                backdrop.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 10004;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    display: none;
+                `;
+                document.body.appendChild(backdrop);
+                
+                // Backdropクリックでメニューを閉じる
+                backdrop.addEventListener('click', window.closeMobileMenu);
+            }
             
-            // メニューが開いたときは背景スクロールを防ぐ
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            if (mobileNav.classList.contains('active')) {
+                // メニューを閉じる
+                mobileNav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                backdrop.style.opacity = '0';
+                setTimeout(() => {
+                    backdrop.style.display = 'none';
+                }, 300);
+                document.body.style.overflow = '';
+            } else {
+                // メニューを開く
+                mobileNav.classList.add('active');
+                menuToggle.classList.add('active');
+                backdrop.style.display = 'block';
+                setTimeout(() => {
+                    backdrop.style.opacity = '1';
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
         };
         
         window.closeMobileMenu = () => {
             const mobileNav = document.getElementById('mobileNav');
             const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const backdrop = document.querySelector('.menu-backdrop');
             
             mobileNav.classList.remove('active');
             menuToggle.classList.remove('active');
             document.body.style.overflow = '';
+            
+            if (backdrop) {
+                backdrop.style.opacity = '0';
+                setTimeout(() => {
+                    backdrop.style.display = 'none';
+                }, 300);
+            }
         };
         
         console.log('Final homepage with opening loaded successfully!');
