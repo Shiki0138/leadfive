@@ -98,6 +98,7 @@ social:
 
 # Analytics
 google_analytics: UA-XXXXXXXXX-X
+google_site_verification: q6vviBc2sXgMzgdgK8W8kZC1up1YXQJG11RjCAjxA6o
 
 # GitHub Pages specific settings
 github: [metadata]
