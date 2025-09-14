@@ -1,0 +1,77 @@
+name: Daily Automated Blog Post
+
+on:
+  schedule:
+    # 毎日午前9時（JST）に実行 (UTC 0:00)
+    - cron: '0 0 * * *'
+  # 手動実行も可能にする
+  workflow_dispatch:
+    inputs:
+      instinct:
+        description: '本能タイプ (生存本能, 食欲本能, 性的本能, 危機回避本能, 快適本能, 愛情本能, 承認本能, 学習本能)'
+        required: false
+        default: 'random'
+      category:
+        description: 'カテゴリー (AI心理学, マーケティング戦略, ケーススタディ, 業界トレンド, ツール・技術, ベストプラクティス)'
+        required: false
+        default: 'random'
+
+jobs:
+  create-blog-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: |
+        cd leadfive-demo
+        npm install
+    
+    - name: Generate blog post
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        INSTINCT: ${{ github.event.inputs.instinct || 'random' }}
+        CATEGORY: ${{ github.event.inputs.category || 'random' }}
+      run: |
+        cd leadfive-demo
+        node scripts/auto-blog-generator.js
+    
+    - name: Commit and push new blog post
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add leadfive-demo/_posts/*.md
+        git add leadfive-demo/assets/images/blog/*
+        
+        # コミットがある場合のみプッシュ
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🤖 自動投稿: $(date +'%Y年%m月%d日')のブログ記事"
+          git push
+        fi
+    
+    - name: Build and deploy Jekyll site
+      if: success()
+      run: |
+        cd leadfive-demo
+        bundle install
+        bundle exec jekyll build
+        
+    - name: Notify completion
+      if: always()
+      run: |
+        if [ "${{ job.status }}" == "success" ]; then
+          echo "✅ ブログ記事が正常に投稿されました"
+        else
+          echo "❌ ブログ記事の投稿に失敗しました"
+        fi
