@@ -2,14 +2,12 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const { Configuration, OpenAIApi } = require('openai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const BlogAIAssistant = require('../blog-ai-assistant');
 
-// OpenAI設定
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+// Gemini API設定
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 // AIアシスタントのインスタンス
 const aiAssistant = new BlogAIAssistant();
@@ -74,28 +72,18 @@ class AutoBlogGenerator {
     return trendingTopics[Math.floor(Math.random() * trendingTopics.length)];
   }
 
-  // OpenAI APIを使用してコンテンツを生成
+  // Gemini APIを使用してコンテンツを生成
   async generateContentWithAI(prompt) {
     try {
-      const response = await openai.createChatCompletion({
-        model: "gpt-4",
-        messages: [
-          {
-            role: "system",
-            content: "あなたはLeadFiveのAI×心理学マーケティングの専門家です。読者に価値を提供する実践的で洞察に富んだブログ記事を作成してください。"
-          },
-          {
-            role: "user",
-            content: prompt
-          }
-        ],
-        max_tokens: 2000,
-        temperature: 0.8
-      });
-
-      return response.data.choices[0].message.content;
+      const systemPrompt = "あなたはLeadFiveのAI×心理学マーケティングの専門家です。読者に価値を提供する実践的で洞察に富んだブログ記事を作成してください。\n\n";
+      
+      const result = await model.generateContent(systemPrompt + prompt);
+      const response = await result.response;
+      const text = response.text();
+      
+      return text;
     } catch (error) {
-      console.error('OpenAI API エラー:', error);
+      console.error('Gemini API エラー:', error);
       // フォールバック: 基本的なコンテンツを返す
       return this.generateFallbackContent();
     }

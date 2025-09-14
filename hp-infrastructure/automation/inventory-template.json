@@ -1,0 +1,356 @@
+{
+  "deployment_name": "HP Infrastructure Deployment",
+  "deployment_date": "2024-01-30",
+  "environment": "production",
+  "location": "Primary Datacenter",
+  "servers": [
+    {
+      "hostname": "ESXi-Host-01",
+      "model": "HP ProLiant DL380 Gen10",
+      "serial": "USE1234567",
+      "ilo_ip": "10.10.1.101",
+      "ilo_user": "administrator",
+      "ilo_password": "iLOPassword123!",
+      "os_type": "esxi",
+      "role": "virtualization",
+      "location": {
+        "datacenter": "DC1",
+        "rack": "Rack-01",
+        "position": 10
+      },
+      "networking": {
+        "management": {
+          "ip": "10.10.10.101",
+          "netmask": "255.255.255.0",
+          "gateway": "10.10.10.1",
+          "vlan": 10
+        },
+        "production": {
+          "ip": "10.20.10.101",
+          "netmask": "255.255.255.0",
+          "vlan": 20
+        },
+        "storage": {
+          "ip": "10.30.10.101",
+          "netmask": "255.255.255.0",
+          "vlan": 30
+        },
+        "vmotion": {
+          "ip": "10.40.10.101",
+          "netmask": "255.255.255.0",
+          "vlan": 40
+        }
+      }
+    },
+    {
+      "hostname": "ESXi-Host-02",
+      "model": "HP ProLiant DL380 Gen10",
+      "serial": "USE1234568",
+      "ilo_ip": "10.10.1.102",
+      "ilo_user": "administrator",
+      "ilo_password": "iLOPassword123!",
+      "os_type": "esxi",
+      "role": "virtualization",
+      "location": {
+        "datacenter": "DC1",
+        "rack": "Rack-01",
+        "position": 12
+      },
+      "networking": {
+        "management": {
+          "ip": "10.10.10.102",
+          "netmask": "255.255.255.0",
+          "gateway": "10.10.10.1",
+          "vlan": 10
+        },
+        "production": {
+          "ip": "10.20.10.102",
+          "netmask": "255.255.255.0",
+          "vlan": 20
+        },
+        "storage": {
+          "ip": "10.30.10.102",
+          "netmask": "255.255.255.0",
+          "vlan": 30
+        },
+        "vmotion": {
+          "ip": "10.40.10.102",
+          "netmask": "255.255.255.0",
+          "vlan": 40
+        }
+      }
+    }
+  ],
+  "storage": [
+    {
+      "name": "3PAR-StoreServ-01",
+      "type": "3par",
+      "model": "HP 3PAR StoreServ 8400",
+      "serial": "3PA1234567",
+      "management_ip": "10.10.50.10",
+      "username": "3paradm",
+      "password": "3parPassword123!",
+      "location": {
+        "datacenter": "DC1",
+        "rack": "Rack-02",
+        "position": 20
+      },
+      "configuration": {
+        "cpgs": [
+          {
+            "name": "FC_r6",
+            "raid_type": "r6",
+            "disk_type": "FC",
+            "growth_increment_gb": 32
+          },
+          {
+            "name": "SSD_r5",
+            "raid_type": "r5",
+            "disk_type": "SSD",
+            "growth_increment_gb": 16
+          }
+        ],
+        "hosts": [
+          {
+            "name": "ESXi-Cluster",
+            "type": "host_set",
+            "members": ["ESXi-Host-01", "ESXi-Host-02"]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Nimble-Array-01",
+      "type": "nimble",
+      "model": "HP Nimble Storage HF40",
+      "serial": "NIM1234567",
+      "management_ip": "10.10.50.20",
+      "username": "admin",
+      "password": "NimblePassword123!",
+      "location": {
+        "datacenter": "DC1",
+        "rack": "Rack-02",
+        "position": 25
+      }
+    }
+  ],
+  "networking": {
+    "switches": [
+      {
+        "hostname": "ARUBA-CX-CORE-01",
+        "type": "aruba-cx",
+        "model": "Aruba CX 8400",
+        "serial": "CX1234567",
+        "management_ip": "10.10.1.10",
+        "username": "admin",
+        "password": "ArubaPassword123!",
+        "role": "core",
+        "location": {
+          "datacenter": "DC1",
+          "rack": "Rack-03",
+          "position": 30
+        },
+        "configuration": {
+          "vsx_enabled": true,
+          "vsx_role": "primary",
+          "vsx_peer": "10.10.1.11",
+          "vsx_system_mac": "00:00:00:00:01:00"
+        }
+      },
+      {
+        "hostname": "ARUBA-CX-CORE-02",
+        "type": "aruba-cx",
+        "model": "Aruba CX 8400",
+        "serial": "CX1234568",
+        "management_ip": "10.10.1.11",
+        "username": "admin",
+        "password": "ArubaPassword123!",
+        "role": "core",
+        "location": {
+          "datacenter": "DC1",
+          "rack": "Rack-03",
+          "position": 32
+        },
+        "configuration": {
+          "vsx_enabled": true,
+          "vsx_role": "secondary",
+          "vsx_peer": "10.10.1.10",
+          "vsx_system_mac": "00:00:00:00:01:00"
+        }
+      },
+      {
+        "hostname": "ARUBA-CX-ACCESS-01",
+        "type": "aruba-cx",
+        "model": "Aruba CX 6300",
+        "serial": "CX2234567",
+        "management_ip": "10.10.1.20",
+        "username": "admin",
+        "password": "ArubaPassword123!",
+        "role": "access",
+        "location": {
+          "datacenter": "DC1",
+          "rack": "Rack-01",
+          "position": 1
+        }
+      }
+    ],
+    "wireless": [
+      {
+        "hostname": "ARUBA-7210-WLC-01",
+        "type": "aruba-controller",
+        "model": "Aruba 7210 Mobility Controller",
+        "serial": "WLC1234567",
+        "management_ip": "10.10.1.50",
+        "username": "admin",
+        "password": "ArubaWLCPassword123!",
+        "role": "wireless-controller",
+        "location": {
+          "datacenter": "DC1",
+          "rack": "Rack-03",
+          "position": 35
+        }
+      }
+    ]
+  },
+  "management": {
+    "oneview": {
+      "hostname": "HP-OneView-01",
+      "ip": "10.10.100.10",
+      "username": "administrator",
+      "password": "OneViewPassword123!",
+      "version": "5.6",
+      "licensing": {
+        "type": "Advanced",
+        "count": 50
+      }
+    },
+    "vcenter": {
+      "hostname": "vCenter-01",
+      "ip": "10.10.100.20",
+      "username": "administrator@vsphere.local",
+      "password": "vCenterPassword123!",
+      "version": "7.0"
+    },
+    "monitoring": {
+      "syslog_server": "10.10.20.100",
+      "snmp_server": "10.10.20.100",
+      "smtp_server": "smtp.company.com",
+      "alert_email": "infrastructure-team@company.com"
+    }
+  },
+  "network_services": {
+    "dns": {
+      "primary": "10.10.10.10",
+      "secondary": "10.10.10.11",
+      "domain": "hp.local",
+      "search_domains": ["hp.local", "mgmt.hp.local"]
+    },
+    "ntp": {
+      "primary": "10.10.10.1",
+      "secondary": "10.10.10.2"
+    },
+    "radius": [
+      {
+        "server": "10.10.10.20",
+        "port": 1812,
+        "secret": "RadiusSecret123!"
+      },
+      {
+        "server": "10.10.10.21",
+        "port": 1812,
+        "secret": "RadiusSecret123!"
+      }
+    ],
+    "ldap": {
+      "server": "ldap.hp.local",
+      "port": 636,
+      "base_dn": "DC=hp,DC=local",
+      "bind_dn": "CN=svc-hp-bind,OU=Service Accounts,DC=hp,DC=local",
+      "bind_password": "LDAPPassword123!",
+      "ssl": true
+    }
+  },
+  "vlans": [
+    {
+      "id": 10,
+      "name": "Management",
+      "subnet": "10.10.0.0/16",
+      "gateway": "10.10.0.1",
+      "description": "Out-of-band management network"
+    },
+    {
+      "id": 20,
+      "name": "Production",
+      "subnet": "10.20.0.0/16",
+      "gateway": "10.20.0.1",
+      "description": "Production server network"
+    },
+    {
+      "id": 30,
+      "name": "Storage",
+      "subnet": "10.30.0.0/16",
+      "gateway": "10.30.0.1",
+      "description": "Storage network (iSCSI/FC)"
+    },
+    {
+      "id": 40,
+      "name": "vMotion",
+      "subnet": "10.40.0.0/16",
+      "gateway": "10.40.0.1",
+      "description": "VMware vMotion network"
+    },
+    {
+      "id": 50,
+      "name": "Users",
+      "subnet": "10.50.0.0/16",
+      "gateway": "10.50.0.1",
+      "description": "End user access network"
+    },
+    {
+      "id": 60,
+      "name": "Voice",
+      "subnet": "10.60.0.0/16",
+      "gateway": "10.60.0.1",
+      "description": "VoIP network"
+    },
+    {
+      "id": 100,
+      "name": "DMZ",
+      "subnet": "10.100.0.0/16",
+      "gateway": "10.100.0.1",
+      "description": "DMZ network for external services"
+    }
+  ],
+  "security": {
+    "firewall_zones": [
+      {
+        "name": "trust",
+        "vlans": [10, 20, 30, 40],
+        "description": "Internal trusted networks"
+      },
+      {
+        "name": "untrust",
+        "vlans": [100],
+        "description": "DMZ and external networks"
+      },
+      {
+        "name": "users",
+        "vlans": [50, 60],
+        "description": "End user networks"
+      }
+    ],
+    "certificates": {
+      "ca_server": "pki.hp.local",
+      "ca_template": "HP-WebServer",
+      "validity_days": 730
+    }
+  },
+  "backup": {
+    "server": "backup.hp.local",
+    "path": "/backups/hp-infrastructure",
+    "schedule": "daily",
+    "retention_days": 30,
+    "username": "backup_user",
+    "password": "BackupPassword123!"
+  }
+}

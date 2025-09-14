@@ -38,7 +38,7 @@ jobs:
     
     - name: Generate blog post
       env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         INSTINCT: ${{ github.event.inputs.instinct || 'random' }}
         CATEGORY: ${{ github.event.inputs.category || 'random' }}
       run: |

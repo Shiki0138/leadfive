@@ -1,0 +1,50 @@
+{
+  "name": "leadfive-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.88.11",
+    "@react-three/fiber": "^8.15.11",
+    "@react-email/render": "^0.0.12",
+    "@tanstack/react-query": "^5.0.0",
+    "@vercel/analytics": "^1.1.0",
+    "ai": "^2.2.0",
+    "axios": "^1.6.0",
+    "framer-motion": "^10.16.5",
+    "gsap": "^3.12.2",
+    "lru-cache": "^10.0.0",
+    "lucide-react": "^0.534.0",
+    "mixpanel": "^0.18.0",
+    "mixpanel-browser": "^2.48.0",
+    "next": "14.0.3",
+    "nodemailer": "^6.9.7",
+    "openai": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.48.0",
+    "react-intersection-observer": "^9.5.3",
+    "three": "^0.159.0",
+    "zod": "^3.22.0",
+    "zustand": "^4.4.0"
+  },
+  "devDependencies": {
+    "@types/mixpanel": "^2.14.5",
+    "@types/node": "^20.10.0",
+    "@types/nodemailer": "^6.4.14",
+    "@types/react": "^18.2.39",
+    "@types/react-dom": "^18.2.17",
+    "@types/three": "^0.159.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.54.0",
+    "eslint-config-next": "14.0.3",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.2"
+  }
+}

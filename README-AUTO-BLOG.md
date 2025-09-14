@@ -5,7 +5,7 @@
 ## 🚀 機能
 
 - **毎日自動投稿**: 日本時間午前9時に自動的に新しい記事を投稿
-- **AI生成コンテンツ**: OpenAI GPT-4を使用して高品質な記事を生成
+- **AI生成コンテンツ**: Google Gemini APIを使用して高品質な記事を生成
 - **8つの本能**: 曜日ごとに異なる心理学的本能に基づいた記事を作成
 - **トレンドトピック**: 最新のマーケティングトレンドを自動的に取り入れ
 - **SEO最適化**: タイトル、メタデータ、キーワードを自動最適化
@@ -29,7 +29,7 @@
 GitHubリポジトリのSettings > Secrets and variablesで以下のシークレットを追加：
 
 ```
-OPENAI_API_KEY: OpenAIのAPIキー
+GEMINI_API_KEY: Google GeminiのAPIキー
 ```
 
 ### 2. 必要なディレクトリ構造
@@ -49,7 +49,7 @@ leadfive-demo/
 
 ```bash
 cd leadfive-demo
-npm install openai
+npm install @google/generative-ai
 ```
 
 ## 🎮 手動実行
@@ -101,7 +101,7 @@ schedule:
 
 ## ⚠️ 注意事項
 
-- OpenAI APIの利用料金が発生します
+- Gemini APIの利用料金が発生します（無料枠あり）
 - 生成された記事は必ず人間がレビューすることを推奨
 - APIキーは必ずシークレットとして保存し、コードにハードコーディングしない
 
@@ -110,7 +110,7 @@ schedule:
 ### 記事が生成されない場合
 
 1. GitHub Actionsのログを確認
-2. OpenAI APIキーが正しく設定されているか確認
+2. Gemini APIキーが正しく設定されているか確認
 3. APIの利用制限に達していないか確認
 
 ### エラーが発生する場合
