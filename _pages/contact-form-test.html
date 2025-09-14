@@ -1,0 +1,190 @@
+---
+layout: default
+title: お問い合わせフォームテスト
+permalink: /test/contact-form/
+sitemap: false
+robots: noindex, nofollow
+---
+
+<style>
+.test-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+}
+
+.test-info {
+  background: rgba(59, 130, 246, 0.1);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.test-form {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+</style>
+
+<div class="test-container">
+  <h1>お問い合わせフォームテスト</h1>
+  
+  <div class="test-info">
+    <h2>テスト環境情報</h2>
+    <p>送信先メール: <strong>leadfive.138@gmail.com</strong></p>
+    <p>送信方法: Formspree + Google Sheets（オプション）</p>
+    <p>このページはテスト用です。実際のお問い合わせは<a href="/contact/">こちら</a>からお願いします。</p>
+  </div>
+
+  <div class="test-form">
+    <form class="contact-form" id="test-contact-form">
+      <div class="form-group">
+        <label for="company">会社名 <span style="color: #ec4899;">*</span></label>
+        <input type="text" id="company" name="company" required>
+      </div>
+
+      <div class="form-group">
+        <label for="name">お名前 <span style="color: #ec4899;">*</span></label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">メールアドレス <span style="color: #ec4899;">*</span></label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">電話番号</label>
+        <input type="tel" id="phone" name="phone" placeholder="03-1234-5678">
+      </div>
+
+      <div class="form-group">
+        <label for="inquiry_type">お問い合わせ種別</label>
+        <select id="inquiry_type" name="inquiry_type">
+          <option value="">選択してください</option>
+          <option value="サービスについて">サービスについて</option>
+          <option value="料金について">料金について</option>
+          <option value="導入相談">導入相談</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>興味のあるサービス</label>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <label class="checkbox-group">
+            <input type="checkbox" name="interest[]" value="AI×心理学LP最適化">
+            <span>AI×心理学LP最適化</span>
+          </label>
+          <label class="checkbox-group">
+            <input type="checkbox" name="interest[]" value="顧客心理データ分析">
+            <span>顧客心理データ分析</span>
+          </label>
+          <label class="checkbox-group">
+            <input type="checkbox" name="interest[]" value="AI自動化マーケティング">
+            <span>AI自動化マーケティング</span>
+          </label>
+          <label class="checkbox-group">
+            <input type="checkbox" name="interest[]" value="統合マーケティング戦略">
+            <span>統合マーケティング戦略</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">メッセージ <span style="color: #ec4899;">*</span></label>
+        <textarea id="message" name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-group">
+          <input type="checkbox" name="privacy" value="yes" required>
+          <span><a href="/privacy/" target="_blank">プライバシーポリシー</a>に同意する <span style="color: #ec4899;">*</span></span>
+        </label>
+      </div>
+
+      <button type="submit" class="submit-button">
+        テスト送信
+      </button>
+    </form>
+  </div>
+
+  <div style="margin-top: 2rem; padding: 1rem; background: rgba(255, 255, 255, 0.03); border-radius: 10px;">
+    <h3>デバッグ情報</h3>
+    <pre id="debug-info" style="font-size: 0.875rem; overflow-x: auto;"></pre>
+  </div>
+</div>
+
+<script>
+// Debug info
+document.addEventListener('DOMContentLoaded', () => {
+  const debugInfo = document.getElementById('debug-info');
+  debugInfo.textContent = JSON.stringify({
+    formHandler: typeof window.contactFormHandler !== 'undefined',
+    formspreeConfigured: window.contactFormHandler?.formspreeEndpoint?.includes('YOUR_FORM_ID') === false,
+    timestamp: new Date().toISOString()
+  }, null, 2);
+});
+</script>

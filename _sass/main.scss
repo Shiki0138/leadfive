@@ -1,0 +1,289 @@
+/* Main SCSS file for LeadFive */
+
+// Import base styles
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+
+// Variables
+$primary-color: #6366f1;
+$secondary-color: #ec4899;
+$accent-color: #10b981;
+$dark-color: #111827;
+$light-color: #f9fafb;
+
+// Base styles
+body {
+  font-family: 'Noto Sans JP', 'Inter', sans-serif;
+  background-color: $dark-color;
+  color: $light-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Utility classes
+.text-center {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: white;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba($primary-color, 0.3);
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid $primary-color;
+  color: $primary-color;
+  
+  &:hover {
+    background: $primary-color;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba($primary-color, 0.2);
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid $light-color;
+  color: $light-color;
+  
+  &:hover {
+    background: $light-color;
+    color: $dark-color;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-large {
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+// Header styles
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba($dark-color, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  padding: 1rem 0;
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.navbar-brand {
+  .logo {
+    text-decoration: none;
+    
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-item {
+  .nav-link {
+    color: $light-color;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.navbar-cta {
+  margin-left: auto;
+}
+
+.navbar-toggler {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: $light-color;
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+  }
+  
+  .navbar-toggler {
+    display: block;
+  }
+}
+
+// Main content
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Hero Section Styles
+.hero-section {
+  padding: 120px 0 80px;
+  background: linear-gradient(135deg, rgba($primary-color, 0.1), rgba($secondary-color, 0.1));
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.1;
+  
+  .highlight {
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 48px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin: 48px 0;
+}
+
+.stat {
+  text-align: center;
+  
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: $accent-color;
+    display: block;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 8px;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+// Section Styles
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 48px;
+  
+  .highlight {
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat .stat-number {
+    font-size: 2rem;
+  }
+}

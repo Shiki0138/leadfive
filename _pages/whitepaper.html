@@ -1,0 +1,662 @@
+---
+layout: page
+title: ホワイトペーパー | AI×心理学マーケティングの実践ガイド
+description: AI×心理学アプローチの詳細な解説資料をダウンロード。実践的なノウハウと最新事例を無料でご提供します。
+permalink: /resources/whitepaper/
+published: false
+sitemap: false
+robots: noindex, nofollow
+---
+
+<style>
+.whitepaper-hero {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+  padding: 6rem 0;
+  margin-bottom: 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.whitepaper-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  animation: rotate-reverse 30s linear infinite;
+}
+
+@keyframes rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.whitepaper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.whitepaper-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.whitepaper-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.card-header {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.1));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.new-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ec4899;
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.card-content {
+  padding: 2rem;
+}
+
+.content-info {
+  display: flex;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topic-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.topic-tag {
+  padding: 0.25rem 0.75rem;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+.download-form {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-top: 2rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.featured-whitepaper {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
+  padding: 3rem;
+  border-radius: 20px;
+  margin-bottom: 4rem;
+  border: 2px solid rgba(236, 72, 153, 0.3);
+  text-align: center;
+}
+
+.featured-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #ec4899;
+  color: #fff;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.preview-section {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: 15px;
+  margin: 2rem 0;
+}
+
+.preview-image {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.download-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #8b5cf6;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.mobile-br {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-br {
+    display: inline;
+  }
+  
+  .whitepaper-hero {
+    padding: 4rem 0 3rem;
+  }
+  
+  .whitepaper-hero h1 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    word-break: keep-all;
+  }
+  
+  .whitepaper-hero p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 0 1rem;
+    word-break: keep-all;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .whitepaper-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 0 0.5rem 3rem;
+  }
+  
+  .whitepaper-card {
+    margin: 0;
+  }
+  
+  .card-header {
+    padding: 1.5rem;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .download-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .featured-whitepaper {
+    padding: 2rem 1rem;
+    margin: 0 0.5rem 3rem;
+  }
+  
+  .featured-whitepaper h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+  
+  .featured-whitepaper p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+  
+  .preview-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .preview-section ul {
+    text-align: left !important;
+    padding-left: 0;
+  }
+  
+  .preview-section li {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    word-break: keep-all;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  
+  .preview-section li::before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+  }
+  
+  .content-info {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .topic-tags {
+    justify-content: center;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 5% auto;
+    padding: 1.5rem;
+  }
+}
+
+.cta-section {
+  padding: 3rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  margin-top: 4rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+</style>
+
+<div class="whitepaper-hero">
+  <div class="container">
+    <h1>ホワイトペーパー</h1>
+    <p>AI×心理学マーケティングの<br class="mobile-br">実践的なノウハウを無料でご提供</p>
+  </div>
+</div>
+
+<div class="container">
+  <section class="featured-whitepaper">
+    <span class="featured-badge">最新資料</span>
+    <h2>2024年最新版：<br class="mobile-br">AI×心理学マーケティング<br class="mobile-br">完全ガイド</h2>
+    <p>8つの本能を活用した<br class="mobile-br">マーケティング戦略の全てを解説</p>
+    <div class="preview-section">
+      <h3>資料の内容</h3>
+      <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+        <li>人間の8つの本能と<br class="mobile-br">マーケティングへの応用方法</li>
+        <li>AIを活用した顧客心理分析の<br class="mobile-br">実践手法</li>
+        <li>業界別の成功事例<br class="mobile-br">（15社の詳細データ付き）</li>
+        <li>すぐに使える<br class="mobile-br">施策テンプレート集</li>
+        <li>ROI計測とKPI設定の<br class="mobile-br">ベストプラクティス</li>
+      </ul>
+    </div>
+    <div class="download-stats">
+      <div class="stat">
+        <div class="stat-number">120P</div>
+        <div class="stat-label">ページ数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">15社</div>
+        <div class="stat-label">事例掲載</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">3,500+</div>
+        <div class="stat-label">ダウンロード</div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-large" onclick="showDownloadForm('complete-guide')">
+      無料ダウンロード
+    </button>
+  </section>
+
+  <section class="whitepaper-grid">
+    <div class="whitepaper-card">
+      <div class="card-header">
+        <span class="new-badge">NEW</span>
+        <span class="card-icon">🤖</span>
+        <h3>ChatGPT/Claude活用マニュアル</h3>
+      </div>
+      <div class="card-content">
+        <p>最新AIを使ったマーケティング自動化の実践ガイド</p>
+        <div class="content-info">
+          <div class="info-item">📄 45ページ</div>
+          <div class="info-item">⏱️ 15分で読了</div>
+        </div>
+        <div class="topic-tags">
+          <span class="topic-tag">AI活用</span>
+          <span class="topic-tag">自動化</span>
+          <span class="topic-tag">プロンプト設計</span>
+        </div>
+        <button class="btn btn-outline btn-block" onclick="showDownloadForm('ai-manual')">
+          ダウンロード
+        </button>
+      </div>
+    </div>
+
+    <div class="whitepaper-card">
+      <div class="card-header">
+        <span class="card-icon">📊</span>
+        <h3>LP最適化の科学</h3>
+      </div>
+      <div class="card-content">
+        <p>コンバージョン率を3倍にする、心理学的アプローチの実践</p>
+        <div class="content-info">
+          <div class="info-item">📄 60ページ</div>
+          <div class="info-item">⏱️ 20分で読了</div>
+        </div>
+        <div class="topic-tags">
+          <span class="topic-tag">LP最適化</span>
+          <span class="topic-tag">A/Bテスト</span>
+          <span class="topic-tag">心理学</span>
+        </div>
+        <button class="btn btn-outline btn-block" onclick="showDownloadForm('lp-optimization')">
+          ダウンロード
+        </button>
+      </div>
+    </div>
+
+    <div class="whitepaper-card">
+      <div class="card-header">
+        <span class="card-icon">🎯</span>
+        <h3>業界別マーケティング戦略集</h3>
+      </div>
+      <div class="card-content">
+        <p>EC、サービス業、BtoBなど、業界特性に合わせた戦略を解説</p>
+        <div class="content-info">
+          <div class="info-item">📄 80ページ</div>
+          <div class="info-item">⏱️ 25分で読了</div>
+        </div>
+        <div class="topic-tags">
+          <span class="topic-tag">業界別戦略</span>
+          <span class="topic-tag">事例集</span>
+          <span class="topic-tag">実践ガイド</span>
+        </div>
+        <button class="btn btn-outline btn-block" onclick="showDownloadForm('industry-strategy')">
+          ダウンロード
+        </button>
+      </div>
+    </div>
+
+    <div class="whitepaper-card">
+      <div class="card-header">
+        <span class="card-icon">💡</span>
+        <h3>8つの本能活用マニュアル</h3>
+      </div>
+      <div class="card-content">
+        <p>人間の本能を理解し、マーケティングに活用する具体的手法</p>
+        <div class="content-info">
+          <div class="info-item">📄 35ページ</div>
+          <div class="info-item">⏱️ 10分で読了</div>
+        </div>
+        <div class="topic-tags">
+          <span class="topic-tag">心理学</span>
+          <span class="topic-tag">8つの本能</span>
+          <span class="topic-tag">実践手法</span>
+        </div>
+        <button class="btn btn-outline btn-block" onclick="showDownloadForm('8-instincts')">
+          ダウンロード
+        </button>
+      </div>
+    </div>
+
+    <div class="whitepaper-card">
+      <div class="card-header">
+        <span class="card-icon">📈</span>
+        <h3>ROI改善実践ガイド</h3>
+      </div>
+      <div class="card-content">
+        <p>広告費を半減させながら売上を2倍にする戦略的アプローチ</p>
+        <div class="content-info">
+          <div class="info-item">📄 50ページ</div>
+          <div class="info-item">⏱️ 15分で読了</div>
+        </div>
+        <div class="topic-tags">
+          <span class="topic-tag">ROI改善</span>
+          <span class="topic-tag">広告最適化</span>
+          <span class="topic-tag">費用対効果</span>
+        </div>
+        <button class="btn btn-outline btn-block" onclick="showDownloadForm('roi-guide')">
+          ダウンロード
+        </button>
+      </div>
+    </div>
+
+    <div class="whitepaper-card">
+      <div class="card-header">
+        <span class="card-icon">🚀</span>
+        <h3>スタートアップ向け成長戦略</h3>
+      </div>
+      <div class="card-content">
+        <p>限られたリソースで最大の成果を出すグロースハック手法</p>
+        <div class="content-info">
+          <div class="info-item">📄 40ページ</div>
+          <div class="info-item">⏱️ 12分で読了</div>
+        </div>
+        <div class="topic-tags">
+          <span class="topic-tag">スタートアップ</span>
+          <span class="topic-tag">グロース</span>
+          <span class="topic-tag">効率化</span>
+        </div>
+        <button class="btn btn-outline btn-block" onclick="showDownloadForm('startup-growth')">
+          ダウンロード
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Form Modal -->
+  <div id="download-modal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 500px;">
+      <span class="close" onclick="closeDownloadModal()">&times;</span>
+      <div class="modal-header">
+        <h2>資料ダウンロード</h2>
+        <p>以下の情報をご入力ください</p>
+      </div>
+      <div class="modal-body">
+        <form id="downloadForm" class="download-form" onsubmit="handleDownload(event)">
+          <input type="hidden" id="whitepaper-id" name="whitepaper_id">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="download-company">会社名 <span style="color: #ec4899;">*</span></label>
+              <input type="text" id="download-company" name="company" required>
+            </div>
+            <div class="form-group">
+              <label for="download-name">お名前 <span style="color: #ec4899;">*</span></label>
+              <input type="text" id="download-name" name="name" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="download-email">メールアドレス <span style="color: #ec4899;">*</span></label>
+            <input type="email" id="download-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="download-phone">電話番号</label>
+            <input type="tel" id="download-phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="download-purpose">ダウンロードの目的</label>
+            <select id="download-purpose" name="purpose">
+              <option value="">選択してください</option>
+              <option value="research">情報収集</option>
+              <option value="planning">施策検討</option>
+              <option value="proposal">提案資料として</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" name="newsletter" value="yes">
+              メールマガジンを受け取る
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            ダウンロードする
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-section">
+    <h2>さらに詳しい情報をお求めの方へ</h2>
+    <p>資料だけでは伝えきれない、実践的なノウハウをご提供します</p>
+    <div class="cta-buttons">
+      <button class="btn btn-primary btn-large" onclick="openContactForm()">
+        無料相談を申し込む
+      </button>
+      <button class="btn btn-outline btn-large" onclick="openContactForm()">
+        無料相談はこちら
+      </button>
+    </div>
+  </section>
+</div>
+
+<script>
+function showDownloadForm(whitepaperType) {
+  document.getElementById('whitepaper-id').value = whitepaperType;
+  document.getElementById('download-modal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  
+  setTimeout(() => {
+    document.getElementById('download-modal').classList.add('active');
+  }, 10);
+}
+
+function closeDownloadModal() {
+  const modal = document.getElementById('download-modal');
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
+}
+
+function handleDownload(event) {
+  event.preventDefault();
+  
+  // In a real implementation, this would submit to a server
+  // For now, we'll simulate a download
+  alert('ダウンロードリンクをメールでお送りしました。');
+  closeDownloadModal();
+  
+  // Reset form
+  document.getElementById('downloadForm').reset();
+}
+
+// Close modal on backdrop click
+document.getElementById('download-modal')?.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeDownloadModal();
+  }
+});
+</script>

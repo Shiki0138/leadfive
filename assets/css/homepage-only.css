@@ -1,0 +1,56 @@
+/* Homepage-only styles for presentation scroll */
+
+/* Only apply fullscreen sections on homepage */
+body.homepage .fullscreen-section {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+  scroll-snap-align: start;
+}
+
+/* Remove fullscreen behavior for subdirectory pages */
+body:not(.homepage) .fullscreen-section {
+  width: auto !important;
+  min-height: auto !important;
+  height: auto !important;
+  display: block !important;
+  scroll-snap-align: none !important;
+}
+
+/* Remove scroll-snap on non-homepage */
+body:not(.homepage) {
+  scroll-snap-type: none !important;
+}
+
+body:not(.homepage) html {
+  scroll-snap-type: none !important;
+}
+
+/* Footer as normal element on subdirectory pages */
+body:not(.homepage) .site-footer {
+  width: 100% !important;
+  height: auto !important;
+  min-height: auto !important;
+  position: relative !important;
+  display: block !important;
+}
+
+/* Section navigation only on homepage */
+body:not(.homepage) .section-nav {
+  display: none !important;
+}
+
+/* Normal scrolling for subdirectory pages */
+body:not(.homepage) {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+body:not(.homepage) html {
+  overflow-y: auto !important;
+  height: auto !important;
+}

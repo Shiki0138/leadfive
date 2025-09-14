@@ -1,0 +1,101 @@
+# Contact Form Configuration
+# Form Integration Specialist - Contact Form Settings
+
+# Form Service Configuration
+form_service:
+  provider: "formspree" # Options: formspree, netlify, custom, emailjs
+  endpoint: "https://formspree.io/f/xovqzkgy"
+  
+# Email Settings
+email:
+  to: "leadfive.138@gmail.com"
+  reply_to_field: "email"
+  subject: "【LeadFive】お問い合わせ"
+  
+# Form Features
+features:
+  honeypot: true
+  rate_limiting: true
+  client_validation: true
+  real_time_validation: true
+  auto_format_phone: true
+  spam_protection: true
+  
+# Validation Rules
+validation:
+  required_fields:
+    - "name"
+    - "email" 
+    - "company"
+    - "challenge"
+    - "privacy"
+  
+  email_validation: true
+  phone_validation: true
+  min_message_length: 10
+  max_message_length: 1000
+  
+# Success/Error Messages
+messages:
+  success:
+    title: "送信が完了しました！"
+    body: "通常1-2営業日以内にご返信いたします。"
+    
+  error:
+    title: "送信中にエラーが発生しました"
+    body: "お手数ですが、再度お試しいただくか、直接メールでご連絡ください。"
+    
+  validation:
+    required: "%sは必須項目です"
+    email: "有効なメールアドレスを入力してください"
+    phone: "有効な電話番号を入力してください（例：03-1234-5678）"
+    privacy: "プライバシーポリシーに同意してください"
+    
+# Rate Limiting
+rate_limit:
+  cooldown_minutes: 1
+  daily_limit: 10
+  
+# Auto-responses
+auto_response:
+  enabled: true
+  template: |
+    この度は、LeadFiveにお問い合わせいただき、誠にありがとうございます。
+    
+    以下の内容でお問い合わせを承りました：
+    
+    【お名前】{name}
+    【会社名】{company}
+    【メールアドレス】{email}
+    【電話番号】{phone}
+    【業種】{business-type}
+    【関心のあるサービス】{interest}
+    【月間予算】{budget}
+    【現在の課題・お悩み】{challenge}
+    【その他ご質問・ご要望】{message}
+    
+    通常1-2営業日以内に担当者よりご返信いたします。
+    お急ぎの場合は、お電話（06-7713-6747）でも承っております。
+    
+    今後ともよろしくお願いいたします。
+    
+    ────────────────────────
+    合同会社LeadFive
+    代表：山下　公一
+    電話：06-7713-6747
+    メール：leadfive.138@gmail.com
+    住所：大阪府大阪市北区梅田１−１３−１大阪梅田ツインタワーズ・サウス１５階
+    ────────────────────────
+
+# Analytics & Tracking
+tracking:
+  google_analytics: true
+  form_submissions: true
+  conversion_tracking: true
+  
+# Mobile Optimization
+mobile:
+  touch_friendly: true
+  keyboard_optimization: true
+  tap_target_size: 44 # pixels
+  input_zoom_prevention: true

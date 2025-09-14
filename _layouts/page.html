@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<article class="page-content">
+  {{ content }}
+</article>
+
+<style>
+.page-content {
+  min-height: calc(100vh - 400px); /* Ensure footer is visible */
+  padding-top: 80px; /* Account for fixed header */
+  margin-bottom: 3rem;
+  /* Slightly opaque background so video is only faintly visible */
+  background: rgba(12, 12, 12, 0.5);
+  color: inherit; /* avoid white-on-white issue */
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    padding-top: 70px;
+    min-height: calc(100vh - 300px);
+  }
+}
+</style>

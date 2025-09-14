@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://leadfive138.com/sitemap.xml
+
+# Disallow development files
+Disallow: /scripts/
+Disallow: /*.js$
+Disallow: /blog-wizard.html
+Disallow: /blog-server.js
+Disallow: /blog-ai-assistant.js
+
+# Allow important pages
+Allow: /assets/
+Allow: /blog/
+Allow: /services/
+Allow: /case-studies/

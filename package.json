@@ -1,0 +1,61 @@
+{
+  "name": "leadfive-jekyll",
+  "version": "1.0.0",
+  "description": "AI×心理学マーケティングコンサルティング会社「LeadFive」のJekyll製ウェブサイトです。",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest --config jest.config.js --testPathPattern=tests/unit",
+    "test:integration": "jest --config jest.config.js --testPathPattern=tests/integration",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "build": "bundle exec jekyll build",
+    "build:production": "JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config_production.yml",
+    "serve": "bundle exec jekyll serve --livereload",
+    "dev": "bundle exec jekyll serve --livereload --incremental",
+    "lint": "eslint assets/js/**/*.js",
+    "lint:fix": "eslint assets/js/**/*.js --fix",
+    "security:check": "npm audit && bundle exec bundle-audit check",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:staging": "./scripts/deploy.sh --staging",
+    "deploy:production": "./scripts/deploy.sh --production",
+    "generate-images": "node scripts/generate-business-images.js",
+    "enhance-design": "npm run generate-images && npm run build",
+    "monitor:start": "node scripts/monitor.js",
+    "performance:test": "lighthouse https://leadfive.com --budget-path=./lighthouse-budget.json --output=html --output-path=./test-results/lighthouse-report.html",
+    "blog:edit": "node scripts/blog-automation/blog-editor.js",
+    "blog:server": "node scripts/blog-automation/api-server.js",
+    "blog:generate": "node scripts/blog-automation/run-daily-blog.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shiki0138/leadfive.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Shiki0138/leadfive/issues"
+  },
+  "homepage": "https://github.com/Shiki0138/leadfive#readme",
+  "dependencies": {
+    "animejs": "^4.1.3",
+    "axios": "^1.11.0",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "gray-matter": "^4.0.3",
+    "sharp": "^0.34.3",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  }
+}

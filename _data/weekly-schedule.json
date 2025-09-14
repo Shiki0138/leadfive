@@ -1,0 +1,115 @@
+{
+  "version": "1.0",
+  "created": "2025-08-16T00:00:00Z",
+  "status": "active",
+  "current_week": 1,
+  "posts_remaining": 5,
+  "schedule": [
+    {
+      "day": 1,
+      "date": "2025-08-17",
+      "title": "AI戦略で売上3倍を実現する5つの方法",
+      "theme": "AI戦略編",
+      "keywords": [
+        "AI戦略",
+        "デジタル変革",
+        "競合優位"
+      ],
+      "status": "completed",
+      "audience": "企業の意思決定者・マーケティング責任者",
+      "expected_length": "2500-4000文字"
+    },
+    {
+      "day": 2,
+      "date": "2025-08-18",
+      "title": "【2025年最新】ノウハウ完全ガイド",
+      "theme": "実践テクニック編",
+      "keywords": [
+        "ノウハウ",
+        "実装方法",
+        "ツール活用"
+      ],
+      "status": "completed",
+      "audience": "企業の意思決定者・マーケティング責任者",
+      "expected_length": "2500-4000文字",
+      "generated_at": "2025-09-01T10:53:05.354Z",
+      "filename": "2025-09-01-2025年最新ノウハウ完全ガイド.md"
+    },
+    {
+      "day": 3,
+      "date": "2025-08-19",
+      "title": "データ分析で失敗しないための7つのポイント",
+      "theme": "データ分析編",
+      "keywords": [
+        "データ分析",
+        "KPI",
+        "成果測定"
+      ],
+      "status": "pending",
+      "audience": "企業の意思決定者・マーケティング責任者",
+      "expected_length": "2500-4000文字"
+    },
+    {
+      "day": 4,
+      "date": "2025-08-20",
+      "title": "なぜ今最新トレンドが注目されるのか？従来手法との違い",
+      "theme": "トレンド編",
+      "keywords": [
+        "最新トレンド",
+        "業界動向",
+        "未来予測"
+      ],
+      "status": "pending",
+      "audience": "企業の意思決定者・マーケティング責任者",
+      "expected_length": "2500-4000文字"
+    },
+    {
+      "day": 5,
+      "date": "2025-08-21",
+      "title": "成功事例導入でROI300%達成した企業の秘訣",
+      "theme": "事例研究編",
+      "keywords": [
+        "成功事例",
+        "実績分析",
+        "ケーススタディ"
+      ],
+      "status": "pending",
+      "audience": "企業の意思決定者・マーケティング責任者",
+      "expected_length": "2500-4000文字"
+    },
+    {
+      "day": 6,
+      "date": "2025-08-22",
+      "title": "基礎理論で売上3倍を実現する5つの方法",
+      "theme": "学習コンテンツ編",
+      "keywords": [
+        "基礎理論",
+        "初心者向け",
+        "入門ガイド"
+      ],
+      "status": "pending",
+      "audience": "企業の意思決定者・マーケティング責任者",
+      "expected_length": "2500-4000文字"
+    },
+    {
+      "day": 7,
+      "date": "2025-08-23",
+      "title": "統合戦略で失敗しないための7つのポイント",
+      "theme": "総合戦略編",
+      "keywords": [
+        "統合戦略",
+        "経営判断",
+        "長期計画"
+      ],
+      "status": "pending",
+      "audience": "企業の意思決定者・マーケティング責任者",
+      "expected_length": "2500-4000文字"
+    }
+  ],
+  "settings": {
+    "auto_post_enabled": true,
+    "post_time": "09:00",
+    "timezone": "Asia/Tokyo",
+    "emergency_stop": false
+  }
+}

@@ -1,0 +1,127 @@
+name: 📅 ブログ投稿スケジュール管理
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  process-blog-request:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'blog-request') || contains(github.event.issue.title, '[ブログ]')
+    
+    steps:
+    - name: 📥 リポジトリチェックアウト
+      uses: actions/checkout@v4
+    
+    - name: 🔍 リクエスト解析
+      id: parse-request
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const issue = context.payload.issue;
+          const body = issue.body || '';
+          
+          // パラメータを抽出
+          const keywordMatch = body.match(/キーワード[:：]\s*(.+)/);
+          const titleMatch = body.match(/タイトル[:：]\s*(.+)/);
+          const categoryMatch = body.match(/カテゴリー[:：]\s*(.+)/);
+          const dateMatch = body.match(/投稿日[:：]\s*(.+)/);
+          
+          const keyword = keywordMatch ? keywordMatch[1].trim() : '';
+          const title = titleMatch ? titleMatch[1].trim() : '';
+          const category = categoryMatch ? categoryMatch[1].trim() : 'AIマーケティング';
+          const publishDate = dateMatch ? dateMatch[1].trim() : 'immediate';
+          
+          // 結果を出力
+          core.setOutput('keyword', keyword);
+          core.setOutput('title', title);
+          core.setOutput('category', category);
+          core.setOutput('publish_date', publishDate);
+          core.setOutput('issue_number', issue.number);
+          
+          // バリデーション
+          if (!keyword) {
+            core.setFailed('キーワードが指定されていません');
+            
+            // エラーコメントを投稿
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: `❌ キーワードが指定されていません。以下の形式で記載してください：
+
+\`\`\`
+キーワード: AIマーケティング 最新トレンド
+タイトル: （オプション）
+カテゴリー: AIマーケティング
+投稿日: immediate または YYYY-MM-DD
+\`\`\`
+`
+            });
+          }
+    
+    - name: ✅ リクエスト確認コメント
+      if: steps.parse-request.outputs.keyword != ''
+      uses: actions/github-script@v7
+      with:
+        script: |
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: ${{ steps.parse-request.outputs.issue_number }},
+            body: `✅ ブログ投稿リクエストを受け付けました！
+
+**設定内容:**
+- キーワード: ${{ steps.parse-request.outputs.keyword }}
+- タイトル: ${{ steps.parse-request.outputs.title || '自動生成' }}
+- カテゴリー: ${{ steps.parse-request.outputs.category }}
+- 投稿日: ${{ steps.parse-request.outputs.publish_date }}
+
+処理を開始します... 🚀`
+          });
+    
+    - name: 🚀 ブログ生成ワークフロー実行
+      if: steps.parse-request.outputs.keyword != '' && steps.parse-request.outputs.publish_date == 'immediate'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          await github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'blog-on-demand.yml',
+            ref: 'main',
+            inputs: {
+              keyword: '${{ steps.parse-request.outputs.keyword }}',
+              title: '${{ steps.parse-request.outputs.title }}',
+              category: '${{ steps.parse-request.outputs.category }}',
+              instinct: 'learning',
+              publish_immediately: true
+            }
+          });
+          
+          // 完了コメント
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: ${{ steps.parse-request.outputs.issue_number }},
+            body: `🎉 ブログ生成ワークフローを開始しました！
+
+[Actions タブ](https://github.com/${{ github.repository }}/actions)で進行状況を確認できます。`
+          });
+          
+          // Issue をクローズ
+          await github.rest.issues.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: ${{ steps.parse-request.outputs.issue_number }},
+            state: 'closed'
+          });
+    
+    - name: 📅 スケジュール登録
+      if: steps.parse-request.outputs.keyword != '' && steps.parse-request.outputs.publish_date != 'immediate'
+      run: |
+        echo "スケジュール投稿機能は今後実装予定です"
+        # TODO: スケジュール管理システムとの連携

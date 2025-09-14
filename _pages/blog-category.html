@@ -1,0 +1,534 @@
+---
+layout: blog
+title: カテゴリー別記事 | LeadFive ブログ
+permalink: /blog/category/:category/
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">
+      カテゴリー: 
+      <span class="category-name">{{ page.category | default: "すべて" }}</span>
+    </h1>
+    <p class="page-subtitle">{{ page.category }}に関する記事一覧</p>
+  </div>
+</section>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="category-nav">
+      <div class="category-tabs">
+        <a href="{{ '/blog/' | relative_url }}" class="category-tab {% unless page.category %}active{% endunless %}">
+          すべて
+        </a>
+        <a href="{{ '/blog/category/ai-marketing/' | relative_url }}" class="category-tab {% if page.category == 'ai-marketing' %}active{% endif %}">
+          AIマーケティング
+        </a>
+        <a href="{{ '/blog/category/psychology/' | relative_url }}" class="category-tab {% if page.category == 'psychology' %}active{% endif %}">
+          消費者心理
+        </a>
+        <a href="{{ '/blog/category/case-study/' | relative_url }}" class="category-tab {% if page.category == 'case-study' %}active{% endif %}">
+          導入事例
+        </a>
+        <a href="{{ '/blog/category/tips/' | relative_url }}" class="category-tab {% if page.category == 'tips' %}active{% endif %}">
+          実践テクニック
+        </a>
+        <a href="{{ '/blog/category/news/' | relative_url }}" class="category-tab {% if page.category == 'news' %}active{% endif %}">
+          お知らせ
+        </a>
+      </div>
+    </div>
+
+    <div class="blog-grid">
+      <div class="blog-main">
+        <div class="blog-list">
+          {% assign filtered_posts = site.posts %}
+          {% if page.category %}
+            {% assign filtered_posts = site.posts | where_exp: "post", "post.categories contains page.category" %}
+          {% endif %}
+          
+          {% if filtered_posts.size > 0 %}
+            {% for post in filtered_posts limit: 10 %}
+            <article class="post-item glass-card">
+              <div class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</div>
+              <h2 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h2>
+              {% if post.excerpt %}
+              <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+              {% endif %}
+              <div class="post-meta">
+                {% if post.categories %}
+                <span class="categories">
+                  {% for category in post.categories %}
+                  <a href="{{ '/blog/category/' | append: category | slugify | append: '/' | relative_url }}">{{ category }}</a>
+                  {% endfor %}
+                </span>
+                {% endif %}
+                <a href="{{ post.url | relative_url }}" class="read-more">続きを読む →</a>
+              </div>
+            </article>
+            {% endfor %}
+          {% else %}
+            <div class="no-posts glass-card">
+              <div class="no-posts-content">
+                <div class="no-posts-icon">📝</div>
+                <h3>記事が見つかりません</h3>
+                <p>「{{ page.category }}」カテゴリーの記事はまだありません。</p>
+                <a href="{{ '/blog/' | relative_url }}" class="btn btn-primary">すべての記事を見る</a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Load More Button -->
+        {% if filtered_posts.size > 10 %}
+        <div class="load-more-section">
+          <button class="btn btn-outline load-more-btn" onclick="loadMorePosts()">
+            さらに記事を読み込み
+          </button>
+        </div>
+        {% endif %}
+      </div>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-widget glass-card">
+          <h3>カテゴリー別記事数</h3>
+          <ul class="category-count-list">
+            <li>
+              <a href="{{ '/blog/category/ai-marketing/' | relative_url }}">
+                <span class="category-name">AIマーケティング</span>
+                <span class="category-count">
+                  {{ site.posts | where_exp: "post", "post.categories contains 'ai-marketing'" | size }}
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/blog/category/psychology/' | relative_url }}">
+                <span class="category-name">消費者心理</span>
+                <span class="category-count">
+                  {{ site.posts | where_exp: "post", "post.categories contains 'psychology'" | size }}
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/blog/category/case-study/' | relative_url }}">
+                <span class="category-name">導入事例</span>
+                <span class="category-count">
+                  {{ site.posts | where_exp: "post", "post.categories contains 'case-study'" | size }}
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/blog/category/tips/' | relative_url }}">
+                <span class="category-name">実践テクニック</span>
+                <span class="category-count">
+                  {{ site.posts | where_exp: "post", "post.categories contains 'tips'" | size }}
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/blog/category/news/' | relative_url }}">
+                <span class="category-name">お知らせ</span>
+                <span class="category-count">
+                  {{ site.posts | where_exp: "post", "post.categories contains 'news'" | size }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget glass-card">
+          <h3>最新記事</h3>
+          <ul class="recent-posts">
+            {% for post in site.posts limit: 5 %}
+            <li>
+              <a href="{{ post.url | relative_url }}">
+                <div class="recent-post-meta">
+                  <time>{{ post.date | date: "%m.%d" }}</time>
+                  {% if post.categories %}
+                  <span class="category">{{ post.categories | first }}</span>
+                  {% endif %}
+                </div>
+                <div class="recent-post-title">{{ post.title }}</div>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="sidebar-widget glass-card cta-widget">
+          <h3>AI×心理学診断</h3>
+          <p>あなたのビジネスに最適なAI活用方法を無料で診断します</p>
+          <a href="#" onclick="openContactForm(); return false;" class="btn btn-primary btn-sm">
+            無料診断を受ける
+          </a>
+        </div>
+
+        <div class="sidebar-widget glass-card">
+          <h3>人気のタグ</h3>
+          <div class="tag-cloud">
+            {% assign tags = site.posts | map: 'tags' | join: ',' | split: ',' | sort %}
+            {% assign unique_tags = tags | uniq %}
+            {% for tag in unique_tags limit: 15 %}
+              {% if tag != "" %}
+              <a href="{{ '/blog/tag/' | append: tag | slugify | append: '/' | relative_url }}" class="tag-cloud-item">
+                {{ tag }}
+              </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+.category-nav {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-tabs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-tab {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  color: #d1d5db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.category-tab:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #8b5cf6;
+  transform: translateY(-2px);
+}
+
+.category-tab.active {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.category-name {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.blog-section {
+  padding: 2rem 0 4rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+}
+
+@media (max-width: 968px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .category-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  
+  .category-tab {
+    white-space: nowrap;
+  }
+}
+
+.post-item {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border-radius: 15px;
+}
+
+.post-item:hover {
+  transform: translateX(5px);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.post-date {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.post-title {
+  margin-bottom: 1rem;
+}
+
+.post-title a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.post-title a:hover {
+  color: #8b5cf6;
+}
+
+.post-excerpt {
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.categories a {
+  color: #8b5cf6;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-size: 0.875rem;
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.categories a:hover {
+  background: rgba(139, 92, 246, 0.2);
+  transform: translateY(-1px);
+}
+
+.read-more {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  color: #ec4899;
+  transform: translateX(3px);
+}
+
+.no-posts {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.no-posts-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.no-posts-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+
+.no-posts h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #f3f4f6;
+}
+
+.no-posts p {
+  color: #9ca3af;
+  margin-bottom: 2rem;
+}
+
+.load-more-section {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.load-more-btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+.sidebar-widget {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 15px;
+}
+
+.sidebar-widget h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #f3f4f6;
+}
+
+.category-count-list {
+  list-style: none;
+}
+
+.category-count-list li {
+  margin-bottom: 0.75rem;
+}
+
+.category-count-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #d1d5db;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.category-count-list a:hover {
+  color: #8b5cf6;
+}
+
+.category-count {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.recent-posts {
+  list-style: none;
+}
+
+.recent-posts li {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.recent-posts li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.recent-posts a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.recent-posts a:hover {
+  color: #fff;
+}
+
+.recent-post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.recent-post-meta .category {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8b5cf6;
+  padding: 0.125rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.recent-post-title {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.cta-widget {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.cta-widget p {
+  color: #d1d5db;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-cloud-item {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.tag-cloud-item:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #8b5cf6;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .sidebar-widget {
+    padding: 1.25rem;
+  }
+}
+</style>
+
+<script>
+function loadMorePosts() {
+  // This would typically load more posts via AJAX
+  // For static Jekyll sites, you might implement pagination or use a plugin
+  console.log('Load more posts functionality would be implemented here');
+  
+  // For now, just show a message
+  const button = document.querySelector('.load-more-btn');
+  button.textContent = '読み込み中...';
+  button.disabled = true;
+  
+  setTimeout(() => {
+    button.textContent = 'さらに記事を読み込み';
+    button.disabled = false;
+  }, 1000);
+}
+</script>

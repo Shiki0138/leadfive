@@ -1,0 +1,53 @@
+name: Blog Post from Messaging App
+
+on:
+  repository_dispatch:
+    types: [blog-post-from-line, blog-post-from-slack, blog-post-from-telegram, blog-post-from-email, create-blog-post]
+
+jobs:
+  create-blog-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: |
+          npm install @anthropic-ai/sdk
+          npm install slugify
+          npm install front-matter
+      
+      - name: Generate Premium Blog Post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          TOPIC: ${{ github.event.client_payload.topic || github.event.client_payload.title }}
+          DESCRIPTION: ${{ github.event.client_payload.description }}
+          AUDIENCE: ${{ github.event.client_payload.audience }}
+          CATEGORY: ${{ github.event.client_payload.category }}
+          CUSTOM_INSTRUCTION: ${{ github.event.client_payload.customInstruction }}
+          URGENCY: ${{ github.event.client_payload.urgency }}
+          READ_TIME: ${{ github.event.client_payload.readTime }}
+          TIMESTAMP: ${{ github.event.client_payload.timestamp }}
+          WEEKLY_THEME: ${{ github.event.client_payload.weeklyTheme }}
+          OPTIMIZED_IMAGE_URL: ${{ github.event.client_payload.optimizedImageUrl }}
+        run: |
+          # プレミアムClaude生成システムを使用
+          node scripts/premium-claude-content-generator.js
+      
+      - name: Commit and Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name 'LeadFive Blog Bot'
+          git config --global user.email 'bot@leadfive138.com'
+          git add _posts/
+          git commit -m "📝 New blog post: ${TOPIC:0:50}..." || echo "No changes to commit"
+          git push origin main || echo "No changes to push"

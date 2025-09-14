@@ -1,0 +1,256 @@
+name: 📝 オンデマンドブログ投稿
+
+on:
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: 'ブログのキーワード（例：AIマーケティング 最新トレンド）'
+        required: true
+        type: string
+      title:
+        description: 'タイトル（オプション - 空欄の場合は自動生成）'
+        required: false
+        type: string
+      category:
+        description: 'カテゴリー'
+        required: true
+        type: choice
+        options:
+          - AIマーケティング
+          - 消費者心理
+          - 成功事例
+          - 実践テクニック
+          - トレンド分析
+          - 業界別ガイド
+        default: AIマーケティング
+      instinct:
+        description: '訴求する本能'
+        required: true
+        type: choice
+        options:
+          - learning（学習欲）
+          - hierarchy（地位向上）
+          - survival（リスク回避）
+          - territorial（競争優位）
+          - nurturing（顧客ケア）
+          - reproduction（成長拡大）
+        default: learning
+      publish_immediately:
+        description: 'すぐに公開する'
+        required: true
+        type: boolean
+        default: true
+
+env:
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+    - name: 📥 リポジトリチェックアウト
+      uses: actions/checkout@v4
+      with:
+        token: ${{ github.token }}
+        persist-credentials: true
+    
+    - name: 📋 Node.js セットアップ
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: 🔧 Ruby セットアップ
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.0'
+    
+    - name: 📦 Ruby 依存関係インストール
+      run: |
+        gem update --system
+        gem install bundler -v 2.4.0
+        bundle config set --local path 'vendor/bundle'
+        bundle install || echo "Bundle install failed, continuing..."
+    
+    - name: 📦 Node.js 依存関係インストール
+      run: |
+        cd scripts/blog-automation
+        npm install
+    
+    - name: 🎯 ブログ生成パラメータ設定
+      id: blog-params
+      run: |
+        echo "keyword=${{ inputs.keyword }}" >> $GITHUB_OUTPUT
+        echo "category=${{ inputs.category }}" >> $GITHUB_OUTPUT
+        echo "instinct=${{ inputs.instinct }}" >> $GITHUB_OUTPUT
+        
+        # タイトルが指定されていない場合は空文字
+        if [ -n "${{ inputs.title }}" ]; then
+          echo "title=${{ inputs.title }}" >> $GITHUB_OUTPUT
+        else
+          echo "title=" >> $GITHUB_OUTPUT
+        fi
+        
+        # 日本時間での日付
+        TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M' > generation_time.txt
+        echo "generated_at=$(cat generation_time.txt)" >> $GITHUB_OUTPUT
+    
+    - name: 🤖 ブログ記事生成
+      id: generate
+      run: |
+        cd scripts/blog-automation
+        
+        # 環境変数設定
+        export BLOG_KEYWORD="${{ steps.blog-params.outputs.keyword }}"
+        export BLOG_CATEGORY="${{ steps.blog-params.outputs.category }}"
+        export BLOG_INSTINCT="${{ steps.blog-params.outputs.instinct }}"
+        export BLOG_TITLE="${{ steps.blog-params.outputs.title }}"
+        
+        # APIキーの確認と生成
+        if [ -n "${{ env.GEMINI_API_KEY }}" ]; then
+          echo "✅ Gemini APIを使用して生成"
+          node gemini-blog-generator.js "$BLOG_KEYWORD" || {
+            echo "⚠️ Gemini API失敗 - モックジェネレーターにフォールバック"
+            node mock-blog-generator.js "$BLOG_KEYWORD"
+          }
+        elif [ -n "${{ env.ANTHROPIC_API_KEY }}" ]; then
+          echo "✅ Claude APIを使用して生成"
+          node claude-blog-generator.js "$BLOG_KEYWORD" || {
+            echo "⚠️ Claude API失敗 - モックジェネレーターにフォールバック"
+            node mock-blog-generator.js "$BLOG_KEYWORD"
+          }
+        else
+          echo "⚠️ APIキーなし - モックジェネレーターを使用"
+          node mock-blog-generator.js "$BLOG_KEYWORD"
+        fi
+        
+        # 生成結果の確認
+        TODAY=$(date '+%Y-%m-%d')
+        NEW_POST=$(find ../../_posts -name "${TODAY}-*.md" -type f | head -1)
+        
+        if [ -n "$NEW_POST" ]; then
+          echo "success=true" >> $GITHUB_OUTPUT
+          echo "filename=$(basename $NEW_POST)" >> $GITHUB_OUTPUT
+          
+          # タイトルを抽出
+          TITLE=$(grep '^title:' "$NEW_POST" | sed 's/title: *"*\([^"]*\)"*/\1/')
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+        else
+          echo "success=false" >> $GITHUB_OUTPUT
+          exit 1
+        fi
+    
+    - name: 🔨 Jekyll ビルド（オプション）
+      if: steps.generate.outputs.success == 'true'
+      run: |
+        echo "Jekyll ビルドをスキップ（GitHub Pages が自動的にビルドします）"
+        # bundle exec jekyll build || echo "Jekyll build skipped"
+    
+    - name: 📤 変更をコミット・プッシュ
+      if: steps.generate.outputs.success == 'true' && inputs.publish_immediately
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "GitHub Actions Blog Bot"
+        
+        # 必要なディレクトリを作成
+        mkdir -p assets/images/blog
+        
+        # 変更をステージング
+        git add _posts/ || echo "No posts to add"
+        git add assets/images/blog/ 2>/dev/null || echo "No images to add"
+        git add _site/ 2>/dev/null || echo "No _site to add"
+        
+        # コミット
+        COMMIT_TITLE="📝 ブログ投稿: ${{ steps.generate.outputs.title }}"
+        COMMIT_BODY="キーワード: ${{ inputs.keyword }}
+        カテゴリー: ${{ inputs.category }}
+        生成時刻: ${{ steps.blog-params.outputs.generated_at }} JST
+        実行者: ${{ github.actor }}"
+        
+        git commit -m "$COMMIT_TITLE" -m "$COMMIT_BODY" || echo "No changes to commit"
+        
+        # Push with GitHub token
+        git push origin HEAD:main || echo "Push failed"
+    
+    - name: 📊 サマリー作成
+      if: always()
+      run: |
+        echo "## 📝 ブログ生成結果" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ steps.generate.outputs.success }}" == "true" ]; then
+          echo "✅ **生成成功**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **タイトル**: ${{ steps.generate.outputs.title }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **ファイル**: ${{ steps.generate.outputs.filename }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **キーワード**: ${{ inputs.keyword }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **カテゴリー**: ${{ inputs.category }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **訴求本能**: ${{ inputs.instinct }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **生成時刻**: ${{ steps.blog-params.outputs.generated_at }} JST" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ inputs.publish_immediately }}" == "true" ]; then
+            echo "📢 **公開状態**: 即時公開済み" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "記事は数分後にサイトに反映されます。" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "📋 **公開状態**: 下書き保存" >> $GITHUB_STEP_SUMMARY
+          fi
+        else
+          echo "❌ **生成失敗**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "エラーログを確認してください。" >> $GITHUB_STEP_SUMMARY
+        fi
+    
+    - name: 💬 Slack 通知
+      if: steps.generate.outputs.success == 'true' && env.SLACK_WEBHOOK_URL != ''
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        curl -X POST $SLACK_WEBHOOK_URL \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "text": "📝 ブログ記事が生成されました",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*📝 新しいブログ記事が生成されました*"
+                }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*タイトル*\n${{ steps.generate.outputs.title }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*実行者*\n${{ github.actor }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*キーワード*\n${{ inputs.keyword }}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*カテゴリー*\n${{ inputs.category }}"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "🔗 <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|詳細を見る>"
+                }
+              }
+            ]
+          }'

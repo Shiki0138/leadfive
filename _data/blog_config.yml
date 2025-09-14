@@ -1,0 +1,93 @@
+# Blog Automatic Posting System Configuration
+# ブログ自動投稿システム設定
+
+# API Configuration
+api:
+  # AIサービスのエンドポイント（将来的な実装用）
+  endpoint: "https://api.leadfive.com/blog/generate"
+  version: "v1"
+  
+# Posting Schedule
+schedule:
+  enabled: true
+  frequency: "weekly"  # daily, weekly, biweekly, monthly
+  time: "10:00"
+  timezone: "Asia/Tokyo"
+  
+# Content Generation Settings
+content:
+  # 記事の長さ設定
+  min_words: 1500
+  max_words: 3000
+  
+  # SEO最適化
+  seo:
+    meta_description_length: 150
+    focus_keywords_count: 5
+    
+  # 8つの本能の活用設定
+  instincts:
+    - survival: "生存本能"
+    - reproduction: "生殖本能"
+    - nurturing: "養育本能"
+    - territorial: "縄張り本能"
+    - hierarchy: "階層本能"
+    - learning: "学習本能"
+    - communication: "伝達本能"
+    - play: "遊戯本能"
+    
+# Categories
+categories:
+  - id: "ai-marketing"
+    name: "AIマーケティング"
+    keywords: ["AI", "人工知能", "マーケティング", "自動化"]
+    
+  - id: "psychology"
+    name: "消費者心理"
+    keywords: ["心理学", "消費者行動", "購買心理", "8つの本能"]
+    
+  - id: "case-study"
+    name: "導入事例"
+    keywords: ["事例", "成功事例", "実績", "効果"]
+    
+  - id: "tips"
+    name: "実践テクニック"
+    keywords: ["ハウツー", "テクニック", "方法", "実践"]
+    
+  - id: "news"
+    name: "お知らせ"
+    keywords: ["ニュース", "更新情報", "お知らせ"]
+
+# Template Patterns
+templates:
+  - type: "how-to"
+    structure:
+      - "問題提起"
+      - "解決策の提示"
+      - "具体的な手順"
+      - "実例・ケーススタディ"
+      - "まとめとCTA"
+      
+  - type: "analysis"
+    structure:
+      - "トピックの紹介"
+      - "現状分析"
+      - "トレンド解説"
+      - "将来予測"
+      - "アクションプラン"
+      
+  - type: "case-study"
+    structure:
+      - "クライアント紹介"
+      - "課題と背景"
+      - "実施内容"
+      - "結果と効果"
+      - "学びと応用"
+
+# Auto-generation Rules
+rules:
+  - "必ず8つの本能のいずれかに関連付ける"
+  - "具体的な数値やデータを含める"
+  - "実践可能なアクションを提供する"
+  - "LeadFiveのサービスへの自然な誘導を含める"
+  - "読者の課題解決に焦点を当てる"

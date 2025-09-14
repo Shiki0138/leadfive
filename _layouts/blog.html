@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="blog-container">
+  {{ content }}
+</div>
+
+<style>
+.blog-container {
+  padding-top: 80px; /* Space for fixed header */
+  min-height: calc(100vh - 400px); /* Reduced to ensure footer is visible */
+  background: #ffffff;
+  margin-bottom: 3rem;
+}
+
+/* Force blog navigation styles */
+body.blog-page .site-header {
+  background: #1e3a8a !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.blog-page .navbar {
+  background: transparent !important;
+}
+
+body.blog-page .nav-link {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+body.blog-page .nav-link:hover {
+  color: #ffffff !important;
+  opacity: 0.8 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.blog-page .navbar-brand .logo-text {
+  color: #ffffff !important;
+}
+
+body.blog-page .navbar-toggler span {
+  background: #ffffff !important;
+}
+
+/* Force button styles */
+body.blog-page .btn-primary,
+body.blog-page .navbar-cta .btn,
+body.blog-page button[onclick*="openContactForm"] {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+</style>

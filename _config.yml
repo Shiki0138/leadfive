@@ -1,0 +1,120 @@
+# Site settings
+title: "AI×心理学で売上を科学する | Leadfive"
+email: leadfive.138@gmail.com
+description: >-
+  マーケティングとAIを掛け合わせ、予測可能な成長をあなたのビジネスに。
+baseurl: ""
+url: "https://leadfive138.com"
+lang: ja
+
+# Company information
+company:
+  name: "合同会社Leadfive"
+  address: "大阪府大阪市北区梅田１−１３−１大阪梅田ツインタワーズ・サウス１５階"
+  phone: "06-7713-6747"
+  email: "leadfive.138@gmail.com"
+  representative: "山下　公一"
+  established: "2024年4月8日"
+
+# フォーム設定
+forms:
+  contact_email: "leadfive.138@gmail.com"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sass-converter
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Pagination
+paginate: 10
+paginate_path: "/blog/page:num/"
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: "_pages"
+    values:
+      layout: "page"
+
+# Include pages directory
+include:
+  - _pages
+
+# Ensure blog directory is not excluded
+keep_files:
+  - blog
+
+# Collections
+collections:
+  services:
+    output: true
+    permalink: /services/:path/
+  case_studies:
+    output: true
+    permalink: /case-studies/:path/
+  virtual:
+    output: true
+    permalink: /virtual/:path/
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - package.json
+  - scripts/
+  - blog-wizard.js
+  - blog-ai-assistant.js
+  - blog-server.js
+
+# SEO
+twitter:
+  username: leadfive
+  card: summary_large_image
+
+social:
+  name: LeadFive
+  links:
+    - https://twitter.com/leadfive
+    - https://www.facebook.com/leadfive
+    - https://www.linkedin.com/company/leadfive
+
+# Analytics
+google_analytics: UA-XXXXXXXXX-X
+google_site_verification: q6vviBc2sXgMzgdgK8W8kZC1up1YXQJG11RjCAjxA6o
+
+# GitHub Pages specific settings
+github: [metadata]
+safe: true
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+
+# Security settings
+webrick:
+  headers:
+    My-Header: My-Value
+    X-Frame-Options: "SAMEORIGIN"
+    X-Content-Type-Options: "nosniff"
+    X-XSS-Protection: "1; mode=block"
+
+# Environment
+environment: production

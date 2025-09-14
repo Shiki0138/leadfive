@@ -1,0 +1,533 @@
+name: 🚀 日次自動ブログ生成システム
+
+on:
+  schedule:
+    # 毎日午前9時（UTC: 00:00 = JST: 09:00）に実行
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: '手動実行時のキーワード（オプション）'
+        required: false
+        type: string
+      force_generate:
+        description: '強制生成（キーワード待ちをスキップ）'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+
+jobs:
+  check-keyword-status:
+    runs-on: ubuntu-latest
+    outputs:
+      keyword: ${{ steps.keyword-check.outputs.keyword }}
+      should_generate: ${{ steps.keyword-check.outputs.should_generate }}
+      notification_sent: ${{ steps.keyword-check.outputs.notification_sent }}
+    
+    steps:
+    - name: 📥 リポジトリチェックアウト
+      uses: actions/checkout@v4
+      
+    - name: 📋 Node.js セットアップ
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: 📦 依存関係インストール
+      run: |
+        npm ci
+        npm install dotenv axios @actions/core @actions/github
+    
+    - name: 🔍 キーワード状況確認
+      id: keyword-check
+      run: |
+        node -e "
+        const fs = require('fs');
+        const axios = require('axios');
+        
+        // キーワードリクエストファイル確認
+        const requestFile = '.github/keyword-request.json';
+        const responseFile = '.github/keyword-response.json';
+        
+        let shouldGenerate = false;
+        let keyword = '';
+        let notificationSent = false;
+        
+        // 手動実行時のキーワード確認
+        if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch' && '${{ inputs.keyword }}') {
+          keyword = '${{ inputs.keyword }}';
+          shouldGenerate = true;
+          console.log('Manual keyword provided:', keyword);
+        }
+        // 強制生成フラグ確認
+        else if ('${{ inputs.force_generate }}' === 'true') {
+          const fallbackKeywords = [
+            'AI マーケティング 最新動向',
+            '心理学 マーケティング 実践',
+            'CVR 改善 具体例',
+            '顧客分析 AI 活用',
+            'デジタル変革 マーケティング'
+          ];
+          keyword = fallbackKeywords[Math.floor(Math.random() * fallbackKeywords.length)];
+          shouldGenerate = true;
+          console.log('Force generate with fallback keyword:', keyword);
+        }
+        // レスポンスファイル確認
+        else if (fs.existsSync(responseFile)) {
+          const response = JSON.parse(fs.readFileSync(responseFile, 'utf8'));
+          const now = new Date();
+          const responseTime = new Date(response.timestamp);
+          const hoursDiff = (now - responseTime) / (1000 * 60 * 60);
+          
+          // 24時間以内のレスポンス
+          if (hoursDiff <= 24 && response.keyword && response.approved) {
+            keyword = response.keyword;
+            shouldGenerate = true;
+            console.log('Using approved keyword:', keyword);
+            
+            // レスポンスファイル削除（使用済み）
+            fs.unlinkSync(responseFile);
+          }
+        }
+        
+        // キーワードリクエスト必要性チェック
+        if (!shouldGenerate) {
+          let needsRequest = true;
+          
+          if (fs.existsSync(requestFile)) {
+            const request = JSON.parse(fs.readFileSync(requestFile, 'utf8'));
+            const requestTime = new Date(request.timestamp);
+            const hoursDiff = (now - requestTime) / (1000 * 60 * 60);
+            
+            // 6時間以内にリクエスト済みなら送信しない
+            if (hoursDiff <= 6) {
+              needsRequest = false;
+              notificationSent = true;
+              console.log('Recent request exists, skipping notification');
+            }
+          }
+          
+          if (needsRequest) {
+            console.log('Need to request keyword from user');
+          }
+        }
+        
+        // GitHub Actions outputs設定
+        console.log('::set-output name=keyword::' + keyword);
+        console.log('::set-output name=should_generate::' + shouldGenerate);
+        console.log('::set-output name=notification_sent::' + notificationSent);
+        "
+  
+  request-keyword:
+    needs: check-keyword-status
+    runs-on: ubuntu-latest
+    if: needs.check-keyword-status.outputs.should_generate == 'false' && needs.check-keyword-status.outputs.notification_sent == 'false'
+    
+    steps:
+    - name: 📥 リポジトリチェックアウト
+      uses: actions/checkout@v4
+      
+    - name: 📋 Node.js セットアップ
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: 📱 キーワードリクエスト送信
+      run: |
+        node -e "
+        const fs = require('fs');
+        const https = require('https');
+        const crypto = require('crypto');
+        
+        // リクエストID生成
+        const requestId = crypto.randomUUID();
+        const timestamp = new Date().toISOString();
+        
+        // リクエストファイル作成
+        const requestData = {
+          id: requestId,
+          timestamp: timestamp,
+          status: 'pending',
+          message: '今日のブログ記事のキーワードを教えてください'
+        };
+        
+        fs.writeFileSync('.github/keyword-request.json', JSON.stringify(requestData, null, 2));
+        
+        // LINE通知
+        if (process.env.LINE_NOTIFY_TOKEN) {
+          const lineData = \`message=🚀 LeadFive ブログシステム
+        
+📝 今日のブログ記事のキーワードをお聞かせください
+        
+⏰ 生成予定時刻: \${new Date(Date.now() + 9*60*60*1000).toLocaleString('ja-JP')} (JST)
+        
+💡 推奨キーワード例:
+• AI マーケティング 最新手法
+• 心理学 売上向上 実例
+• CVR改善 成功事例
+• 顧客分析 AI活用法
+        
+🔗 回答方法: GitHub Issues で '#keyword: あなたのキーワード' と投稿
+        
+リクエストID: \${requestId}\`;
+        
+          const lineOptions = {
+            hostname: 'notify-api.line.me',
+            port: 443,
+            path: '/api/notify',
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Bearer ' + process.env.LINE_NOTIFY_TOKEN
+            }
+          };
+        
+          const lineReq = https.request(lineOptions, (res) => {
+            console.log('LINE notification sent, status:', res.statusCode);
+          });
+        
+          lineReq.on('error', (e) => {
+            console.error('LINE notification error:', e);
+          });
+        
+          lineReq.write(lineData);
+          lineReq.end();
+        }
+        
+        // Slack通知
+        if (process.env.SLACK_WEBHOOK_URL) {
+          const slackData = JSON.stringify({
+            text: '🚀 LeadFive ブログシステム - キーワードリクエスト',
+            blocks: [
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: '*📝 今日のブログ記事のキーワードをお聞かせください*'
+                }
+              },
+              {
+                type: 'section',
+                fields: [
+                  {
+                    type: 'mrkdwn',
+                    text: '*⏰ 生成予定時刻*\\n' + new Date(Date.now() + 9*60*60*1000).toLocaleString('ja-JP') + ' (JST)'
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: '*🆔 リクエストID*\\n' + requestId
+                  }
+                ]
+              },
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: '*💡 推奨キーワード例:*\\n• AI マーケティング 最新手法\\n• 心理学 売上向上 実例\\n• CVR改善 成功事例\\n• 顧客分析 AI活用法'
+                }
+              },
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: '*🔗 回答方法:* GitHub Issues で \`#keyword: あなたのキーワード\` と投稿してください'
+                }
+              }
+            ]
+          });
+          
+          const slackOptions = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          };
+          
+          const url = new URL(process.env.SLACK_WEBHOOK_URL);
+          const slackReq = https.request({
+            hostname: url.hostname,
+            port: url.port || 443,
+            path: url.pathname,
+            ...slackOptions
+          }, (res) => {
+            console.log('Slack notification sent, status:', res.statusCode);
+          });
+          
+          slackReq.on('error', (e) => {
+            console.error('Slack notification error:', e);
+          });
+          
+          slackReq.write(slackData);
+          slackReq.end();
+        }
+        
+        console.log('Keyword request sent with ID:', requestId);
+        "
+    
+    - name: 📤 リクエストファイルコミット
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .github/keyword-request.json
+        git commit -m "🤖 キーワードリクエスト送信: $(date '+%Y-%m-%d %H:%M:%S')"
+        git push
+
+  generate-blog:
+    needs: check-keyword-status
+    runs-on: ubuntu-latest
+    if: needs.check-keyword-status.outputs.should_generate == 'true'
+    
+    steps:
+    - name: 📥 リポジトリチェックアウト
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: 📋 Node.js セットアップ
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: 🔧 Ruby セットアップ (Jekyll用)
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: true
+    
+    - name: 📦 依存関係インストール
+      run: |
+        npm ci
+        bundle install
+    
+    - name: 🚀 プロフェッショナルブログ生成
+      run: |
+        cd scripts
+        echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
+        echo "GOOGLE_SERP_API_KEY=${{ secrets.GOOGLE_SERP_API_KEY }}" >> .env
+        echo "UNSPLASH_API_KEY=${{ secrets.UNSPLASH_API_KEY }}" >> .env
+        
+        KEYWORD="${{ needs.check-keyword-status.outputs.keyword }}"
+        echo "Generating blog for keyword: $KEYWORD"
+        
+        node professional-blog-creator.js "$KEYWORD" || {
+          echo "Professional generator failed, trying premium engine..."
+          node premium-blog-engine.js "$KEYWORD" || {
+            echo "Premium engine failed, using fallback..."
+            node auto-blog-scheduler.js --test
+          }
+        }
+    
+    - name: 🔨 Jekyll ビルド
+      run: |
+        bundle exec jekyll build
+    
+    - name: ✅ 生成確認
+      id: check-generation
+      run: |
+        # 今日生成された記事を確認
+        TODAY=$(date '+%Y-%m-%d')
+        NEW_POST=$(find _posts -name "${TODAY}-*.md" | head -1)
+        
+        if [ -n "$NEW_POST" ]; then
+          echo "Generated post: $NEW_POST"
+          POST_TITLE=$(grep '^title:' "$NEW_POST" | sed 's/title: *"*\([^"]*\)"*/\1/')
+          echo "Post title: $POST_TITLE"
+          echo "::set-output name=success::true"
+          echo "::set-output name=filename::$(basename $NEW_POST)"
+          echo "::set-output name=title::$POST_TITLE"
+        else
+          echo "No post generated today"
+          echo "::set-output name=success::false"
+        fi
+    
+    - name: 📤 変更をコミット
+      if: steps.check-generation.outputs.success == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "LeadFive Blog Bot"
+        
+        # 生成された記事とビルドファイルをコミット
+        git add _posts/
+        git add _site/
+        git add logs/
+        
+        COMMIT_MSG="🤖 自動ブログ投稿: ${{ steps.check-generation.outputs.title }}"
+        git commit -m "$COMMIT_MSG" || echo "No changes to commit"
+        git push
+    
+    - name: 📱 成功通知送信
+      if: steps.check-generation.outputs.success == 'true'
+      run: |
+        node -e "
+        const https = require('https');
+        const filename = '${{ steps.check-generation.outputs.filename }}';
+        const title = '${{ steps.check-generation.outputs.title }}';
+        const keyword = '${{ needs.check-keyword-status.outputs.keyword }}';
+        const timestamp = new Date().toLocaleString('ja-JP');
+        const repoUrl = 'https://github.com/${{ github.repository }}';
+        const siteUrl = 'https://${{ github.repository_owner }}.github.io/leadfive/';
+        
+        // LINE成功通知
+        if (process.env.LINE_NOTIFY_TOKEN) {
+          const lineData = \`message=✅ ブログ記事生成完了！
+        
+📝 タイトル: \${title}
+🎯 キーワード: \${keyword}
+📄 ファイル: \${filename}
+⏰ 生成時刻: \${timestamp}
+        
+🌐 サイト: \${siteUrl}
+📁 GitHub: \${repoUrl}
+        
+🎉 記事は数分後にサイトに反映されます！\`;
+        
+          const lineOptions = {
+            hostname: 'notify-api.line.me',
+            port: 443,
+            path: '/api/notify',
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Bearer ' + process.env.LINE_NOTIFY_TOKEN
+            }
+          };
+        
+          const lineReq = https.request(lineOptions, (res) => {
+            console.log('LINE success notification sent');
+          });
+        
+          lineReq.write(lineData);
+          lineReq.end();
+        }
+        
+        // Slack成功通知
+        if (process.env.SLACK_WEBHOOK_URL) {
+          const slackData = JSON.stringify({
+            text: '✅ ブログ記事生成完了！',
+            blocks: [
+              {
+                type: 'section',
+                text: {
+                  type: 'mrkdwn',
+                  text: '*✅ ブログ記事生成完了！*'
+                }
+              },
+              {
+                type: 'section',
+                fields: [
+                  {
+                    type: 'mrkdwn',
+                    text: '*📝 タイトル*\\n' + title
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: '*🎯 キーワード*\\n' + keyword
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: '*📄 ファイル*\\n' + filename
+                  },
+                  {
+                    type: 'mrkdwn',
+                    text: '*⏰ 生成時刻*\\n' + timestamp
+                  }
+                ]
+              },
+              {
+                type: 'actions',
+                elements: [
+                  {
+                    type: 'button',
+                    text: {
+                      type: 'plain_text',
+                      text: '🌐 サイトを見る'
+                    },
+                    url: siteUrl
+                  },
+                  {
+                    type: 'button',
+                    text: {
+                      type: 'plain_text',
+                      text: '📁 GitHub'
+                    },
+                    url: repoUrl
+                  }
+                ]
+              }
+            ]
+          });
+          
+          const url = new URL(process.env.SLACK_WEBHOOK_URL);
+          const slackReq = https.request({
+            hostname: url.hostname,
+            port: 443,
+            path: url.pathname,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }, (res) => {
+            console.log('Slack success notification sent');
+          });
+          
+          slackReq.write(slackData);
+          slackReq.end();
+        }
+        "
+
+    - name: 📊 ダッシュボード更新
+      if: steps.check-generation.outputs.success == 'true'
+      run: |
+        # ダッシュボード用統計更新
+        node -e "
+        const fs = require('fs');
+        const statsFile = 'logs/auto-blog-stats.json';
+        
+        let stats = { total: 0, thisMonth: 0, lastGeneration: null, keywords: [] };
+        if (fs.existsSync(statsFile)) {
+          stats = JSON.parse(fs.readFileSync(statsFile, 'utf8'));
+        }
+        
+        const now = new Date();
+        const thisMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+        
+        stats.total++;
+        stats.thisMonth = stats.keywords.filter(k => k.date.startsWith(thisMonth)).length + 1;
+        stats.lastGeneration = now.toISOString();
+        stats.keywords.push({
+          keyword: '${{ needs.check-keyword-status.outputs.keyword }}',
+          title: '${{ steps.check-generation.outputs.title }}',
+          filename: '${{ steps.check-generation.outputs.filename }}',
+          date: now.toISOString().split('T')[0],
+          success: true
+        });
+        
+        // 最新100件のみ保持
+        if (stats.keywords.length > 100) {
+          stats.keywords = stats.keywords.slice(-100);
+        }
+        
+        fs.mkdirSync('logs', { recursive: true });
+        fs.writeFileSync(statsFile, JSON.stringify(stats, null, 2));
+        console.log('Stats updated:', stats.total, 'total articles');
+        "
+      
+    - name: 🚨 エラー通知
+      if: steps.check-generation.outputs.success == 'false'
+      run: |
+        echo "Blog generation failed, sending error notification..."
+        # エラー通知の実装（簡略版）
+        if [ -n "${{ env.LINE_NOTIFY_TOKEN }}" ]; then
+          curl -X POST https://notify-api.line.me/api/notify \
+            -H "Authorization: Bearer ${{ env.LINE_NOTIFY_TOKEN }}" \
+            -d "message=❌ ブログ生成エラー発生 - GitHub Actions をご確認ください"
+        fi

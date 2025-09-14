@@ -1,0 +1,527 @@
+/* 
+ * プレゼンテーション風フルスクリーンセクション CSS
+ * 動画背景付きウェブプレゼンテーション
+ */
+
+/* 動画背景設定 */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3; /* 動画の透明度を調整 - より見えやすく */
+  filter: brightness(0.8) contrast(1.2) saturate(1.2);
+  transition: opacity 0.8s ease;
+}
+
+/* 動画オーバーレイ */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 15, 20, 0.40) 0%,
+    rgba(25, 25, 35, 0.30) 50%,
+    rgba(15, 15, 20, 0.40) 100%
+  );
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+/* ヒーローセクション可視時は動画を強め・オーバーレイを薄く */
+body.hero-active .video-background video {
+  opacity: 0.6; /* ヒーロー時の動画を見えやすく */
+  filter: brightness(1) contrast(1.2) saturate(1.3);
+}
+
+body.hero-active .video-overlay {
+  opacity: 0.25;
+}
+
+/* テーマによるオーバーレイ濃度の自動切替 */
+body.theme-light .video-overlay { opacity: 0.35; }
+body.theme-dark .video-overlay { opacity: 0.30; }
+body.theme-transparent .video-overlay { opacity: 0.30; }
+
+/* フルスクリーンセクション基本設定 - ホームページのみ */
+body.homepage .fullscreen-section {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  scroll-snap-align: start;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* スクロールスナップ設定 - ホームページのみ */
+body.homepage {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* セクション別背景カスタマイゼーション */
+.hero-section {
+  background: transparent;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.problem-section,
+.philosophy-section,
+.case-studies-section,
+.why-now-section,
+.belief-section,
+.final-cta-section,
+.access-section {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+}
+
+/* Surface utility: 半透明のカード面で情報を載せる */
+.surface {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.surface--light { background: rgba(255, 255, 255, 0.9); }
+.surface--dark  { background: rgba(17, 24, 39, 0.7); color: rgba(255,255,255,0.92); }
+
+/* 白面系セクションは内側の container をカード化 */
+.problem-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.philosophy-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+}
+
+.case-studies-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.why-now-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(245, 158, 11, 0.08) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(239, 68, 68, 0.15);
+}
+
+.belief-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.final-cta-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+.access-section > .container {
+  max-width: 1100px;
+  padding: 2rem 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1a1a1a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* セクション内の可読性改善（白背景での薄い文字を濃く） */
+.philosophy-section .philosophy-text p,
+.philosophy-section .philosophy-text .lead {
+  color: rgba(255, 255, 255, 0.95); /* グラデーション背景に合わせて白文字に */
+  font-weight: 500;
+  line-height: 1.8;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.philosophy-section .instinct-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.philosophy-section .instinct-card h4 {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+}
+
+.philosophy-section .instinct-card p {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+/* Problem セクションの理由リスト文字色（白カード上で視認性を確保） */
+.problem-section .reasons-list li {
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Belief セクションの本文を濃く */
+.belief-section .message,
+.belief-section .representative-message p {
+  color: #111827;
+  font-weight: 500;
+}
+
+/* Access セクションの見出しと住所テキストを濃く */
+.access-section .access-details h3 {
+  color: #111827;
+  font-weight: 700;
+}
+.access-section .address-info p {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* ヒーローセクション特別スタイル */
+.hero-section .hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+}
+
+.hero-section .hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section .hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* セクション内コンテンツのスタイリング */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ナビゲーションヘッダー調整 */
+.site-header {
+  background: rgba(10, 10, 10, 0.9) !important;
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+}
+
+/* プレゼンテーション風アニメーション */
+.fullscreen-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fullscreen-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fullscreen-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* セクション間のスムーススクロール指示 */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* セクションナビゲーション */
+.section-nav {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.section-nav-dot.active {
+  background: #8b5cf6;
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: scale(1.3);
+}
+
+.section-nav-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(1.1);
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .fullscreen-section {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+  
+  .hero-section .hero-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-section .hero-subtitle {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-nav {
+    right: 1rem;
+    display: none; /* モバイルでは非表示 */
+  }
+  
+  .problem-section,
+  .philosophy-section,
+  .services-section,
+  .case-studies-section,
+  .why-now-section,
+  .belief-section,
+  .final-cta-section,
+  .access-section {
+    margin: 1vh;
+    border-radius: 15px;
+    padding: 2rem 1rem;
+  }
+  
+  .video-background video {
+    opacity: 0.25; /* モバイルでも動画を見やすく */
+  }
+
+  /* モバイル時のヒーロー表示中の動画の見え方を微調整 */
+  body.hero-active .video-background video {
+    opacity: 0.4; /* モバイルでも視認性向上 */
+  }
+}
+
+/* タブレット対応 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .fullscreen-section {
+    padding: 1.5rem;
+  }
+  
+  .hero-section .hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+  }
+  
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+}
+
+/* 高解像度ディスプレイ対応 */
+@media (min-width: 1920px) {
+  .fullscreen-section {
+    padding: 3rem;
+  }
+  
+  .hero-section .hero-content {
+    max-width: 1200px;
+  }
+  
+  .section-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+  }
+}
+
+/* セクション固有のスタイル調整 */
+.services-section .services-grid,
+.case-studies-section .case-studies-grid {
+  display: grid;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-section .services-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.case-studies-section .case-studies-grid {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+/* デスクトップではサービスを2x2に固定してバランス改善 */
+@media (min-width: 768px) {
+  .services-section .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .services-section .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* フッターをスナップ対象の最終セクションとして扱う */
+.site-footer.fullscreen-section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.95) 100%);
+  color: #ffffff;
+}
+
+/* ヒーローのキャンバスを弱めて動画を優先 */
+.hero-background canvas#neural-network-canvas {
+  opacity: 0.2;
+}
+
+/* アクセシビリティ: 動画を無効にするオプション */
+@media (prefers-reduced-motion: reduce) {
+  .video-background video {
+    display: none;
+  }
+  
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+  
+  .fullscreen-section {
+    scroll-snap-align: none;
+  }
+}
+
+/* プリント対応 */
+@media print {
+  .video-background,
+  .video-overlay,
+  .section-nav,
+  .scroll-indicator {
+    display: none;
+  }
+  
+  .fullscreen-section {
+    min-height: auto;
+    page-break-inside: avoid;
+    background: white !important;
+    color: black !important;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
