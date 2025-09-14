@@ -1,3 +1,7 @@
+---
+render_with_liquid: false
+---
+
 # Component Specifications - LeadFive Website
 
 ## Core Component Library

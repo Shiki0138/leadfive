@@ -1,3 +1,7 @@
+---
+render_with_liquid: false
+---
+
 # Technical Implementation Plan - LeadFive Website
 
 ## アーキテクチャ概要
@@ -241,13 +245,13 @@ export default function DesireOctagon() {
                 <motion.div
                   key={desire.id}
                   className="absolute w-32 h-32 -translate-x-1/2 -translate-y-1/2"
-                  style={{ left: `${x}%`, top: `${y}%` }}
-                  whileHover={{ scale: 1.1 }}
-                  onClick={() => setSelectedDesire(desire)}
+                  style={% raw %}{{ left: `${x}%`, top: `${y}%` }}{% endraw %}
+                  whileHover={% raw %}{{ scale: 1.1 }}{% endraw %}
+                  onClick={% raw %}{() => setSelectedDesire(desire)}{% endraw %}
                 >
-                  <div className={`w-full h-full rounded-full bg-gradient-to-br ${desire.color} flex flex-col items-center justify-center cursor-pointer shadow-lg`}>
-                    <span className="text-3xl mb-1">{desire.icon}</span>
-                    <span className="text-white font-semibold text-sm">{desire.name}</span>
+                  <div className={% raw %}{`w-full h-full rounded-full bg-gradient-to-br ${desire.color} flex flex-col items-center justify-center cursor-pointer shadow-lg`}{% endraw %}>
+                    <span className="text-3xl mb-1">{% raw %}{desire.icon}{% endraw %}</span>
+                    <span className="text-white font-semibold text-sm">{% raw %}{desire.name}{% endraw %}</span>
                   </div>
                 </motion.div>
               )

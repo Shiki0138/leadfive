@@ -1,3 +1,7 @@
+---
+render_with_liquid: false
+---
+
 # LeadFive Website Renewal Concept - 人間の根源的欲求×AI革新
 
 ## コンセプト概要
@@ -296,7 +300,7 @@ function DesireOctagon() {
               left: `calc(50% + ${x}px - 40px)`,
               top: `calc(50% + ${y}px - 40px)`,
             }}{% endraw %}
-            whileHover={{ scale: 1.2 }}
+            whileHover={% raw %}{{ scale: 1.2 }}{% endraw %}
             onClick={() => setSelected(desire)}
           >
             <span className="text-white font-bold">{desire.name}</span>
