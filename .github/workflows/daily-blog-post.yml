@@ -1,4 +1,4 @@
-name: Daily Automated Blog Post
+name: 🤖 自動ブログ投稿（メイン）
 
 on:
   schedule:
@@ -7,14 +7,23 @@ on:
   # 手動実行も可能にする
   workflow_dispatch:
     inputs:
+      api_provider:
+        description: 'AI APIプロバイダー'
+        required: true
+        default: 'gemini'
+        type: choice
+        options:
+          - gemini
+          - claude
+          - openai
       instinct:
-        description: '本能タイプ (生存本能, 食欲本能, 性的本能, 危機回避本能, 快適本能, 愛情本能, 承認本能, 学習本能)'
+        description: '本能タイプ（空欄で自動選択）'
         required: false
-        default: 'random'
+        default: ''
       category:
-        description: 'カテゴリー (AI心理学, マーケティング戦略, ケーススタディ, 業界トレンド, ツール・技術, ベストプラクティス)'
+        description: 'カテゴリー（空欄で自動選択）'
         required: false
-        default: 'random'
+        default: ''
 
 jobs:
   create-blog-post:
@@ -38,10 +47,15 @@ jobs:
     
     - name: Generate blog post
       env:
+        # API keys based on provider selection
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
-        INSTINCT: ${{ github.event.inputs.instinct || 'random' }}
-        CATEGORY: ${{ github.event.inputs.category || 'random' }}
+        # Parameters
+        API_PROVIDER: ${{ github.event.inputs.api_provider || 'gemini' }}
+        INSTINCT: ${{ github.event.inputs.instinct || '' }}
+        CATEGORY: ${{ github.event.inputs.category || '' }}
       run: |
         cd leadfive-demo
         node scripts/auto-blog-generator-complete.js
