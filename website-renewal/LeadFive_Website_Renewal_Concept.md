@@ -291,11 +291,11 @@ function DesireOctagon() {
           <motion.div
             key={desire.id}
             className="absolute w-20 h-20 rounded-full cursor-pointer"
-            style={{
+            style={% raw %}{{
               backgroundColor: desire.color,
               left: `calc(50% + ${x}px - 40px)`,
               top: `calc(50% + ${y}px - 40px)`,
-            }}
+            }}{% endraw %}
             whileHover={{ scale: 1.2 }}
             onClick={() => setSelected(desire)}
           >

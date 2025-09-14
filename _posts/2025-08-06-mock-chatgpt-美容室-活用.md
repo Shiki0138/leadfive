@@ -31,7 +31,7 @@ ChatGPT 美容室　活用で本当に成功するには、**AIに頼りすぎ�
 
 
 
-{{INTERNAL_LINK:AI活用の新常識}}
+<!-- INTERNAL_LINK: AI活用の新常識 -->
 
 ## 導入のメリット
 

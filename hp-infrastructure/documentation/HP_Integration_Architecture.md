@@ -472,9 +472,9 @@ class HPCertificateManager:
     
     - name: Create 3PAR Volume
       hpe3par_volume:
-        storage_system_ip: "{{ 3par_ip }}"
-        storage_system_username: "{{ 3par_user }}"
-        storage_system_password: "{{ 3par_password }}"
+        storage_system_ip: "{{ three_par_ip }}"
+        storage_system_username: "{{ three_par_user }}"
+        storage_system_password: "{{ three_par_password }}"
         volume_name: "{{ volume_name }}"
         size: "{{ volume_size_gb }}"
         cpg: "SSD_CPG"

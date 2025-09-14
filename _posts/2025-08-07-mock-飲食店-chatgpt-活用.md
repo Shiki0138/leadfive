@@ -31,7 +31,7 @@ mock_generated: true
 
 
 
-{{INTERNAL_LINK:AI活用の新常識}}
+<!-- INTERNAL_LINK: AI活用の新常識 -->
 
 ## 導入のメリット
 

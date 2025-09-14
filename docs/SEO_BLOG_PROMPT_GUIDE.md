@@ -62,16 +62,16 @@ SEOとクリック率を両立するタイトル5案：
 - 読了メリット
 
 ## h2: 基本概念・背景
-{{IMAGE:概念図}}
-{{INTERNAL_LINK:基礎知識}}
+<!-- IMAGE: 概念図 -->
+<!-- INTERNAL_LINK: 基礎知識 -->
 
 ## h2: 具体的方法
-{{IMAGE:手順図}}
-{{INTERNAL_LINK:実践ガイド}}
+<!-- IMAGE: 手順図 -->
+<!-- INTERNAL_LINK: 実践ガイド -->
 
 ## h2: 事例・注意点
-{{IMAGE:事例}}
-{{INTERNAL_LINK:事例集}}
+<!-- IMAGE: 事例 -->
+<!-- INTERNAL_LINK: 事例集 -->
 
 ## h2: まとめ
 - 要点整理
