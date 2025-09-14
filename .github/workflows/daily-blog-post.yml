@@ -34,16 +34,17 @@ jobs:
     - name: Install dependencies
       run: |
         cd leadfive-demo
-        npm install
+        npm install @google/generative-ai axios sharp js-yaml
     
     - name: Generate blog post
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         INSTINCT: ${{ github.event.inputs.instinct || 'random' }}
         CATEGORY: ${{ github.event.inputs.category || 'random' }}
       run: |
         cd leadfive-demo
-        node scripts/auto-blog-generator.js
+        node scripts/auto-blog-generator-complete.js
     
     - name: Commit and push new blog post
       run: |
