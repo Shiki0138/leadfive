@@ -120,6 +120,7 @@ async function fetchUnsplashImage(keywords, usedImageIds = []) {
     return {
       id: selectedPhoto.id,
       url: selectedPhoto.urls.regular,
+      urls: selectedPhoto.urls,
       credit: {
         photographer: selectedPhoto.user.name,
         photographerUrl: selectedPhoto.user.links.html,
@@ -235,6 +236,7 @@ class AutoBlogGeneratorComplete {
 
 3. トーン: プロフェッショナルかつ親しみやすい
 4. SEO: 自然にキーワードを配置
+5. 重要: 1つの記事のみ生成してください。複数のバージョンや別の記事を含めないでください。
 
 `;
       
@@ -253,7 +255,9 @@ class AutoBlogGeneratorComplete {
           const fallbackModel = genAI.getGenerativeModel({ model: FALLBACK_GEMINI_MODEL });
           const fallbackResult = await fallbackModel.generateContent(systemPrompt + prompt);
           const fallbackResponse = await fallbackResult.response;
-          return fallbackResponse.text();
+          const fallbackText = fallbackResponse.text();
+          console.log(`🎆 フォールバックモデル使用: ${FALLBACK_GEMINI_MODEL}`);
+          return fallbackText;
         } catch (fallbackError) {
           console.error('Gemini フォールバックモデルでもエラー:', fallbackError);
           throw fallbackError;
@@ -307,17 +311,20 @@ class AutoBlogGeneratorComplete {
     console.log(`  キーワード: ${selectedKeyword}`);
 
     // タイトルの生成
+    const currentYear = new Date().getFullYear();
     const titlePrompt = `
 テーマ: ${selectedTheme.theme}
 キーワード: ${selectedKeyword}
 本能: ${selectedTheme.instinct}
 構造タイプ: ${selectedTheme.structure}
+現在の年: ${currentYear}年
 
 上記の情報を基に、以下の条件を満たすブログ記事のタイトルを1つ作成してください：
 - 60文字以内
-- 数字を含む（例：5つの方法、2025年版など）
+- 数字を含む（例：5つの方法、${currentYear}年版など）
 - 興味を引く表現
 - SEOに最適化
+- 必ず${currentYear}年を使用（2024年などの古い年は使わない）
 `;
     let cleanTitle = forcedTitle;
     if (!cleanTitle) {
@@ -355,6 +362,9 @@ class AutoBlogGeneratorComplete {
 `;
 
     const content = await this.generateContentWithAI(contentPrompt);
+    
+    // コンテンツの長さをチェック
+    console.log(`📏 生成されたコンテンツ長: ${content.length} 文字`);
 
     // 画像の取得
     const imageKeywords = [selectedTheme.theme, selectedKeyword].filter(Boolean);
@@ -365,7 +375,15 @@ class AutoBlogGeneratorComplete {
     const date = new Date();
     const dateStr = date.toISOString().split('T')[0];
     const slug = this.generateSlug(cleanTitle);
-    const imagePath = imageData ? `/assets/images/blog/${dateStr}-${slug}.jpg` : null;
+    
+    // UnsplashのURLを直接使用（ダウンロードが失敗する可能性があるため）
+    let imagePath = null;
+    if (imageData && imageData.urls) {
+      imagePath = `${imageData.urls.regular}?w=1200&h=630&fit=crop&crop=smart`;
+    } else {
+      imagePath = '/assets/images/blog/default.jpg';
+    }
+    
     const processedContent = this.injectHeroImage(content.trim(), imagePath, cleanTitle);
 
     return {
@@ -435,11 +453,19 @@ class AutoBlogGeneratorComplete {
     }
 
     const lines = content.split('\n');
-    const heroMarkdown = `![${title}](${imagePath})`;
-    const firstH2Index = lines.findIndex(line => /^##\s+/.test(line.trim()));
-    const insertIndex = firstH2Index !== -1 ? firstH2Index + 1 : 0;
-
-    lines.splice(insertIndex, 0, heroMarkdown, '');
+    const heroMarkdown = `\n![${title}](${imagePath})\n`;
+    
+    // 最初のh2（##で始まる行）を探す
+    const firstH2Index = lines.findIndex(line => /^##\s+[^#]/.test(line.trim()));
+    
+    if (firstH2Index !== -1) {
+      // h2の直後に画像を挿入
+      lines.splice(firstH2Index + 1, 0, heroMarkdown);
+    } else {
+      // h2が見つからない場合は最初に挿入
+      lines.unshift(heroMarkdown);
+    }
+    
     return lines.join('\n');
   }
 
@@ -456,16 +482,18 @@ class AutoBlogGeneratorComplete {
   // Markdownファイルの作成
   async createMarkdownFile(post) {
     const markdown = `---
-layout: post
+layout: blog-post
 title: "${post.title}"
 date: ${post.date}
 categories: [${post.categories.join(', ')}]
 tags: [${post.tags.join(', ')}]
-author: ${post.author}
+author: "${post.author}"
 description: "${post.description}"
-image: ${post.image || '/assets/images/blog/default.jpg'}
+image: "${post.image || '/assets/images/blog/default.jpg'}"
 featured: true
 instinct: ${post.instinct}
+reading_time: 8
+seo_keywords: [${post.tags.map(tag => `"${tag}"`).join(', ')}]
 ---
 
 ${post.content}
@@ -520,24 +548,27 @@ ${post.content}
     return filepath;
   }
 
-  // 画像の保存
+  // 画像の保存（オプション）
   async saveImage(post) {
-    if (!post.imageData || !post.image) return;
-
-    await fs.mkdir(this.imageDir, { recursive: true });
+    if (!post.imageData) return;
     
-    const imagePath = path.join(this.imageDir, path.basename(post.image));
-    const success = await downloadAndOptimizeImage(post.imageData, imagePath);
-    
-    if (success) {
-      // 使用済み画像として記録
+    // Unsplashの使用記録だけ保存
+    if (post.imageData.id) {
       this.usedImages.images.push({
         id: post.imageData.id,
         usedAt: new Date().toISOString(),
-        postTitle: post.title
+        postTitle: post.title,
+        imageUrl: post.image
       });
       this.usedImages.lastUpdated = new Date().toISOString();
       await saveUsedImages(this.usedImages);
+    }
+    
+    // ローカルにダウンロードする場合（オプション）
+    if (process.env.DOWNLOAD_IMAGES === 'true' && post.imageData.url) {
+      await fs.mkdir(this.imageDir, { recursive: true });
+      const localPath = path.join(this.imageDir, `${path.basename(post.filename, '.md')}.jpg`);
+      await downloadAndOptimizeImage(post.imageData, localPath);
     }
   }
 

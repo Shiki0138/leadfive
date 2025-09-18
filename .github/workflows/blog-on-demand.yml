@@ -45,6 +45,8 @@ env:
   ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+  GEMINI_MODEL: 'gemini-1.5-pro-latest'
+  GEMINI_FALLBACK_MODEL: 'gemini-1.5-flash'
 
 jobs:
   generate-and-publish:
@@ -154,7 +156,7 @@ jobs:
         # 変更をステージング
         git add _posts
         git add assets/images/blog 2>/dev/null || echo "No images to add"
-        git add logs 2>/dev/null || echo "No logs to add"
+        # logsディレクトリはgitignoreされているためスキップ
         
         # コミット
         COMMIT_TITLE="📝 ブログ投稿: ${{ steps.generate.outputs.title }}"

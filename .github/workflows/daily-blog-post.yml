@@ -56,6 +56,9 @@ jobs:
         CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+        # Gemini model configuration
+        GEMINI_MODEL: 'gemini-1.5-pro-latest'
+        GEMINI_FALLBACK_MODEL: 'gemini-1.5-flash'
         # Parameters
         API_PROVIDER: ${{ github.event.inputs.api_provider || 'gemini' }}
         INSTINCT: ${{ github.event.inputs.instinct || '' }}
@@ -69,7 +72,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add _posts
         git add assets/images/blog
-        git add logs
+        git add logs 2>/dev/null || echo "Logs directory skipped (gitignored)"
         
         # コミットがある場合のみプッシュ
         if git diff --staged --quiet; then
