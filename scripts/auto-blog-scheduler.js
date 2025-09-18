@@ -7,8 +7,9 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const { execSync } = require('child_process');
 require('dotenv').config();
+
+const AutoBlogGeneratorComplete = require('./auto-blog-generator-complete.js');
 
 // 設定
 const CONFIG = {
@@ -144,64 +145,58 @@ function generateTitle(keywordData) {
  */
 async function generateBlogPost(keywordData) {
   const title = generateTitle(keywordData);
-  
+  const previousEnv = {
+    BLOG_KEYWORD: process.env.BLOG_KEYWORD,
+    BLOG_CATEGORY: process.env.BLOG_CATEGORY,
+    BLOG_INSTINCT: process.env.BLOG_INSTINCT,
+    BLOG_STRUCTURE: process.env.BLOG_STRUCTURE,
+    BLOG_TITLE: process.env.BLOG_TITLE
+  };
+
+  const structureMap = {
+    case_study: 'caseStudy',
+    how_to: 'howTo',
+    trend: 'problemSolution',
+    comparison: 'comparison',
+    guide: 'howTo'
+  };
+
   try {
     log(`🌟 プレミアム記事生成開始: ${title}`, 'blue');
-    
-    // プレミアムブログエンジンを使用
-    const { PremiumBlogEngine } = require('./premium-blog-engine.js');
-    const engine = new PremiumBlogEngine();
-    
-    const result = await engine.generatePremiumArticle(keywordData.combinedKeyword, {
-      targetTitle: title,
-      industry: keywordData.industry,
-      articleType: keywordData.type,
-      qualityTarget: 95
-    });
-    
-    if (result.success) {
-      log(`✨ プレミアム記事生成完了: ${result.filename} (品質: ${result.qualityScore}/100)`, 'green');
-      return { 
-        success: true, 
-        filename: result.filename, 
-        title,
-        qualityScore: result.qualityScore,
-        filepath: result.filepath
-      };
-    } else {
-      // フォールバック: 従来システム使用
-      log(`⚠️ プレミアム生成失敗、標準システムで実行`, 'yellow');
-      return await generateFallbackPost(keywordData, title);
+
+    process.env.BLOG_KEYWORD = keywordData.combinedKeyword;
+    process.env.BLOG_CATEGORY = keywordData.baseKeyword;
+    process.env.BLOG_TITLE = title;
+    const mappedStructure = structureMap[keywordData.type];
+    if (mappedStructure) {
+      process.env.BLOG_STRUCTURE = mappedStructure;
     }
-    
+
+    const generator = new AutoBlogGeneratorComplete();
+    const post = await generator.run();
+
+    const filepath = path.join(generator.postsDir, post.filename);
+    log(`✨ プレミアム記事生成完了: ${post.filename}`, 'green');
+
+    return {
+      success: true,
+      filename: post.filename,
+      title: post.title,
+      qualityScore: 95,
+      filepath
+    };
+
   } catch (error) {
     log(`記事生成エラー: ${error.message}`, 'red');
-    // フォールバック実行
-    return await generateFallbackPost(keywordData, title);
-  }
-}
-
-/**
- * フォールバックシステム（従来のSERP分析ツール）
- */
-async function generateFallbackPost(keywordData, title) {
-  try {
-    const today = new Date();
-    const dateStr = today.toISOString().split('T')[0];
-    const filename = `${dateStr}-${title.replace(/[【】！？：・\s]/g, '-').toLowerCase().substring(0, 50)}.md`;
-    
-    const blogCreatorPath = path.join(__dirname, '../serp-blog-creator.js');
-    const generateCommand = `node "${blogCreatorPath}" --auto --keyword="${keywordData.combinedKeyword}" --title="${title}"`;
-    
-    execSync(generateCommand, { 
-      stdio: 'inherit',
-      cwd: path.dirname(blogCreatorPath)
-    });
-    
-    return { success: true, filename, title, qualityScore: 85, system: 'fallback' };
-    
-  } catch (error) {
     return { success: false, error: error.message };
+  } finally {
+    ['BLOG_KEYWORD', 'BLOG_CATEGORY', 'BLOG_INSTINCT', 'BLOG_STRUCTURE', 'BLOG_TITLE'].forEach(key => {
+      if (previousEnv[key] === undefined) {
+        delete process.env[key];
+      } else {
+        process.env[key] = previousEnv[key];
+      }
+    });
   }
 }
 

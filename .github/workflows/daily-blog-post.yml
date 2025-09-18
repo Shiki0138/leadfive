@@ -39,11 +39,15 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-    
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'
+
     - name: Install dependencies
       run: |
-        cd leadfive-demo
-        npm install @google/generative-ai axios sharp js-yaml
+        npm install
     
     - name: Generate blog post
       env:
@@ -57,15 +61,15 @@ jobs:
         INSTINCT: ${{ github.event.inputs.instinct || '' }}
         CATEGORY: ${{ github.event.inputs.category || '' }}
       run: |
-        cd leadfive-demo
         node scripts/auto-blog-generator-complete.js
     
     - name: Commit and push new blog post
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add leadfive-demo/_posts/*.md
-        git add leadfive-demo/assets/images/blog/*
+        git add _posts
+        git add assets/images/blog
+        git add logs
         
         # コミットがある場合のみプッシュ
         if git diff --staged --quiet; then
@@ -78,7 +82,6 @@ jobs:
     - name: Build and deploy Jekyll site
       if: success()
       run: |
-        cd leadfive-demo
         bundle install
         bundle exec jekyll build
         
