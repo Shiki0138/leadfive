@@ -394,25 +394,22 @@ class AutoBlogGeneratorComplete {
     // コンテンツの長さをチェック
     console.log(`📏 生成されたコンテンツ長: ${content.length} 文字`);
 
-    // 画像の取得
-    const imageKeywords = [selectedTheme.theme, selectedKeyword].filter(Boolean);
     const usedImageIds = this.usedImages.images.map(img => img.id);
-    const imageData = await fetchUnsplashImage(imageKeywords, usedImageIds);
+    const imageInjection = await this.enrichContentWithImages(
+      content.trim(),
+      {
+        theme: selectedTheme.theme,
+        keyword: selectedKeyword,
+        usedImageIds
+      }
+    );
 
     // メタデータの作成
     const date = new Date();
     const dateStr = date.toISOString().split('T')[0];
     const slug = this.generateSlug(cleanTitle);
     
-    // UnsplashのURLを直接使用（ダウンロードが失敗する可能性があるため）
-    let imagePath = null;
-    if (imageData && imageData.urls) {
-      imagePath = `${imageData.urls.regular}?w=1200&h=630&fit=crop&crop=smart`;
-    } else {
-      imagePath = '/assets/images/blog/default.jpg';
-    }
-    
-    const processedContent = this.injectHeroImage(content.trim(), imagePath, cleanTitle);
+    const heroImagePath = imageInjection.heroImageUrl || '/assets/images/blog/default.jpg';
 
     return {
       filename: `${dateStr}-${slug}.md`,
@@ -425,10 +422,11 @@ class AutoBlogGeneratorComplete {
       ])),
       instinct: selectedTheme.instinct,
       description: `${cleanTitle} - LeadFiveが提供するAI×心理学マーケティングの実践ガイド`,
-      content: processedContent,
+      content: imageInjection.updatedContent,
       author: 'LeadFive AI',
-      image: imagePath,
-      imageData: imageData
+      image: heroImagePath,
+      imageData: imageInjection.imageMeta[0]?.data || null,
+      imageDataList: imageInjection.imageMeta
     };
   }
 
@@ -492,30 +490,64 @@ class AutoBlogGeneratorComplete {
     return templates[structure] || templates.howTo;
   }
 
-  injectHeroImage(content, imagePath, title) {
-    if (!imagePath || !content) {
-      return content;
-    }
-
-    if (content.includes(imagePath)) {
-      return content;
+  async enrichContentWithImages(content, { theme, keyword, usedImageIds }) {
+    const hasUnsplashKey = Boolean(process.env.UNSPLASH_API_KEY || process.env.UNSPLASH_ACCESS_KEY);
+    if (!hasUnsplashKey) {
+      return {
+        updatedContent: content,
+        heroImageUrl: null,
+        imageMeta: []
+      };
     }
 
     const lines = content.split('\n');
-    const heroMarkdown = `\n![${title}](${imagePath})\n`;
-    
-    // 最初のh2（##で始まる行）を探す
-    const firstH2Index = lines.findIndex(line => /^##\s+[^#]/.test(line.trim()));
-    
-    if (firstH2Index !== -1) {
-      // h2の直後に画像を挿入
-      lines.splice(firstH2Index + 1, 0, heroMarkdown);
-    } else {
-      // h2が見つからない場合は最初に挿入
-      lines.unshift(heroMarkdown);
+    const updatedLines = [];
+    const imageMeta = [];
+    let imagesAdded = 0;
+    let heroImageUrl = null;
+
+    for (let i = 0; i < lines.length; i += 1) {
+      const line = lines[i];
+      updatedLines.push(line);
+
+      if (imagesAdded >= 3) {
+        continue;
+      }
+
+      if (/^##\s+[^#]/.test(line.trim())) {
+        const headingText = line.replace(/^##\s+/, '').trim();
+        const searchTerms = [headingText, theme, keyword].filter(Boolean);
+        const imageData = await fetchUnsplashImage(searchTerms, usedImageIds);
+
+        if (imageData && imageData.urls) {
+          usedImageIds.push(imageData.id);
+          const baseUrl = imageData.urls.regular || imageData.url;
+
+          if (baseUrl) {
+            const sizedUrl = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}w=1200&h=630&fit=crop&crop=smart`;
+            const altText = headingText || theme || 'LeadFiveマーケティング';
+            updatedLines.push(`![${altText}](${sizedUrl})`);
+            imagesAdded += 1;
+
+            if (!heroImageUrl) {
+              heroImageUrl = sizedUrl;
+            }
+
+            imageMeta.push({
+              heading: headingText,
+              imageUrl: sizedUrl,
+              data: imageData
+            });
+          }
+        }
+      }
     }
-    
-    return lines.join('\n');
+
+    return {
+      updatedContent: updatedLines.join('\n'),
+      heroImageUrl,
+      imageMeta
+    };
   }
 
   // スラグ生成
@@ -599,25 +631,43 @@ ${post.content}
 
   // 画像の保存（オプション）
   async saveImage(post) {
-    if (!post.imageData) return;
-    
-    // Unsplashの使用記録だけ保存
-    if (post.imageData.id) {
+    const imageEntries = Array.isArray(post.imageDataList) && post.imageDataList.length
+      ? post.imageDataList
+      : post.imageData
+        ? [{ imageUrl: post.image, data: post.imageData }]
+        : [];
+
+    if (!imageEntries.length) {
+      return;
+    }
+
+    const now = new Date().toISOString();
+    let updated = false;
+
+    for (const entry of imageEntries) {
+      const data = entry.data || entry;
+      if (!data || !data.id) {
+        continue;
+      }
+
       this.usedImages.images.push({
-        id: post.imageData.id,
-        usedAt: new Date().toISOString(),
+        id: data.id,
+        usedAt: now,
         postTitle: post.title,
-        imageUrl: post.image
+        imageUrl: entry.imageUrl || post.image
       });
-      this.usedImages.lastUpdated = new Date().toISOString();
+      updated = true;
+    }
+
+    if (updated) {
+      this.usedImages.lastUpdated = now;
       await saveUsedImages(this.usedImages);
     }
-    
-    // ローカルにダウンロードする場合（オプション）
-    if (process.env.DOWNLOAD_IMAGES === 'true' && post.imageData.url) {
+
+    if (process.env.DOWNLOAD_IMAGES === 'true' && imageEntries[0]?.data?.url) {
       await fs.mkdir(this.imageDir, { recursive: true });
       const localPath = path.join(this.imageDir, `${path.basename(post.filename, '.md')}.jpg`);
-      await downloadAndOptimizeImage(post.imageData, localPath);
+      await downloadAndOptimizeImage(imageEntries[0].data, localPath);
     }
   }
 
@@ -641,6 +691,7 @@ ${post.content}
       instinct: post.instinct,
       filename: post.filename,
       hasImage: !!post.image,
+      imagesCount: Array.isArray(post.imageDataList) ? post.imageDataList.length : (post.image ? 1 : 0),
       dayOfWeek: this.dayOfWeek
     });
     
@@ -679,7 +730,11 @@ ${post.content}
       console.log(`🏷️  カテゴリー: ${post.categories.join(', ')}`);
       console.log(`🔖 タグ: ${post.tags.join(', ')}`);
       console.log(`🧠 本能: ${post.instinct}`);
-      console.log(`🖼️  画像: ${post.image ? '✓' : '✗'}`);
+      const imageCount = Array.isArray(post.imageDataList) ? post.imageDataList.length : (post.image ? 1 : 0);
+      console.log(`🖼️  画像枚数: ${imageCount}`);
+      if (post.image) {
+        console.log(`🎯 ヒーロー画像: ${post.image}`);
+      }
 
       return post;
     } catch (error) {
