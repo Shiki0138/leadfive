@@ -313,52 +313,74 @@ class AutoBlogGeneratorComplete {
     // タイトルの生成
     const currentYear = new Date().getFullYear();
     const titlePrompt = `
-テーマ: ${selectedTheme.theme}
-キーワード: ${selectedKeyword}
-本能: ${selectedTheme.instinct}
-構造タイプ: ${selectedTheme.structure}
-現在の年: ${currentYear}年
+以下の条件を満たすブログ記事のタイトルを1つ作成してください。
+- テーマ: ${selectedTheme.theme}
+- 軸となるキーワード: ${selectedKeyword}
+- 訴求する本能: ${selectedTheme.instinct}
+- 構造タイプ: ${selectedTheme.structure}
+- 現在の年: ${currentYear}年
+- 文字数: 60文字以内
+- 数字を必ず含める（例：${currentYear}年版、5つのポイント など）
+- SEOを意識し、主要キーワードを自然に含める
+- 興味を引く具体的な表現にする
 
-上記の情報を基に、以下の条件を満たすブログ記事のタイトルを1つ作成してください：
-- 60文字以内
-- 数字を含む（例：5つの方法、${currentYear}年版など）
-- 興味を引く表現
-- SEOに最適化
-- 必ず${currentYear}年を使用（2024年などの古い年は使わない）
+出力形式:
+タイトルのみを1行で返してください。先頭や末尾に引用符・記号・見出し記号を付けず、解説文や余計な文章を追加しないでください。
 `;
-    let cleanTitle = forcedTitle;
+    let cleanTitle = this.sanitizeTitle(forcedTitle);
     if (!cleanTitle) {
       const title = await this.generateContentWithAI(titlePrompt);
-      cleanTitle = title.trim().replace(/^["']|["']$/g, '');
+      cleanTitle = this.sanitizeTitle(title);
+    }
+    if (!cleanTitle) {
+      cleanTitle = `${currentYear}年版 ${selectedTheme.theme}の最新戦略ガイド`;
     }
 
     // 記事内容の生成
     const contentPrompt = `
-タイトル: ${cleanTitle}
-テーマ: ${selectedTheme.theme}
-キーワード: ${selectedKeyword}
-本能: ${selectedTheme.instinct}
-構造タイプ: ${selectedTheme.structure}
+以下の条件でLeadFive公式ブログ向けの記事をMarkdown形式で執筆してください。
 
-上記の情報を基に、以下の構成でブログ記事を作成してください：
+【執筆条件】
+- タイトル: ${cleanTitle}
+- テーマ: ${selectedTheme.theme}
+- キーワード: ${selectedKeyword}
+- 本能: ${selectedTheme.instinct}
+- 構造タイプ: ${selectedTheme.structure}
+- 文字数目安: 1800〜2200文字
+- トーン: プロフェッショナルだが親しみやすい
+- LeadFiveのAI×心理学マーケティングの知見を自然に織り込む
 
-1. リード文（150-200文字）
-   - 読者の課題や悩みに共感
-   - 記事を読むメリットを明確に提示
-   - ${selectedTheme.instinct}本能に訴求
+【必須セクションと順序】
+## 導入
+- 読者の課題に共感し、記事を読むメリットを150〜200文字で提示
 
-2. 本文（2000-2500文字）
-   - ${this.getStructureTemplate(selectedTheme.structure)}
-   - 具体的な数値やデータを含める
-   - 実践的なステップや方法を提供
-   - 専門用語は分かりやすく説明
+## ${selectedTheme.instinct}の心理学的背景
+- 本能の概要とマーケティング活用ポイントを整理
 
-3. まとめ（200-300文字）
-   - 重要ポイントの再確認
-   - 次のアクションへの誘導
-   - LeadFiveのサービスへの自然な誘導
+## ${selectedTheme.theme}の最新トレンド分析
+- ${selectedTheme.structure}構造の視点で市場動向と課題を説明
+- ${this.getStructureTemplate(selectedTheme.structure)} を参考に論理展開を組み立てる
 
-キーワード「${selectedKeyword}」を自然に3-5回使用してください。
+## 実践ステップ
+### ステップ1
+### ステップ2
+### ステップ3
+- 各ステップで実行内容・指標・注意点を具体的に解説
+
+## 成功事例と期待できる効果
+- 数値例や成果指標を交えて導入効果を説明
+
+## まとめと次のアクション
+- 箇条書きで3つの実行ポイントを整理
+- 最後の1文だけでLeadFiveへの相談が有効であることに触れる
+
+【禁止事項・注意事項】
+- 本文内にURLや外部リンクを挿入しない
+- 「無料相談はこちら」「お問い合わせはこちら」などのCTA文言を本文で使用しない
+- 根拠のない断定を避け、データや事例を示す際は「例」「想定」などのクッション語を添える
+- セクション間は1行の空行で区切る
+
+キーワード「${selectedKeyword}」を自然な文脈で3〜5回使用してください。
 `;
 
     const content = await this.generateContentWithAI(contentPrompt);
@@ -402,6 +424,24 @@ class AutoBlogGeneratorComplete {
       image: imagePath,
       imageData: imageData
     };
+  }
+
+  sanitizeTitle(rawTitle) {
+    if (!rawTitle) {
+      return '';
+    }
+
+    const firstLine = rawTitle
+      .split('\n')
+      .map(line => line.trim())
+      .find(line => line.length > 0) || '';
+
+    return firstLine
+      .replace(/^"+|"+$/g, '')
+      .replace(/^'+|'+$/g, '')
+      .replace(/^`+|`+$/g, '')
+      .replace(/^(?:タイトル[:：]\s*)/i, '')
+      .trim();
   }
 
   // 構造テンプレートの取得
@@ -513,7 +553,7 @@ ${post.content}
   <h2>無料相談受付中</h2>
   <p>AI×心理学マーケティングで、あなたのビジネスを次のレベルへ。<br>
   まずは無料相談で、具体的な活用方法をご提案します。</p>
-  <a href="/contact" class="btn btn-primary btn-lg">無料相談を申し込む</a>
+  <a href="https://leadfive.co.jp/contact" class="btn btn-primary btn-lg">無料相談はこちら</a>
 </div>
 
 <script type="application/ld+json">
