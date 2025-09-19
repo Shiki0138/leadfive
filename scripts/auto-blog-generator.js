@@ -157,12 +157,20 @@ AI×心理学マーケティングは、現代のビジネスにおいて不可�
 
     // タイトルの生成
     const titlePrompt = `
-${instinct}に訴求する${category}に関するブログ記事のタイトルを作成してください。
-トレンドトピック「${trendTopic}」を考慮に入れてください。
-タイトルは魅力的で、SEOに最適化され、60文字以内にしてください。
+以下の条件を満たすブログ記事のタイトルを1つ作成してください。
+- テーマ: ${category}
+- 訴求する本能: ${instinct}
+- トレンドトピック: ${trendTopic}
+- 60文字以内で具体的かつ魅力的
+- SEOを意識し、主要キーワードを含める
+- 数字や最新性を示す語を活用して興味を引く
+
+出力形式:
+タイトルのみを1行で記載してください。先頭や末尾に引用符や記号を付けず、説明文や改行は含めないでください。
 `;
-    
-    const title = await this.generateContentWithAI(titlePrompt) || 
+
+    const rawTitle = await this.generateContentWithAI(titlePrompt);
+    const title = this.sanitizeTitle(rawTitle) || 
                   `${trendTopic}で${instinct}を刺激する${category}の新手法`;
 
     // キーワードの生成
@@ -178,23 +186,45 @@ ${instinct}に訴求する${category}に関するブログ記事のタイトル�
 
     // 記事内容の生成
     const contentPrompt = `
-以下の条件でブログ記事を作成してください：
+以下の条件でLeadFive公式ブログ向けの記事をMarkdown形式で執筆してください。
 
-タイトル: ${title}
-本能: ${instinct}
-カテゴリー: ${category}
-トレンドトピック: ${trendTopic}
+【執筆条件】
+- タイトル: ${title}
+- 本能: ${instinct}
+- カテゴリー: ${category}
+- トレンドトピック: ${trendTopic}
+- 文字数: 1500〜2000文字
+- トーン: プロフェッショナルだが親近感がある
+- LeadFiveのAI×心理学マーケティングの専門性を示す視点を盛り込む
 
-記事の構成:
-1. 導入（読者の課題に共感）
-2. ${instinct}の心理学的背景
-3. ${trendTopic}との関連性
-4. 具体的な実践方法（3-5つ）
-5. 成功事例または予想される効果
-6. まとめとアクションプラン
+【出力フォーマット】
+以下の見出し構成を順番に作成し、見出し名はそのまま使用してください。
+## 導入
+- 読者の課題に共感し、記事を読むメリットを提示する（150〜200文字）
 
-文字数: 1500-2000文字
-トーン: プロフェッショナルだが親しみやすい
+## ${instinct}の心理学的背景
+- 本能の概要とマーケティングでの活用ポイントを解説
+
+## ${trendTopic}を取り入れた戦略の全体像
+- トレンドとの関連性と全体戦略を示す
+
+## 実践ステップ
+### ステップ1
+### ステップ2
+### ステップ3
+- 各ステップで具体的な施策、指標、注意点を記載
+
+## 成功事例と期待できる効果
+- 成功パターンや数値例、得られる成果を紹介
+
+## まとめと次のアクション
+- 箇条書きで3つの実行ポイントを提示し、最後にLeadFiveへの相談が有効であることを自然に触れる
+
+【禁止事項・細かな指示】
+- Markdownの外部リンクやURLを本文内に挿入しない（CTAはシステム側で追加されます）
+- 「無料相談はこちら」というフレーズは本文内で使用しない
+- 過度に宣伝的な表現ではなく、読者の行動を後押しする具体的アドバイスを重視する
+- 各セクションの間には1行の空行を入れる
 `;
 
     const content = await this.generateContentWithAI(contentPrompt);
@@ -215,6 +245,24 @@ ${instinct}に訴求する${category}に関するブログ記事のタイトル�
       content: content.trim(),
       author: 'LeadFive AI'
     };
+  }
+
+  sanitizeTitle(rawTitle) {
+    if (!rawTitle) {
+      return '';
+    }
+
+    const firstLine = rawTitle
+      .split('\n')
+      .map(line => line.trim())
+      .find(line => line.length > 0) || '';
+
+    return firstLine
+      .replace(/^"+|"+$/g, '')
+      .replace(/^'+|'+$/g, '')
+      .replace(/^`+|`+$/g, '')
+      .replace(/^(?:タイトル[:：]\s*)/i, '')
+      .trim();
   }
 
   // スラグ生成
@@ -251,7 +299,7 @@ LeadFiveは、AI技術と心理学的アプローチを融合させた次世代�
 <div class="cta-box">
   <h3>無料相談実施中</h3>
   <p>あなたのビジネスに最適なAI×心理学マーケティング戦略をご提案します。</p>
-  <a href="/contact" class="btn btn-primary">お問い合わせはこちら</a>
+  <a href="https://leadfive.co.jp/contact" class="btn btn-primary">無料相談はこちら</a>
 </div>
 
 ### 関連記事
