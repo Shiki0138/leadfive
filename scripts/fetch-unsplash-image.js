@@ -9,10 +9,10 @@ const path = require('path');
  * Unsplash APIから関連画像を取得して保存
  */
 async function fetchUnsplashImage(keyword, outputPath, options = {}) {
-  const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY;
-  
+  const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY || process.env.UNSPLASH_ACCESS_KEY;
+
   if (!UNSPLASH_API_KEY) {
-    console.error('❌ UNSPLASH_API_KEY が設定されていません');
+    console.error('❌ UNSPLASH_API_KEY / UNSPLASH_ACCESS_KEY が設定されていません');
     return null;
   }
   

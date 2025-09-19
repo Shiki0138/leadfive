@@ -51,10 +51,10 @@ async function saveUsedImages(usedImages) {
 
 // Unsplash APIから画像を取得
 async function fetchUnsplashImage(keywords, usedImageIds = []) {
-  const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY;
+  const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY || process.env.UNSPLASH_ACCESS_KEY;
   
   if (!UNSPLASH_API_KEY) {
-    console.log('⚠️ Unsplash API キーが設定されていません。デフォルト画像を使用します。');
+    console.log('⚠️ Unsplash API キーが設定されていません (UNSPLASH_API_KEY または UNSPLASH_ACCESS_KEY)。デフォルト画像を使用します。');
     return null;
   }
 
@@ -104,6 +104,11 @@ async function fetchUnsplashImage(keywords, usedImageIds = []) {
       }
     });
 
+    if (!response.data?.results?.length) {
+      console.warn(`⚠️ Unsplash検索で画像が見つかりませんでした (query: ${searchQuery})`);
+      return null;
+    }
+
     // 使用済みでない画像を選択
     const availablePhotos = response.data.results.filter(
       photo => !usedImageIds.includes(photo.id) && photo.likes > 10
@@ -129,7 +134,12 @@ async function fetchUnsplashImage(keywords, usedImageIds = []) {
     };
 
   } catch (error) {
-    console.error('Unsplash API エラー:', error.message);
+    const status = error.response?.status;
+    if (status === 401 || status === 403) {
+      console.error(`Unsplash API 認証エラー (status: ${status})。UNSPLASH_API_KEY/UNSPLASH_ACCESS_KEY を確認してください。`);
+    } else {
+      console.error('Unsplash API エラー:', status || error.message);
+    }
     return null;
   }
 }
@@ -159,7 +169,7 @@ async function downloadAndOptimizeImage(imageData, outputPath) {
     console.log(`✅ 画像を保存しました: ${outputPath}`);
     return true;
   } catch (error) {
-    console.error('画像のダウンロードエラー:', error.message);
+    console.error('画像のダウンロードエラー:', error.response?.status || error.message);
     return false;
   }
 }
