@@ -224,19 +224,15 @@ class AutoBlogGeneratorComplete {
   async generateContentWithAI(prompt) {
     try {
       const systemPrompt = `あなたはLeadFiveのAI×心理学マーケティングの専門家です。
-以下の要件を満たす高品質なブログ記事を作成してください：
+依頼されたフォーマットと禁止事項を厳密に守りながら、単一のブログ記事を作成してください。
 
-1. 文字数: 2500-3000文字
-2. 構成:
-   - 魅力的なリード文（150-200文字）
-   - 明確な見出し構造（h2, h3を適切に使用）
-   - 具体的な事例やデータの引用
-   - 実践的なアクションプラン
-   - 説得力のあるCTA
-
-3. トーン: プロフェッショナルかつ親しみやすい
-4. SEO: 自然にキーワードを配置
-5. 重要: 1つの記事のみ生成してください。複数のバージョンや別の記事を含めないでください。
+必ず守るべき前提条件:
+1. 文字数はおおよそ1800〜2200文字
+2. 指示された見出しや小見出しの順番・表記を変更しない
+3. 本文に外部リンクやURLを挿入しない
+4. CTA文言や「無料相談はこちら」といった直接的な営業文句を本文内で使わない
+5. 1つの記事のみを生成し、別バージョンや追記を含めない
+6. 日本語で執筆し、プロフェッショナルだが親しみやすいトーンを維持する
 
 `;
       
@@ -436,12 +432,15 @@ class AutoBlogGeneratorComplete {
       .map(line => line.trim())
       .find(line => line.length > 0) || '';
 
-    return firstLine
+    const cleaned = firstLine
       .replace(/^"+|"+$/g, '')
       .replace(/^'+|'+$/g, '')
       .replace(/^`+|`+$/g, '')
+      .replace(/^#+\s*/, '')
       .replace(/^(?:タイトル[:：]\s*)/i, '')
       .trim();
+
+    return cleaned.length > 60 ? cleaned.slice(0, 60) : cleaned;
   }
 
   // 構造テンプレートの取得

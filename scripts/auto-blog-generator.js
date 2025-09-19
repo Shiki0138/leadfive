@@ -81,7 +81,14 @@ class AutoBlogGenerator {
   // Gemini APIを使用してコンテンツを生成
   async generateContentWithAI(prompt) {
     try {
-      const systemPrompt = "あなたはLeadFiveのAI×心理学マーケティングの専門家です。読者に価値を提供する実践的で洞察に富んだブログ記事を作成してください。\n\n";
+      const systemPrompt = `あなたはLeadFiveのAI×心理学マーケティングの専門家です。
+与えられたフォーマット指示と禁止事項を厳守し、単一のブログ記事のみを生成してください。
+- 文字数は目安として1500〜2000文字
+- 指示された見出し構造を変更しない
+- 本文に外部リンクやURLを含めない
+- CTA文言や直接的な勧誘表現（例: 無料相談はこちら）を挿入しない
+- プロフェッショナルで親しみやすい日本語のトーンを保つ
+`;
       
       const targetModel = genAI.getGenerativeModel({ model: DEFAULT_GEMINI_MODEL });
       const result = await targetModel.generateContent(systemPrompt + prompt);
@@ -257,12 +264,15 @@ AI×心理学マーケティングは、現代のビジネスにおいて不可�
       .map(line => line.trim())
       .find(line => line.length > 0) || '';
 
-    return firstLine
+    const cleaned = firstLine
       .replace(/^"+|"+$/g, '')
       .replace(/^'+|'+$/g, '')
       .replace(/^`+|`+$/g, '')
+      .replace(/^#+\s*/, '')
       .replace(/^(?:タイトル[:：]\s*)/i, '')
       .trim();
+
+    return cleaned.length > 60 ? cleaned.slice(0, 60) : cleaned;
   }
 
   // スラグ生成
