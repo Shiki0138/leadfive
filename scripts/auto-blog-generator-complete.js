@@ -628,8 +628,12 @@ class AutoBlogGeneratorComplete {
     };
   }
 
-  async getRelatedPosts(currentFilename, limit = 3) {
+
+  async getRelatedPosts(currentFilename, currentPostDate, limit = 3) {
     try {
+      const currentDate = currentPostDate ? new Date(currentPostDate) : new Date();
+      const effectiveCurrentDate = Number.isNaN(currentDate.getTime()) ? new Date() : currentDate;
+
       const files = await fs.readdir(this.postsDir);
       const candidates = files
         .filter(file => file.endsWith('.md') && file !== currentFilename)
@@ -641,6 +645,7 @@ class AutoBlogGeneratorComplete {
       for (const file of candidates) {
         const filepath = path.join(this.postsDir, file);
         let title = '';
+        let candidateDate;
 
         try {
           const content = await fs.readFile(filepath, 'utf8');
@@ -650,6 +655,12 @@ class AutoBlogGeneratorComplete {
             if (data.title) {
               title = String(data.title).trim();
             }
+            if (data.date) {
+              const parsed = new Date(data.date);
+              if (!Number.isNaN(parsed.getTime())) {
+                candidateDate = parsed;
+              }
+            }
           }
         } catch (readError) {
           console.warn(`関連記事の読み込みに失敗しました (${file}):`, readError.message);
@@ -657,12 +668,26 @@ class AutoBlogGeneratorComplete {
 
         const basename = file.replace(/\.md$/, '');
 
+        if (!candidateDate) {
+          const match = basename.match(/^(\d{4})-(\d{2})-(\d{2})-/);
+          if (match) {
+            const parsed = new Date(`${match[1]}-${match[2]}-${match[3]}`);
+            if (!Number.isNaN(parsed.getTime())) {
+              candidateDate = parsed;
+            }
+          }
+        }
+
         if (!title) {
           const slugPart = basename.replace(/^\d{4}-\d{2}-\d{2}-/, '');
           title = slugPart.replace(/-/g, ' ').trim();
         }
 
         if (!title) {
+          continue;
+        }
+
+        if (candidateDate && candidateDate > effectiveCurrentDate) {
           continue;
         }
 
@@ -695,7 +720,7 @@ class AutoBlogGeneratorComplete {
 
   // Markdownファイルの作成
   async createMarkdownFile(post) {
-    const relatedPosts = await this.getRelatedPosts(post.filename, 3);
+    const relatedPosts = await this.getRelatedPosts(post.filename, post.date, 3);
     let relatedSection = '';
 
     if (relatedPosts.length) {
