@@ -567,6 +567,61 @@ class AutoBlogGeneratorComplete {
     };
   }
 
+  async getRelatedPosts(currentFilename, limit = 3) {
+    try {
+      const files = await fs.readdir(this.postsDir);
+      const candidates = files
+        .filter(file => file.endsWith('.md') && file !== currentFilename)
+        .sort()
+        .reverse();
+
+      const related = [];
+
+      for (const file of candidates) {
+        const filepath = path.join(this.postsDir, file);
+        let title = '';
+
+        try {
+          const content = await fs.readFile(filepath, 'utf8');
+          const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+          if (frontMatterMatch) {
+            const data = yaml.load(frontMatterMatch[1]) || {};
+            if (data.title) {
+              title = String(data.title).trim();
+            }
+          }
+        } catch (readError) {
+          console.warn(`関連記事の読み込みに失敗しました (${file}):`, readError.message);
+        }
+
+        const basename = file.replace(/\.md$/, '');
+
+        if (!title) {
+          const slugPart = basename.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+          title = slugPart.replace(/-/g, ' ').trim();
+        }
+
+        if (!title) {
+          continue;
+        }
+
+        related.push({
+          title,
+          basename
+        });
+
+        if (related.length >= limit) {
+          break;
+        }
+      }
+
+      return related;
+    } catch (error) {
+      console.error('関連記事取得エラー:', error);
+      return [];
+    }
+  }
+
   // スラグ生成
   generateSlug(title) {
     return title
@@ -579,6 +634,35 @@ class AutoBlogGeneratorComplete {
 
   // Markdownファイルの作成
   async createMarkdownFile(post) {
+    const relatedPosts = await this.getRelatedPosts(post.filename, 3);
+    let relatedSection = '';
+
+    if (relatedPosts.length) {
+      const escapeHtml = (value) => value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+
+      const relatedItems = relatedPosts
+        .map(item => {
+          const safeTitle = escapeHtml(item.title);
+          return `    <li><a href="{{ site.baseurl }}{% post_url ${item.basename} %}">${safeTitle}</a></li>`;
+        })
+        .join('\n');
+
+      relatedSection = `
+## 関連記事
+
+<div class="related-posts">
+  <h3>こちらの記事もおすすめです</h3>
+  <ul>
+${relatedItems}
+  </ul>
+</div>
+`;
+    }
+
     const markdown = `---
 layout: blog-post
 title: "${post.title}"
@@ -595,18 +679,7 @@ seo_keywords: [${post.tags.map(tag => `"${tag}"`).join(', ')}]
 ---
 
 ${post.content}
-
-## 関連記事
-
-<div class="related-posts">
-  <h3>こちらの記事もおすすめです</h3>
-  <ul>
-    <li><a href="/blog/ai-marketing-basics">AI×心理学マーケティングの基礎知識</a></li>
-    <li><a href="/blog/8-instincts-guide">8つの本能を活用した顧客理解</a></li>
-    <li><a href="/blog/success-cases">LeadFive導入企業の成功事例集</a></li>
-  </ul>
-</div>
-
+${relatedSection}
 <div class="cta-section">
   <h2>無料相談受付中</h2>
   <p>AI×心理学マーケティングで、あなたのビジネスを次のレベルへ。<br>
