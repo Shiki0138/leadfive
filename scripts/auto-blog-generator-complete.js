@@ -355,6 +355,7 @@ class AutoBlogGeneratorComplete {
 - 文字数目安: 1800〜2200文字
 - トーン: プロフェッショナルだが親しみやすい
 - LeadFiveのAI×心理学マーケティングの知見を自然に織り込む
+- 冒頭に200文字前後のリード段落（見出しなし）を配置し、その後に見出し構成を続ける
 
 【必須セクションと順序】
 ## 導入
@@ -381,6 +382,7 @@ class AutoBlogGeneratorComplete {
 - 最後の1文だけでLeadFiveへの相談が有効であることに触れる
 
 【禁止事項・注意事項】
+- 本文内で記事タイトルを再掲しない
 - 本文内にURLや外部リンクを挿入しない
 - 「無料相談はこちら」「お問い合わせはこちら」などのCTA文言を本文で使用しない
 - 根拠のない断定を避け、データや事例を示す際は「例」「想定」などのクッション語を添える
@@ -500,11 +502,29 @@ class AutoBlogGeneratorComplete {
       };
     }
 
+    const imageMeta = [];
+    let heroImageUrl = null;
+
+    const heroSearchTerms = [theme, keyword, 'マーケティング', 'business visual'].filter(Boolean);
+    const heroData = await fetchUnsplashImage(heroSearchTerms, usedImageIds);
+
+    if (heroData && heroData.urls) {
+      usedImageIds.push(heroData.id);
+      const baseUrl = heroData.urls.regular || heroData.url;
+      if (baseUrl) {
+        heroImageUrl = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}w=1200&h=630&fit=crop&crop=smart`;
+        imageMeta.push({
+          heading: 'hero',
+          role: 'hero',
+          imageUrl: heroImageUrl,
+          data: heroData
+        });
+      }
+    }
+
     const lines = content.split('\n');
     const updatedLines = [];
-    const imageMeta = [];
     let imagesAdded = 0;
-    let heroImageUrl = null;
 
     for (let i = 0; i < lines.length; i += 1) {
       const line = lines[i];
@@ -525,16 +545,13 @@ class AutoBlogGeneratorComplete {
 
           if (baseUrl) {
             const sizedUrl = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}w=1200&h=630&fit=crop&crop=smart`;
-            const altText = headingText || theme || 'LeadFiveマーケティング';
+            const altText = headingText ? `${headingText}に関連するイメージ` : `${theme || 'LeadFive'}の参考イメージ`;
             updatedLines.push(`![${altText}](${sizedUrl})`);
             imagesAdded += 1;
 
-            if (!heroImageUrl) {
-              heroImageUrl = sizedUrl;
-            }
-
             imageMeta.push({
               heading: headingText,
+              role: 'section',
               imageUrl: sizedUrl,
               data: imageData
             });
