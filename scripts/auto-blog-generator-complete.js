@@ -391,14 +391,16 @@ class AutoBlogGeneratorComplete {
 キーワード「${selectedKeyword}」を自然な文脈で3〜5回使用してください。
 `;
 
-    const content = await this.generateContentWithAI(contentPrompt);
+    const rawContent = await this.generateContentWithAI(contentPrompt);
     
     // コンテンツの長さをチェック
-    console.log(`📏 生成されたコンテンツ長: ${content.length} 文字`);
+    console.log(`📏 生成されたコンテンツ長: ${rawContent.length} 文字`);
+
+    const normalizedContent = this.normalizeContentStructure(rawContent.trim());
 
     const usedImageIds = this.usedImages.images.map(img => img.id);
     const imageInjection = await this.enrichContentWithImages(
-      content.trim(),
+      normalizedContent,
       {
         theme: selectedTheme.theme,
         keyword: selectedKeyword,
@@ -451,6 +453,65 @@ class AutoBlogGeneratorComplete {
       .trim();
 
     return cleaned.length > 60 ? cleaned.slice(0, 60) : cleaned;
+  }
+
+  normalizeContentStructure(rawContent) {
+    if (!rawContent) {
+      return '';
+    }
+
+    const lines = rawContent.split('\n');
+    let index = 0;
+
+    const skipBlank = () => {
+      while (index < lines.length && lines[index].trim() === '') {
+        index += 1;
+      }
+    };
+
+    skipBlank();
+
+    if (index < lines.length) {
+      const firstLine = lines[index].trim();
+      if (/^#\s+/.test(firstLine)) {
+        index += 1;
+        skipBlank();
+      }
+    }
+
+    const leadLines = [];
+    while (index < lines.length) {
+      const current = lines[index];
+      if (/^##\s+/.test(current.trim())) {
+        break;
+      }
+      leadLines.push(current);
+      index += 1;
+    }
+
+    if (index < lines.length && /^##\s+/.test(lines[index].trim())) {
+      const headingText = lines[index].trim().replace(/^##\s+/, '');
+      if (/^導入($|\s)/.test(headingText)) {
+        index += 1;
+        skipBlank();
+      }
+    }
+
+    const remainingLines = lines.slice(index);
+
+    while (leadLines.length && leadLines[leadLines.length - 1].trim() === '') {
+      leadLines.pop();
+    }
+
+    const sections = [];
+    if (leadLines.length) {
+      sections.push(leadLines.join('\n').trim());
+    }
+    if (remainingLines.length) {
+      sections.push(remainingLines.join('\n').trim());
+    }
+
+    return sections.join('\n\n').replace(/\n{3,}/g, '\n\n');
   }
 
   // 構造テンプレートの取得
