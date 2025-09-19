@@ -510,7 +510,7 @@ class AutoBlogGeneratorComplete {
       const line = lines[i];
       updatedLines.push(line);
 
-      if (imagesAdded >= 3) {
+      if (imagesAdded >= 5) {
         continue;
       }
 
