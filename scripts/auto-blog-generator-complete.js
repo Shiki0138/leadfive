@@ -479,7 +479,7 @@ class AutoBlogGeneratorComplete {
       }
     }
 
-    const leadLines = [];
+    let leadLines = [];
     while (index < lines.length) {
       const current = lines[index];
       if (/^##\s+/.test(current.trim())) {
@@ -497,7 +497,10 @@ class AutoBlogGeneratorComplete {
       }
     }
 
-    leadLines[:] = [line for line in leadLines if line.strip() and not line.strip().startswith('![') and not line.strip().startswith('<img')];
+    leadLines = leadLines.filter((line) => {
+      const trimmed = line.trim();
+      return trimmed && !trimmed.startsWith('![') && !trimmed.startsWith('<img');
+    });
 
     const remainingLines = lines.slice(index);
 
@@ -506,7 +509,7 @@ class AutoBlogGeneratorComplete {
     }
 
     while (remainingLines.length && !remainingLines[0].trim()) {
-      remainingLines.pop(0);
+      remainingLines.shift();
     }
 
     const sections = [];
