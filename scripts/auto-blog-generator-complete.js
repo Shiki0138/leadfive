@@ -587,6 +587,12 @@ class AutoBlogGeneratorComplete {
     const updatedLines = [];
     let imagesAdded = 0;
 
+    if (heroImageUrl) {
+      const heroAlt = theme ? `${theme}の参考イメージ` : 'LeadFiveの参考イメージ';
+      updatedLines.push(`![${heroAlt}](${heroImageUrl})`);
+      updatedLines.push('');
+    }
+
     for (let i = 0; i < lines.length; i += 1) {
       const line = lines[i];
       updatedLines.push(line);
