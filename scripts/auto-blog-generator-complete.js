@@ -593,9 +593,6 @@ class AutoBlogGeneratorComplete {
           imageUrl: heroImageUrl,
           data: heroData
         });
-        const heroAlt = theme ? `${theme}の参考イメージ` : 'LeadFiveの参考イメージ';
-        updatedLines.push(`![${heroAlt}](${heroImageUrl})`);
-        updatedLines.push('');
       }
     }
 
