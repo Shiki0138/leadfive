@@ -497,10 +497,16 @@ class AutoBlogGeneratorComplete {
       }
     }
 
+    leadLines[:] = [line for line in leadLines if line.strip() and not line.strip().startswith('![') and not line.strip().startswith('<img')];
+
     const remainingLines = lines.slice(index);
 
     while (leadLines.length && leadLines[leadLines.length - 1].trim() === '') {
       leadLines.pop();
+    }
+
+    while (remainingLines.length && !remainingLines[0].trim()) {
+      remainingLines.pop(0);
     }
 
     const sections = [];
@@ -566,6 +572,10 @@ class AutoBlogGeneratorComplete {
     const imageMeta = [];
     let heroImageUrl = null;
 
+    const lines = content.split('\n');
+    const updatedLines = [];
+    let imagesAdded = 0;
+
     const heroSearchTerms = [theme, keyword, 'マーケティング', 'business visual'].filter(Boolean);
     const heroData = await fetchUnsplashImage(heroSearchTerms, usedImageIds);
 
@@ -580,17 +590,10 @@ class AutoBlogGeneratorComplete {
           imageUrl: heroImageUrl,
           data: heroData
         });
+        const heroAlt = theme ? `${theme}の参考イメージ` : 'LeadFiveの参考イメージ';
+        updatedLines.push(`![${heroAlt}](${heroImageUrl})`);
+        updatedLines.push('');
       }
-    }
-
-    const lines = content.split('\n');
-    const updatedLines = [];
-    let imagesAdded = 0;
-
-    if (heroImageUrl) {
-      const heroAlt = theme ? `${theme}の参考イメージ` : 'LeadFiveの参考イメージ';
-      updatedLines.push(`![${heroAlt}](${heroImageUrl})`);
-      updatedLines.push('');
     }
 
     for (let i = 0; i < lines.length; i += 1) {
