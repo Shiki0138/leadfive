@@ -17,7 +17,7 @@ const BLOG_IMAGE_DIR = path.join(ROOT_DIR, 'assets', 'images', 'blog');
 
 // Gemini API設定
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const DEFAULT_GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-pro-latest';
+const DEFAULT_GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-pro';
 const FALLBACK_GEMINI_MODEL = process.env.GEMINI_FALLBACK_MODEL || 'gemini-1.5-flash';
 
 // AIアシスタントのインスタンス
@@ -232,8 +232,7 @@ class AutoBlogGeneratorComplete {
 
   // Gemini APIを使用してコンテンツを生成
   async generateContentWithAI(prompt) {
-    try {
-      const systemPrompt = `あなたはLeadFiveのAI×心理学マーケティングの専門家です。
+    const systemPrompt = `あなたはLeadFiveのAI×心理学マーケティングの専門家です。
 依頼されたフォーマットと禁止事項を厳密に守りながら、単一のブログ記事を作成してください。
 
 必ず守るべき前提条件:
@@ -245,7 +244,8 @@ class AutoBlogGeneratorComplete {
 6. 日本語で執筆し、プロフェッショナルだが親しみやすいトーンを維持する
 
 `;
-      
+
+    try {
       const targetModel = genAI.getGenerativeModel({ model: DEFAULT_GEMINI_MODEL });
       const result = await targetModel.generateContent(systemPrompt + prompt);
       const response = await result.response;
