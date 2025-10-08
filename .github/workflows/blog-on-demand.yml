@@ -45,8 +45,8 @@ env:
   ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
-  GEMINI_MODEL: 'gemini-1.5-pro-latest'
-  GEMINI_FALLBACK_MODEL: 'gemini-1.5-flash'
+  GEMINI_MODEL: 'gemini-2.5-flash-lite'
+  GEMINI_FALLBACK_MODEL: 'gemini-2.5-flash'
 
 jobs:
   generate-and-publish:

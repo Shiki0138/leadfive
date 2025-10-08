@@ -17,8 +17,8 @@ const BLOG_IMAGE_DIR = path.join(ROOT_DIR, 'assets', 'images', 'blog');
 
 // Gemini API設定
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const DEFAULT_GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-pro';
-const FALLBACK_GEMINI_MODEL = process.env.GEMINI_FALLBACK_MODEL || 'gemini-1.5-flash';
+const DEFAULT_GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
+const FALLBACK_GEMINI_MODEL = process.env.GEMINI_FALLBACK_MODEL || 'gemini-2.5-flash';
 
 // AIアシスタントのインスタンス
 const aiAssistant = new BlogAIAssistant();
