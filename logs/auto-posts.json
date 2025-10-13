@@ -616,5 +616,23 @@
     "hasImage": true,
     "imagesCount": 6,
     "dayOfWeek": "sunday"
+  },
+  {
+    "date": "2025-10-13T01:40:23.475Z",
+    "title": "2025年、AIマーケティング最新トレンド5選！知識を深める活用法を解説",
+    "categories": [
+      "AIマーケティング"
+    ],
+    "tags": [
+      "AI マーケティング 最新トレンド",
+      "生成AI 活用法 マーケティング",
+      "ChatGPT ビジネス活用 事例",
+      "AI ツール 比較 2025"
+    ],
+    "instinct": "learning",
+    "filename": "2025-10-13-2025年-aiマーケティング最新トレンド5選-知識を深める活用法を解説.md",
+    "hasImage": true,
+    "imagesCount": 5,
+    "dayOfWeek": "monday"
   }
 ]
