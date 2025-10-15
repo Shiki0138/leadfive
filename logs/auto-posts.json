@@ -653,5 +653,23 @@
     "hasImage": true,
     "imagesCount": 5,
     "dayOfWeek": "tuesday"
+  },
+  {
+    "date": "2025-10-15T01:28:49.524Z",
+    "title": "2025年版：製造業DX成功事例5選！テリトリー拡大に導いたデジタル変革の秘訣",
+    "categories": [
+      "成功事例"
+    ],
+    "tags": [
+      "デジタル変革 事例 製造業",
+      "AI導入 成功事例 中小企業",
+      "CVR改善 成功事例 EC",
+      "マーケティング自動化 ROI"
+    ],
+    "instinct": "territorial",
+    "filename": "2025-10-15-2025年版-製造業dx成功事例5選-テリトリー拡大に導いたデジタル変革の秘訣.md",
+    "hasImage": true,
+    "imagesCount": 4,
+    "dayOfWeek": "wednesday"
   }
 ]
