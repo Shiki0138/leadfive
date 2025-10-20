@@ -744,5 +744,24 @@
     "hasImage": true,
     "imagesCount": 4,
     "dayOfWeek": "sunday"
+  },
+  {
+    "date": "2025-10-20T01:43:32.961Z",
+    "title": "2025年版：AIでECサイトを5倍最適化！学習するマーケティング手法とは？",
+    "categories": [
+      "AIマーケティング"
+    ],
+    "tags": [
+      "ECサイト 最適化",
+      "AI マーケティング 最新トレンド",
+      "生成AI 活用法 マーケティング",
+      "ChatGPT ビジネス活用 事例",
+      "AI ツール 比較 2025"
+    ],
+    "instinct": "learning",
+    "filename": "2025-10-20-2025年版-aiでecサイトを5倍最適化-学習するマーケティング手法とは.md",
+    "hasImage": true,
+    "imagesCount": 5,
+    "dayOfWeek": "monday"
   }
 ]
