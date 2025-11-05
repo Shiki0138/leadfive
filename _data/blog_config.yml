@@ -17,7 +17,7 @@ schedule:
 # Content Generation Settings
 content:
   # 記事の長さ設定
-  min_words: 1500
+  min_words: 2500
   max_words: 3000
   
   # SEO最適化
