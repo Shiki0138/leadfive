@@ -527,7 +527,7 @@
 
         .services-section .container {
             background: rgba(255, 255, 255, 0.9);
-            color: #ffffff;
+            color: #1a1a1a;
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
         
@@ -1516,6 +1516,24 @@
         @media (max-width: 768px) {
             body { padding-bottom: 76px; }
             .sticky-cta { display: flex; }
+        }
+
+        /* アクセシビリティ: アニメーション削減設定 */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .news-slider {
+                scroll-behavior: auto !important;
+            }
+
+            .opening-screen {
+                animation: none !important;
+            }
         }
     </style>
 </head>
@@ -2558,13 +2576,25 @@
         // ===== 新着情報スライダーの自動スクロール =====
         const newsSlider = document.getElementById('newsSlider');
         if (newsSlider) {
-            let scrollInterval;
-            let isHovering = false;
+            try {
+                let scrollInterval;
+                let isHovering = false;
 
-            // 自動スクロール関数
-            function autoScroll() {
-                if (!isHovering) {
-                    const cardWidth = 350 + 24; // カード幅 + gap
+                // カード幅とギャップを動的に取得
+                function getScrollDistance() {
+                    const card = newsSlider.querySelector('.news-card');
+                    if (!card) return 374; // フォールバック値
+
+                    const cardWidth = card.offsetWidth;
+                    const sliderStyle = window.getComputedStyle(newsSlider);
+                    const gap = parseFloat(sliderStyle.gap) || 24;
+
+                    return cardWidth + gap;
+                }
+
+                // 次のカードへスクロール
+                function scrollToNext() {
+                    const scrollDistance = getScrollDistance();
                     const maxScroll = newsSlider.scrollWidth - newsSlider.clientWidth;
 
                     if (newsSlider.scrollLeft >= maxScroll - 10) {
@@ -2576,35 +2606,85 @@
                     } else {
                         // 次のカードへスクロール
                         newsSlider.scrollBy({
-                            left: cardWidth,
+                            left: scrollDistance,
                             behavior: 'smooth'
                         });
                     }
                 }
-            }
 
-            // 3.5秒ごとに自動スクロール
-            scrollInterval = setInterval(autoScroll, 3500);
+                // 前のカードへスクロール
+                function scrollToPrevious() {
+                    const scrollDistance = getScrollDistance();
 
-            // ホバー時は自動スクロールを停止
-            newsSlider.addEventListener('mouseenter', () => {
-                isHovering = true;
-            });
+                    if (newsSlider.scrollLeft <= 10) {
+                        // 最初にいる場合は最後へ
+                        newsSlider.scrollTo({
+                            left: newsSlider.scrollWidth,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // 前のカードへスクロール
+                        newsSlider.scrollBy({
+                            left: -scrollDistance,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
 
-            newsSlider.addEventListener('mouseleave', () => {
-                isHovering = false;
-            });
+                // 自動スクロール関数
+                function autoScroll() {
+                    if (!isHovering) {
+                        scrollToNext();
+                    }
+                }
 
-            // タッチ操作時も一時停止
-            newsSlider.addEventListener('touchstart', () => {
-                isHovering = true;
-            });
+                // 3.5秒ごとに自動スクロール
+                scrollInterval = setInterval(autoScroll, 3500);
 
-            newsSlider.addEventListener('touchend', () => {
-                setTimeout(() => {
+                // ホバー時は自動スクロールを停止
+                newsSlider.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                });
+
+                newsSlider.addEventListener('mouseleave', () => {
                     isHovering = false;
-                }, 1000);
-            });
+                });
+
+                // タッチ操作時も一時停止
+                newsSlider.addEventListener('touchstart', () => {
+                    isHovering = true;
+                });
+
+                newsSlider.addEventListener('touchend', () => {
+                    setTimeout(() => {
+                        isHovering = false;
+                    }, 1000);
+                });
+
+                // キーボードナビゲーション
+                newsSlider.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        isHovering = true;
+                        scrollToNext();
+                        setTimeout(() => { isHovering = false; }, 2000);
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        isHovering = true;
+                        scrollToPrevious();
+                        setTimeout(() => { isHovering = false; }, 2000);
+                    }
+                });
+
+                // スライダーにtabindex追加（キーボードフォーカス可能に）
+                newsSlider.setAttribute('tabindex', '0');
+                newsSlider.setAttribute('role', 'region');
+                newsSlider.setAttribute('aria-label', '新着情報スライダー');
+
+            } catch (error) {
+                console.error('News slider initialization error:', error);
+                // エラー時はスライダーを静的表示のまま
+            }
         }
     </script>
 </body>
