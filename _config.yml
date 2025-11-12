@@ -1,6 +1,6 @@
 # Site settings
 title: "AI×心理学で売上を科学する | Leadfive"
-email: leadfive.138@gmail.com
+email: mail@lead-v.com
 description: >-
   マーケティングとAIを掛け合わせ、予測可能な成長をあなたのビジネスに。
 baseurl: ""
@@ -12,13 +12,13 @@ company:
   name: "合同会社Leadfive"
   address: "大阪府大阪市北区梅田１−１３−１大阪梅田ツインタワーズ・サウス１５階"
   phone: "06-7713-6747"
-  email: "leadfive.138@gmail.com"
+  email: "mail@lead-v.com"
   representative: "山下　公一"
   established: "2024年4月8日"
 
 # フォーム設定
 forms:
-  contact_email: "leadfive.138@gmail.com"
+  contact_email: "mail@lead-v.com"
 
 # Build settings
 markdown: kramdown

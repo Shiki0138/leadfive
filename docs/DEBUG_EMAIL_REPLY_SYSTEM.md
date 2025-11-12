@@ -35,7 +35,7 @@ function processEmailRepliesLoose() {
   try {
     // より広い検索条件
     const threads = GmailApp.search(
-      `from:greenroom51@gmail.com is:unread newer_than:2d`,
+      `from:mail@lead-v.com is:unread newer_than:2d`,
       0, 20
     );
     
@@ -159,7 +159,7 @@ function fullSystemDiagnosis() {
   // 2. メール検索テスト
   console.log('\\n2. メール検索テスト:');
   try {
-    const threads = GmailApp.search('from:greenroom51@gmail.com newer_than:1d', 0, 5);
+    const threads = GmailApp.search('from:mail@lead-v.com newer_than:1d', 0, 5);
     console.log(`📧 過去24時間のメール: ${threads.length}件`);
     
     if (threads.length > 0) {

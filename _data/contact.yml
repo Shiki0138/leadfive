@@ -8,7 +8,7 @@ form_service:
   
 # Email Settings
 email:
-  to: "leadfive.138@gmail.com"
+  to: "mail@lead-v.com"
   reply_to_field: "email"
   subject: "【LeadFive】お問い合わせ"
   
@@ -83,7 +83,7 @@ auto_response:
     合同会社LeadFive
     代表：山下　公一
     電話：06-7713-6747
-    メール：leadfive.138@gmail.com
+    メール：mail@lead-v.com
     住所：大阪府大阪市北区梅田１−１３−１大阪梅田ツインタワーズ・サウス１５階
     ────────────────────────
 

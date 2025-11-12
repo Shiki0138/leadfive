@@ -218,7 +218,7 @@ serpAnalysis = {
 - **コンテンツ企画:** テーマ設定、シリーズ構成
 
 **連絡先:**
-- Email: leadfive.138@gmail.com
+- Email: mail@lead-v.com
 - Tel: 06-7713-6747
 
 ---

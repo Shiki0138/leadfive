@@ -67,7 +67,7 @@ company:
   name: LeadFive（リードファイブ）
   address: "大阪府大阪市北区梅田１−１３−１大阪梅田ツインタワーズ・サウス１５階"
   phone: "06-7713-6747"
-  email: info@leadfive138.com
+  email: mail@lead-v.com
   representative: "代表取締役 山下公一"
   established: "2024年4月8日"
 ```

@@ -3,7 +3,7 @@
 ## 実装済み内容
 - ✅ Google Apps Script コード作成済み (`gas-code.gs`)
 - ✅ JavaScript ハンドラー作成済み (`contact-handler-gas.js`)
-- ✅ 自動メール通知機能（leadfive.138@gmail.com宛）
+- ✅ 自動メール通知機能（mail@lead-v.com宛）
 - ✅ スプレッドシート自動記録
 
 ## 設定手順
@@ -38,6 +38,6 @@ this.gasEndpoint = 'コピーしたURL';
 ## 完了！
 フォームから送信すると自動的に:
 - スプレッドシートに記録
-- leadfive.138@gmail.com にメール通知
+- mail@lead-v.com にメール通知
 
 詳細は `/docs/GOOGLE_SHEETS_ONLY_SETUP.md` 参照

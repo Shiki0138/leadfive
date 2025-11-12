@@ -136,7 +136,7 @@ permalink: /privacy/
           代表社員：山下　公一<br>
           大阪府大阪市北区梅田１−１３−１大阪梅田ツインタワーズ・サウス１５階<br>
           電話：06-7713-6747<br>
-          メール：<a href="mailto:leadfive.138@gmail.com">leadfive.138@gmail.com</a><br>
+          メール：<a href="mailto:mail@lead-v.com">mail@lead-v.com</a><br>
           受付時間：平日 9:00-18:00
         </p>
       </div>

@@ -109,7 +109,7 @@ function saveToSpreadsheet(data) {
 
 // メール通知を送信
 function sendNotificationEmail(data) {
-  const recipient = 'leadfive.138@gmail.com';
+  const recipient = 'mail@lead-v.com';
   const subject = `【LeadFive】新規お問い合わせ: ${data.name}様 (${data.company})`;
   
   // HTMLメール本文
@@ -229,7 +229,7 @@ function testDoPost() {
         timestamp: new Date().toLocaleString('ja-JP'),
         company: 'テスト株式会社',
         name: 'テスト太郎',
-        email: 'test@example.com',
+        email: 'mail@lead-v.com',
         phone: '03-1234-5678',
         inquiry_type: 'サービスについて',
         interest: 'AI×心理学LP最適化, 顧客心理データ分析',

@@ -2,7 +2,7 @@
 
 ## 現在の状況
 ✅ Google Apps Script プロジェクト作成済み  
-✅ コード設定済み（greenroom51@gmail.com, Shiki0138）  
+✅ コード設定済み（mail@lead-v.com, Shiki0138）  
 🔲 GitHub Token 設定  
 🔲 トリガー設定  
 🔲 テスト実行  
@@ -47,7 +47,7 @@
 5. **許可** をクリック
 
 ### C. 完了確認
-実行が完了すると、`greenroom51@gmail.com` に設定完了メールが届きます。
+実行が完了すると、`mail@lead-v.com` に設定完了メールが届きます。
 
 ---
 
@@ -95,7 +95,7 @@
 - 権限で `repo` と `workflow` が選択されているか確認
 
 ### メール送信エラー  
-- Gmail のメールアドレス `greenroom51@gmail.com` が正しいか確認
+- Gmail のメールアドレス `mail@lead-v.com` が正しいか確認
 - Google Apps Script の権限承認が完了しているか確認
 
 ### 返信が処理されない

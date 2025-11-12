@@ -170,7 +170,7 @@ class ContactFormGAS {
         <strong>❌ エラーが発生しました</strong><br>
         ${errorMessage}<br>
         お手数ですが、もう一度お試しいただくか、<br>
-        直接 leadfive.138@gmail.com までご連絡ください。
+        直接 mail@lead-v.com までご連絡ください。
       </div>
     `;
     

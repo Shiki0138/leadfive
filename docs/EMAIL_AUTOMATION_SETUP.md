@@ -157,8 +157,8 @@ function analyzePopularTopics() {
 ```javascript
 const CONFIG = {
   recipientEmails: [
-    'member1@gmail.com',
-    'member2@gmail.com'
+    'mail@lead-v.com',
+    'mail@lead-v.com'
   ],
   // 最初に返信した人の選択を採用
 };

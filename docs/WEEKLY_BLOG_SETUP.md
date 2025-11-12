@@ -23,7 +23,7 @@ cp scripts/email-blog-automation-weekly.gs [Google Apps Script プロジェク�
 #### 必要な設定変更
 ```javascript
 const CONFIG = {
-  recipientEmail: 'your-actual-email@gmail.com',    // ← あなたのメールアドレス
+  recipientEmail: 'mail@lead-v.com',    // ← あなたのメールアドレス
   githubToken: 'YOUR_GITHUB_TOKEN',                 // ← GitHub Personal Access Token  
   githubOwner: 'YOUR_GITHUB_USERNAME',              // ← あなたのGitHubユーザー名
   githubRepo: 'leadfive-demo',                      // ← リポジトリ名
@@ -61,9 +61,9 @@ GitHub Settings → Secrets and variables → Actions で以下を設定:
 ```bash
 ANTHROPIC_API_KEY=sk-ant-...        # Claude API キー
 UNSPLASH_API_KEY=...                # 画像生成用（オプション）
-EMAIL_USERNAME=your@gmail.com       # 通知メール送信用
+EMAIL_USERNAME=mail@lead-v.com       # 通知メール送信用
 EMAIL_PASSWORD=your-app-password    # Gmailアプリパスワード
-RECIPIENT_EMAIL=your@gmail.com      # 通知受信用メールアドレス
+RECIPIENT_EMAIL=mail@lead-v.com      # 通知受信用メールアドレス
 ```
 
 #### ワークフローファイルの配置

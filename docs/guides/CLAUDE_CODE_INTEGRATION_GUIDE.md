@@ -290,7 +290,7 @@ const customPrompts = {
 - **成果分析**: KPI設定と改善提案
 
 **連絡先:**
-- Email: leadfive.138@gmail.com
+- Email: mail@lead-v.com
 - Tel: 06-7713-6747
 
 ---

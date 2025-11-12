@@ -17,7 +17,7 @@
 ### ステップ2: フォーム設定
 1. Formspreeダッシュボードで「New Form」をクリック
 2. フォーム名を「LeadFive Contact Form」に設定
-3. 通知先メールアドレスに `leadfive.138@gmail.com` を設定
+3. 通知先メールアドレスに `mail@lead-v.com` を設定
 4. 生成されたForm IDをコピー（例：`xkgwrrqv`）
 
 ### ステップ3: コードに反映
@@ -96,7 +96,7 @@ function doPost(e) {
 }
 
 function sendNotificationEmail(data) {
-  const recipient = 'leadfive.138@gmail.com';
+  const recipient = 'mail@lead-v.com';
   const subject = `【LeadFive】新規お問い合わせ: ${data.name}様`;
   
   const body = `
@@ -167,7 +167,7 @@ this.googleSheetsWebhook = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/ex
 2. 以下のテストデータを入力：
    - 会社名: テスト会社
    - お名前: テスト太郎
-   - メール: test@example.com
+   - メール: mail@lead-v.com
    - 電話番号: 03-1234-5678
    - メッセージ: これはテストメッセージです
 3. 送信ボタンをクリック
@@ -199,4 +199,4 @@ Google Sheetsへの送信で`mode: 'no-cors'`を使用しているため、
 
 ## お問い合わせ
 
-設定に関するご質問は leadfive.138@gmail.com までお問い合わせください。
+設定に関するご質問は mail@lead-v.com までお問い合わせください。

@@ -1,9 +1,9 @@
 // Contact Form Handler with Email and Google Sheets Integration
-// Handles form submission to leadfive.138@gmail.com
+// Handles form submission to mail@lead-v.com
 
 class ContactFormHandler {
   constructor() {
-    this.emailAddress = 'leadfive.138@gmail.com';
+    this.emailAddress = 'mail@lead-v.com';
     this.formspreeEndpoint = 'https://formspree.io/f/YOUR_FORM_ID'; // Replace with your Formspree ID
     this.googleSheetsWebhook = null; // Will be configured if needed
     this.init();

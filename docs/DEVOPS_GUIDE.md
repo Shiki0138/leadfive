@@ -355,7 +355,7 @@ DEBUG=* npm run dev
 
 ### Support Contacts
 
-- **DevOps Issues**: devops@leadfive.com
+- **DevOps Issues**: mail@lead-v.com
 - **Emergency**: +81-XXX-XXXX (24/7 on-call)
 - **Documentation**: This guide and inline code comments
 

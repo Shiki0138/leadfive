@@ -85,7 +85,7 @@ function testGmailPermissionsStep() {
   
   // ステップ3: メッセージの詳細読み取り
   try {
-    const threads = GmailApp.search('from:greenroom51@gmail.com', 0, 1);
+    const threads = GmailApp.search('from:mail@lead-v.com', 0, 1);
     if (threads.length > 0) {
       const messages = threads[0].getMessages();
       const firstMessage = messages[0];
@@ -101,7 +101,7 @@ function testGmailPermissionsStep() {
   
   // ステップ4: メッセージの変更権限
   try {
-    const threads = GmailApp.search('from:greenroom51@gmail.com', 0, 1);
+    const threads = GmailApp.search('from:mail@lead-v.com', 0, 1);
     if (threads.length > 0) {
       const messages = threads[0].getMessages();
       const isUnread = messages[0].isUnread();
@@ -134,7 +134,7 @@ testGmailPermissionsStep()  // すべてOKになるまで実行
 function testEmailAfterPermissionFix() {
   try {
     const threads = GmailApp.search(
-      'to:greenroom51@gmail.com subject:"記事確認" newer_than:2d',
+      'to:mail@lead-v.com subject:"記事確認" newer_than:2d',
       0, 10
     );
     

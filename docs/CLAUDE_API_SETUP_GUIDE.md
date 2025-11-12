@@ -232,7 +232,7 @@ jobs:
 
 - **Anthropic公式ドキュメント**: https://docs.anthropic.com
 - **料金計算機**: https://anthropic.com/pricing
-- **サポート**: support@anthropic.com
+- **サポート**: mail@lead-v.com
 
 ---
 

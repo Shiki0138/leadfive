@@ -171,7 +171,7 @@ echo -e "${YELLOW}Running post-deployment tasks...${NC}"
 
 # Send deployment notification
 if [ "$ENVIRONMENT" == "production" ]; then
-    echo "Production deployment completed at $(date)" | mail -s "LeadFive Production Deployment" team@leadfive.com || true
+    echo "Production deployment completed at $(date)" | mail -s "LeadFive Production Deployment" mail@lead-v.com || true
 fi
 
 # Run smoke tests

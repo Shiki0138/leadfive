@@ -30,7 +30,7 @@ function sendMorningProposals() {
   `;
   
   MailApp.sendEmail({
-    to: 'your-email@gmail.com',
+    to: 'mail@lead-v.com',
     subject: '【LeadFive】本日のブログ提案',
     htmlBody: html
   });

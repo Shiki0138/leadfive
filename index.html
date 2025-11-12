@@ -39,7 +39,7 @@
         "@type": "ContactPoint",
         "contactType": "customer support",
         "telephone": "06-7713-6747",
-        "email": "leadfive.138@gmail.com",
+        "email": "mail@lead-v.com",
         "areaServed": "JP",
         "availableLanguage": ["ja"]
       }]
@@ -759,7 +759,43 @@
             border-color: rgba(59, 130, 246, 0.5);
             transform: scale(1.05);
         }
-        
+
+        .card-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
         .card h3 {
             font-size: 1.25rem;
             margin-bottom: 1rem;
@@ -1034,6 +1070,15 @@
             font-size: 0.95rem;
             line-height: 1.5;
             color: #1e3a8a;
+        }
+
+        .service-card .card-image-wrapper {
+            height: 160px;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card:hover .card-thumbnail {
+            transform: scale(1.08);
         }
 
         /* 新着情報スライダー */
@@ -1709,17 +1754,26 @@
             
             <div class="cards-grid">
                 <div class="card">
-                    <span class="card-icon">01</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80" alt="広告費増加" class="card-thumbnail">
+                        <div class="card-badge">01</div>
+                    </div>
                     <h3>広告費増加、売上横ばい</h3>
                     <p>競合増加で広告単価上昇。成果は出ない現実。</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">02</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&q=80" alt="AI導入" class="card-thumbnail">
+                        <div class="card-badge">02</div>
+                    </div>
                     <h3>AI導入も使いこなせない</h3>
                     <p>「とりあえずChatGPT」では差がつかない。</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">03</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="データ分析" class="card-thumbnail">
+                        <div class="card-badge">03</div>
+                    </div>
                     <h3>データあるも次手見えず</h3>
                     <p>分析ツールの数値を眺めるだけの日々。</p>
                 </div>
@@ -1769,22 +1823,34 @@
             
             <div class="services-grid">
                 <div class="service-card">
-                    <span class="card-icon">01</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=400&q=80" alt="マーケティングサポート" class="card-thumbnail">
+                        <div class="card-badge">01</div>
+                    </div>
                     <h3>マーケティングサポート</h3>
                     <p>戦略設計から実装・計測・改善まで一気通貫。CVR改善、CPA最適化、LTV最大化まで伴走支援します。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">02</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&q=80" alt="DXツール開発" class="card-thumbnail">
+                        <div class="card-badge">02</div>
+                    </div>
                     <h3>AIを活用したDXツールの開発</h3>
                     <p>業務自動化やデータ連携のための内製ツール/AI機能を開発。ワークフロー最適化や社内ナレッジ活用を加速。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">03</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&q=80" alt="AI活用支援" class="card-thumbnail">
+                        <div class="card-badge">03</div>
+                    </div>
                     <h3>AI活用支援</h3>
                     <p>生成AIの活用設計から運用定着まで。プロンプト設計、ガバナンス、教育/トレーニングで成果につなげます。</p>
                 </div>
                 <div class="service-card">
-                    <span class="card-icon">04</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&q=80" alt="WEB/SNS運用" class="card-thumbnail">
+                        <div class="card-badge">04</div>
+                    </div>
                     <h3>WEB/SNS運用サポート</h3>
                     <p>Web/LP/SNS/広告運用を設計・実行。コンテンツ/クリエイティブ最適化から配信・レポーティング自動化まで対応。</p>
                 </div>
@@ -1937,25 +2003,34 @@
             
             <div class="cards-grid" style="max-width: 900px; margin: 0 auto;">
                 <div class="card" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.1)); border: 1px solid rgba(59, 130, 246, 0.3);">
-                    <span class="card-icon">🎯</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80" alt="開発アプローチ" class="card-thumbnail">
+                        <div class="card-badge" style="background: rgba(59, 130, 246, 0.9);">Strategy</div>
+                    </div>
                     <h3 style="color: #3b82f6;">LeadFiveの開発アプローチ</h3>
                     <p style="font-size: 1rem; line-height: 1.7;">
                         単なるシステム開発ではなく、<strong style="color: #3b82f6;">マーケティングコンサルタントの視点</strong>を合わせながら、<br>
                         <span style="color: #3b82f6; font-weight: 600;">経営改善・売上アップ</span>につながるシステムを開発いたします。
                     </p>
                 </div>
-                
+
                 <div class="card" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.1)); border: 1px solid rgba(59, 130, 246, 0.3);">
-                    <span class="card-icon">🚀</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&q=80" alt="一括対応" class="card-thumbnail">
+                        <div class="card-badge" style="background: rgba(59, 130, 246, 0.9);">Full Support</div>
+                    </div>
                     <h3 style="color: #3b82f6;">一括対応システム</h3>
                     <p style="font-size: 1rem; line-height: 1.7;">
                         <strong>要件定義からシステムリリース後の伴走まで一括対応</strong>。<br>
                         開発だけでなく、運用・改善まで継続的にサポートし、確実な成果創出を実現します。
                     </p>
                 </div>
-                
+
                 <div class="card" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.1)); border: 1px solid rgba(59, 130, 246, 0.3);">
-                    <span class="card-icon">📊</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80" alt="成果にコミット" class="card-thumbnail">
+                        <div class="card-badge" style="background: rgba(59, 130, 246, 0.9);">Results</div>
+                    </div>
                     <h3 style="color: #3b82f6;">成果にコミット</h3>
                     <p style="font-size: 1rem; line-height: 1.7;">
                         システム導入により<strong style="color: #3b82f6;">売上向上・業務効率化</strong>を実現。<br>
@@ -2042,7 +2117,10 @@
             <h2 class="section-title">マーケティングと生成AIを導入した事例</h2>
             <div class="cards-grid">
                 <div class="card">
-                    <span class="card-icon">🏷️</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="美容室チェーン" class="card-thumbnail">
+                        <div class="card-badge" style="background: rgba(236, 72, 153, 0.9);">Beauty</div>
+                    </div>
                     <h3>美容室チェーン</h3>
                     <p>LP最適化とAI接客導入でCVR+128%、予約数2.1倍</p>
                     <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
@@ -2051,7 +2129,10 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="card-icon">💼</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=80" alt="BtoB SaaS" class="card-thumbnail">
+                        <div class="card-badge" style="background: rgba(59, 130, 246, 0.9);">SaaS</div>
+                    </div>
                     <h3>BtoB SaaS</h3>
                     <p>問い合わせ単価▲36%、商談化率+58%、パイプラインを可視化</p>
                     <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
@@ -2060,7 +2141,10 @@
                     </div>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🛒</span>
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1557821552-17105176677c?w=400&q=80" alt="EC/D2C" class="card-thumbnail">
+                        <div class="card-badge" style="background: rgba(34, 197, 94, 0.9);">E-Commerce</div>
+                    </div>
                     <h3>EC/D2C</h3>
                     <p>8本能訴求の新LPで初回転換+64%、定期継続率+22%</p>
                     <div class="badges" style="margin: .75rem 0 0; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
@@ -2188,7 +2272,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="modal-email">メールアドレス <span class="required">*</span></label>
-                            <input type="email" id="modal-email" name="email" required placeholder="example@company.com">
+                            <input type="email" id="modal-email" name="email" required placeholder="mail@lead-v.com">
                         </div>
                         <div class="form-group">
                             <label for="modal-phone">電話番号</label>

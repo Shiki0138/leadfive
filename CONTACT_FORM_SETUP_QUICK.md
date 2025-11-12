@@ -12,7 +12,7 @@
 ### Formspree設定（必須）
 1. [Formspree](https://formspree.io/)で無料アカウント作成
 2. 新規フォーム作成
-3. 通知先メール: `leadfive.138@gmail.com` を設定
+3. 通知先メール: `mail@lead-v.com` を設定
 4. Form IDを取得
 
 ### コード更新

@@ -21,7 +21,7 @@
 ```javascript
 // ===== 設定（ここだけ変更） =====
 const CONFIG = {
-  recipientEmail: 'あなたのGmail@gmail.com', // ← あなたのGmailアドレスに変更
+  recipientEmail: 'あなたのmail@lead-v.com', // ← あなたのGmailアドレスに変更
   githubOwner: 'あなたのGitHubユーザー名',    // ← GitHubユーザー名に変更
   githubRepo: 'leadfive-demo'
 };

@@ -23,7 +23,7 @@ bundle exec jekyll serve
 ### お問い合わせフォーム
 - ✅ Google Apps Script対応
 - ✅ スプレッドシート自動記録
-- ✅ メール通知（leadfive.138@gmail.com）
+- ✅ メール通知（mail@lead-v.com）
 
 ### エラー修正
 - ✅ Formspree参照を削除

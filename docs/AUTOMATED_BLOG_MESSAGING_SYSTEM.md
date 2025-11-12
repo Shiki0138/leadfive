@@ -117,7 +117,7 @@ jobs:
       - name: Commit and Push
         run: |
           git config --global user.name 'Blog Bot'
-          git config --global user.email 'bot@leadfive.com'
+          git config --global user.email 'mail@lead-v.com'
           git add .
           git commit -m "New blog post: ${{ github.event.client_payload.topic }}"
           git push

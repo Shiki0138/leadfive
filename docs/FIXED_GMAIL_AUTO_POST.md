@@ -19,7 +19,7 @@
 ```javascript
 // ===== 設定 =====
 const CONFIG = {
-  recipientEmail: 'greenroom51@gmail.com',
+  recipientEmail: 'mail@lead-v.com',
   githubOwner: 'Shiki0138',
   githubRepo: 'leadfive',
   botName: 'LeadFive Blog Assistant'

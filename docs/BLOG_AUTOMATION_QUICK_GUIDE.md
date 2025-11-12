@@ -17,7 +17,7 @@ AIを使って高品質なSEOブログを自動生成・投稿するシステム
 
 **メール例**:
 ```
-宛先: blog@your-domain.com
+宛先: mail@lead-v.com
 件名: ブログ投稿
 
 キーワード: AIマーケティング 中小企業
@@ -96,7 +96,7 @@ export GEMINI_API_KEY="AIzaxxxxx"
 
 ## 📧 サポート
 - 技術的な質問: GitHubのIssue
-- カスタマイズ依頼: leadfive.138@gmail.com
+- カスタマイズ依頼: mail@lead-v.com
 
 ## 🎉 期待できる成果
 - 月間50-100記事の自動生成

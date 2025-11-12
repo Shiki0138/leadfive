@@ -2,7 +2,7 @@
 
 ## 概要
 Formspreeを使わずに、Google Sheets + Google Apps Script (GAS) のみでお問い合わせフォームを実装します。
-受信したお問い合わせは自動的にスプレッドシートに記録され、`leadfive.138@gmail.com` にメール通知されます。
+受信したお問い合わせは自動的にスプレッドシートに記録され、`mail@lead-v.com` にメール通知されます。
 
 ## 設定手順（約10分）
 
@@ -67,7 +67,7 @@ Formspreeを使わずに、Google Sheets + Google Apps Script (GAS) のみでお
 3. 以下を確認：
    - スプレッドシートに「お問い合わせ」シートが作成される
    - テストデータが追加される
-   - `leadfive.138@gmail.com` にテストメールが届く
+   - `mail@lead-v.com` にテストメールが届く
 
 ## トラブルシューティング
 
@@ -98,7 +98,7 @@ Formspreeを使わずに、Google Sheets + Google Apps Script (GAS) のみでお
 ### 通知先メールアドレスの変更
 `gas-code.gs` の162行目を編集：
 ```javascript
-const recipient = 'leadfive.138@gmail.com'; // 変更したいアドレスに
+const recipient = 'mail@lead-v.com'; // 変更したいアドレスに
 ```
 
 ### スプレッドシートの列を追加

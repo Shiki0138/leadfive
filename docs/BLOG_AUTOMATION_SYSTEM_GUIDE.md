@@ -108,7 +108,7 @@ const CONFIG = {
   GITHUB_OWNER: 'your-username',
   GITHUB_REPO: 'leadfive-demo',
   CLAUDE_API_KEY: 'sk-ant-xxxxx',
-  ADMIN_EMAIL: 'leadfive.138@gmail.com'
+  ADMIN_EMAIL: 'mail@lead-v.com'
 };
 ```
 
@@ -126,7 +126,7 @@ const CONFIG = {
 
 ### 方法2: メール投稿
 
-送信先: `blog@your-domain.com`
+送信先: `mail@lead-v.com`
 
 メール例:
 ```
@@ -332,7 +332,7 @@ for (const lang of languages) {
 ### お問い合わせ
 - **技術的な質問**: GitHubのIssueで
 - **APIキー関連**: 各プロバイダーのサポート
-- **カスタマイズ依頼**: leadfive.138@gmail.com
+- **カスタマイズ依頼**: mail@lead-v.com
 
 ## 🎉 まとめ
 

@@ -21,7 +21,7 @@ function testEmailSearchLoose() {
   try {
     // より広い検索条件で確認
     const threads = GmailApp.search(
-      `from:greenroom51@gmail.com newer_than:2d`,
+      `from:mail@lead-v.com newer_than:2d`,
       0, 10
     );
     

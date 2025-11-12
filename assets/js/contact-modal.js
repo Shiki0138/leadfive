@@ -150,7 +150,7 @@
       message: formData.get('message'),
       privacy: formData.get('privacy'),
       _subject: '【LeadFive】お問い合わせ',
-      _to: 'leadfive.138@gmail.com'
+      _to: 'mail@lead-v.com'
     };
 
     // Fallback to Formspree

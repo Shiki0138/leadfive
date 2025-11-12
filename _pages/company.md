@@ -496,7 +496,7 @@ body {
         </tr>
         <tr>
           <th>メール</th>
-          <td>leadfive.138@gmail.com</td>
+          <td>mail@lead-v.com</td>
         </tr>
         <tr>
           <th>事業内容</th>
@@ -534,7 +534,7 @@ body {
         </div>
         <div class="info-card">
           <h4>メールアドレス</h4>
-          <p>leadfive.138@gmail.com</p>
+          <p>mail@lead-v.com</p>
         </div>
         <div class="info-card">
           <h4>事業内容</h4>
