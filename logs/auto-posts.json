@@ -1463,5 +1463,23 @@
     "hasImage": true,
     "imagesCount": 5,
     "dayOfWeek": "saturday"
+  },
+  {
+    "date": "2025-11-30T01:51:51.209Z",
+    "title": "2025年版：AI活用でビジネス成長を加速させる！再現性のある戦略立案5つの秘訣",
+    "categories": [
+      "戦略立案"
+    ],
+    "tags": [
+      "ビジネス成長 AI活用 戦略",
+      "マーケティング戦略 AI時代",
+      "競争優位 構築 方法",
+      "DX推進 ロードマップ 作成"
+    ],
+    "instinct": "reproduction",
+    "filename": "2025-11-30-2025年版-ai活用でビジネス成長を加速させる-再現性のある戦略立案5つの秘訣.md",
+    "hasImage": true,
+    "imagesCount": 6,
+    "dayOfWeek": "sunday"
   }
 ]
