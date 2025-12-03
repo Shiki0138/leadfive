@@ -1216,6 +1216,9 @@
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
 
         .news-thumbnail {
@@ -1858,7 +1861,7 @@
     </section>
 
     <!-- 1.5. 新着情報スライダー -->
-    <section class="news-slider-section fullscreen-section">
+    <section id="news" class="news-slider-section fullscreen-section">
         <div class="news-slider-container">
             <div class="news-slider-header">
                 <h2>新着情報</h2>
@@ -1867,22 +1870,36 @@
 
             <div class="news-slider-wrapper">
                 <div class="news-slider" id="newsSlider">
-                    <!-- ニュースカード 1 - Google Review System -->
-                    <div class="news-card">
+                    <!-- ニュースカード 1 - counseling-AI (NEW) -->
+                    <a href="/news/counseling-ai/" class="news-card">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80"
+                            alt="counseling-AI" class="news-thumbnail">
+                        <div class="news-content">
+                            <div>
+                                <span class="news-date">2025.12.04</span>
+                                <span class="news-category">プレスリリース</span>
+                            </div>
+                            <h3 class="news-title">AIカウンセリングシステム「counseling-AI」をリリース</h3>
+                            <p class="news-description">心理カウンセリングをAIがサポートする革新的なシステムを正式リリースいたしました。</p>
+                        </div>
+                    </a>
+
+                    <!-- ニュースカード 2 - ふえるん -->
+                    <a href="/news/fuerun/" class="news-card">
                         <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&q=80"
-                            alt="Google口コミAIシステム" class="news-thumbnail">
+                            alt="ふえるん - Google口コミAI返信システム" class="news-thumbnail">
                         <div class="news-content">
                             <div>
                                 <span class="news-date">2025.11.28</span>
                                 <span class="news-category">プレスリリース</span>
                             </div>
-                            <h3 class="news-title">Google口コミAI返信システムをリリース</h3>
-                            <p class="news-description">Googleビジネスプロフィールの口コミに対して、AIが自動で返信文を生成するシステムを正式リリースいたしました。</p>
+                            <h3 class="news-title">Google口コミAI返信システム「ふえるん」をリリース</h3>
+                            <p class="news-description">Googleビジネスプロフィールの口コミに対して、AIが自動で返信文を生成するシステム「ふえるん」を正式リリースいたしました。</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- ニュースカード 2 -->
-                    <div class="news-card">
+                    <!-- ニュースカード 3 - HexaMind -->
+                    <a href="/news/hexamind/" class="news-card">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="AI経営支援システム"
                             class="news-thumbnail">
                         <div class="news-content">
@@ -1893,10 +1910,10 @@
                             <h3 class="news-title">AI経営支援システム「HexaMind」をリリース</h3>
                             <p class="news-description">経営者の意思決定を支援する革新的なAIシステムを正式リリースいたしました。</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- ニュースカード 3 -->
-                    <div class="news-card">
+                    <!-- ニュースカード 4 - 美容室事例 -->
+                    <a href="/news/beauty-cvr/" class="news-card">
                         <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="美容室"
                             class="news-thumbnail">
                         <div class="news-content">
@@ -1907,38 +1924,38 @@
                             <h3 class="news-title">美容室チェーンのCVR128%改善に成功</h3>
                             <p class="news-description">LP最適化とAI接客導入により、予約数が2.1倍に増加しました。</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- ニュースカード 4 -->
-                    <div class="news-card">
+                    <!-- ニュースカード 5 - 補助金AI -->
+                    <a href="/news/subsidy-ai/" class="news-card">
                         <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&q=80" alt="補助金申請書類"
                             class="news-thumbnail">
                         <div class="news-content">
                             <div>
-                                <span class="news-date">2025.7.20</span>
+                                <span class="news-date">2025.07.20</span>
                                 <span class="news-category">サービス</span>
                             </div>
                             <h3 class="news-title">補助金申請AIシステムの提供を開始</h3>
                             <p class="news-description">申請書作成時間を1週間から4時間に短縮するAIシステムをリリース。</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- ニュースカード 5 -->
-                    <div class="news-card">
+                    <!-- ニュースカード 6 - BtoB事例 -->
+                    <a href="/news/btob-chatbot/" class="news-card">
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80" alt="ビジネスミーティング"
                             class="news-thumbnail">
                         <div class="news-content">
                             <div>
-                                <span class="news-date">2025.7.15</span>
+                                <span class="news-date">2025.07.15</span>
                                 <span class="news-category">事例紹介</span>
                             </div>
                             <h3 class="news-title">BtoB企業の商談化率58%向上を実現</h3>
                             <p class="news-description">AIチャットボット導入により、初回CVRが64%改善しました。</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- ニュースカード 6 -->
-                    <div class="news-card">
+                    <!-- ニュースカード 7 - 年末年始 -->
+                    <a href="/news/year-end-schedule/" class="news-card">
                         <img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=400&q=80" alt="カレンダー"
                             class="news-thumbnail">
                         <div class="news-content">
@@ -1949,10 +1966,10 @@
                             <h3 class="news-title">年末年始の営業日程について</h3>
                             <p class="news-description">2024年12月29日〜2025年1月5日まで休業とさせていただきます。</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- ニュースカード 7 -->
-                    <div class="news-card">
+                    <!-- ニュースカード 8 - FLEEKS -->
+                    <a href="/news/fleeks/" class="news-card">
                         <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80" alt="オンライン学習"
                             class="news-thumbnail">
                         <div class="news-content">
@@ -1963,7 +1980,7 @@
                             <h3 class="news-title">FLEEKSオンラインサロンプラットフォーム正式版公開</h3>
                             <p class="news-description">ローカルビジネス向けオンラインサロンプラットフォームを正式公開しました。</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
