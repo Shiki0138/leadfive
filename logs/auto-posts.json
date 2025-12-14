@@ -1721,5 +1721,23 @@
     "hasImage": true,
     "imagesCount": 6,
     "dayOfWeek": "saturday"
+  },
+  {
+    "date": "2025-12-14T01:53:03.027Z",
+    "title": "2025年版：AI時代を生き抜く！マーケティング戦略立案「5つの生存術」",
+    "categories": [
+      "戦略立案"
+    ],
+    "tags": [
+      "マーケティング戦略 AI時代",
+      "ビジネス成長 AI活用 戦略",
+      "競争優位 構築 方法",
+      "DX推進 ロードマップ 作成"
+    ],
+    "instinct": "reproduction",
+    "filename": "2025-12-14-2025年版-ai時代を生き抜く-マーケティング戦略立案-5つの生存術.md",
+    "hasImage": true,
+    "imagesCount": 5,
+    "dayOfWeek": "sunday"
   }
 ]
