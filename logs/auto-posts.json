@@ -1,23 +1,5 @@
 [
   {
-    "date": "2025-09-20T05:18:22.503Z",
-    "title": "2025年版 飲食業界の悩みを解決！マーケティング自動化で顧客を育てる3つの戦略",
-    "categories": [
-      "業界別ガイド"
-    ],
-    "tags": [
-      "飲食業界 マーケティング自動化",
-      "美容業界 AI活用 完全ガイド",
-      "不動産業界 デジタル変革",
-      "医療業界 AI導入 事例"
-    ],
-    "instinct": "nurturing",
-    "filename": "2025-09-20-2025年版-飲食業界の悩みを解決-マーケティング自動化で顧客を育てる3つの戦略.md",
-    "hasImage": true,
-    "imagesCount": 6,
-    "dayOfWeek": "saturday"
-  },
-  {
     "date": "2025-09-20T05:31:32.742Z",
     "title": "2025年版：不動産業界のデジタル変革ガイド！顧客育成で成功する３つの戦略",
     "categories": [
@@ -1836,5 +1818,23 @@
     "hasImage": true,
     "imagesCount": 4,
     "dayOfWeek": "sunday"
+  },
+  {
+    "date": "2026-01-05T01:59:54.999Z",
+    "title": "2026年最新！生成AI活用法でマーケティングを加速させる5つの秘訣",
+    "categories": [
+      "AIマーケティング"
+    ],
+    "tags": [
+      "生成AI 活用法 マーケティング",
+      "AI マーケティング 最新トレンド",
+      "ChatGPT ビジネス活用 事例",
+      "AI ツール 比較 2025"
+    ],
+    "instinct": "learning",
+    "filename": "2026-01-05-2026年最新-生成ai活用法でマーケティングを加速させる5つの秘訣.md",
+    "hasImage": true,
+    "imagesCount": 5,
+    "dayOfWeek": "monday"
   }
 ]
