@@ -1,23 +1,5 @@
 [
   {
-    "date": "2025-09-20T07:26:06.762Z",
-    "title": "2025年版 美容業界AI活用完全ガイド：顧客育成で売上UPの5つの秘訣",
-    "categories": [
-      "業界別ガイド"
-    ],
-    "tags": [
-      "美容業界 AI活用 完全ガイド",
-      "不動産業界 デジタル変革",
-      "飲食業界 マーケティング自動化",
-      "医療業界 AI導入 事例"
-    ],
-    "instinct": "nurturing",
-    "filename": "2025-09-20-2025年版-美容業界ai活用完全ガイド-顧客育成で売上upの5つの秘訣.md",
-    "hasImage": true,
-    "imagesCount": 6,
-    "dayOfWeek": "saturday"
-  },
-  {
     "date": "2025-09-20T07:42:23.798Z",
     "title": "2025年版 医療業界のAI導入事例5選：課題解決と未来への展望",
     "categories": [
@@ -1836,5 +1818,24 @@
     "hasImage": true,
     "imagesCount": 6,
     "dayOfWeek": "tuesday"
+  },
+  {
+    "date": "2026-01-07T01:50:14.059Z",
+    "title": "2026年版：AI導入ロードマップで顧客基盤を5倍に！ territorial本能を刺激する成功事例",
+    "categories": [
+      "成功事例"
+    ],
+    "tags": [
+      "AI導入 ロードマップ",
+      "AI導入 成功事例 中小企業",
+      "デジタル変革 事例 製造業",
+      "CVR改善 成功事例 EC",
+      "マーケティング自動化 ROI"
+    ],
+    "instinct": "territorial",
+    "filename": "2026-01-07-2026年版-ai導入ロードマップで顧客基盤を5倍に-territorial本能を刺激する成功事例.md",
+    "hasImage": true,
+    "imagesCount": 6,
+    "dayOfWeek": "wednesday"
   }
 ]
