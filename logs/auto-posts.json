@@ -1,23 +1,5 @@
 [
   {
-    "date": "2025-09-20T07:59:53.887Z",
-    "title": "2025年版 美容業界AI活用完全ガイド：5つのステップで顧客満足度を高める方法",
-    "categories": [
-      "業界別ガイド"
-    ],
-    "tags": [
-      "美容業界 AI活用 完全ガイド",
-      "不動産業界 デジタル変革",
-      "飲食業界 マーケティング自動化",
-      "医療業界 AI導入 事例"
-    ],
-    "instinct": "nurturing",
-    "filename": "2025-09-20-2025年版-美容業界ai活用完全ガイド-5つのステップで顧客満足度を高める方法.md",
-    "hasImage": true,
-    "imagesCount": 6,
-    "dayOfWeek": "saturday"
-  },
-  {
     "date": "2025-09-20T08:25:13.281Z",
     "title": "2025年版 医療業界のAI導入事例5選：患者中心の未来医療を育む",
     "categories": [
@@ -1837,5 +1819,23 @@
     "hasImage": true,
     "imagesCount": 5,
     "dayOfWeek": "thursday"
+  },
+  {
+    "date": "2026-01-09T01:51:14.053Z",
+    "title": "2026年版！生成AI進化の衝撃：生存戦略を左右する5つの影響比較",
+    "categories": [
+      "トレンド分析"
+    ],
+    "tags": [
+      "生成AI 進化 影響",
+      "マーケティングトレンド 2025 予測",
+      "AI技術 最新動向 ビジネス",
+      "デジタルマーケティング 未来"
+    ],
+    "instinct": "survival",
+    "filename": "2026-01-09-2026年版-生成ai進化の衝撃-生存戦略を左右する5つの影響比較.md",
+    "hasImage": true,
+    "imagesCount": 4,
+    "dayOfWeek": "friday"
   }
 ]
