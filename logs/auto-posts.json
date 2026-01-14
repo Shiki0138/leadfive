@@ -1,23 +1,5 @@
 [
   {
-    "date": "2025-09-22T01:41:13.298Z",
-    "title": "2025年版ChatGPTビジネス活用事例5選：AIマーケティングで成果を上げる方法",
-    "categories": [
-      "AIマーケティング"
-    ],
-    "tags": [
-      "ChatGPT ビジネス活用 事例",
-      "AI マーケティング 最新トレンド",
-      "生成AI 活用法 マーケティング",
-      "AI ツール 比較 2025"
-    ],
-    "instinct": "learning",
-    "filename": "2025-09-22-2025年版chatgptビジネス活用事例5選-aiマーケティングで成果を上げる方法.md",
-    "hasImage": true,
-    "imagesCount": 6,
-    "dayOfWeek": "monday"
-  },
-  {
     "date": "2025-09-23T01:25:49.616Z",
     "title": "2025年版 消費者心理を読み解き、戦略修正の5つのポイントで競合に差をつける",
     "categories": [
@@ -1838,5 +1820,23 @@
     "hasImage": true,
     "imagesCount": 5,
     "dayOfWeek": "tuesday"
+  },
+  {
+    "date": "2026-01-14T01:54:59.076Z",
+    "title": "2026年版：製造業デジタル変革の成功事例5選！AIで領域を拡大した企業たちの秘密",
+    "categories": [
+      "成功事例"
+    ],
+    "tags": [
+      "デジタル変革 事例 製造業",
+      "AI導入 成功事例 中小企業",
+      "CVR改善 成功事例 EC",
+      "マーケティング自動化 ROI"
+    ],
+    "instinct": "territorial",
+    "filename": "2026-01-14-2026年版-製造業デジタル変革の成功事例5選-aiで領域を拡大した企業たちの秘密.md",
+    "hasImage": true,
+    "imagesCount": 4,
+    "dayOfWeek": "wednesday"
   }
 ]
