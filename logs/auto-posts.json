@@ -1,23 +1,5 @@
 [
   {
-    "date": "2025-09-24T01:26:21.025Z",
-    "title": "2025年版 製造業DX成功事例5選：縄張りを広げるデジタル変革戦略",
-    "categories": [
-      "成功事例"
-    ],
-    "tags": [
-      "デジタル変革 事例 製造業",
-      "AI導入 成功事例 中小企業",
-      "CVR改善 成功事例 EC",
-      "マーケティング自動化 ROI"
-    ],
-    "instinct": "territorial",
-    "filename": "2025-09-24-2025年版-製造業dx成功事例5選-縄張りを広げるデジタル変革戦略.md",
-    "hasImage": true,
-    "imagesCount": 6,
-    "dayOfWeek": "wednesday"
-  },
-  {
     "date": "2025-09-25T01:26:57.279Z",
     "title": "2025年版！コンテンツマーケティング効率化のための7つの実践テクニック",
     "categories": [
@@ -1838,5 +1820,23 @@
     "hasImage": true,
     "imagesCount": 6,
     "dayOfWeek": "thursday"
+  },
+  {
+    "date": "2026-01-16T01:51:51.255Z",
+    "title": "2026年AI技術 最新動向：ビジネスを生き残らせる5つの比較分析",
+    "categories": [
+      "トレンド分析"
+    ],
+    "tags": [
+      "AI技術 最新動向 ビジネス",
+      "マーケティングトレンド 2025 予測",
+      "デジタルマーケティング 未来",
+      "生成AI 進化 影響"
+    ],
+    "instinct": "survival",
+    "filename": "2026-01-16-2026年ai技術-最新動向-ビジネスを生き残らせる5つの比較分析.md",
+    "hasImage": true,
+    "imagesCount": 5,
+    "dayOfWeek": "friday"
   }
 ]
