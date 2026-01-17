@@ -1,23 +1,5 @@
 [
   {
-    "date": "2025-09-25T01:26:57.279Z",
-    "title": "2025年版！コンテンツマーケティング効率化のための7つの実践テクニック",
-    "categories": [
-      "実践テクニック"
-    ],
-    "tags": [
-      "コンテンツマーケティング 効率化",
-      "SEO対策 AI活用 2025",
-      "SNSマーケティング 自動化 方法",
-      "メールマーケティング AI 最適化"
-    ],
-    "instinct": "learning",
-    "filename": "2025-09-25-2025年版-コンテンツマーケティング効率化のための7つの実践テクニック.md",
-    "hasImage": true,
-    "imagesCount": 6,
-    "dayOfWeek": "thursday"
-  },
-  {
     "date": "2025-10-08T03:23:29.914Z",
     "title": "2025年版CVR改善成功事例：ECサイトが競合に差をつける5つの秘策",
     "categories": [
@@ -1838,5 +1820,23 @@
     "hasImage": true,
     "imagesCount": 5,
     "dayOfWeek": "friday"
+  },
+  {
+    "date": "2026-01-17T01:46:11.895Z",
+    "title": "2026年版：美容業界AI活用完全ガイド｜顧客の心をつかむ5つの秘密",
+    "categories": [
+      "業界別ガイド"
+    ],
+    "tags": [
+      "美容業界 AI活用 完全ガイド",
+      "不動産業界 デジタル変革",
+      "飲食業界 マーケティング自動化",
+      "医療業界 AI導入 事例"
+    ],
+    "instinct": "nurturing",
+    "filename": "2026-01-17-2026年版-美容業界ai活用完全ガイド-顧客の心をつかむ5つの秘密.md",
+    "hasImage": true,
+    "imagesCount": 3,
+    "dayOfWeek": "saturday"
   }
 ]
