@@ -1,23 +1,5 @@
 [
   {
-    "date": "2025-10-08T03:23:29.914Z",
-    "title": "2025年版CVR改善成功事例：ECサイトが競合に差をつける5つの秘策",
-    "categories": [
-      "成功事例"
-    ],
-    "tags": [
-      "CVR改善 成功事例 EC",
-      "AI導入 成功事例 中小企業",
-      "デジタル変革 事例 製造業",
-      "マーケティング自動化 ROI"
-    ],
-    "instinct": "territorial",
-    "filename": "2025-10-08-2025年版cvr改善成功事例-ecサイトが競合に差をつける5つの秘策.md",
-    "hasImage": true,
-    "imagesCount": 6,
-    "dayOfWeek": "wednesday"
-  },
-  {
     "date": "2025-10-09T01:26:26.226Z",
     "title": "2025年版：ECサイト 最適化の5つの実践テクニックで顧客のlearningを刺激する",
     "categories": [
@@ -1838,5 +1820,23 @@
     "hasImage": true,
     "imagesCount": 3,
     "dayOfWeek": "saturday"
+  },
+  {
+    "date": "2026-01-18T01:58:24.963Z",
+    "title": "2026年DX推進ロードマップ作成：事業継続と成長を実現する5つの戦略",
+    "categories": [
+      "戦略立案"
+    ],
+    "tags": [
+      "DX推進 ロードマップ 作成",
+      "マーケティング戦略 AI時代",
+      "ビジネス成長 AI活用 戦略",
+      "競争優位 構築 方法"
+    ],
+    "instinct": "reproduction",
+    "filename": "2026-01-18-2026年dx推進ロードマップ作成-事業継続と成長を実現する5つの戦略.md",
+    "hasImage": true,
+    "imagesCount": 6,
+    "dayOfWeek": "sunday"
   }
 ]
