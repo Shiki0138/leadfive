@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実績一覧 | Leadfive</title>
+    <meta name="description" content="Leadfiveが開発したサービス・アプリケーションの一覧。AI×心理学で売上を科学する。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-off-white: #FAFAFA;
+            --bg-black: #1a1a1a;
+            --text-dark: #1a1a1a;
+            --text-light: #FFFFFF;
+            --text-gray: #6B7280;
+            --accent-blue: #2563EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* ヘッダー */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border: none;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-light);
+        }
+
+        /* ページヘッダー */
+        .page-header {
+            padding: 10rem 2rem 4rem;
+            background: var(--bg-off-white);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* 実績グリッド */
+        .works-grid-section {
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .work-card {
+            background: var(--bg-white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .work-card-media {
+            height: 200px;
+            overflow: hidden;
+            background: var(--bg-black);
+        }
+
+        .work-card-media video,
+        .work-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .work-card:hover .work-card-media video,
+        .work-card:hover .work-card-media img {
+            transform: scale(1.05);
+        }
+
+        .work-card-content {
+            padding: 1.5rem;
+        }
+
+        .work-card-category {
+            font-size: 0.7rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-card-description {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* フッター */
+        .footer-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* モバイル */
+        @media (max-width: 1024px) {
+            .works-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo-text">Leadfive</a>
+            <ul class="navbar-nav">
+                <li><a href="/works/" class="nav-link">実績</a></li>
+                <li><a href="/news/" class="nav-link">お知らせ</a></li>
+                <li><a href="/#services" class="nav-link">サービス</a></li>
+                <li><a href="/blog/" class="nav-link">ブログ</a></li>
+                <li><a href="/#cta" class="btn btn-primary">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <h1>Works</h1>
+        <p>開発したサービス・アプリケーション</p>
+    </section>
+
+    <!-- 実績グリッド -->
+    <section class="works-grid-section">
+        <div class="container">
+            <div class="works-grid">
+                <!-- FLEEKS -->
+                <a href="/works/fleeks.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="FLEEKS">
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-category">Platform</div>
+                        <h3 class="work-card-title">FLEEKS</h3>
+                        <p class="work-card-description">オンラインサロンプラットフォーム</p>
+                    </div>
+                </a>
+
+                <!-- HexaMind -->
+                <a href="/works/hexamind.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="HexaMind">
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-category">AI System</div>
+                        <h3 class="work-card-title">HexaMind</h3>
+                        <p class="work-card-description">AI経営支援システム</p>
+                    </div>
+                </a>
+
+                <!-- counseling-AI -->
+                <a href="/works/counseling-ai.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80"
+                            alt="counseling-AI">
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-category">Beauty Tech</div>
+                        <h3 class="work-card-title">counseling-AI</h3>
+                        <p class="work-card-description">美容室カウンセリングAI</p>
+                    </div>
+                </a>
+
+                <!-- ふえるん -->
+                <a href="/works/fuerun.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80" alt="ふえるん">
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-category">AI Automation</div>
+                        <h3 class="work-card-title">ふえるん</h3>
+                        <p class="work-card-description">Google口コミAI返信システム</p>
+                    </div>
+                </a>
+
+                <!-- 補助金申請AI -->
+                <a href="/works/subsidy-ai.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80"
+                            alt="補助金申請AI">
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-category">Document AI</div>
+                        <h3 class="work-card-title">補助金申請AI</h3>
+                        <p class="work-card-description">申請書自動生成システム</p>
+                    </div>
+                </a>
+
+                <!-- 歯科予約管理 -->
+                <a href="/works/dental-system.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80" alt="歯科予約管理">
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-category">Healthcare DX</div>
+                        <h3 class="work-card-title">歯科予約管理</h3>
+                        <p class="work-card-description">LINE連携予約管理システム</p>
+                    </div>
+                </a>
+
+                <!-- Garden DX -->
+                <a href="/works/garden-dx.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80"
+                            alt="Garden DX">
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-category">Industry DX</div>
+                        <h3 class="work-card-title">Garden DX</h3>
+                        <p class="work-card-description">造園業向け見積もり管理システム</p>
+                    </div>
+                </a>
+
+                <!-- CRAFT -->
+                <a href="/works/craft.html" class="work-card">
+                    <div class="work-card-media">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" alt="CRAFT">
+                    </div>
+                    <div class="work-card-content">
+                        <div class="work-card-category">Web Service</div>
+                        <h3 class="work-card-title">CRAFT</h3>
+                        <p class="work-card-description">集客特化型HP/LP制作サービス</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-brand">Leadfive</div>
+            <div class="footer-links">
+                <a href="/works/">実績</a>
+                <a href="/news/">お知らせ</a>
+                <a href="/company/">会社概要</a>
+                <a href="/privacy/">プライバシー</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

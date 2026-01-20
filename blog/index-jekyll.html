@@ -1,0 +1,321 @@
+---
+layout: blog
+title: AI心理学マーケティングブログ | LeadFive
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">ブログ</h1>
+    <p class="page-subtitle">AI×心理学マーケティングの最新情報</p>
+  </div>
+</section>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-grid">
+      <div class="blog-main">
+        <div class="blog-list">
+          {% for post in paginator.posts %}
+          <article class="post-item glass-card">
+            <div class="post-date">{{ post.date | date: "%Y年%m月%d日" }}</div>
+            <h2 class="post-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
+            {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+            {% endif %}
+            <div class="post-meta">
+              {% if post.categories %}
+              <span class="categories">
+                {% for category in post.categories %}
+                <a href="/blog/category/{{ category | slugify }}/">{{ category }}</a>
+                {% endfor %}
+              </span>
+              {% endif %}
+              <a href="{{ post.url | relative_url }}" class="read-more">続きを読む →</a>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if paginator.total_pages > 1 %}
+        <nav class="pagination">
+          {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-link">← 前のページ</a>
+          {% endif %}
+          
+          <span class="pagination-info">
+            {{ paginator.page }} / {{ paginator.total_pages }}
+          </span>
+          
+          {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-link">次のページ →</a>
+          {% endif %}
+        </nav>
+        {% endif %}
+      </div>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-widget glass-card">
+          <h3>カテゴリー</h3>
+          <ul class="category-list">
+            <li><a href="/blog/category/ai-marketing/">AIマーケティング</a></li>
+            <li><a href="/blog/category/psychology/">消費者心理</a></li>
+            <li><a href="/blog/category/case-study/">導入事例</a></li>
+            <li><a href="/blog/category/tips/">実践テクニック</a></li>
+            <li><a href="/blog/category/news/">お知らせ</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget glass-card">
+          <h3>人気の記事</h3>
+          <ul class="popular-posts">
+            <li>
+              <a href="#">
+                <span class="rank">1</span>
+                <span class="title">AIで広告費を半減させた3つの方法</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="rank">2</span>
+                <span class="title">8つの本能を刺激するコピーライティング術</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="rank">3</span>
+                <span class="title">ChatGPTを使った競合分析の実践ガイド</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget glass-card cta-widget">
+          <h3>無料相談</h3>
+          <p>あなたのビジネスに最適な戦略をご提案します</p>
+          <button class="btn btn-primary btn-sm" onclick="openContactForm()">
+            無料相談はこちら
+          </button>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+.page-header {
+  background: #f9fafb;
+  padding: 4rem 0;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.page-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
+}
+
+.blog-section {
+  padding: 4rem 0;
+  background: #ffffff;
+  min-height: 80vh;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+}
+
+@media (max-width: 968px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.post-item {
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+  background: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.post-item:hover {
+  transform: translateX(5px);
+  background: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+}
+
+.post-date {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.post-title {
+  margin: 0.75rem 0;
+}
+
+.post-title a {
+  color: #111827;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.post-title a:hover {
+  color: #8b5cf6;
+}
+
+.post-excerpt {
+  color: #4b5563;
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.categories a {
+  color: #8b5cf6;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-size: 0.875rem;
+}
+
+.categories a:hover {
+  text-decoration: underline;
+}
+
+.read-more {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.pagination-link {
+  padding: 0.75rem 1.5rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #374151;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.pagination-link:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.pagination-info {
+  color: #6b7280;
+}
+
+.sidebar-widget {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.sidebar-widget h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.category-list {
+  list-style: none;
+}
+
+.category-list li {
+  margin-bottom: 0.5rem;
+}
+
+.category-list a {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.category-list a:hover {
+  color: #8b5cf6;
+}
+
+.popular-posts {
+  list-style: none;
+}
+
+.popular-posts li {
+  margin-bottom: 1rem;
+}
+
+.popular-posts a {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #374151;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.popular-posts a:hover {
+  color: #111827;
+}
+
+.popular-posts .rank {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+.popular-posts .title {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.cta-widget {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(236, 72, 153, 0.05)) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+}
+
+.cta-widget p {
+  color: #6b7280;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+</style>

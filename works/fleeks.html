@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLEEKS - オンラインサロンプラットフォーム | Leadfive</title>
+    <meta name="description" content="ローカルビジネス向けオンラインサロンプラットフォーム。動画・教育コンテンツを統合管理。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-off-white: #FAFAFA;
+            --bg-black: #1a1a1a;
+            --text-dark: #1a1a1a;
+            --text-light: #FFFFFF;
+            --text-gray: #6B7280;
+            --accent-blue: #2563EB;
+            --accent-blue-light: rgba(37, 99, 235, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* ヘッダー */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border: none;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* ヒーロー */
+        .work-hero {
+            padding-top: 80px;
+            background: var(--bg-black);
+            color: var(--text-light);
+        }
+
+        .work-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .work-hero-text h1 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .work-hero-category {
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .work-hero-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+        }
+
+        .work-hero-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: gap 0.3s ease;
+        }
+
+        .work-hero-link:hover {
+            gap: 1rem;
+        }
+
+        .work-hero-media {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .work-hero-media video,
+        .work-hero-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* セクション */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* 課題と解決策 */
+        .challenge-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .challenge h3,
+        .solution h3 {
+            font-size: 1rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .challenge p,
+        .solution p {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.9;
+        }
+
+        /* 機能一覧 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-off-white);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: var(--accent-blue-light);
+        }
+
+        .feature-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* 成果 */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .result-item {
+            padding: 2rem;
+            background: var(--bg-off-white);
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* 技術スタック */
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-off-white);
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* スクリーンショット */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .screenshot-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 関連実績 */
+        .related-works {
+            background: var(--bg-off-white);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .related-card {
+            background: var(--bg-white);
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .related-card-content {
+            padding: 1.5rem;
+        }
+
+        .related-card h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-card p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--accent-blue);
+            color: var(--text-light);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-section .btn {
+            background: var(--text-light);
+            color: var(--accent-blue);
+        }
+
+        /* フッター */
+        .footer-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* モバイル */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .work-hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .challenge-solution {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo-text">Leadfive</a>
+            <ul class="navbar-nav">
+                <li><a href="/works/" class="nav-link">実績</a></li>
+                <li><a href="/news/" class="nav-link">お知らせ</a></li>
+                <li><a href="/#services" class="nav-link">サービス</a></li>
+                <li><a href="/blog/" class="nav-link">ブログ</a></li>
+                <li><a href="#" class="btn btn-primary" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ヒーロー -->
+    <section class="work-hero">
+        <div class="work-hero-content">
+            <div class="work-hero-text">
+                <div class="work-hero-category">Platform</div>
+                <h1>FLEEKS</h1>
+                <p class="work-hero-description">
+                    ローカルビジネス向けオンラインサロンプラットフォーム。<br>
+                    動画・ブログ・教育コンテンツを統合管理し、<br>
+                    会員制サイトの運営を効率化します。
+                </p>
+                <a href="https://app.fleeks.jp/" target="_blank" class="work-hero-link">
+                    サービスを見る <span>→</span>
+                </a>
+            </div>
+            <div class="work-hero-media">
+                <video autoplay muted loop playsinline poster="/assets/images/works/fleeks.jpg">
+                    <source src="/assets/videos/works/fleeks.webm" type="video/webm">
+                    <source src="/assets/videos/works/fleeks.mp4" type="video/mp4">
+                    <img src="/assets/images/works/fleeks.jpg" alt="FLEEKS">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- 課題と解決策 -->
+    <section class="section">
+        <div class="container">
+            <div class="challenge-solution">
+                <div class="challenge">
+                    <h3>CHALLENGE</h3>
+                    <p>
+                        ローカルビジネスがオンラインサロンを運営するには、
+                        動画配信、会員管理、決済、コンテンツ管理など
+                        複数のツールを組み合わせる必要があり、
+                        運営コストと手間がかかっていました。
+                    </p>
+                </div>
+                <div class="solution">
+                    <h3>SOLUTION</h3>
+                    <p>
+                        すべての機能を1つのプラットフォームに統合。
+                        直感的な管理画面で、技術知識がなくても
+                        プロフェッショナルなオンラインサロンを
+                        簡単に構築・運営できます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 機能 -->
+    <section class="section" style="background: var(--bg-off-white);">
+        <div class="container">
+            <h2 class="section-title">主な機能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>動画配信</h4>
+                    <p>高画質な動画をセキュアに配信。視聴履歴や進捗管理も可能。</p>
+                </div>
+                <div class="feature-card">
+                    <h4>会員管理</h4>
+                    <p>会員登録から決済まで自動化。プランごとのアクセス制御も。</p>
+                </div>
+                <div class="feature-card">
+                    <h4>ブログ/記事</h4>
+                    <p>会員限定コンテンツを簡単に作成・公開。SEO対策も標準搭載。</p>
+                </div>
+                <div class="feature-card">
+                    <h4>コミュニティ</h4>
+                    <p>会員同士の交流を促進。コメント、いいね機能を搭載。</p>
+                </div>
+                <div class="feature-card">
+                    <h4>決済連携</h4>
+                    <p>Stripe連携でサブスク決済を自動化。入金管理も一元化。</p>
+                </div>
+                <div class="feature-card">
+                    <h4>分析ダッシュボード</h4>
+                    <p>会員数、視聴数、売上をリアルタイムで可視化。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成果 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">導入効果</h2>
+            <div class="results-grid">
+                <div class="result-item">
+                    <div class="result-value">50%</div>
+                    <div class="result-label">運営工数削減</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value">3x</div>
+                    <div class="result-label">会員継続率向上</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value">24h</div>
+                    <div class="result-label">導入時間</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技術スタック -->
+    <section class="section" style="background: var(--bg-off-white);">
+        <div class="container">
+            <h2 class="section-title">技術スタック</h2>
+            <div class="tech-list">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Firebase</span>
+                <span class="tech-tag">Stripe</span>
+                <span class="tech-tag">Vercel</span>
+                <span class="tech-tag">Cloudflare</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- スクリーンショット -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">画面イメージ</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <img src="/assets/images/works/fleeks-dashboard.jpg" alt="ダッシュボード">
+                </div>
+                <div class="screenshot-item">
+                    <img src="/assets/images/works/fleeks-video.jpg" alt="動画管理">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 関連実績 -->
+    <section class="section related-works">
+        <div class="container">
+            <h2 class="section-title">関連実績</h2>
+            <div class="related-grid">
+                <a href="/works/hexamind/" class="related-card">
+                    <img src="/assets/images/works/hexamind.jpg" alt="HexaMind">
+                    <div class="related-card-content">
+                        <h4>HexaMind</h4>
+                        <p>AI経営支援システム</p>
+                    </div>
+                </a>
+                <a href="/works/counseling-ai/" class="related-card">
+                    <img src="/assets/images/works/counseling-ai.jpg" alt="counseling-AI">
+                    <div class="related-card-content">
+                        <h4>counseling-AI</h4>
+                        <p>美容室カウンセリングAI</p>
+                    </div>
+                </a>
+                <a href="/works/craft/" class="related-card">
+                    <img src="/assets/images/works/craft.jpg" alt="CRAFT">
+                    <div class="related-card-content">
+                        <h4>CRAFT</h4>
+                        <p>集客特化型HP/LP制作</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>同様のシステム開発をご検討ですか？</h2>
+            <p>まずは無料相談から。あなたの課題をお聞かせください。</p>
+            <a href="#" class="btn" onclick="openContactForm(); return false;">無料相談を予約する</a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-brand">Leadfive</div>
+            <div class="footer-links">
+                <a href="/works/">実績</a>
+                <a href="/news/">お知らせ</a>
+                <a href="/company/">会社概要</a>
+                <a href="/privacy/">プライバシー</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal (トップと共通) -->
+    <div id="contact-modal"
+        style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8);">
+        <div
+            style="background: #fff; margin: 5% auto; padding: 3rem; max-width: 500px; width: 90%; position: relative;">
+            <span style="position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; cursor: pointer;"
+                onclick="closeContactModal()">&times;</span>
+            <h2 style="font-family: 'Shippori Mincho', serif; font-size: 1.5rem; margin-bottom: 2rem;">お問い合わせ</h2>
+            <form id="contactForm">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">会社名 *</label>
+                    <input type="text" name="company" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">お名前 *</label>
+                    <input type="text" name="name" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">メールアドレス *</label>
+                    <input type="email" name="email" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">お問い合わせ内容 *</label>
+                    <textarea name="message" rows="4" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">送信する</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openContactForm() {
+            document.getElementById('contact-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeContactModal() {
+            document.getElementById('contact-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        document.getElementById('contact-modal').addEventListener('click', function (e) {
+            if (e.target === this) closeContactModal();
+        });
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('お問い合わせありがとうございます。24時間以内にご連絡いたします。');
+            closeContactModal();
+        });
+    </script>
+</body>
+
+</html>

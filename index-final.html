@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI×心理学で売上を科学する | Leadfive</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="BtoBの新規リード獲得を科学。AI×心理学でCVRを最大化し、90日で問い合わせ3倍へ。">
+    <meta name="google-site-verification" content="q6vviBc2sXgMzgdgK8W8kZC1up1YXQJG11RjCAjxA6o">
+    <link rel="canonical" href="https://leadfive138.com/">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KFLZV7QS');</script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-off-white: #FAFAFA;
+            --bg-black: #1a1a1a;
+            --text-dark: #1a1a1a;
+            --text-light: #FFFFFF;
+            --text-gray: #6B7280;
+            --accent-blue: #2563EB;
+            --accent-blue-light: rgba(37, 99, 235, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* ヘッダー */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.4s ease;
+        }
+
+        .site-header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border: none;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--text-dark);
+        }
+
+        .section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* ===== HERO ===== */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            letter-spacing: 0.3em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-title .highlight {
+            color: var(--accent-blue);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 2;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-gray);
+        }
+
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--text-gray), transparent);
+        }
+
+        /* ===== WORKS (実績) ===== */
+        .works-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 6rem 0;
+            overflow: hidden;
+        }
+
+        .works-section .section-header h2 {
+            color: var(--text-light);
+        }
+
+        .works-section .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .works-wrapper {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .works-track {
+            display: flex;
+            gap: 2rem;
+            padding: 0 calc(50vw - 220px);
+            transition: transform 0.1s ease-out;
+        }
+
+        .work-card {
+            flex: 0 0 440px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .work-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+        }
+
+        .work-media {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            background: #1a1a1a;
+        }
+
+        .work-media video,
+        .work-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .work-card:hover .work-media video,
+        .work-card:hover .work-media img {
+            transform: scale(1.05);
+        }
+
+        .work-content {
+            padding: 2rem;
+        }
+
+        .work-category {
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .work-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .works-more {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .works-more a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .works-more a:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        /* ===== NEWS (お知らせ) ===== */
+        .news-section {
+            background: var(--bg-off-white);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: var(--bg-white);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .news-tag {
+            font-size: 0.7rem;
+            background: var(--accent-blue-light);
+            color: var(--accent-blue);
+            padding: 0.2rem 0.6rem;
+            letter-spacing: 0.05em;
+        }
+
+        .news-title {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .news-more {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .news-more a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid var(--text-dark);
+            padding-bottom: 0.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .news-more a:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        /* ===== SERVICES ===== */
+        .services-section {
+            background: var(--bg-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 2.5rem 1.5rem;
+            background: var(--bg-off-white);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            background: var(--accent-blue-light);
+        }
+
+        .service-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            overflow: hidden;
+            background: linear-gradient(180deg, #0a1628 0%, #1e3a5f 50%, #0d1f3c 100%);
+        }
+
+        .cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .cta-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cta-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-100px) translateX(20px);
+                opacity: 0.8;
+            }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .cta-section h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+            color: var(--text-light);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .cta-section h2.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            line-height: 2;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cta-section p.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+        }
+
+        .cta-section .btn {
+            background: var(--text-light);
+            color: #1e3a5f;
+            font-size: 1.1rem;
+            padding: 1.3rem 3.5rem;
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+        }
+
+        .cta-section .btn.animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+        }
+
+        .cta-section .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-orbit {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: orbit-rotate 20s linear infinite;
+        }
+
+        .cta-orbit-1 {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cta-orbit-2 {
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 30s;
+            animation-direction: reverse;
+        }
+
+        .cta-orbit-3 {
+            width: 700px;
+            height: 700px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 40s;
+        }
+
+        @keyframes orbit-rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .cta-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(60px);
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .cta-section.visible .cta-glow {
+            opacity: 1;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-section {
+            background: linear-gradient(180deg, #0d1f3c 0%, #0a1628 100%);
+            color: var(--text-light);
+            padding: 5rem 2rem 2rem;
+            position: relative;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+
+        /* ===== アニメーション ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== モバイル ===== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-card {
+                flex: 0 0 320px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- ヘッダー -->
+    <header class="site-header" id="header">
+        <nav class="navbar">
+            <a href="#" class="logo-text">Leadfive</a>
+            <ul class="navbar-nav">
+                <li><a href="#works" class="nav-link">実績</a></li>
+                <li><a href="#news" class="nav-link">お知らせ</a></li>
+                <li><a href="#services" class="nav-link">サービス</a></li>
+                <li><a href="/blog/" class="nav-link">ブログ</a></li>
+                <li><a href="#" class="btn btn-primary" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-section section" id="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow reveal">Marketing × Psychology × Technology</p>
+            <h1 class="hero-title reveal">
+                あなたの課題を、<br>
+                <span class="highlight">科学</span>で解決する
+            </h1>
+            <p class="hero-description reveal">
+                AIは手段。目的は人間の成功。<br>
+                行動心理学とテクノロジーで、<br>
+                再現性のある成長を実現します。
+            </p>
+            <div class="hero-cta reveal">
+                <a href="#" class="btn btn-primary" onclick="openContactForm(); return false;">無料相談を予約</a>
+                <a href="#works" class="btn btn-outline">実績を見る</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- WORKS (実績) -->
+    <section class="works-section section" id="works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Works</h2>
+                <p>開発したサービス・アプリケーション</p>
+            </div>
+        </div>
+        <div class="works-wrapper">
+            <div class="works-track" id="worksTrack">
+                <!-- FLEEKS -->
+                <a href="/works/fleeks.html" class="work-card">
+                    <div class="work-media">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="FLEEKS">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-category">Platform</div>
+                        <h3 class="work-title">FLEEKS</h3>
+                        <p class="work-description">ローカルビジネス向けオンラインサロンプラットフォーム。動画・教育コンテンツを統合管理。</p>
+                    </div>
+                </a>
+
+                <!-- HexaMind -->
+                <a href="/works/hexamind.html" class="work-card">
+                    <div class="work-media">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="HexaMind">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-category">AI System</div>
+                        <h3 class="work-title">HexaMind</h3>
+                        <p class="work-description">経営者の意思決定を支援する革新的なAI経営支援システム。</p>
+                    </div>
+                </a>
+
+                <!-- counseling-AI -->
+                <a href="/works/counseling-ai.html" class="work-card">
+                    <div class="work-media">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80"
+                            alt="counseling-AI">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-category">Beauty Tech</div>
+                        <h3 class="work-title">counseling-AI</h3>
+                        <p class="work-description">美容室カウンセリングAI。「思っていたのと違う」を解消し、初回離脱を防止。</p>
+                    </div>
+                </a>
+
+                <!-- ふえるん -->
+                <a href="/works/fuerun.html" class="work-card">
+                    <div class="work-media">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80" alt="ふえるん">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-category">AI Automation</div>
+                        <h3 class="work-title">ふえるん</h3>
+                        <p class="work-description">Google口コミAI返信システム。口コミ返信を自動化し、評価向上と業務効率化を実現。</p>
+                    </div>
+                </a>
+
+                <!-- 補助金申請AI -->
+                <a href="/works/subsidy-ai.html" class="work-card">
+                    <div class="work-media">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80"
+                            alt="補助金申請AI">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-category">Document AI</div>
+                        <h3 class="work-title">補助金申請AI</h3>
+                        <p class="work-description">ものづくり補助金申請書を自動生成。1週間の作業を4時間に短縮。</p>
+                    </div>
+                </a>
+
+                <!-- 歯科予約管理 -->
+                <a href="/works/dental-system.html" class="work-card">
+                    <div class="work-media">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80" alt="歯科予約管理">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-category">Healthcare DX</div>
+                        <h3 class="work-title">歯科予約管理</h3>
+                        <p class="work-description">LINE連携予約管理システム。リマインド機能で定期検診受診率を向上。</p>
+                    </div>
+                </a>
+
+                <!-- Garden DX -->
+                <a href="/works/garden-dx.html" class="work-card">
+                    <div class="work-media">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80"
+                            alt="Garden DX">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-category">Industry DX</div>
+                        <h3 class="work-title">Garden DX</h3>
+                        <p class="work-description">造園事業所向け見積もり・請求書作成支援システム。業務効率化を実現。</p>
+                    </div>
+                </a>
+
+                <!-- CRAFT -->
+                <a href="/works/craft.html" class="work-card">
+                    <div class="work-media">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" alt="CRAFT">
+                    </div>
+                    <div class="work-content">
+                        <div class="work-category">Web Service</div>
+                        <h3 class="work-title">CRAFT</h3>
+                        <p class="work-description">集客特化型HP・LP制作サービス。公開1ヶ月で検索流入を実現。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="works-more">
+            <a href="/works/">すべての実績を見る →</a>
+        </div>
+    </section>
+
+    <!-- NEWS (お知らせ) -->
+    <section class="news-section section" id="news">
+        <div class="container">
+            <div class="section-header">
+                <h2>News</h2>
+                <p>リリース情報・事例紹介</p>
+            </div>
+            <div class="news-grid">
+                <!-- News 1 -->
+                <a href="/news/hplp-service/" class="news-card reveal">
+                    <div class="news-image">
+                        <img src="/assets/images/news/hplp-service.png" alt="CRAFT">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date">2025.12.30</span>
+                            <span class="news-tag">プレスリリース</span>
+                        </div>
+                        <h3 class="news-title">集客特化型HP・LP制作サービス「CRAFT」をリリース</h3>
+                    </div>
+                </a>
+
+                <!-- News 2 -->
+                <a href="/news/fuerun/" class="news-card reveal">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&q=80" alt="ふえるん">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date">2025.12.05</span>
+                            <span class="news-tag">プレスリリース</span>
+                        </div>
+                        <h3 class="news-title">Google口コミAI返信システム「ふえるん」をリリース</h3>
+                    </div>
+                </a>
+
+                <!-- News 3 -->
+                <a href="/news/counseling-ai/" class="news-card reveal">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&q=80"
+                            alt="counseling-AI">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date">2025.12.01</span>
+                            <span class="news-tag">プレスリリース</span>
+                        </div>
+                        <h3 class="news-title">美容室カウンセリングAIシステムをリリース</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="news-more">
+                <a href="/news/">すべてのお知らせを見る →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services-section section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Services</h2>
+                <p>私たちができること</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-number">01</div>
+                    <h3>マーケティング<br>サポート</h3>
+                    <p>戦略設計から実装・計測・改善まで一気通貫で伴走。</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">02</div>
+                    <h3>DXツール<br>開発</h3>
+                    <p>業務自動化やAI機能開発でワークフローを最適化。</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">03</div>
+                    <h3>AI活用<br>支援</h3>
+                    <p>生成AIの導入から運用定着まで成果につなげます。</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">04</div>
+                    <h3>WEB/SNS<br>運用</h3>
+                    <p>広告運用からコンテンツ最適化まで対応。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <!-- 背景エフェクト -->
+        <div class="cta-bg">
+            <div class="cta-glow"></div>
+            <div class="cta-orbit cta-orbit-1"></div>
+            <div class="cta-orbit cta-orbit-2"></div>
+            <div class="cta-orbit cta-orbit-3"></div>
+            <div class="cta-particles" id="ctaParticles"></div>
+        </div>
+
+        <!-- コンテンツ -->
+        <div class="cta-content">
+            <h2 id="ctaTitle">一緒に、<br>科学しませんか</h2>
+            <p id="ctaDesc">まずは無料相談から。あなたの課題をお聞かせください。</p>
+            <a href="#" class="btn" id="ctaBtn" onclick="openContactForm(); return false;">無料相談を予約する</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Leadfive</h3>
+                <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+            </div>
+            <div class="footer-links">
+                <h4>WORKS</h4>
+                <ul>
+                    <li><a href="/works/">実績一覧</a></li>
+                    <li><a href="/case-studies/">事例紹介</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="/company/">企業概要</a></li>
+                    <li><a href="/blog/">ブログ</a></li>
+                    <li><a href="/news/">お知らせ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li><a href="/contact/">お問い合わせ</a></li>
+                    <li><a href="/privacy/">プライバシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Leadfive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal"
+        style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8);">
+        <div
+            style="background: #fff; margin: 5% auto; padding: 3rem; max-width: 500px; width: 90%; position: relative;">
+            <span style="position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; cursor: pointer;"
+                onclick="closeContactModal()">&times;</span>
+            <h2 style="font-family: 'Shippori Mincho', serif; font-size: 1.5rem; margin-bottom: 2rem;">お問い合わせ</h2>
+            <form id="contactForm">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">会社名 *</label>
+                    <input type="text" name="company" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">お名前 *</label>
+                    <input type="text" name="name" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">メールアドレス *</label>
+                    <input type="email" name="email" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">お問い合わせ内容 *</label>
+                    <textarea name="message" rows="4" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">送信する</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ヘッダースクロール
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Reveal アニメーション
+        document.querySelectorAll('.reveal').forEach(el => {
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 85%',
+                onEnter: () => el.classList.add('active'),
+                once: true
+            });
+        });
+
+        // Works横スクロール
+        const worksTrack = document.getElementById('worksTrack');
+        if (worksTrack) {
+            const trackWidth = worksTrack.scrollWidth;
+            const viewportWidth = window.innerWidth;
+
+            gsap.to(worksTrack, {
+                x: -(trackWidth - viewportWidth + 100),
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.works-section',
+                    start: 'top top',
+                    end: () => `+=${trackWidth * 0.7}`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1
+                }
+            });
+        }
+
+        // CTAパーティクル生成
+        const ctaParticles = document.getElementById('ctaParticles');
+        if (ctaParticles) {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'cta-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (5 + Math.random() * 5) + 's';
+                ctaParticles.appendChild(particle);
+            }
+        }
+
+        // CTAスクロールアニメーション
+        ScrollTrigger.create({
+            trigger: '#cta',
+            start: 'top 70%',
+            onEnter: () => {
+                document.querySelector('.cta-section').classList.add('visible');
+                document.getElementById('ctaTitle').classList.add('animate');
+                document.getElementById('ctaDesc').classList.add('animate');
+                document.getElementById('ctaBtn').classList.add('animate');
+            },
+            once: true
+        });
+
+        // コンタクトモーダル
+        function openContactForm() {
+            document.getElementById('contact-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeContactModal() {
+            document.getElementById('contact-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        document.getElementById('contact-modal').addEventListener('click', function (e) {
+            if (e.target === this) closeContactModal();
+        });
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('お問い合わせありがとうございます。24時間以内にご連絡いたします。');
+            closeContactModal();
+        });
+
+        console.log('Leadfive HP loaded!');
+    </script>
+</body>
+
+</html>
