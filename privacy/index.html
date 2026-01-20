@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー | Leadfive</title>
+    <meta name="description" content="Leadfiveのプライバシーポリシー。個人情報の取り扱いについて。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-white: #ffffff;
+            --bg-off-white: #f8f9fa;
+            --bg-black: #0a0a0a;
+            --text-dark: #111111;
+            --text-gray: #6b7280;
+            --text-light: #ffffff;
+            --accent-blue: #2563eb;
+            --border-light: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 0 4rem;
+            text-align: center;
+            background: var(--bg-off-white);
+        }
+
+        .page-header h1 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 4rem 0 6rem;
+            background: var(--bg-white);
+        }
+
+        .content-section h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 3rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+
+        .content-section p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            color: var(--text-gray);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .update-date {
+            text-align: right;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Footer */
+        .footer-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .page-header {
+                padding: 8rem 0 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo-text">Leadfive</a>
+            <ul class="navbar-nav">
+                <li><a href="/works/" class="nav-link">実績</a></li>
+                <li><a href="/news/" class="nav-link">お知らせ</a></li>
+                <li><a href="/blog/" class="nav-link">ブログ</a></li>
+                <li><a href="/contact/" class="btn btn-primary">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>プライバシーポリシー</h1>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <p>合同会社Leadfive（以下「当社」といいます）は、お客様の個人情報の保護を重要な責務と考え、以下のプライバシーポリシーに従って個人情報を取り扱います。</p>
+
+            <h2>1. 個人情報の収集</h2>
+            <p>当社は、以下の目的で個人情報を収集します。</p>
+            <ul>
+                <li>サービスの提供およびサポート</li>
+                <li>お問い合わせへの対応</li>
+                <li>サービスの改善および新サービスの開発</li>
+                <li>マーケティング活動（お客様の同意がある場合）</li>
+            </ul>
+
+            <h2>2. 収集する個人情報</h2>
+            <p>当社は、以下の個人情報を収集する場合があります。</p>
+            <ul>
+                <li>氏名、会社名</li>
+                <li>メールアドレス、電話番号</li>
+                <li>住所</li>
+                <li>サービス利用履歴</li>
+                <li>その他、サービス提供に必要な情報</li>
+            </ul>
+
+            <h2>3. 個人情報の利用</h2>
+            <p>収集した個人情報は、収集時に明示した目的の範囲内でのみ利用します。目的外の利用を行う場合は、事前にお客様の同意を得ます。</p>
+
+            <h2>4. 個人情報の第三者提供</h2>
+            <p>当社は、以下の場合を除き、お客様の同意なく個人情報を第三者に提供しません。</p>
+            <ul>
+                <li>法令に基づく場合</li>
+                <li>人の生命、身体または財産の保護のために必要な場合</li>
+                <li>公衆衛生の向上または児童の健全な育成の推進のために必要な場合</li>
+                <li>国の機関等への協力が必要な場合</li>
+            </ul>
+
+            <h2>5. 個人情報の管理</h2>
+            <p>当社は、個人情報の正確性を保ち、不正アクセス、紛失、破壊、改ざん、漏洩を防止するため、適切なセキュリティ対策を講じます。</p>
+
+            <h2>6. 個人情報の開示・訂正・削除</h2>
+            <p>お客様は、当社が保有するご自身の個人情報について、開示、訂正、削除を請求することができます。請求の際は、本人確認を行った上で対応いたします。</p>
+
+            <h2>7. Cookieの使用</h2>
+            <p>当社ウェブサイトでは、サービス向上のためCookieを使用しています。Cookieの使用を望まない場合は、ブラウザの設定で無効にすることができます。</p>
+
+            <h2>8. プライバシーポリシーの変更</h2>
+            <p>当社は、必要に応じて本プライバシーポリシーを変更することがあります。変更した場合は、当社ウェブサイトで公表します。</p>
+
+            <h2>9. お問い合わせ</h2>
+            <p>個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。</p>
+            <p>
+                合同会社Leadfive<br>
+                〒530-0001 大阪府大阪市北区梅田1-13-1 大阪梅田ツインタワーズ・サウス15階<br>
+                メール：mail@lead-v.com
+            </p>
+
+            <p class="update-date">最終更新日：2024年4月8日</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Leadfive</h3>
+                <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+            </div>
+            <div class="footer-links">
+                <h4>WORKS</h4>
+                <ul>
+                    <li><a href="/works/">実績一覧</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="/company/">企業概要</a></li>
+                    <li><a href="/blog/">ブログ</a></li>
+                    <li><a href="/news/">お知らせ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li><a href="/contact/">お問い合わせ</a></li>
+                    <li><a href="/privacy/">プライバシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Leadfive. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

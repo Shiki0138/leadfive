@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社概要 | Leadfive</title>
+    <meta name="description" content="Leadfiveは人間の行動心理とAI技術を融合し、予測可能なビジネス成長を実現するコンサルティング会社です。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-white: #ffffff;
+            --bg-off-white: #f8f9fa;
+            --bg-black: #0a0a0a;
+            --text-dark: #111111;
+            --text-gray: #6b7280;
+            --text-light: #ffffff;
+            --accent-blue: #2563eb;
+            --accent-blue-light: rgba(37, 99, 235, 0.08);
+            --border-light: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 0 4rem;
+            text-align: center;
+            background: var(--bg-off-white);
+        }
+
+        .page-header h1 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+        }
+
+        /* Message Section */
+        .message-section {
+            padding: 5rem 0;
+            background: var(--bg-white);
+        }
+
+        .message-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ceo-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .ceo-photo {
+            width: 100px;
+            height: 100px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--text-light);
+        }
+
+        .ceo-info h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .ceo-info p {
+            color: var(--accent-blue);
+            font-weight: 500;
+        }
+
+        .message-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--text-gray);
+        }
+
+        .message-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Company Info Section */
+        .company-info-section {
+            padding: 5rem 0;
+            background: var(--bg-off-white);
+        }
+
+        .section-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .info-table {
+            width: 100%;
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+        }
+
+        .info-table th,
+        .info-table td {
+            padding: 1.5rem 2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .info-table th {
+            background: var(--bg-off-white);
+            font-weight: 500;
+            width: 25%;
+            color: var(--text-dark);
+        }
+
+        .info-table td {
+            color: var(--text-gray);
+        }
+
+        .info-table tr:last-child th,
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            padding: 5rem 0;
+            background: var(--bg-white);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .philosophy-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-off-white);
+            transition: all 0.3s ease;
+        }
+
+        .philosophy-card:hover {
+            background: var(--accent-blue-light);
+        }
+
+        .philosophy-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .philosophy-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Access Section */
+        .access-section {
+            padding: 5rem 0;
+            background: var(--bg-off-white);
+        }
+
+        .access-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .access-info p {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .access-info .location {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .page-header {
+                padding: 8rem 0 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .ceo-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .info-table th,
+            .info-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .info-table th {
+                border-bottom: none;
+                padding-bottom: 0.5rem;
+            }
+
+            .info-table td {
+                padding-top: 0;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo-text">Leadfive</a>
+            <ul class="navbar-nav">
+                <li><a href="/works/" class="nav-link">実績</a></li>
+                <li><a href="/news/" class="nav-link">お知らせ</a></li>
+                <li><a href="/blog/" class="nav-link">ブログ</a></li>
+                <li><a href="/contact/" class="btn btn-primary">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>会社概要</h1>
+            <p>AI×心理学で、ビジネスの未来を科学する</p>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="message-section">
+        <div class="container">
+            <div class="message-content">
+                <div class="ceo-header">
+                    <div class="ceo-photo">👤</div>
+                    <div class="ceo-info">
+                        <h2>代表メッセージ</h2>
+                        <p>代表社員 山下 公一</p>
+                    </div>
+                </div>
+                <div class="message-text">
+                    <p>「売上は運や勘ではなく、科学できる」</p>
+                    <p>この信念のもと、人間の本能的な行動原理とAI技術を融合させた、全く新しいマーケティングアプローチを提供しています。</p>
+                    <p>従来のマーケティングは、経験則に頼る部分が大きく、成果にばらつきがありました。しかし、行動心理学と「データ×AI」で最適化することで、予測可能で再現性の高い成果を実現できるようになりました。
+                    </p>
+                    <p>お客様のビジネスを「科学」し、持続的な成長を実現する。それが弊社の使命です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Info Section -->
+    <section class="company-info-section">
+        <div class="container">
+            <h2 class="section-title">会社情報</h2>
+            <table class="info-table">
+                <tr>
+                    <th>会社名</th>
+                    <td>合同会社Leadfive</td>
+                </tr>
+                <tr>
+                    <th>代表者</th>
+                    <td>代表社員 山下 公一</td>
+                </tr>
+                <tr>
+                    <th>設立</th>
+                    <td>2024年4月8日</td>
+                </tr>
+                <tr>
+                    <th>所在地</th>
+                    <td>〒530-0001<br>大阪府大阪市北区梅田1-13-1<br>大阪梅田ツインタワーズ・サウス15階</td>
+                </tr>
+                <tr>
+                    <th>電話番号</th>
+                    <td>06-7713-6747</td>
+                </tr>
+                <tr>
+                    <th>メール</th>
+                    <td>mail@lead-v.com</td>
+                </tr>
+                <tr>
+                    <th>事業内容</th>
+                    <td>
+                        ・AI×マーケティングコンサルティング<br>
+                        ・DXツール開発<br>
+                        ・AIプロンプトエンジニアリング<br>
+                        ・マーケティング自動化支援<br>
+                        ・データ分析・予測モデル構築
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="container">
+            <h2 class="section-title">経営理念</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <span class="philosophy-icon">🎯</span>
+                    <h3>ビジョン</h3>
+                    <p>すべてのビジネスに、科学的な成長を</p>
+                </div>
+                <div class="philosophy-card">
+                    <span class="philosophy-icon">🚀</span>
+                    <h3>ミッション</h3>
+                    <p>AI×心理学で、マーケティングの不確実性をゼロにする</p>
+                </div>
+                <div class="philosophy-card">
+                    <span class="philosophy-icon">💡</span>
+                    <h3>バリュー</h3>
+                    <p>科学的アプローチ、顧客成功第一、継続的イノベーション</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Access Section -->
+    <section class="access-section">
+        <div class="container">
+            <h2 class="section-title">アクセス</h2>
+            <div class="access-info">
+                <p class="location">📍 大阪梅田ツインタワーズ・サウス15階</p>
+                <p>JR「大阪」駅 徒歩3分</p>
+                <p>地下鉄「梅田」駅 徒歩1分</p>
+            </div>
+            <div class="cta-button">
+                <a href="/contact/" class="btn btn-primary">お問い合わせはこちら</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Leadfive</h3>
+                <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+            </div>
+            <div class="footer-links">
+                <h4>WORKS</h4>
+                <ul>
+                    <li><a href="/works/">実績一覧</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="/company/">企業概要</a></li>
+                    <li><a href="/blog/">ブログ</a></li>
+                    <li><a href="/news/">お知らせ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li><a href="/contact/">お問い合わせ</a></li>
+                    <li><a href="/privacy/">プライバシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Leadfive. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
