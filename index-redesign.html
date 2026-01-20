@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI×心理学で売上を科学する | LeadFive</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="BtoBの新規リード獲得を科学。AI×心理学でCVRを最大化し、90日で"問い合わせ3倍"へ。まずはお問い合わせください。">
+    <meta name="keywords" content="AI マーケティング, 心理学 マーケティング, 8つの本能, コンサルティング, 売上向上, CVR改善, リード獲得">
+    <meta name="google-site-verification" content="q6vviBc2sXgMzgdgK8W8kZC1up1YXQJG11RjCAjxA6o">
+    <link rel="canonical" href="https://leadfive138.com/">
+    <meta property="og:site_name" content="LeadFive">
+    <meta property="og:title" content="BtoBのリード獲得を科学｜AI×心理学でCVR改善｜LeadFive">
+    <meta property="og:description" content="AI×心理学でCVRを最大化。90日で"問い合わせ3倍"へ。まずはお問い合わせください。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leadfive138.com/">
+    <meta property="og:image" content="https://leadfive138.com/assets/images/ogp.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://leadfive138.com/assets/images/ogp.jpg">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KFLZV7QS');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LeadFive",
+      "url": "https://leadfive138.com",
+      "logo": "https://leadfive138.com/favicon.ico",
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "telephone": "06-7713-6747",
+        "email": "mail@lead-v.com",
+        "areaServed": "JP",
+        "availableLanguage": ["ja"]
+      }]
+    }
+    </script>
+
+    <!-- Fonts - 明朝系を追加 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* 新カラーパレット - 白ベース */
+            --bg-white: #FFFFFF;
+            --bg-cream: #FAF8F5;
+            --bg-gray: #F0F0F0;
+            --text-primary: #1A1A2E;
+            --text-secondary: #4A4A5A;
+            --text-muted: #7A7A8A;
+            --accent-navy: #2E4057;
+            --accent-coral: #E8B4B8;
+            --accent-coral-dark: #D4959A;
+            --border-light: rgba(46, 64, 87, 0.1);
+            --shadow-soft: rgba(26, 26, 46, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* ヘッダー - 白ベース */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .navbar-brand .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent-navy);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-coral);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-navy);
+        }
+
+        /* CTA ボタン */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-navy);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #3D5169;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--shadow-soft);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-navy);
+            border: 2px solid var(--accent-navy);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-navy);
+            color: #ffffff;
+        }
+
+        /* セクション共通 */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+            letter-spacing: 0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        /* ===== HERO セクション ===== */
+        .hero-section {
+            background: var(--bg-white);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            color: var(--accent-coral-dark);
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-title .highlight {
+            color: var(--accent-navy);
+            position: relative;
+        }
+
+        .hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--accent-coral);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 3rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* スクロールインジケーター */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .scroll-indicator .line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent-coral), transparent);
+            margin-top: 0.5rem;
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.6); }
+        }
+
+        /* ===== STORY (問題提起) セクション ===== */
+        .story-section {
+            background: var(--bg-cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 50%, rgba(232, 180, 184, 0.1) 100%);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-content .lead {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.9;
+        }
+
+        .problem-list {
+            list-style: none;
+        }
+
+        .problem-list li {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-white);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-coral);
+            box-shadow: 0 4px 20px var(--shadow-soft);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .story-visual {
+            position: relative;
+        }
+
+        .story-image-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px var(--shadow-soft);
+        }
+
+        .story-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== SOLUTION (解決策) セクション ===== */
+        .solution-section {
+            background: var(--bg-white);
+            position: relative;
+        }
+
+        .solution-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .solution-highlight {
+            display: inline-block;
+            padding: 2rem 3rem;
+            background: linear-gradient(135deg, var(--accent-navy), #3D5169);
+            color: #ffffff;
+            border-radius: 12px;
+            margin: 2rem 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .solution-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem;
+            background: var(--bg-cream);
+            border-radius: 12px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-soft);
+        }
+
+        .feature-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent-navy);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ===== 実績セクション (ピン留め横スクロール) ===== */
+        .achievements-section {
+            background: var(--bg-gray);
+            min-height: 100vh;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .achievements-wrapper {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .achievements-header {
+            position: absolute;
+            top: 6rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .achievements-track {
+            display: flex;
+            gap: 3rem;
+            padding: 0 calc(50vw - 200px);
+        }
+
+        .achievement-card {
+            flex: 0 0 400px;
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px var(--shadow-soft);
+            transition: all 0.4s ease;
+        }
+
+        .achievement-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px var(--shadow-soft);
+        }
+
+        .achievement-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .achievement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .achievement-card:hover .achievement-image img {
+            transform: scale(1.05);
+        }
+
+        .achievement-content {
+            padding: 2rem;
+        }
+
+        .achievement-date {
+            font-size: 0.85rem;
+            color: var(--accent-coral-dark);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-category {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--bg-white);
+            background: var(--accent-navy);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+        }
+
+        .achievement-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 1rem 0;
+            line-height: 1.5;
+        }
+
+        .achievement-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .achievement-metric {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .metric-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-navy);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== SERVICES セクション ===== */
+        .services-section {
+            background: var(--bg-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 2.5rem;
+            background: var(--bg-cream);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-coral);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .service-card:hover {
+            box-shadow: 0 15px 50px var(--shadow-soft);
+        }
+
+        .service-number {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 3rem;
+            color: var(--accent-coral);
+            opacity: 0.5;
+            font-weight: 600;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent-navy);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ===== CTA セクション ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent-navy), #3D5169);
+            color: #ffffff;
+        }
+
+        .cta-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section .section-title {
+            color: #ffffff;
+        }
+
+        .cta-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-section .btn-primary {
+            background: var(--accent-coral);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            padding: 1.2rem 3rem;
+        }
+
+        .cta-section .btn-primary:hover {
+            background: var(--accent-coral-dark);
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-section {
+            background: var(--text-primary);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-coral);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* ===== モバイル対応 ===== */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .story-grid,
+            .solution-features,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .achievement-card {
+                flex: 0 0 300px;
+            }
+        }
+
+        /* スクロールアニメーション用 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 背景変化用 */
+        .bg-transition {
+            transition: background-color 0.6s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="#" class="logo-text">LeadFive</a>
+            </div>
+            <ul class="navbar-nav">
+                <li><a href="#story" class="nav-link">課題</a></li>
+                <li><a href="#solution" class="nav-link">解決策</a></li>
+                <li><a href="#achievements" class="nav-link">実績</a></li>
+                <li><a href="#services" class="nav-link">サービス</a></li>
+                <li><a href="#" class="btn btn-primary" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 1. HERO セクション -->
+    <section id="hero" class="hero-section section">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-eyebrow reveal">Marketing × AI Consulting</p>
+                <h1 class="hero-title reveal">
+                    テクノロジーと<span class="highlight">人の心</span>で、<br>
+                    ビジネスを次のステージへ
+                </h1>
+                <p class="hero-description reveal">
+                    LeadFiveは、生成AIと行動心理学を掛け合わせた<br>
+                    次世代のマーケティングコンサルタントです。<br>
+                    戦略を描くだけでなく、システム実装まで伴走します。
+                </p>
+                <div class="hero-cta reveal">
+                    <a href="#" class="btn btn-primary" onclick="openContactForm(); return false;">無料相談を予約</a>
+                    <a href="#achievements" class="btn btn-secondary">実績を見る</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- 2. STORY (問題提起) セクション -->
+    <section id="story" class="story-section section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content">
+                    <h2 class="section-title reveal">
+                        なぜ、多くの企業が<br>
+                        成長の壁にぶつかるのか
+                    </h2>
+                    <p class="lead reveal">
+                        デジタル化が進む今、従来のやり方だけでは<br>
+                        成果を出し続けることが難しくなっています。
+                    </p>
+                    <ul class="problem-list">
+                        <li class="reveal">広告費は増えているのに、売上が伸びない</li>
+                        <li class="reveal">AIツールを導入したが、使いこなせていない</li>
+                        <li class="reveal">データはあるが、次の一手が見えない</li>
+                    </ul>
+                </div>
+                <div class="story-visual reveal">
+                    <div class="story-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="ビジネスミーティング">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SOLUTION (解決策) セクション -->
+    <section id="solution" class="solution-section section">
+        <div class="container">
+            <div class="solution-content">
+                <h2 class="section-title reveal">
+                    だからこそ、私たちは
+                </h2>
+                <div class="solution-highlight reveal">
+                    最新のAI技術と、変わらない人間の本能。<br>
+                    この2つを掛け合わせ、競合が真似できない強みを創ります。
+                </div>
+                <p class="section-subtitle reveal">
+                    人間の購買行動の95%は無意識に行われます。<br>
+                    データやロジックだけでは、人は動きません。<br>
+                    心理学に基づく科学的アプローチとAI技術の融合が、成果を生み出します。
+                </p>
+            </div>
+            <div class="solution-features">
+                <div class="feature-card reveal">
+                    <h3>戦略から実装まで一気通貫</h3>
+                    <p>マーケティング戦略を描くだけでなく、AIシステムの開発・実装まで伴走。絵に描いた餅で終わらせません。</p>
+                </div>
+                <div class="feature-card reveal">
+                    <h3>行動心理学に基づくアプローチ</h3>
+                    <p>人間の本能や行動パターンを理解した上で、施策を設計。感情に訴えかける仕掛けで成果を最大化します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 実績セクション -->
+    <section id="achievements" class="achievements-section">
+        <div class="achievements-header">
+            <h2 class="section-title">言葉より、実績で</h2>
+            <p class="section-subtitle">私たちの取り組みと成果をご紹介します</p>
+        </div>
+        <div class="achievements-wrapper">
+            <div class="achievements-track" id="achievementsTrack">
+                <!-- 実績カード 1 -->
+                <a href="/news/hplp-service/" class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="/assets/images/news/hplp-service.png" alt="CRAFT HP/LP制作サービス">
+                    </div>
+                    <div class="achievement-content">
+                        <span class="achievement-date">2025.12.30</span>
+                        <span class="achievement-category">プレスリリース</span>
+                        <h3 class="achievement-title">集客特化型HP・LP制作サービス「CRAFT」をリリース</h3>
+                        <p class="achievement-description">公開1ヶ月で検索流入を実現。成果にこだわったHP・LP制作サービス。</p>
+                    </div>
+                </a>
+
+                <!-- 実績カード 2 -->
+                <a href="/news/fuerun/" class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&q=80" alt="ふえるん">
+                    </div>
+                    <div class="achievement-content">
+                        <span class="achievement-date">2025.12.05</span>
+                        <span class="achievement-category">プレスリリース</span>
+                        <h3 class="achievement-title">Google口コミAI返信システム「ふえるん」をリリース</h3>
+                        <p class="achievement-description">口コミ返信を自動化し、店舗の評価向上と業務効率化を実現。</p>
+                    </div>
+                </a>
+
+                <!-- 実績カード 3 -->
+                <a href="/news/counseling-ai/" class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&q=80" alt="counseling-AI">
+                    </div>
+                    <div class="achievement-content">
+                        <span class="achievement-date">2025.12.01</span>
+                        <span class="achievement-category">プレスリリース</span>
+                        <h3 class="achievement-title">美容室カウンセリングAIシステムをリリース</h3>
+                        <p class="achievement-description">「思っていたのと違う」を解消し、初回離脱を防止。</p>
+                    </div>
+                </a>
+
+                <!-- 実績カード 4 -->
+                <a href="/news/beauty-cvr/" class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="美容室チェーン">
+                    </div>
+                    <div class="achievement-content">
+                        <span class="achievement-date">2025.08.10</span>
+                        <span class="achievement-category">事例紹介</span>
+                        <h3 class="achievement-title">美容室チェーンのCVR128%改善に成功</h3>
+                        <p class="achievement-description">LP最適化とAI接客導入により、予約数が2.1倍に増加。</p>
+                        <div class="achievement-metric">
+                            <div class="metric-item">
+                                <div class="metric-value">+128%</div>
+                                <div class="metric-label">CVR改善</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">2.1倍</div>
+                                <div class="metric-label">予約数</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 実績カード 5 -->
+                <a href="/news/btob-chatbot/" class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80" alt="BtoB企業">
+                    </div>
+                    <div class="achievement-content">
+                        <span class="achievement-date">2025.07.15</span>
+                        <span class="achievement-category">事例紹介</span>
+                        <h3 class="achievement-title">BtoB企業の商談化率58%向上を実現</h3>
+                        <p class="achievement-description">AIチャットボット導入により、初回CVRが64%改善。</p>
+                        <div class="achievement-metric">
+                            <div class="metric-item">
+                                <div class="metric-value">+58%</div>
+                                <div class="metric-label">商談化率</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value">-36%</div>
+                                <div class="metric-label">CPA削減</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 実績カード 6 -->
+                <a href="/news/hexamind/" class="achievement-card">
+                    <div class="achievement-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="HexaMind">
+                    </div>
+                    <div class="achievement-content">
+                        <span class="achievement-date">2025.09.15</span>
+                        <span class="achievement-category">プレスリリース</span>
+                        <h3 class="achievement-title">AI経営支援システム「HexaMind」をリリース</h3>
+                        <p class="achievement-description">経営者の意思決定を支援する革新的なAIシステム。</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SERVICES セクション -->
+    <section id="services" class="services-section section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 class="section-title reveal">できること</h2>
+                <p class="section-subtitle reveal">お客様のビジネス成長を多角的にサポートします</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-number">01</div>
+                    <h3>マーケティングサポート</h3>
+                    <p>戦略設計から実装・計測・改善まで一気通貫。CVR改善、CPA最適化、LTV最大化まで伴走支援します。</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">02</div>
+                    <h3>AIを活用したDXツール開発</h3>
+                    <p>業務自動化やデータ連携のための内製ツール・AI機能を開発。ワークフロー最適化を加速。</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">03</div>
+                    <h3>AI活用支援</h3>
+                    <p>生成AIの活用設計から運用定着まで。プロンプト設計、ガバナンス、教育で成果につなげます。</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-number">04</div>
+                    <h3>WEB/SNS運用サポート</h3>
+                    <p>Web/LP/SNS/広告運用を設計・実行。コンテンツ最適化からレポーティング自動化まで対応。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA セクション -->
+    <section id="cta" class="cta-section section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="section-title reveal">
+                    一緒に、<br>
+                    次のステージへ
+                </h2>
+                <p class="section-subtitle reveal">
+                    まずは無料相談から。<br>
+                    貴社の課題をお聞かせください。<br>
+                    24時間以内にご連絡いたします。
+                </p>
+                <a href="#" class="btn btn-primary reveal" onclick="openContactForm(); return false;">
+                    無料相談を予約する
+                </a>
+                <div class="trust-badges reveal">
+                    <span class="trust-badge">✓ AI導入20社以上の実績</span>
+                    <span class="trust-badge">✓ 満足度98.5%</span>
+                    <span class="trust-badge">✓ 初回相談無料</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LeadFive</h3>
+                <p>テクノロジーと人の心で、<br>ビジネスを次のステージへ。</p>
+            </div>
+            <div class="footer-links">
+                <h4>サービス</h4>
+                <ul>
+                    <li><a href="/services/marketing-support/">マーケティングサポート</a></li>
+                    <li><a href="/services/dx-tools/">DXツール開発</a></li>
+                    <li><a href="/services/ai-adoption/">AI活用サポート</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>企業情報</h4>
+                <ul>
+                    <li><a href="/company">企業概要</a></li>
+                    <li><a href="/blog">ブログ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>サポート</h4>
+                <ul>
+                    <li><a href="/contact">お問い合わせ</a></li>
+                    <li><a href="/privacy/">プライバシーポリシー</a></li>
+                    <li><a href="/terms/">利用規約</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 LeadFive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Modal (既存を流用) -->
+    <div id="contact-modal" class="modal" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px);">
+        <div style="background: #ffffff; margin: 5% auto; padding: 2rem; border-radius: 16px; max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; color: var(--text-primary);">
+            <span style="position: absolute; top: 1rem; right: 1.5rem; color: var(--text-muted); font-size: 2rem; cursor: pointer;" onclick="closeContactModal()">&times;</span>
+            <h2 style="font-family: 'Shippori Mincho', serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--accent-navy);">お問い合わせ</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">お気軽にご相談ください。1-2営業日以内にご返信いたします。</p>
+            <form id="contactModalForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">会社名 <span style="color: var(--accent-coral-dark);">*</span></label>
+                        <input type="text" name="company" required placeholder="株式会社〇〇" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">お名前 <span style="color: var(--accent-coral-dark);">*</span></label>
+                        <input type="text" name="name" required placeholder="山田 太郎" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 1rem;">
+                    </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">メールアドレス <span style="color: var(--accent-coral-dark);">*</span></label>
+                    <input type="email" name="email" required placeholder="mail@example.com" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">お問い合わせ内容 <span style="color: var(--accent-coral-dark);">*</span></label>
+                    <textarea name="message" rows="5" required placeholder="お問い合わせ内容をご記入ください" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: 8px; font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" name="privacy" value="agreed" required>
+                        <span><a href="/privacy/" target="_blank" style="color: var(--accent-navy);">プライバシーポリシー</a>に同意する</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">送信する</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+
+    <script>
+        // GSAP初期化
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Reveal アニメーション
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((el, index) => {
+            gsap.from(el, {
+                opacity: 0,
+                y: 40,
+                duration: 0.8,
+                delay: index * 0.1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
+        });
+
+        // 背景色のスクロール変化
+        gsap.to("body", {
+            scrollTrigger: {
+                trigger: ".story-section",
+                start: "top center",
+                end: "bottom center",
+                scrub: true
+            },
+            backgroundColor: "#FAF8F5"
+        });
+
+        gsap.to("body", {
+            scrollTrigger: {
+                trigger: ".achievements-section",
+                start: "top center",
+                end: "bottom center",
+                scrub: true
+            },
+            backgroundColor: "#F0F0F0"
+        });
+
+        gsap.to("body", {
+            scrollTrigger: {
+                trigger: ".services-section",
+                start: "top center",
+                end: "bottom center",
+                scrub: true
+            },
+            backgroundColor: "#FFFFFF"
+        });
+
+        // 実績セクションの横スクロール
+        const achievementsSection = document.querySelector('.achievements-section');
+        const achievementsTrack = document.querySelector('.achievements-track');
+
+        if (achievementsSection && achievementsTrack) {
+            const trackWidth = achievementsTrack.scrollWidth;
+            const viewportWidth = window.innerWidth;
+
+            gsap.to(achievementsTrack, {
+                x: -(trackWidth - viewportWidth + 100),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: achievementsSection,
+                    start: "top top",
+                    end: () => `+=${trackWidth}`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1
+                }
+            });
+        }
+
+        // コンタクトモーダル
+        function openContactForm() {
+            const modal = document.getElementById('contact-modal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contact-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // モーダル外クリックで閉じる
+        document.getElementById('contact-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+
+        // フォーム送信処理
+        document.getElementById('contactModalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // 既存のGAS送信処理を呼び出し
+            alert('お問い合わせありがとうございます。1-2営業日以内にご連絡いたします。');
+            closeContactModal();
+        });
+
+        console.log('LeadFive Redesigned HP loaded successfully!');
+    </script>
+
+    <!-- 既存のJS（必要に応じて） -->
+    <script src="/assets/js/contact-handler-gas.js"></script>
+</body>
+
+</html>

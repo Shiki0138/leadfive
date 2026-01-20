@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI×心理学で売上を科学する | LeadFive</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="BtoBの新規リード獲得を科学。AI×心理学でCVRを最大化し、90日で" 問い合わせ3倍"へ。">
+    <meta name="google-site-verification" content="q6vviBc2sXgMzgdgK8W8kZC1up1YXQJG11RjCAjxA6o">
+    <link rel="canonical" href="https://leadfive138.com/">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KFLZV7QS');</script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* 統合カラーパレット - 白ベース + 墨黒 + 知性の青 */
+            --bg-white: #FFFFFF;
+            --bg-off-white: #FAFAFA;
+            --bg-black: #1a1a1a;
+            --text-dark: #1a1a1a;
+            --text-light: #FFFFFF;
+            --text-gray: #6B7280;
+            --accent-blue: #2563EB;
+            --accent-blue-light: rgba(37, 99, 235, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.8;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* 反転モード */
+        body.inverted {
+            background-color: var(--bg-black);
+            color: var(--text-light);
+        }
+
+        /* ヘッダー */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.4s ease;
+        }
+
+        .site-header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        body.inverted .site-header.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        body.inverted .logo-text {
+            color: var(--text-light);
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        body.inverted .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        body.inverted .nav-link:hover {
+            color: var(--text-light);
+        }
+
+        /* ボタン */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border: none;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--text-dark);
+        }
+
+        body.inverted .btn-outline {
+            color: var(--text-light);
+            border-color: var(--text-light);
+        }
+
+        /* セクション共通 */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ===== HERO ===== */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            letter-spacing: 0.3em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-title .highlight {
+            color: var(--accent-blue);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 2;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-gray);
+        }
+
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--text-gray), transparent);
+        }
+
+        /* ===== PROBLEM ===== */
+        .problem-section {
+            background: var(--bg-off-white);
+        }
+
+        .problem-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .problem-text h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .problem-text p {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .problem-list {
+            list-style: none;
+        }
+
+        .problem-list li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .problem-list li::before {
+            content: '—';
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        /* ===== INSIGHT ===== */
+        .insight-section {
+            background: var(--bg-white);
+        }
+
+        .insight-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .insight-number {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.2;
+        }
+
+        .insight-highlight {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .insight-description {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 2;
+        }
+
+        /* ===== PROOF (実績) - 水平スクロール ===== */
+        .proof-section {
+            min-height: 100vh;
+            padding: 0;
+            background: var(--bg-black);
+            color: var(--text-light);
+        }
+
+        .proof-header {
+            position: absolute;
+            top: 4rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .proof-header h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+            letter-spacing: 0.1em;
+        }
+
+        .proof-wrapper {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .proof-track {
+            display: flex;
+            gap: 4rem;
+            padding: 0 calc(50vw - 200px);
+        }
+
+        .proof-card {
+            flex: 0 0 450px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            transition: all 0.5s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .proof-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .proof-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .proof-card-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1;
+        }
+
+        .proof-card-category {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .proof-card-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .proof-card-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .proof-card-metrics {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .metric {
+            text-align: left;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.05em;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== METHOD ===== */
+        .method-section {
+            background: var(--bg-white);
+        }
+
+        .method-content {
+            text-align: center;
+        }
+
+        .method-content h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            font-weight: 500;
+            margin-bottom: 4rem;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .method-card {
+            padding: 2.5rem 1.5rem;
+            background: var(--bg-off-white);
+            transition: all 0.3s ease;
+        }
+
+        .method-card:hover {
+            background: var(--accent-blue-light);
+        }
+
+        .method-card-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .method-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .method-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: var(--accent-blue);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .cta-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            line-height: 2;
+        }
+
+        .cta-section .btn {
+            background: var(--text-light);
+            color: var(--accent-blue);
+            font-size: 1rem;
+            padding: 1.2rem 3rem;
+        }
+
+        .cta-section .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+
+        /* ===== アニメーション ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        /* ===== モバイル対応 ===== */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .problem-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proof-card {
+                flex: 0 0 300px;
+                padding: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFLZV7QS" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- ヘッダー -->
+    <header class="site-header" id="header">
+        <nav class="navbar">
+            <a href="#" class="logo-text">LeadFive</a>
+            <ul class="navbar-nav">
+                <li><a href="#problem" class="nav-link">課題</a></li>
+                <li><a href="#proof" class="nav-link">実績</a></li>
+                <li><a href="#method" class="nav-link">サービス</a></li>
+                <li><a href="#" class="btn btn-primary" onclick="openContactForm(); return false;">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-section section" id="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow reveal">Marketing × Psychology × Technology</p>
+            <h1 class="hero-title reveal reveal-delay-1">
+                あなたの課題を、<br>
+                <span class="highlight">科学</span>で解決する
+            </h1>
+            <p class="hero-description reveal reveal-delay-2">
+                AIは手段。目的は人間の成功。<br>
+                行動心理学とテクノロジーで、<br>
+                再現性のある成長を実現します。
+            </p>
+            <div class="hero-cta reveal reveal-delay-3">
+                <a href="#" class="btn btn-primary" onclick="openContactForm(); return false;">無料相談を予約</a>
+                <a href="#proof" class="btn btn-outline">実績を見る</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="problem-section section" id="problem">
+        <div class="container">
+            <div class="problem-content">
+                <div class="problem-text">
+                    <h2 class="reveal">
+                        なぜ、多くの企業が<br>
+                        成長の壁にぶつかるのか
+                    </h2>
+                    <p class="reveal reveal-delay-1">
+                        デジタル化が進む今、従来のやり方だけでは<br>
+                        成果を出し続けることが難しくなっています。
+                    </p>
+                </div>
+                <ul class="problem-list">
+                    <li class="reveal">広告費は増えているのに、売上が伸びない</li>
+                    <li class="reveal reveal-delay-1">AIツールを導入したが、使いこなせていない</li>
+                    <li class="reveal reveal-delay-2">データはあるが、次の一手が見えない</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSIGHT -->
+    <section class="insight-section section" id="insight">
+        <div class="container">
+            <div class="insight-content">
+                <div class="insight-number reveal">95%</div>
+                <p class="insight-highlight reveal reveal-delay-1">
+                    人間の購買行動の95%は、無意識に行われる。<br>
+                    だからこそ、心理学に基づくアプローチが必要です。
+                </p>
+                <p class="insight-description reveal reveal-delay-2">
+                    データやロジックだけでは、人は動きません。<br>
+                    私たちは、人間の本能と行動パターンを理解した上で、<br>
+                    AIを活用した最適な施策を設計します。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROOF (実績) -->
+    <section class="proof-section" id="proof">
+        <div class="proof-header">
+            <h2>言葉より、実績で</h2>
+        </div>
+        <div class="proof-wrapper">
+            <div class="proof-track" id="proofTrack">
+                <!-- 実績1 -->
+                <a href="/news/beauty-cvr/" class="proof-card">
+                    <div class="proof-card-header">
+                        <span class="proof-card-number" data-count="128">0</span>
+                        <span class="proof-card-category">Beauty</span>
+                    </div>
+                    <h3 class="proof-card-title">美容室チェーンのCVR改善</h3>
+                    <p class="proof-card-description">LP最適化とAI接客導入により、予約数が2.1倍に増加。初回来店からリピートまでの導線を最適化。</p>
+                    <div class="proof-card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">+128%</div>
+                            <div class="metric-label">CVR改善</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">2.1x</div>
+                            <div class="metric-label">予約数</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 実績2 -->
+                <a href="/news/btob-chatbot/" class="proof-card">
+                    <div class="proof-card-header">
+                        <span class="proof-card-number" data-count="58">0</span>
+                        <span class="proof-card-category">BtoB SaaS</span>
+                    </div>
+                    <h3 class="proof-card-title">商談化率58%向上を実現</h3>
+                    <p class="proof-card-description">AIチャットボット導入により、リード獲得から商談までの転換率を大幅改善。</p>
+                    <div class="proof-card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">+58%</div>
+                            <div class="metric-label">商談化率</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">-36%</div>
+                            <div class="metric-label">CPA削減</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 実績3 -->
+                <a href="/news/counseling-ai/" class="proof-card">
+                    <div class="proof-card-header">
+                        <span class="proof-card-number" data-count="40">0</span>
+                        <span class="proof-card-category">AI System</span>
+                    </div>
+                    <h3 class="proof-card-title">カウンセリングAIで離脱防止</h3>
+                    <p class="proof-card-description">「思っていたのと違う」を解消。初回離脱を防ぐAIカウンセリングシステム。</p>
+                    <div class="proof-card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">-40%</div>
+                            <div class="metric-label">初回離脱</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">+25%</div>
+                            <div class="metric-label">満足度</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 実績4 -->
+                <a href="/news/hexamind/" class="proof-card">
+                    <div class="proof-card-header">
+                        <span class="proof-card-number" data-count="20">0</span>
+                        <span class="proof-card-category">Self Product</span>
+                    </div>
+                    <h3 class="proof-card-title">AI経営支援システム開発</h3>
+                    <p class="proof-card-description">経営者の意思決定を支援する革新的なAIシステム「HexaMind」を開発・提供。</p>
+                    <div class="proof-card-metrics">
+                        <div class="metric">
+                            <div class="metric-value">20+</div>
+                            <div class="metric-label">導入企業</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">98.5%</div>
+                            <div class="metric-label">満足度</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- さらに見る -->
+                <div class="proof-card"
+                    style="display: flex; align-items: center; justify-content: center; cursor: pointer;"
+                    onclick="location.href='/case-studies/'">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">→</div>
+                        <div style="font-size: 1.2rem; letter-spacing: 0.1em;">MORE CASES</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHOD -->
+    <section class="method-section section" id="method">
+        <div class="container">
+            <div class="method-content">
+                <h2 class="reveal">私たちのアプローチ</h2>
+                <div class="method-grid">
+                    <div class="method-card reveal">
+                        <div class="method-card-number">01</div>
+                        <h3>マーケティング<br>サポート</h3>
+                        <p>戦略設計から実装・計測・改善まで一気通貫で伴走。</p>
+                    </div>
+                    <div class="method-card reveal reveal-delay-1">
+                        <div class="method-card-number">02</div>
+                        <h3>DXツール<br>開発</h3>
+                        <p>業務自動化やAI機能開発でワークフローを最適化。</p>
+                    </div>
+                    <div class="method-card reveal reveal-delay-2">
+                        <div class="method-card-number">03</div>
+                        <h3>AI活用<br>支援</h3>
+                        <p>生成AIの導入から運用定着まで成果につなげます。</p>
+                    </div>
+                    <div class="method-card reveal reveal-delay-3">
+                        <div class="method-card-number">04</div>
+                        <h3>WEB/SNS<br>運用</h3>
+                        <p>広告運用からコンテンツ最適化まで対応。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section section" id="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="reveal">
+                    一緒に、<br>
+                    科学しませんか
+                </h2>
+                <p class="reveal reveal-delay-1">
+                    まずは無料相談から。あなたの課題をお聞かせください。<br>
+                    24時間以内にご連絡いたします。
+                </p>
+                <a href="#" class="btn reveal reveal-delay-2" onclick="openContactForm(); return false;">
+                    無料相談を予約する
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LeadFive</h3>
+                <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+            </div>
+            <div class="footer-links">
+                <h4>SERVICE</h4>
+                <ul>
+                    <li><a href="/services/marketing-support/">マーケティング</a></li>
+                    <li><a href="/services/dx-tools/">DXツール開発</a></li>
+                    <li><a href="/services/ai-adoption/">AI活用支援</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="/company">企業概要</a></li>
+                    <li><a href="/blog">ブログ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li><a href="/contact">お問い合わせ</a></li>
+                    <li><a href="/privacy/">プライバシー</a></li>
+                    <li><a href="/terms/">利用規約</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 LeadFive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal"
+        style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8);">
+        <div
+            style="background: #fff; margin: 5% auto; padding: 3rem; max-width: 500px; width: 90%; position: relative;">
+            <span style="position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; cursor: pointer;"
+                onclick="closeContactModal()">&times;</span>
+            <h2 style="font-family: 'Shippori Mincho', serif; font-size: 1.5rem; margin-bottom: 2rem;">お問い合わせ</h2>
+            <form id="contactForm">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">会社名 *</label>
+                    <input type="text" name="company" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">お名前 *</label>
+                    <input type="text" name="name" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">メールアドレス *</label>
+                    <input type="email" name="email" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">お問い合わせ内容 *</label>
+                    <textarea name="message" rows="4" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #e5e5e5; font-size: 1rem; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">送信する</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ヘッダースクロール
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Reveal アニメーション
+        document.querySelectorAll('.reveal').forEach(el => {
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 85%',
+                onEnter: () => el.classList.add('active'),
+                once: true
+            });
+        });
+
+        // 実績セクションで色反転
+        ScrollTrigger.create({
+            trigger: '#proof',
+            start: 'top center',
+            end: 'bottom center',
+            onEnter: () => document.body.classList.add('inverted'),
+            onLeave: () => document.body.classList.remove('inverted'),
+            onEnterBack: () => document.body.classList.add('inverted'),
+            onLeaveBack: () => document.body.classList.remove('inverted')
+        });
+
+        // 実績の水平スクロール
+        const proofTrack = document.getElementById('proofTrack');
+        if (proofTrack) {
+            const trackWidth = proofTrack.scrollWidth;
+            const viewportWidth = window.innerWidth;
+
+            gsap.to(proofTrack, {
+                x: -(trackWidth - viewportWidth + 100),
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#proof',
+                    start: 'top top',
+                    end: () => `+=${trackWidth}`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1
+                }
+            });
+        }
+
+        // 数字カウントアップ
+        document.querySelectorAll('.proof-card-number[data-count]').forEach(el => {
+            const target = parseInt(el.dataset.count);
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 80%',
+                once: true,
+                onEnter: () => {
+                    gsap.to(el, {
+                        textContent: target,
+                        duration: 2,
+                        ease: 'power2.out',
+                        snap: { textContent: 1 },
+                        onUpdate: function () {
+                            el.textContent = Math.round(this.targets()[0].textContent);
+                        }
+                    });
+                }
+            });
+        });
+
+        // コンタクトモーダル
+        function openContactForm() {
+            document.getElementById('contact-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeContactModal() {
+            document.getElementById('contact-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        document.getElementById('contact-modal').addEventListener('click', function (e) {
+            if (e.target === this) closeContactModal();
+        });
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('お問い合わせありがとうございます。24時間以内にご連絡いたします。');
+            closeContactModal();
+        });
+
+        console.log('LeadFive Merged Redesign loaded!');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | Leadfive ブログ</title>
+    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+
+    <!-- OGP -->
+    <meta property="og:title" content="{{ page.title }} | Leadfive">
+    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <meta property="og:image" content="{{ page.thumbnail | default: '/assets/images/ogp-blog.jpg' }}">
+    <meta property="og:type" content="article">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-off-white: #FAFAFA;
+            --bg-black: #1a1a1a;
+            --text-dark: #1a1a1a;
+            --text-light: #FFFFFF;
+            --text-gray: #6B7280;
+            --accent-blue: #2563EB;
+            --accent-blue-light: rgba(37, 99, 235, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.9;
+        }
+
+        /* ヘッダー */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-light);
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* 記事ヘッダー */
+        .article-header {
+            padding: 10rem 2rem 4rem;
+            background: var(--bg-off-white);
+        }
+
+        .article-header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .article-category {
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .article-date,
+        .article-read-time {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .article-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-excerpt {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* サムネイル */
+        .article-thumbnail {
+            max-width: 900px;
+            margin: -2rem auto 0;
+            padding: 0 2rem;
+        }
+
+        .article-thumbnail img {
+            width: 100%;
+            height: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 記事本文 */
+        .article-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .article-content h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .article-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .article-content p {
+            font-size: 1rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .article-content blockquote {
+            margin: 2rem 0;
+            padding: 1.5rem 2rem;
+            background: var(--bg-off-white);
+            border-left: 4px solid var(--accent-blue);
+            font-style: italic;
+        }
+
+        .article-content code {
+            background: var(--bg-off-white);
+            padding: 0.2rem 0.5rem;
+            font-size: 0.9rem;
+            border-radius: 3px;
+        }
+
+        .article-content pre {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CTA ボックス */
+        .article-cta {
+            background: var(--accent-blue);
+            color: var(--text-light);
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .article-cta h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-cta p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .article-cta .btn {
+            background: var(--text-light);
+            color: var(--accent-blue);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* 著者情報 */
+        .author-box {
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--bg-off-white);
+            margin: 3rem 0;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* 関連記事 */
+        .related-posts {
+            padding: 4rem 2rem;
+            background: var(--bg-off-white);
+        }
+
+        .related-posts-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .related-posts h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .related-card {
+            background: var(--bg-white);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .related-card-content {
+            padding: 1rem;
+        }
+
+        .related-card h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* フッター */
+        .footer-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* モバイル */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .article-title {
+                font-size: 1.6rem;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo-text">Leadfive</a>
+            <ul class="navbar-nav">
+                <li><a href="/works/" class="nav-link">実績</a></li>
+                <li><a href="/news/" class="nav-link">お知らせ</a></li>
+                <li><a href="/#services" class="nav-link">サービス</a></li>
+                <li><a href="/blog/" class="nav-link">ブログ</a></li>
+                <li><a href="/#cta" class="btn-primary">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 記事ヘッダー -->
+    <header class="article-header">
+        <div class="article-header-inner">
+            <div class="article-meta">
+                <a href="/blog/category/{{ page.category | slugify }}/" class="article-category">{{ page.category }}</a>
+                <span class="article-date">{{ page.date | date: "%Y.%m.%d" }}</span>
+                <span class="article-read-time">読了時間: {{ page.read_time | default: 5 }}分</span>
+            </div>
+            <h1 class="article-title">{{ page.title }}</h1>
+            <p class="article-excerpt">{{ page.excerpt | strip_html }}</p>
+        </div>
+    </header>
+
+    <!-- サムネイル -->
+    {% if page.thumbnail %}
+    <div class="article-thumbnail">
+        <img src="{{ page.thumbnail }}" alt="{{ page.title }}">
+    </div>
+    {% endif %}
+
+    <!-- 記事本文 -->
+    <article class="article-content">
+        {{ content }}
+
+        <!-- CTA -->
+        <div class="article-cta">
+            <h3>この記事を読んだ方へ</h3>
+            <p>無料相談でお気軽にご相談ください</p>
+            <a href="/#cta" class="btn">無料相談を予約する</a>
+        </div>
+
+        <!-- 著者情報 -->
+        <div class="author-box">
+            <img src="/assets/images/author.jpg" alt="著者" class="author-avatar">
+            <div class="author-info">
+                <h4>Leadfive 編集部</h4>
+                <p>AI×心理学でビジネスを科学するLeadfiveの編集部です。マーケティング、AI活用、DXのノウハウを発信しています。</p>
+            </div>
+        </div>
+    </article>
+
+    <!-- 関連記事 -->
+    <section class="related-posts">
+        <div class="related-posts-inner">
+            <h3>関連記事</h3>
+            <div class="related-grid">
+                {% for post in site.related_posts limit:3 %}
+                <a href="{{ post.url }}" class="related-card">
+                    <img src="{{ post.thumbnail | default: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80' }}"
+                        alt="{{ post.title }}">
+                    <div class="related-card-content">
+                        <h4>{{ post.title | truncate: 50 }}</h4>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-brand">Leadfive</div>
+            <div class="footer-links">
+                <a href="/works/">実績</a>
+                <a href="/news/">お知らせ</a>
+                <a href="/company/">会社概要</a>
+                <a href="/privacy/">プライバシー</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
