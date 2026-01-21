@@ -1,297 +1,424 @@
----
-layout: page
-title: 美容室カウンセリングAIシステム「counseling-AI」をリリース | LeadFive
-description: 美容師のカウンセリングを仕組み化し、顧客のニーズを正確に把握することで初回離脱を防ぐAIシステム「counseling-AI」を正式リリースいたしました。
-permalink: /news/counseling-ai/
----
+<!DOCTYPE html>
+<html lang="ja">
 
-<style>
-  .news-detail {
-    padding: 6rem 0 4rem;
-    min-height: 80vh;
-  }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美容室カウンセリングAIシステム「counseling-AI」をリリース | Leadfive</title>
+  <meta name="description" content="美容師のカウンセリングを仕組み化し、顧客のニーズを正確に把握することで初回離脱を防ぐAIシステムをリリース。">
 
-  .news-detail-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
-  .news-detail-header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .news-meta {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .news-date {
-    display: inline-block;
-    font-size: 0.9rem;
-    color: #3b82f6;
-    background: rgba(59, 130, 246, 0.1);
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
-  }
-
-  .news-category {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: #ec4899;
-    background: rgba(236, 72, 153, 0.1);
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
-  }
-
-  .news-detail-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-  }
-
-  .news-thumbnail {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-  }
-
-  .news-body {
-    color: #e5e7eb;
-    line-height: 1.8;
-    font-size: 1.05rem;
-  }
-
-  .news-body h2 {
-    color: #ffffff;
-    font-size: 1.5rem;
-    margin: 2.5rem 0 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid rgba(59, 130, 246, 0.3);
-  }
-
-  .news-body h3 {
-    color: #ffffff;
-    font-size: 1.25rem;
-    margin: 2rem 0 1rem;
-  }
-
-  .news-body p {
-    margin-bottom: 1.5rem;
-  }
-
-  .news-body ul,
-  .news-body ol {
-    margin: 1.5rem 0;
-    padding-left: 1.5rem;
-  }
-
-  .news-body li {
-    margin-bottom: 0.75rem;
-  }
-
-  .service-link {
-    display: inline-block;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    color: #ffffff;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 2rem 0;
-    transition: all 0.3s ease;
-  }
-
-  .service-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
-  }
-
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #3b82f6;
-    text-decoration: none;
-    margin-top: 3rem;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .back-link:hover {
-    background: rgba(59, 130, 246, 0.1);
-    border-color: rgba(59, 130, 246, 0.5);
-  }
-
-  .highlight-box {
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    margin: 2rem 0;
-  }
-
-  .highlight-box h4 {
-    color: #3b82f6;
-    margin-bottom: 1rem;
-  }
-
-  .problem-box {
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    margin: 2rem 0;
-  }
-
-  .problem-box h4 {
-    color: #ef4444;
-    margin-bottom: 1rem;
-  }
-
-  .solution-box {
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    margin: 2rem 0;
-  }
-
-  .solution-box h4 {
-    color: #10b981;
-    margin-bottom: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .news-detail {
-      padding: 4rem 0 2rem;
+  <style>
+    :root {
+      --bg-white: #ffffff;
+      --bg-off-white: #f8f9fa;
+      --bg-black: #0a0a0a;
+      --text-dark: #111111;
+      --text-gray: #6b7280;
+      --text-light: #ffffff;
+      --accent-blue: #2563eb;
+      --accent-blue-light: rgba(37, 99, 235, 0.08);
+      --border-light: #e5e5e5;
     }
 
-    .news-detail-container {
-      padding: 0 1rem;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .news-detail-header h1 {
-      font-size: 1.5rem;
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      line-height: 1.8;
     }
 
-    .news-body {
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo-text {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+
+    .navbar-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-blue);
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: var(--text-light);
+    }
+
+    .article-header {
+      padding: 10rem 0 3rem;
+      background: var(--bg-off-white);
+    }
+
+    .article-header .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-date {
+      font-size: 0.9rem;
+      color: var(--text-gray);
+    }
+
+    .article-category {
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      background: var(--accent-blue-light);
+      padding: 0.2rem 0.8rem;
+    }
+
+    .article-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .article-content {
+      padding: 4rem 0 6rem;
+    }
+
+    .article-content .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .article-thumbnail {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 3rem;
+    }
+
+    .article-body {
+      color: var(--text-gray);
       font-size: 1rem;
+      line-height: 2;
     }
-  }
-</style>
 
-<div class="news-detail">
-  <div class="news-detail-container">
-    <div class="news-detail-header">
-      <div class="news-meta">
-        <span class="news-date">2025.12.01</span>
-        <span class="news-category">プレスリリース</span>
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .article-body ul,
+    .article-body ol {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .article-body li {
+      margin-bottom: 0.75rem;
+    }
+
+    .article-body strong {
+      color: var(--text-dark);
+    }
+
+    .feature-box {
+      background: var(--bg-off-white);
+      border: 1px solid var(--border-light);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .feature-box h4 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .service-link {
+      display: inline-block;
+      background: var(--accent-blue);
+      color: var(--text-light);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 2rem 0;
+    }
+
+    .service-link:hover {
+      background: #1d4ed8;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--text-dark);
+      padding-bottom: 0.25rem;
+    }
+
+    .back-link:hover {
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+    }
+
+    .contact-info {
+      background: var(--bg-off-white);
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-section {
+      background: var(--bg-black);
+      color: var(--text-light);
+      padding: 5rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.8;
+    }
+
+    .footer-links h4 {
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav {
+        display: none;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="/" class="logo-text">Leadfive</a>
+      <ul class="navbar-nav">
+        <li><a href="/works/" class="nav-link">実績</a></li>
+        <li><a href="/news/" class="nav-link">お知らせ</a></li>
+        <li><a href="/blog/" class="nav-link">ブログ</a></li>
+        <li><a href="/contact/" class="btn btn-primary">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="article-header">
+    <div class="container">
+      <div class="article-meta">
+        <span class="article-date">2025.12.01</span>
+        <span class="article-category">プレスリリース</span>
       </div>
       <h1>美容室カウンセリングAIシステム「counseling-AI」をリリース</h1>
     </div>
+  </section>
 
-    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" alt="counseling-AI - 美容室カウンセリングシステム"
-      class="news-thumbnail">
+  <section class="article-content">
+    <div class="container">
+      <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" alt="counseling-AI"
+        class="article-thumbnail">
 
-    <div class="news-body">
-      <p>
-        LeadFiveは、美容師のカウンセリングを仕組み化し、顧客のニーズを正確に把握するAIシステム<strong>「counseling-AI」</strong>を2025年12月1日に正式リリースいたしました。
-      </p>
+      <div class="article-body">
+        <p>Leadfiveは、美容師のカウンセリングを仕組み化し、顧客のニーズを正確に把握するAIシステム<strong>「counseling-AI」</strong>を2025年12月1日に正式リリースいたしました。</p>
 
-      <h2>「counseling-AI」とは</h2>
-      <p>
-        「counseling-AI」は、美容室におけるカウンセリングを属人的なものから仕組み化し、どのスタイリストが担当しても再現性の高いカウンセリングを実現するシステムです。
-      </p>
-      <p>
-        お客様の「なりたいイメージ」を正確に把握することで、施術後の<strong>「思っていたのと違う」</strong>というギャップを解消し、初回離脱を防ぎます。
-      </p>
+        <h2>「counseling-AI」とは</h2>
+        <p>「counseling-AI」は、美容室におけるカウンセリングを属人的なものから仕組み化し、どのスタイリストが担当しても再現性の高いカウンセリングを実現するシステムです。</p>
+        <p>お客様の「なりたいイメージ」を正確に把握することで、施術後の<strong>「思っていたのと違う」</strong>というギャップを解消し、初回離脱を防ぎます。</p>
 
-      <div class="problem-box">
-        <h4>美容室が抱える課題</h4>
+        <div class="feature-box">
+          <h4>counseling-AIが解決すること</h4>
+          <ul>
+            <li>AIが体系的な質問でお客様のニーズを正確に引き出す</li>
+            <li>イメージの言語化をサポートし、認識のズレを防止</li>
+            <li>カウンセリング内容を記録・分析し、次回来店時に活用</li>
+            <li>スタイリストの経験に依存しない、再現性の高いカウンセリングを実現</li>
+            <li>初回離脱率の大幅な改善</li>
+          </ul>
+        </div>
+
+        <h2>導入効果</h2>
+        <p>テスト導入いただいた美容室様では、以下のような効果が報告されています：</p>
         <ul>
-          <li>カウンセリングの質がスタイリストによってバラバラ</li>
-          <li>お客様のイメージを正確に把握できず、仕上がりにギャップが生じる</li>
-          <li>「思っていたのと違う」という理由で初回離脱が発生</li>
-          <li>ベテランスタイリストのノウハウが共有されていない</li>
-          <li>新人スタイリストの育成に時間がかかる</li>
+          <li>初回来店からの離脱率が<strong>40%改善</strong></li>
+          <li>お客様満足度アンケートのスコアが<strong>平均15%向上</strong></li>
+          <li>カウンセリング時間の<strong>効率化</strong>（平均5分短縮）</li>
+          <li>新人スタイリストの<strong>早期戦力化</strong></li>
         </ul>
+
+        <a href="https://counseling-ai.jp/" target="_blank" rel="noopener noreferrer" class="service-link">
+          「counseling-AI」サービスサイトはこちら
+        </a>
+
+        <div class="contact-info">
+          <p><strong>お問い合わせ</strong></p>
+          <p>合同会社Leadfive</p>
+          <p>メール: mail@lead-v.com</p>
+          <p>電話: 06-7713-6747</p>
+        </div>
+
+        <a href="/news/" class="back-link">← お知らせ一覧に戻る</a>
       </div>
-
-      <div class="solution-box">
-        <h4>counseling-AIが解決すること</h4>
-        <ul>
-          <li>AIが体系的な質問でお客様のニーズを正確に引き出す</li>
-          <li>イメージの言語化をサポートし、認識のズレを防止</li>
-          <li>カウンセリング内容を記録・分析し、次回来店時に活用</li>
-          <li>スタイリストの経験に依存しない、再現性の高いカウンセリングを実現</li>
-          <li>初回離脱率の大幅な改善</li>
-        </ul>
-      </div>
-
-      <h2>主な機能</h2>
-      <div class="highlight-box">
-        <h4>システムの特徴</h4>
-        <ul>
-          <li><strong>AIカウンセリングアシスタント</strong>：お客様の要望を体系的にヒアリング</li>
-          <li><strong>イメージ共有機能</strong>：写真や言葉でなりたいスタイルを可視化</li>
-          <li><strong>カルテ自動生成</strong>：カウンセリング内容を自動で記録・整理</li>
-          <li><strong>施術提案サポート</strong>：お客様のニーズに合った施術メニューを提案</li>
-          <li><strong>リピート分析</strong>：顧客の来店履歴・満足度を分析</li>
-        </ul>
-      </div>
-
-      <h2>導入効果</h2>
-      <p>
-        テスト導入いただいた美容室様では、以下のような効果が報告されています：
-      </p>
-      <ul>
-        <li>初回来店からの離脱率が<strong>40%改善</strong></li>
-        <li>お客様満足度アンケートのスコアが<strong>平均15%向上</strong></li>
-        <li>カウンセリング時間の<strong>効率化</strong>（平均5分短縮）</li>
-        <li>新人スタイリストの<strong>早期戦力化</strong></li>
-      </ul>
-
-      <h2>ご利用の流れ</h2>
-      <ol>
-        <li>お問い合わせ・ヒアリング</li>
-        <li>サロンの課題に合わせたカスタマイズ</li>
-        <li>スタッフ向けトレーニング</li>
-        <li>導入・運用サポート</li>
-      </ol>
-
-      <h2>今後の展開</h2>
-      <p>
-        今後は、POSシステムとの連携や、予約システムとの統合、さらにはお客様向けの事前カウンセリング機能など、美容室のDXを総合的にサポートする機能を拡充してまいります。
-      </p>
-
-      <a href="https://counseling-ai.jp/" target="_blank" rel="noopener noreferrer" class="service-link">
-        「counseling-AI」サービスサイトはこちら
-      </a>
-
-      <h2>お問い合わせ</h2>
-      <p>
-        本サービスに関するお問い合わせ、デモのご依頼は、下記までご連絡ください。
-      </p>
-      <p>
-        合同会社Leadfive<br>
-        メール: mail@lead-v.com<br>
-        電話: 06-7713-6747
-      </p>
     </div>
+  </section>
 
-    <a href="/#news" class="back-link">
-      <span>&larr;</span> 新着情報一覧に戻る
-    </a>
-  </div>
-</div>
+  <footer class="footer-section">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leadfive</h3>
+        <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+      </div>
+      <div class="footer-links">
+        <h4>WORKS</h4>
+        <ul>
+          <li><a href="/works/">実績一覧</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="/company/">企業概要</a></li>
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/news/">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>SUPPORT</h4>
+        <ul>
+          <li><a href="/contact/">お問い合わせ</a></li>
+          <li><a href="/privacy/">プライバシー</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Leadfive. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
