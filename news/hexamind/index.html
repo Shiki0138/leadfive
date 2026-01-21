@@ -1,205 +1,377 @@
----
-layout: page
-title: AI経営支援システム「HexaMind」をリリース | LeadFive
-description: 経営者の意思決定を支援する革新的なAIシステム「HexaMind」を正式リリースいたしました。
-permalink: /news/hexamind/
----
+<!DOCTYPE html>
+<html lang="ja">
 
-<style>
-.news-detail {
-  padding: 6rem 0 4rem;
-  min-height: 80vh;
-}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI経営支援システム「HexaMind」をリリース | Leadfive</title>
+  <meta name="description" content="経営者の意思決定を支援する革新的なAIシステム「HexaMind」を正式リリース。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-white: #ffffff;
+      --bg-off-white: #f8f9fa;
+      --bg-black: #0a0a0a;
+      --text-dark: #111111;
+      --text-gray: #6b7280;
+      --text-light: #ffffff;
+      --accent-blue: #2563eb;
+      --accent-blue-light: rgba(37, 99, 235, 0.08);
+      --border-light: #e5e5e5;
+    }
 
-.news-detail-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.news-detail-header {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
 
-.news-meta {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
 
-.news-date {
-  display: inline-block;
-  font-size: 0.9rem;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-}
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-.news-category {
-  display: inline-block;
-  font-size: 0.85rem;
-  color: #ec4899;
-  background: rgba(236, 72, 153, 0.1);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-}
+    .logo-text {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
 
-.news-detail-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
+    .navbar-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
 
-.news-thumbnail {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-}
+    .nav-link {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
 
-.news-body {
-  color: #e5e7eb;
-  line-height: 1.8;
-  font-size: 1.05rem;
-}
+    .btn {
+      padding: 0.8rem 1.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+    }
 
-.news-body h2 {
-  color: #ffffff;
-  font-size: 1.5rem;
-  margin: 2.5rem 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid rgba(59, 130, 246, 0.3);
-}
+    .btn-primary {
+      background: var(--accent-blue);
+      color: var(--text-light);
+    }
 
-.news-body p {
-  margin-bottom: 1.5rem;
-}
+    .article-header {
+      padding: 10rem 0 3rem;
+      background: var(--bg-off-white);
+    }
 
-.news-body ul {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
-}
+    .article-header .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-.news-body li {
-  margin-bottom: 0.75rem;
-}
+    .article-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
 
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #3b82f6;
-  text-decoration: none;
-  margin-top: 3rem;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
+    .article-date {
+      font-size: 0.9rem;
+      color: var(--text-gray);
+    }
 
-.back-link:hover {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.5);
-}
+    .article-category {
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      background: var(--accent-blue-light);
+      padding: 0.2rem 0.8rem;
+    }
 
-.highlight-box {
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 12px;
-  padding: 1.5rem 2rem;
-  margin: 2rem 0;
-}
+    .article-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
 
-.highlight-box h4 {
-  color: #3b82f6;
-  margin-bottom: 1rem;
-}
+    .article-content {
+      padding: 4rem 0 6rem;
+    }
 
-@media (max-width: 768px) {
-  .news-detail {
-    padding: 4rem 0 2rem;
-  }
+    .article-content .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-  .news-detail-container {
-    padding: 0 1rem;
-  }
+    .article-thumbnail {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 3rem;
+    }
 
-  .news-detail-header h1 {
-    font-size: 1.5rem;
-  }
+    .article-body {
+      color: var(--text-gray);
+      font-size: 1rem;
+      line-height: 2;
+    }
 
-  .news-body {
-    font-size: 1rem;
-  }
-}
-</style>
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
 
-<div class="news-detail">
-  <div class="news-detail-container">
-    <div class="news-detail-header">
-      <div class="news-meta">
-        <span class="news-date">2025.09.15</span>
-        <span class="news-category">プレスリリース</span>
-      </div>
+    .article-body h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .article-body ul {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .article-body li {
+      margin-bottom: 0.75rem;
+    }
+
+    .article-body strong {
+      color: var(--text-dark);
+    }
+
+    .feature-box {
+      background: var(--bg-off-white);
+      border: 1px solid var(--border-light);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .feature-box h4 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--text-dark);
+      padding-bottom: 0.25rem;
+    }
+
+    .contact-info {
+      background: var(--bg-off-white);
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-section {
+      background: var(--bg-black);
+      color: var(--text-light);
+      padding: 5rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.8;
+    }
+
+    .footer-links h4 {
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav {
+        display: none;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar"><a href="/" class="logo-text">Leadfive</a>
+      <ul class="navbar-nav">
+        <li><a href="/works/" class="nav-link">実績</a></li>
+        <li><a href="/news/" class="nav-link">お知らせ</a></li>
+        <li><a href="/blog/" class="nav-link">ブログ</a></li>
+        <li><a href="/contact/" class="btn btn-primary">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="article-header">
+    <div class="container">
+      <div class="article-meta"><span class="article-date">2025.09.15</span><span
+          class="article-category">プレスリリース</span></div>
       <h1>AI経営支援システム「HexaMind」をリリース</h1>
     </div>
-
-    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="HexaMind - AI経営支援システム" class="news-thumbnail">
-
-    <div class="news-body">
-      <p>
-        LeadFiveは、経営者の意思決定を支援する革新的なAIシステム<strong>「HexaMind」</strong>を正式リリースいたしました。
-      </p>
-
-      <h2>「HexaMind」とは</h2>
-      <p>
-        「HexaMind」は、企業の経営データを分析し、AIが経営判断をサポートするシステムです。複雑なビジネス環境において、データドリブンな意思決定を可能にします。
-      </p>
-
-      <div class="highlight-box">
-        <h4>主な機能</h4>
+  </section>
+  <section class="article-content">
+    <div class="container">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="HexaMind"
+        class="article-thumbnail">
+      <div class="article-body">
+        <p>Leadfiveは、経営者の意思決定を支援する革新的なAIシステム<strong>「HexaMind」</strong>を正式リリースいたしました。</p>
+        <h2>「HexaMind」とは</h2>
+        <p>「HexaMind」は、企業の経営データを分析し、AIが経営判断をサポートするシステムです。複雑なビジネス環境において、データドリブンな意思決定を可能にします。</p>
+        <div class="feature-box">
+          <h4>主な機能</h4>
+          <ul>
+            <li>経営データの自動収集・分析</li>
+            <li>市場動向のリアルタイムモニタリング</li>
+            <li>売上予測・需要予測</li>
+            <li>経営課題の可視化とアクションプラン提案</li>
+            <li>競合分析レポートの自動生成</li>
+          </ul>
+        </div>
+        <h2>開発の背景</h2>
+        <p>中小企業の経営者様は、日々の業務に追われ、戦略的な経営判断に十分な時間を割けないケースが多くあります。「HexaMind」は、経営者様の「右腕」となり、データに基づいた経営判断をサポートします。</p>
+        <h2>今後の展開</h2>
+        <p>業種別のカスタマイズ機能や、金融機関との連携機能など、さらなる機能拡充を予定しております。</p>
+        <div class="contact-info">
+          <p><strong>お問い合わせ</strong></p>
+          <p>合同会社Leadfive</p>
+          <p>メール: mail@lead-v.com</p>
+          <p>電話: 06-7713-6747</p>
+        </div>
+        <a href="/news/" class="back-link">← お知らせ一覧に戻る</a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer-section">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leadfive</h3>
+        <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+      </div>
+      <div class="footer-links">
+        <h4>WORKS</h4>
         <ul>
-          <li>経営データの自動収集・分析</li>
-          <li>市場動向のリアルタイムモニタリング</li>
-          <li>売上予測・需要予測</li>
-          <li>経営課題の可視化とアクションプラン提案</li>
-          <li>競合分析レポートの自動生成</li>
+          <li><a href="/works/">実績一覧</a></li>
         </ul>
       </div>
-
-      <h2>開発の背景</h2>
-      <p>
-        中小企業の経営者様は、日々の業務に追われ、戦略的な経営判断に十分な時間を割けないケースが多くあります。また、データはあっても、それを活用した意思決定ができていないという課題もあります。
-      </p>
-      <p>
-        「HexaMind」は、経営者様の「右腕」となり、データに基づいた経営判断をサポートします。
-      </p>
-
-      <h2>今後の展開</h2>
-      <p>
-        業種別のカスタマイズ機能や、金融機関との連携機能など、さらなる機能拡充を予定しております。
-      </p>
-
-      <h2>お問い合わせ</h2>
-      <p>
-        本サービスに関するお問い合わせは、下記までご連絡ください。
-      </p>
-      <p>
-        合同会社Leadfive<br>
-        メール: mail@lead-v.com<br>
-        電話: 06-7713-6747
-      </p>
+      <div class="footer-links">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="/company/">企業概要</a></li>
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/news/">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>SUPPORT</h4>
+        <ul>
+          <li><a href="/contact/">お問い合わせ</a></li>
+          <li><a href="/privacy/">プライバシー</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Leadfive. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
 
-    <a href="/#news" class="back-link">
-      <span>&larr;</span> 新着情報一覧に戻る
-    </a>
-  </div>
-</div>
+</html>

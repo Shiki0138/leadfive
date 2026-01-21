@@ -1,248 +1,425 @@
----
-layout: page
-title: BtoB企業の商談化率58%向上を実現 | LeadFive
-description: AIチャットボット導入により、BtoB企業の初回CVRが64%改善、商談化率が58%向上した事例をご紹介します。
-permalink: /news/btob-chatbot/
----
+<!DOCTYPE html>
+<html lang="ja">
 
-<style>
-.news-detail {
-  padding: 6rem 0 4rem;
-  min-height: 80vh;
-}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BtoB企業の商談化率58%向上を実現 | Leadfive</title>
+  <meta name="description" content="AIチャットボット導入により、BtoB企業の初回CVRが64%改善、商談化率が58%向上した事例。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-white: #ffffff;
+      --bg-off-white: #f8f9fa;
+      --bg-black: #0a0a0a;
+      --text-dark: #111111;
+      --text-gray: #6b7280;
+      --text-light: #ffffff;
+      --accent-blue: #2563eb;
+      --accent-blue-light: rgba(37, 99, 235, 0.08);
+      --border-light: #e5e5e5;
+    }
 
-.news-detail-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.news-detail-header {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
 
-.news-meta {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
 
-.news-date {
-  display: inline-block;
-  font-size: 0.9rem;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-}
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-.news-category {
-  display: inline-block;
-  font-size: 0.85rem;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-}
+    .logo-text {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
 
-.news-detail-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
+    .navbar-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
 
-.news-thumbnail {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-}
+    .nav-link {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
 
-.news-body {
-  color: #e5e7eb;
-  line-height: 1.8;
-  font-size: 1.05rem;
-}
+    .btn {
+      padding: 0.8rem 1.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+    }
 
-.news-body h2 {
-  color: #ffffff;
-  font-size: 1.5rem;
-  margin: 2.5rem 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid rgba(59, 130, 246, 0.3);
-}
+    .btn-primary {
+      background: var(--accent-blue);
+      color: var(--text-light);
+    }
 
-.news-body p {
-  margin-bottom: 1.5rem;
-}
+    .article-header {
+      padding: 10rem 0 3rem;
+      background: var(--bg-off-white);
+    }
 
-.news-body ul {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
-}
+    .article-header .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-.news-body li {
-  margin-bottom: 0.75rem;
-}
+    .article-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
 
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #3b82f6;
-  text-decoration: none;
-  margin-top: 3rem;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
+    .article-date {
+      font-size: 0.9rem;
+      color: var(--text-gray);
+    }
 
-.back-link:hover {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.5);
-}
+    .article-category {
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      background: var(--accent-blue-light);
+      padding: 0.2rem 0.8rem;
+    }
 
-.results-box {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 12px;
-  padding: 1.5rem 2rem;
-  margin: 2rem 0;
-}
+    .article-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
 
-.results-box h4 {
-  color: #10b981;
-  margin-bottom: 1rem;
-}
+    .article-content {
+      padding: 4rem 0 6rem;
+    }
 
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
+    .article-content .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-.result-item {
-  text-align: center;
-}
+    .article-thumbnail {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 3rem;
+    }
 
-.result-number {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #10b981;
-}
+    .article-body {
+      color: var(--text-gray);
+      font-size: 1rem;
+      line-height: 2;
+    }
 
-.result-label {
-  font-size: 0.9rem;
-  color: #9ca3af;
-}
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
 
-@media (max-width: 768px) {
-  .news-detail {
-    padding: 4rem 0 2rem;
-  }
+    .article-body h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
 
-  .news-detail-container {
-    padding: 0 1rem;
-  }
+    .article-body ul {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+    }
 
-  .news-detail-header h1 {
-    font-size: 1.5rem;
-  }
+    .article-body li {
+      margin-bottom: 0.75rem;
+    }
 
-  .news-body {
-    font-size: 1rem;
-  }
-}
-</style>
+    .article-body strong {
+      color: var(--text-dark);
+    }
 
-<div class="news-detail">
-  <div class="news-detail-container">
-    <div class="news-detail-header">
-      <div class="news-meta">
-        <span class="news-date">2025.07.15</span>
-        <span class="news-category">事例紹介</span>
+    .results-box {
+      background: var(--bg-off-white);
+      border: 1px solid var(--border-light);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .results-box h4 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .result-item {
+      text-align: center;
+    }
+
+    .result-number {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+    }
+
+    .result-label {
+      font-size: 0.9rem;
+      color: var(--text-gray);
+      margin-top: 0.5rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--text-dark);
+      padding-bottom: 0.25rem;
+    }
+
+    .contact-info {
+      background: var(--bg-off-white);
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-section {
+      background: var(--bg-black);
+      color: var(--text-light);
+      padding: 5rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.8;
+    }
+
+    .footer-links h4 {
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav {
+        display: none;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar"><a href="/" class="logo-text">Leadfive</a>
+      <ul class="navbar-nav">
+        <li><a href="/works/" class="nav-link">実績</a></li>
+        <li><a href="/news/" class="nav-link">お知らせ</a></li>
+        <li><a href="/blog/" class="nav-link">ブログ</a></li>
+        <li><a href="/contact/" class="btn btn-primary">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="article-header">
+    <div class="container">
+      <div class="article-meta"><span class="article-date">2025.07.15</span><span class="article-category">事例紹介</span>
       </div>
       <h1>BtoB企業の商談化率58%向上を実現</h1>
     </div>
-
-    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" alt="BtoB企業の事例" class="news-thumbnail">
-
-    <div class="news-body">
-      <p>
-        製造業向けサービスを提供するBtoB企業様において、AIチャットボットの導入により、初回CVRが64%改善、商談化率が58%向上いたしました。
-      </p>
-
-      <div class="results-box">
-        <h4>成果サマリー</h4>
-        <div class="results-grid">
-          <div class="result-item">
-            <div class="result-number">64%</div>
-            <div class="result-label">初回CVR改善</div>
-          </div>
-          <div class="result-item">
-            <div class="result-number">58%</div>
-            <div class="result-label">商談化率向上</div>
-          </div>
-          <div class="result-item">
-            <div class="result-number">3倍</div>
-            <div class="result-label">リード獲得数</div>
+  </section>
+  <section class="article-content">
+    <div class="container">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" alt="BtoB企業の事例"
+        class="article-thumbnail">
+      <div class="article-body">
+        <p>製造業向けサービスを提供するBtoB企業様において、AIチャットボットの導入により、初回CVRが64%改善、商談化率が58%向上いたしました。</p>
+        <div class="results-box">
+          <h4>成果サマリー</h4>
+          <div class="results-grid">
+            <div class="result-item">
+              <div class="result-number">64%</div>
+              <div class="result-label">初回CVR改善</div>
+            </div>
+            <div class="result-item">
+              <div class="result-number">58%</div>
+              <div class="result-label">商談化率向上</div>
+            </div>
+            <div class="result-item">
+              <div class="result-number">3倍</div>
+              <div class="result-label">リード獲得数</div>
+            </div>
           </div>
         </div>
+        <h2>プロジェクトの背景</h2>
+        <p>クライアント様は、Webサイトからの問い合わせ数を増やしたいというニーズをお持ちでした。しかし、BtoB特有の課題として、問い合わせのハードルが高く、資料請求や見積もり依頼に至るユーザーが限られていました。</p>
+        <h2>実施した施策</h2>
+        <ul>
+          <li><strong>AIチャットボットの導入</strong>：訪問者の課題をヒアリングし、最適なソリューションを提案</li>
+          <li><strong>リードスコアリング</strong>：チャットでの会話内容から、見込み度を自動判定</li>
+          <li><strong>営業連携の自動化</strong>：高スコアのリードを自動で営業担当に通知</li>
+          <li><strong>FAQ対応の自動化</strong>：よくある質問への回答を24時間対応</li>
+        </ul>
+        <h2>成果</h2>
+        <ul>
+          <li>問い合わせのハードルが下がり、初回CVRが64%改善</li>
+          <li>事前のヒアリングにより、ニーズにマッチした商談が増加</li>
+          <li>商談化率が58%向上</li>
+          <li>営業担当の初期対応工数を70%削減</li>
+        </ul>
+        <h2>クライアント様の声</h2>
+        <p>
+          「BtoB向けのAIチャットボットは難しいと思っていましたが、Leadfiveさんのシステムは私たちの製品知識をしっかり学習してくれて、お客様に正確な情報を伝えられています。営業チームからも『商談がスムーズに進むようになった』と好評です。」
+        </p>
+        <div class="contact-info">
+          <p><strong>お問い合わせ</strong></p>
+          <p>合同会社Leadfive</p>
+          <p>メール: mail@lead-v.com</p>
+          <p>電話: 06-7713-6747</p>
+        </div>
+        <a href="/news/" class="back-link">← お知らせ一覧に戻る</a>
       </div>
-
-      <h2>プロジェクトの背景</h2>
-      <p>
-        クライアント様は、Webサイトからの問い合わせ数を増やしたいというニーズをお持ちでした。しかし、BtoB特有の課題として、問い合わせのハードルが高く、資料請求や見積もり依頼に至るユーザーが限られていました。
-      </p>
-      <p>
-        また、問い合わせがあっても、ニーズのミスマッチにより商談に進まないケースも多く発生していました。
-      </p>
-
-      <h2>実施した施策</h2>
-      <ul>
-        <li><strong>AIチャットボットの導入</strong>：訪問者の課題をヒアリングし、最適なソリューションを提案</li>
-        <li><strong>リードスコアリング</strong>：チャットでの会話内容から、見込み度を自動判定</li>
-        <li><strong>営業連携の自動化</strong>：高スコアのリードを自動で営業担当に通知</li>
-        <li><strong>FAQ対応の自動化</strong>：よくある質問への回答を24時間対応</li>
-      </ul>
-
-      <h2>成果</h2>
-      <p>
-        AIチャットボットの導入により、以下の成果を実現しました：
-      </p>
-      <ul>
-        <li>問い合わせのハードルが下がり、初回CVRが64%改善</li>
-        <li>事前のヒアリングにより、ニーズにマッチした商談が増加</li>
-        <li>商談化率が58%向上</li>
-        <li>営業担当の初期対応工数を70%削減</li>
-      </ul>
-
-      <h2>クライアント様の声</h2>
-      <p>
-        「BtoB向けのAIチャットボットは難しいと思っていましたが、LeadFiveさんのシステムは私たちの製品知識をしっかり学習してくれて、お客様に正確な情報を伝えられています。営業チームからも『商談がスムーズに進むようになった』と好評です。」
-      </p>
-
-      <h2>お問い合わせ</h2>
-      <p>
-        本事例の詳細や、BtoB向けAIチャットボットのデモについては、お気軽にお問い合わせください。
-      </p>
-      <p>
-        合同会社Leadfive<br>
-        メール: mail@lead-v.com<br>
-        電話: 06-7713-6747
-      </p>
     </div>
+  </section>
+  <footer class="footer-section">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leadfive</h3>
+        <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+      </div>
+      <div class="footer-links">
+        <h4>WORKS</h4>
+        <ul>
+          <li><a href="/works/">実績一覧</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="/company/">企業概要</a></li>
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/news/">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>SUPPORT</h4>
+        <ul>
+          <li><a href="/contact/">お問い合わせ</a></li>
+          <li><a href="/privacy/">プライバシー</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Leadfive. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
 
-    <a href="/#news" class="back-link">
-      <span>&larr;</span> 新着情報一覧に戻る
-    </a>
-  </div>
-</div>
+</html>

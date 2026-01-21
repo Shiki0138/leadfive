@@ -1,197 +1,346 @@
----
-layout: page
-title: 年末年始の営業日程について | LeadFive
-description: 2024年年末年始の営業日程についてお知らせいたします。
-permalink: /news/year-end-schedule/
----
+<!DOCTYPE html>
+<html lang="ja">
 
-<style>
-.news-detail {
-  padding: 6rem 0 4rem;
-  min-height: 80vh;
-}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年末年始の営業日程について | Leadfive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Shippori+Mincho:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-white: #fff;
+      --bg-off-white: #f8f9fa;
+      --bg-black: #0a0a0a;
+      --text-dark: #111;
+      --text-gray: #6b7280;
+      --text-light: #fff;
+      --accent-blue: #2563eb;
+      --border-light: #e5e5e5
+    }
 
-.news-detail-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-.news-detail-header {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      line-height: 1.8
+    }
 
-.news-meta {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, .95);
+      border-bottom: 1px solid var(--border-light)
+    }
 
-.news-date {
-  display: inline-block;
-  font-size: 0.9rem;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-}
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto
+    }
 
-.news-category {
-  display: inline-block;
-  font-size: 0.85rem;
-  color: #6b7280;
-  background: rgba(107, 114, 128, 0.1);
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-}
+    .logo-text {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      text-decoration: none
+    }
 
-.news-detail-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
+    .navbar-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none
+    }
 
-.news-thumbnail {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-}
+    .nav-link {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: .9rem
+    }
 
-.news-body {
-  color: #e5e7eb;
-  line-height: 1.8;
-  font-size: 1.05rem;
-}
+    .btn {
+      padding: .8rem 1.8rem;
+      font-size: .9rem;
+      text-decoration: none;
+      border: none
+    }
 
-.news-body h2 {
-  color: #ffffff;
-  font-size: 1.5rem;
-  margin: 2.5rem 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid rgba(59, 130, 246, 0.3);
-}
+    .btn-primary {
+      background: var(--accent-blue);
+      color: var(--text-light)
+    }
 
-.news-body p {
-  margin-bottom: 1.5rem;
-}
+    .article-header {
+      padding: 10rem 0 3rem;
+      background: var(--bg-off-white)
+    }
 
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #3b82f6;
-  text-decoration: none;
-  margin-top: 3rem;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
+    .article-header .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem
+    }
 
-.back-link:hover {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.5);
-}
+    .article-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem
+    }
 
-.schedule-box {
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 2rem 0;
-  text-align: center;
-}
+    .article-date {
+      font-size: .9rem;
+      color: var(--text-gray)
+    }
 
-.schedule-box h4 {
-  color: #3b82f6;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
+    .article-category {
+      font-size: .85rem;
+      color: var(--text-gray);
+      background: rgba(107, 114, 128, .1);
+      padding: .2rem .8rem
+    }
 
-.schedule-dates {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 1rem 0;
-}
+    .article-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.5
+    }
 
-@media (max-width: 768px) {
-  .news-detail {
-    padding: 4rem 0 2rem;
-  }
+    .article-content {
+      padding: 4rem 0 6rem
+    }
 
-  .news-detail-container {
-    padding: 0 1rem;
-  }
+    .article-content .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem
+    }
 
-  .news-detail-header h1 {
-    font-size: 1.5rem;
-  }
+    .article-thumbnail {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 3rem
+    }
 
-  .news-body {
-    font-size: 1rem;
-  }
-}
-</style>
+    .article-body {
+      color: var(--text-gray);
+      font-size: 1rem;
+      line-height: 2
+    }
 
-<div class="news-detail">
-  <div class="news-detail-container">
-    <div class="news-detail-header">
-      <div class="news-meta">
-        <span class="news-date">2024.12.01</span>
-        <span class="news-category">お知らせ</span>
+    .article-body p {
+      margin-bottom: 1.5rem
+    }
+
+    .article-body h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      margin: 3rem 0 1.5rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border-light)
+    }
+
+    .schedule-box {
+      background: var(--bg-off-white);
+      border: 1px solid var(--border-light);
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center
+    }
+
+    .schedule-box h4 {
+      color: var(--accent-blue);
+      margin-bottom: 1rem;
+      font-size: 1.2rem
+    }
+
+    .schedule-dates {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin: 1rem 0
+    }
+
+    .back-link {
+      display: inline-flex;
+      color: var(--text-dark);
+      text-decoration: none;
+      margin-top: 3rem;
+      font-size: .9rem;
+      border-bottom: 1px solid var(--text-dark)
+    }
+
+    .contact-info {
+      background: var(--bg-off-white);
+      padding: 2rem;
+      margin-top: 3rem
+    }
+
+    .contact-info p {
+      margin-bottom: .5rem
+    }
+
+    .footer-section {
+      background: var(--bg-black);
+      color: var(--text-light);
+      padding: 5rem 2rem 2rem
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem
+    }
+
+    .footer-brand h3 {
+      font-family: 'Shippori Mincho', serif;
+      margin-bottom: 1rem
+    }
+
+    .footer-brand p {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .6)
+    }
+
+    .footer-links h4 {
+      font-size: .8rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, .5)
+    }
+
+    .footer-links ul {
+      list-style: none
+    }
+
+    .footer-links li {
+      margin-bottom: .8rem
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, .7);
+      text-decoration: none
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .4);
+      font-size: .8rem
+    }
+
+    @media(max-width:768px) {
+      .navbar-nav {
+        display: none
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem
+      }
+
+      .article-header h1 {
+        font-size: 1.5rem
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar"><a href="/" class="logo-text">Leadfive</a>
+      <ul class="navbar-nav">
+        <li><a href="/works/" class="nav-link">実績</a></li>
+        <li><a href="/news/" class="nav-link">お知らせ</a></li>
+        <li><a href="/blog/" class="nav-link">ブログ</a></li>
+        <li><a href="/contact/" class="btn btn-primary">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="article-header">
+    <div class="container">
+      <div class="article-meta"><span class="article-date">2024.12.01</span><span class="article-category">お知らせ</span>
       </div>
       <h1>年末年始の営業日程について</h1>
     </div>
-
-    <img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&q=80" alt="年末年始のお知らせ" class="news-thumbnail">
-
-    <div class="news-body">
-      <p>
-        平素より格別のご高配を賜り、厚く御礼申し上げます。<br>
-        誠に勝手ながら、年末年始の営業日程を下記の通りとさせていただきます。
-      </p>
-
-      <div class="schedule-box">
-        <h4>年末年始休業期間</h4>
-        <div class="schedule-dates">
-          2024年12月29日（日）〜 2025年1月5日（日）
+  </section>
+  <section class="article-content">
+    <div class="container">
+      <img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&q=80" alt="年末年始"
+        class="article-thumbnail">
+      <div class="article-body">
+        <p>平素より格別のご高配を賜り、厚く御礼申し上げます。誠に勝手ながら、年末年始の営業日程を下記の通りとさせていただきます。</p>
+        <div class="schedule-box">
+          <h4>年末年始休業期間</h4>
+          <div class="schedule-dates">2024年12月29日（日）〜 2025年1月5日（日）</div>
+          <p>2025年1月6日（月）より通常営業いたします</p>
         </div>
-        <p style="margin-bottom: 0;">2025年1月6日（月）より通常営業いたします</p>
+        <h2>休業期間中のお問い合わせについて</h2>
+        <p>休業期間中にいただきましたお問い合わせにつきましては、2025年1月6日（月）以降、順次ご対応させていただきます。</p>
+        <h2>本年も大変お世話になりました</h2>
+        <p>2024年も多くのお客様にご支援いただき、誠にありがとうございました。来年もより一層、お客様のビジネス成長に貢献できるよう、サービスの向上に努めてまいります。どうぞ良いお年をお迎えください。</p>
+        <div class="contact-info">
+          <p><strong>お問い合わせ</strong></p>
+          <p>合同会社Leadfive</p>
+          <p>メール: mail@lead-v.com</p>
+          <p>電話: 06-7713-6747</p>
+        </div>
+        <a href="/news/" class="back-link">← お知らせ一覧に戻る</a>
       </div>
-
-      <h2>休業期間中のお問い合わせについて</h2>
-      <p>
-        休業期間中にいただきましたお問い合わせにつきましては、2025年1月6日（月）以降、順次ご対応させていただきます。
-      </p>
-      <p>
-        お急ぎの場合は、お問い合わせフォームよりご連絡いただけますと幸いです。休業明けに優先的にご対応いたします。
-      </p>
-
-      <h2>本年も大変お世話になりました</h2>
-      <p>
-        2024年も多くのお客様にご支援いただき、誠にありがとうございました。来年もより一層、お客様のビジネス成長に貢献できるよう、サービスの向上に努めてまいります。
-      </p>
-      <p>
-        どうぞ良いお年をお迎えください。
-      </p>
-
-      <p style="margin-top: 3rem;">
-        合同会社Leadfive<br>
-        メール: mail@lead-v.com<br>
-        電話: 06-7713-6747
-      </p>
     </div>
+  </section>
+  <footer class="footer-section">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leadfive</h3>
+        <p>AIは手段。目的は人間の成功。</p>
+      </div>
+      <div class="footer-links">
+        <h4>WORKS</h4>
+        <ul>
+          <li><a href="/works/">実績一覧</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="/company/">企業概要</a></li>
+          <li><a href="/news/">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>SUPPORT</h4>
+        <ul>
+          <li><a href="/contact/">お問い合わせ</a></li>
+          <li><a href="/privacy/">プライバシー</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Leadfive.</p>
+    </div>
+  </footer>
+</body>
 
-    <a href="/#news" class="back-link">
-      <span>&larr;</span> 新着情報一覧に戻る
-    </a>
-  </div>
-</div>
+</html>
