@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成AI搭載自動応答LPが10社突破 | Leadfive</title>
+    <meta name="description" content="生成AIを搭載した自動応答ランディングページの導入実績が10社を突破。24時間対応、CVR向上、人件費削減を実現する次世代LPの魅力をご紹介。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-white: #ffffff;
+            --bg-off-white: #f8f9fa;
+            --bg-black: #0a0a0a;
+            --text-dark: #111111;
+            --text-gray: #6b7280;
+            --text-light: #ffffff;
+            --accent-blue: #2563eb;
+            --accent-blue-light: rgba(37, 99, 235, 0.08);
+            --border-light: #e5e5e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-text {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-light);
+        }
+
+        .article-header {
+            padding: 10rem 0 3rem;
+            background: var(--bg-off-white);
+        }
+
+        .article-header .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-date {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .article-category {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            background: var(--accent-blue-light);
+            padding: 0.2rem 0.8rem;
+        }
+
+        .article-header h1 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .article-content {
+            padding: 4rem 0 6rem;
+        }
+
+        .article-content .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-thumbnail {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+        }
+
+        .article-body {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 2;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .article-body h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 2rem 0 1rem;
+        }
+
+        .article-body ul,
+        .article-body ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.75rem;
+        }
+
+        .article-body strong {
+            color: var(--text-dark);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(37, 99, 235, 0.1));
+            border-left: 4px solid var(--accent-blue);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--bg-off-white);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefit-list li {
+            padding: 1rem 0 1rem 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .benefit-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .cta-box {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+            border-radius: 12px;
+        }
+
+        .cta-box h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .cta-box .btn-primary {
+            background: var(--accent-blue);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--text-dark);
+            padding-bottom: 0.25rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .footer-section {
+            background: var(--bg-black);
+            color: var(--text-light);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+            }
+
+            .article-header {
+                padding: 8rem 0 2rem;
+            }
+
+            .article-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo-text">Leadfive</a>
+            <ul class="navbar-nav">
+                <li><a href="/works/" class="nav-link">実績</a></li>
+                <li><a href="/news/" class="nav-link">お知らせ</a></li>
+                <li><a href="/blog/" class="nav-link">ブログ</a></li>
+                <li><a href="/contact/" class="btn btn-primary">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="article-header">
+        <div class="container">
+            <div class="article-meta">
+                <span class="article-date">2026.01.21</span>
+                <span class="article-category">実績</span>
+            </div>
+            <h1>生成AI搭載自動応答LPの導入実績が10社を突破しました</h1>
+        </div>
+    </section>
+
+    <section class="article-content">
+        <div class="container">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="AI chatbot"
+                class="article-thumbnail">
+
+            <div class="article-body">
+                <p>Leadfiveが提供する<strong>生成AI搭載自動応答ランディングページ（LP）</strong>の導入実績が、<strong>10社を突破</strong>いたしました。多くの企業様からご好評をいただき、続々と新規導入のご依頼をいただいております。
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">導入企業数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">自動対応</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">58%</div>
+                        <div class="stat-label">CVR向上率（平均）</div>
+                    </div>
+                </div>
+
+                <h2>生成AI自動応答LPとは</h2>
+                <p>生成AI自動応答LPは、従来の静的なランディングページに<strong>生成AI（ChatGPT/Claude等）を搭載した対話型チャットボット</strong>を組み込んだ、次世代のWebマーケティングツールです。
+                </p>
+
+                <p>訪問者の質問にリアルタイムで回答し、商品・サービスの詳細説明から予約・問い合わせまで、一貫した顧客体験を提供します。まるで優秀な営業担当者が24時間待機しているかのような応対が可能になります。</p>
+
+                <h2>導入企業様からの反響</h2>
+
+                <div class="highlight-box">
+                    <h4>🎯 なぜ今、生成AI搭載LPが選ばれているのか</h4>
+                    <ul class="benefit-list">
+                        <li><strong>24時間365日、即座に顧客対応</strong> - 深夜や土日でも見込み客を逃さない</li>
+                        <li><strong>CVR（コンバージョン率）の大幅向上</strong> - 導入企業平均58%のCVR向上を実現</li>
+                        <li><strong>人件費の大幅削減</strong> - 問い合わせ対応コストを最大70%削減</li>
+                        <li><strong>個別最適化された提案</strong> - 訪問者の質問に応じて最適な情報を提供</li>
+                        <li><strong>離脱率の低下</strong> - 疑問をその場で解決し、離脱を防止</li>
+                    </ul>
+                </div>
+
+                <h2>生成AI搭載LPの5つのメリット</h2>
+
+                <h3>1. 24時間対応で機会損失をゼロに</h3>
+                <p>従来のLPでは、訪問者が疑問を持っても回答を得られず離脱してしまうケースが多くありました。生成AI搭載LPなら、<strong>どんな時間帯でも即座に質問に回答</strong>。深夜や早朝に訪れた見込み客も確実にキャッチします。
+                </p>
+
+                <h3>2. 自然な会話で信頼関係を構築</h3>
+                <p>最新の生成AIは、まるで人間と話しているかのような自然な対話が可能です。<strong>機械的な定型回答ではなく、文脈を理解した柔軟な応答</strong>で、訪問者との信頼関係を構築します。</p>
+
+                <h3>3. 顧客ごとにパーソナライズされた提案</h3>
+                <p>生成AIは会話の流れから訪問者のニーズを把握し、<strong>一人ひとりに最適化された提案</strong>を行います。「この商品はあなたの課題解決に最適です」といった、パーソナルな訴求が可能になります。
+                </p>
+
+                <h3>4. スタッフの負担を大幅軽減</h3>
+                <p>よくある質問への対応をAIが自動で行うため、<strong>スタッフは本当に人間が対応すべき案件に集中</strong>できます。対応漏れやミスも激減し、業務品質が向上します。</p>
+
+                <h3>5. 蓄積データによる継続的な改善</h3>
+                <p>すべての会話データが蓄積されるため、<strong>「どんな質問が多いか」「どこで離脱しているか」</strong>を可視化。データに基づいた継続的なLP改善が可能になります。</p>
+
+                <h2>導入業界</h2>
+                <p>現在、以下のような業界の企業様にご導入いただいております：</p>
+                <ul>
+                    <li><strong>美容・サロン業界</strong> - 予約数の大幅増加を実現</li>
+                    <li><strong>不動産業界</strong> - 物件案内から内見予約まで自動化</li>
+                    <li><strong>BtoB SaaS企業</strong> - 資料請求・デモ申込みのCVR向上</li>
+                    <li><strong>ECサイト</strong> - 商品相談から購入まで一気通貫</li>
+                    <li><strong>士業・コンサルティング</strong> - 初期ヒアリングの効率化</li>
+                </ul>
+
+                <div class="cta-box">
+                    <h3>あなたのLPも生成AIで進化させませんか？</h3>
+                    <p>導入事例のご紹介や、貴社サイトへの最適な実装方法をご提案いたします。<br>まずは無料相談からお気軽にお問い合わせください。</p>
+                    <a href="/contact/" class="btn btn-primary">無料相談はこちら</a>
+                </div>
+
+                <a href="/news/" class="back-link">← お知らせ一覧に戻る</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Leadfive</h3>
+                <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+            </div>
+            <div class="footer-links">
+                <h4>WORKS</h4>
+                <ul>
+                    <li><a href="/works/">実績一覧</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="/company/">企業概要</a></li>
+                    <li><a href="/blog/">ブログ</a></li>
+                    <li><a href="/news/">お知らせ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li><a href="/contact/">お問い合わせ</a></li>
+                    <li><a href="/privacy/">プライバシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Leadfive. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
