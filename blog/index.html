@@ -1,581 +1,167 @@
-<!DOCTYPE html>
-<html lang="ja">
+---
+layout: default
+title: ブログ | Leadfive
+description: AI×心理学でビジネスを科学する記事をお届け。マーケティング、AI活用、DXのノウハウを発信。
+---
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ブログ | Leadfive</title>
-    <meta name="description" content="AI×心理学でビジネスを科学する記事をお届け。マーケティング、AI活用、DXのノウハウを発信。">
+<style>
+    .blog-page {
+        background: #fafafa;
+        min-height: 100vh;
+        padding-top: 6rem;
+    }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    .page-header {
+        background: #fff;
+        padding: 4rem 2rem;
+        text-align: center;
+        border-bottom: 1px solid #e5e7eb;
+    }
 
-    <style>
-        :root {
-            --bg-white: #FFFFFF;
-            --bg-off-white: #FAFAFA;
-            --bg-black: #1a1a1a;
-            --text-dark: #1a1a1a;
-            --text-light: #FFFFFF;
-            --text-gray: #6B7280;
-            --accent-blue: #2563EB;
-            --accent-blue-light: rgba(37, 99, 235, 0.1);
-        }
+    .page-header h1 {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .page-header p {
+        color: #6b7280;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    .blog-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+    }
 
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--bg-off-white);
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
 
-        /* ヘッダー */
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-        }
+    .blog-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        display: block;
+    }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+    .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
 
-        .logo-text {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            text-decoration: none;
-            letter-spacing: 0.1em;
-        }
+    .blog-card-image {
+        height: 180px;
+        overflow: hidden;
+        background: #f3f4f6;
+    }
 
-        .navbar-nav {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
+    .blog-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-        .nav-link {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
+    .blog-card-content {
+        padding: 1.5rem;
+    }
 
-        .nav-link:hover {
-            color: var(--accent-blue);
-        }
+    .blog-card-date {
+        font-size: 0.8rem;
+        color: #9ca3af;
+        margin-bottom: 0.5rem;
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            border: none;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
+    .blog-card-category {
+        display: inline-block;
+        font-size: 0.75rem;
+        color: #2563eb;
+        background: rgba(37, 99, 235, 0.1);
+        padding: 0.2rem 0.6rem;
+        margin-bottom: 0.75rem;
+    }
 
-        .btn-primary {
-            background: var(--accent-blue);
-            color: var(--text-light);
-        }
+    .blog-card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+        color: #1a1a1a;
+    }
 
-        /* ページヘッダー */
-        .page-header {
-            padding: 10rem 2rem 4rem;
-            background: var(--bg-white);
-            text-align: center;
-        }
+    .blog-card-excerpt {
+        font-size: 0.9rem;
+        color: #6b7280;
+        line-height: 1.6;
+    }
 
-        .page-header h1 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 3rem;
+    }
 
-        .page-header p {
-            color: var(--text-gray);
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    .pagination a,
+    .pagination span {
+        padding: 0.5rem 1rem;
+        border: 1px solid #e5e7eb;
+        text-decoration: none;
+        color: #1a1a1a;
+    }
 
-        /* カテゴリナビ */
-        .category-nav {
-            background: var(--bg-white);
-            padding: 1rem 2rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
+    .pagination .current {
+        background: #2563eb;
+        color: #fff;
+        border-color: #2563eb;
+    }
 
-        .category-nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .category-link {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .category-link:hover,
-        .category-link.active {
-            color: var(--accent-blue);
-            border-color: var(--accent-blue);
-        }
-
-        /* ブロググリッド */
-        .blog-section {
-            padding: 4rem 2rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* フィーチャード記事 */
-        .featured-post {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 3rem;
-            background: var(--bg-white);
-            margin-bottom: 3rem;
-            overflow: hidden;
-        }
-
-        .featured-post-image {
-            height: 400px;
-            overflow: hidden;
-        }
-
-        .featured-post-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .featured-post:hover .featured-post-image img {
-            transform: scale(1.05);
-        }
-
-        .featured-post-content {
-            padding: 3rem 3rem 3rem 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .featured-tag {
-            font-size: 0.7rem;
-            color: var(--accent-blue);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .featured-post h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.6rem;
-            font-weight: 500;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        .featured-post h2 a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .featured-post h2 a:hover {
-            color: var(--accent-blue);
-        }
-
-        .featured-excerpt {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .featured-meta {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.8rem;
-            color: var(--text-gray);
-        }
-
-        /* 記事グリッド */
+    @media (max-width: 768px) {
         .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: var(--bg-white);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .blog-card-image {
-            height: 180px;
-            overflow: hidden;
-        }
-
-        .blog-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .blog-card:hover .blog-card-image img {
-            transform: scale(1.05);
-        }
-
-        .blog-card-content {
-            padding: 1.5rem;
-        }
-
-        .blog-card-category {
-            font-size: 0.7rem;
-            color: var(--accent-blue);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            line-height: 1.5;
-            margin-bottom: 0.8rem;
-        }
-
-        .blog-card-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            color: var(--text-gray);
-        }
-
-        /* ページネーション */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 4rem;
-        }
-
-        .pagination a,
-        .pagination span {
-            display: inline-block;
-            padding: 0.8rem 1.2rem;
-            background: var(--bg-white);
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .pagination a:hover,
-        .pagination .current {
-            background: var(--accent-blue);
-            color: var(--text-light);
-        }
-
-        /* サイドバー（将来用） */
-        .blog-layout {
-            display: grid;
             grid-template-columns: 1fr;
-            gap: 4rem;
         }
+    }
+</style>
 
-        /* フッター */
-        .footer-section {
-            background: var(--bg-black);
-            color: var(--text-light);
-            padding: 4rem 2rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-brand {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.2rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        /* モバイル */
-        @media (max-width: 1024px) {
-            .blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar-nav {
-                display: none;
-            }
-
-            .featured-post {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-post-content {
-                padding: 2rem;
-            }
-
-            .featured-post-image {
-                height: 250px;
-            }
-
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .category-nav-inner {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 2rem;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <!-- ヘッダー -->
-    <header class="site-header">
-        <nav class="navbar">
-            <a href="/" class="logo-text">Leadfive</a>
-            <ul class="navbar-nav">
-                <li><a href="/works/" class="nav-link">実績</a></li>
-                <li><a href="/news/" class="nav-link">お知らせ</a></li>
-                <li><a href="/#services" class="nav-link">サービス</a></li>
-                <li><a href="/blog/" class="nav-link">ブログ</a></li>
-                <li><a href="/#cta" class="btn btn-primary">お問い合わせ</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- ページヘッダー -->
+<div class="blog-page">
     <section class="page-header">
         <h1>Blog</h1>
-        <p>AI×心理学でビジネスを科学する記事をお届けします</p>
+        <p>AI×心理学でビジネスを科学する記事をお届けします（{{ site.posts.size }}件）</p>
     </section>
 
-    <nav class="category-nav">
-        <div class="category-nav-inner">
-            <a href="/blog/" class="category-link active">すべて</a>
-            <span class="category-link">AI活用</span>
-            <span class="category-link">マーケティング</span>
-            <span class="category-link">DX</span>
-            <span class="category-link">事例紹介</span>
+    <div class="blog-container">
+        <div class="blog-grid">
+            {% for post in site.posts limit:30 %}
+            <a href="{{ post.url }}" class="blog-card">
+                <div class="blog-card-image">
+                    {% if post.image %}
+                    <img src="{{ post.image }}" alt="{{ post.title | escape }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&q=80" alt="Blog">
+                    {% endif %}
+                </div>
+                <div class="blog-card-content">
+                    <div class="blog-card-date">{{ post.date | date: "%Y.%m.%d" }}</div>
+                    {% if post.categories.first %}
+                    <span class="blog-card-category">{{ post.categories.first }}</span>
+                    {% endif %}
+                    <h3 class="blog-card-title">{{ post.title | truncate: 50 }}</h3>
+                    <p class="blog-card-excerpt">{{ post.excerpt | strip_html | truncate: 80 }}</p>
+                </div>
+            </a>
+            {% endfor %}
         </div>
-    </nav>
 
-    <!-- ブログ -->
-    <section class="blog-section">
-        <div class="container">
-            <div class="blog-layout">
-                <main>
-                    <!-- フィーチャード記事 -->
-                    <article class="featured-post">
-                        <div class="featured-post-image">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
-                                alt="AI活用">
-                        </div>
-                        <div class="featured-post-content">
-                            <span class="featured-tag">Featured / AI活用</span>
-                            <h2><a href="/blog/ai-marketing-strategy/">生成AIをマーケティングに活用する5つの戦略</a></h2>
-                            <p class="featured-excerpt">
-                                ChatGPTやClaudeなどの生成AIは、マーケティング業務を劇的に効率化します。本記事では、実際に成果を上げている5つの活用戦略を紹介します。
-                            </p>
-                            <div class="featured-meta">
-                                <span>2025.01.15</span>
-                                <span>読了時間: 8分</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 記事グリッド -->
-                    <div class="blog-grid">
-                        <a href="/blog/cvr-improvement-psychology/" class="blog-card">
-                            <div class="blog-card-image">
-                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80"
-                                    alt="CVR改善">
-                            </div>
-                            <div class="blog-card-content">
-                                <span class="blog-card-category">マーケティング</span>
-                                <h3 class="blog-card-title">心理学に基づくCVR改善の7つのポイント</h3>
-                                <div class="blog-card-meta">
-                                    <span>2025.01.10</span>
-                                    <span>6分</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="/blog/chatbot-implementation/" class="blog-card">
-                            <div class="blog-card-image">
-                                <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&q=80"
-                                    alt="チャットボット">
-                            </div>
-                            <div class="blog-card-content">
-                                <span class="blog-card-category">AI活用</span>
-                                <h3 class="blog-card-title">AIチャットボット導入で商談化率を上げる方法</h3>
-                                <div class="blog-card-meta">
-                                    <span>2025.01.05</span>
-                                    <span>7分</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="/blog/beauty-salon-dx/" class="blog-card">
-                            <div class="blog-card-image">
-                                <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80"
-                                    alt="美容室DX">
-                            </div>
-                            <div class="blog-card-content">
-                                <span class="blog-card-category">事例紹介</span>
-                                <h3 class="blog-card-title">美容室のDX成功事例：予約率2倍を実現した方法</h3>
-                                <div class="blog-card-meta">
-                                    <span>2024.12.28</span>
-                                    <span>5分</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="/blog/prompt-engineering/" class="blog-card">
-                            <div class="blog-card-image">
-                                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&q=80"
-                                    alt="プロンプト">
-                            </div>
-                            <div class="blog-card-content">
-                                <span class="blog-card-category">AI活用</span>
-                                <h3 class="blog-card-title">ビジネスで使えるプロンプトエンジニアリング入門</h3>
-                                <div class="blog-card-meta">
-                                    <span>2024.12.20</span>
-                                    <span>10分</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="/blog/local-business-marketing/" class="blog-card">
-                            <div class="blog-card-image">
-                                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&q=80"
-                                    alt="ローカルビジネス">
-                            </div>
-                            <div class="blog-card-content">
-                                <span class="blog-card-category">マーケティング</span>
-                                <h3 class="blog-card-title">ローカルビジネスのためのGoogleマップ集客術</h3>
-                                <div class="blog-card-meta">
-                                    <span>2024.12.15</span>
-                                    <span>8分</span>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="/blog/dx-first-steps/" class="blog-card">
-                            <div class="blog-card-image">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80"
-                                    alt="DX">
-                            </div>
-                            <div class="blog-card-content">
-                                <span class="blog-card-category">DX</span>
-                                <h3 class="blog-card-title">中小企業のためのDX第一歩ガイド</h3>
-                                <div class="blog-card-meta">
-                                    <span>2024.12.10</span>
-                                    <span>6分</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- 全記事表示中 -->
-                </main>
-            </div>
+        {% if site.posts.size > 30 %}
+        <div class="pagination">
+            <span class="current">1</span>
+            <a href="/blog/page/2/">2</a>
+            <a href="/blog/page/2/">次へ →</a>
         </div>
-    </section>
-
-    <!-- フッター -->
-    <footer class="footer-section">
-        <div class="footer-content">
-            <div class="footer-brand">Leadfive</div>
-            <div class="footer-links">
-                <a href="/works/">実績</a>
-                <a href="/news/">お知らせ</a>
-                <a href="/company/">会社概要</a>
-                <a href="/privacy/">プライバシー</a>
-            </div>
-        </div>
-    </footer>
-</body>
-
-</html>
+        {% endif %}
+    </div>
+</div>
