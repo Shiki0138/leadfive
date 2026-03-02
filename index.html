@@ -377,9 +377,13 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .news-card:hover {
+        a.news-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        div.news-card {
+            cursor: default;
         }
 
         .news-image {
@@ -394,7 +398,7 @@
             transition: transform 0.3s ease;
         }
 
-        .news-card:hover .news-image img {
+        a.news-card:hover .news-image img {
             transform: scale(1.05);
         }
 
@@ -948,90 +952,89 @@
                 <p>リリース情報</p>
             </div>
             <div class="news-grid">
-                <!-- News 1 - 最新 -->
-                <a href="/news/ai-chatbot-lp-10/" class="news-card reveal">
+                <!-- News 1 -->
+                <div class="news-card reveal">
                     <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&q=80" alt="AI搭載LP">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=80" alt="値上げシミュレーター">
                     </div>
                     <div class="news-content">
                         <div class="news-meta">
-                            <span class="news-date">2026.01.21</span>
-                            <span class="news-tag">実績</span>
+                            <span class="news-date">2026.02.28</span>
+                            <span class="news-tag">プレスリリース</span>
                         </div>
-                        <h3 class="news-title">生成AI搭載自動応答LPの導入が10社突破</h3>
+                        <h3 class="news-title">美容室向け値上げシミュレーターをリリース</h3>
                     </div>
-                </a>
+                </div>
 
                 <!-- News 2 -->
-                <a href="/news/hplp-service/" class="news-card reveal">
+                <div class="news-card reveal">
                     <div class="news-image">
-                        <img src="/assets/images/news/hplp-service.png" alt="CRAFT">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=80" alt="入札くん">
                     </div>
                     <div class="news-content">
                         <div class="news-meta">
-                            <span class="news-date">2025.12.30</span>
+                            <span class="news-date">2026.02.28</span>
                             <span class="news-tag">プレスリリース</span>
                         </div>
-                        <h3 class="news-title">集客特化型HP・LP制作サービス「CRAFT」をリリース</h3>
+                        <h3 class="news-title">入札情報マッチングシステム「入札くん」をリリース</h3>
                     </div>
-                </a>
+                </div>
 
                 <!-- News 3 -->
-                <a href="/news/fuerun/" class="news-card reveal">
+                <div class="news-card reveal">
                     <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&q=80" alt="ふえるん">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="サロンKPI">
                     </div>
                     <div class="news-content">
                         <div class="news-meta">
-                            <span class="news-date">2025.12.05</span>
+                            <span class="news-date">2026.02.18</span>
                             <span class="news-tag">プレスリリース</span>
                         </div>
-                        <h3 class="news-title">Google口コミAI返信システム「ふえるん」をリリース</h3>
+                        <h3 class="news-title">美容室向けKPI目標管理システムをリリース</h3>
                     </div>
-                </a>
+                </div>
 
                 <!-- News 4 -->
-                <a href="/news/counseling-ai/" class="news-card reveal">
+                <a href="https://dekiteru-web.vercel.app" target="_blank" rel="noopener noreferrer" class="news-card reveal">
                     <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&q=80"
-                            alt="counseling-AI">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80" alt="Dekiteru">
                     </div>
                     <div class="news-content">
                         <div class="news-meta">
-                            <span class="news-date">2025.12.01</span>
+                            <span class="news-date">2026.02.16</span>
                             <span class="news-tag">プレスリリース</span>
                         </div>
-                        <h3 class="news-title">美容室カウンセリングAIシステムをリリース</h3>
+                        <h3 class="news-title">地域ビジネス向け自動LP生成システム「Dekiteru」をリリース</h3>
                     </div>
                 </a>
 
                 <!-- News 5 -->
-                <a href="/news/subsidy-ai/" class="news-card reveal">
+                <div class="news-card reveal">
                     <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=80" alt="補助金AI">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&q=80" alt="不動産Deal Engine">
                     </div>
                     <div class="news-content">
                         <div class="news-meta">
-                            <span class="news-date">2025.11.15</span>
+                            <span class="news-date">2026.02.14</span>
                             <span class="news-tag">プレスリリース</span>
                         </div>
-                        <h3 class="news-title">補助金申請AIサポートシステムをリリース</h3>
+                        <h3 class="news-title">中古マンション買い判断支援システムをリリース</h3>
                     </div>
-                </a>
+                </div>
 
                 <!-- News 6 -->
-                <a href="/news/hexamind/" class="news-card reveal">
+                <div class="news-card reveal">
                     <div class="news-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="HexaMind">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&q=80" alt="InstaAd">
                     </div>
                     <div class="news-content">
                         <div class="news-meta">
-                            <span class="news-date">2025.10.20</span>
+                            <span class="news-date">2026.02.09</span>
                             <span class="news-tag">プレスリリース</span>
                         </div>
-                        <h3 class="news-title">AIマーケティング分析ツール「HexaMind」をリリース</h3>
+                        <h3 class="news-title">Instagram広告かんたん出稿ツールをリリース</h3>
                     </div>
-                </a>
+                </div>
             </div>
             <div class="news-more">
                 <a href="/news/">すべてのお知らせを見る →</a>

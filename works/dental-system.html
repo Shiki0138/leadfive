@@ -2,13 +2,378 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=/works/">
-    <title>Redirecting...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>歯科予約管理システムをリリース | Leadfive</title>
+  <meta name="description" content="LINE連携で患者の予約・リマインドを自動化する歯科医院向けシステムをリリースしました。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-white: #ffffff;
+      --bg-off-white: #f8f9fa;
+      --bg-black: #0a0a0a;
+      --text-dark: #111111;
+      --text-gray: #6b7280;
+      --text-light: #ffffff;
+      --accent-blue: #2563eb;
+      --accent-blue-light: rgba(37, 99, 235, 0.08);
+      --border-light: #e5e5e5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo-text {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+
+    .navbar-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: var(--text-light);
+    }
+
+    .article-header {
+      padding: 10rem 0 3rem;
+      background: var(--bg-off-white);
+    }
+
+    .article-header .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-date {
+      font-size: 0.9rem;
+      color: var(--text-gray);
+    }
+
+    .article-category {
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      background: var(--accent-blue-light);
+      padding: 0.2rem 0.8rem;
+    }
+
+    .article-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .article-content {
+      padding: 4rem 0 6rem;
+    }
+
+    .article-content .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .article-thumbnail {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 3rem;
+    }
+
+    .article-body {
+      color: var(--text-gray);
+      font-size: 1rem;
+      line-height: 2;
+    }
+
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .article-body ul {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .article-body li {
+      margin-bottom: 0.75rem;
+    }
+
+    .article-body strong {
+      color: var(--text-dark);
+    }
+
+    .feature-box {
+      background: var(--bg-off-white);
+      border: 1px solid var(--border-light);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .feature-box h4 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--text-dark);
+      padding-bottom: 0.25rem;
+    }
+
+    .contact-info {
+      background: var(--bg-off-white);
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-section {
+      background: var(--bg-black);
+      color: var(--text-light);
+      padding: 5rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+    }
+
+    .footer-brand h3 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.8;
+    }
+
+    .footer-links h4 {
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav {
+        display: none;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <p>リダイレクト中... <a href="/works/">こちらをクリック</a></p>
+  <header class="site-header">
+    <nav class="navbar"><a href="/" class="logo-text">Leadfive</a>
+      <ul class="navbar-nav">
+        <li><a href="/works/" class="nav-link">実績</a></li>
+        <li><a href="/news/" class="nav-link">お知らせ</a></li>
+        <li><a href="/blog/" class="nav-link">ブログ</a></li>
+        <li><a href="/contact/" class="btn btn-primary">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="article-header">
+    <div class="container">
+      <div class="article-meta"><span class="article-date">2025.09.16</span><span
+          class="article-category">プレスリリース</span></div>
+      <h1>歯科予約管理システムをリリース</h1>
+    </div>
+  </section>
+  <section class="article-content">
+    <div class="container">
+      <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="歯科予約管理システム"
+        class="article-thumbnail">
+      <div class="article-body">
+        <p>Leadfiveは、LINE連携で患者の予約・リマインドを自動化する歯科医院向け予約管理システムをリリースいたしました。</p>
+        <h2>システム概要</h2>
+        <p>LINE公式アカウントと連携し、患者がLINEから直接予約を取れる仕組みを提供します。予約の確認やリマインド通知も自動で送信されるため、電話対応の負荷を大幅に削減できます。患者情報や診療履歴も一元管理でき、受付業務全体の効率化を実現します。</p>
+        <div class="feature-box">
+          <h4>主な機能</h4>
+          <ul>
+            <li>LINE公式アカウント連携</li>
+            <li>予約の自動リマインド通知</li>
+            <li>患者情報管理</li>
+            <li>診療履歴の一元管理</li>
+          </ul>
+        </div>
+        <h2>開発の背景</h2>
+        <p>歯科医院は電話予約とキャンセル対応に多くの時間を取られています。患者側も電話が面倒で予約を先延ばしにするケースが少なくありません。LINE連携によりリマインドを自動化することで、キャンセル率の低減とスタッフの負荷軽減を同時に狙います。</p>
+        <h2>想定される利用シーン</h2>
+        <ul>
+          <li>歯科医院の予約業務効率化</li>
+          <li>患者とのコミュニケーション改善によるリピート率向上</li>
+        </ul>
+        <div class="contact-info">
+          <p><strong>お問い合わせ</strong></p>
+          <p>合同会社Leadfive</p>
+          <p>メール: mail@lead-v.com</p>
+          <p>電話: 06-7713-6747</p>
+        </div>
+        <a href="/works/" class="back-link">← 実績一覧に戻る</a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer-section">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leadfive</h3>
+        <p>AIは手段。目的は人間の成功。<br>行動心理学とテクノロジーで、再現性のある成長を。</p>
+      </div>
+      <div class="footer-links">
+        <h4>WORKS</h4>
+        <ul>
+          <li><a href="/works/">実績一覧</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="/company/">企業概要</a></li>
+          <li><a href="/blog/">ブログ</a></li>
+          <li><a href="/news/">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>SUPPORT</h4>
+        <ul>
+          <li><a href="/contact/">お問い合わせ</a></li>
+          <li><a href="/privacy/">プライバシー</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Leadfive. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 
 </html>

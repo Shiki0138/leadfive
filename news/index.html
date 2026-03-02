@@ -161,6 +161,14 @@
             align-items: center;
         }
 
+        .news-list-item .news-list-text {
+            display: flex;
+            gap: 2rem;
+            padding: 1.5rem 2rem;
+            color: inherit;
+            align-items: center;
+        }
+
         .news-date {
             font-size: 0.85rem;
             color: var(--text-gray);
@@ -220,7 +228,8 @@
                 display: none;
             }
 
-            .news-list-item a {
+            .news-list-item a,
+            .news-list-item .news-list-text {
                 flex-direction: column;
                 gap: 0.5rem;
                 align-items: flex-start;
@@ -260,6 +269,55 @@
         <div class="container">
             <ul class="news-list">
                 <li class="news-list-item">
+                    <div class="news-list-text">
+                        <span class="news-date">2026.02.28</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">美容室向け値上げシミュレーターをリリース</span>
+                    </div>
+                </li>
+                <li class="news-list-item">
+                    <div class="news-list-text">
+                        <span class="news-date">2026.02.28</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">入札情報マッチングシステム「入札くん」をリリース</span>
+                    </div>
+                </li>
+                <li class="news-list-item">
+                    <div class="news-list-text">
+                        <span class="news-date">2026.02.18</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">美容室向けKPI目標管理システムをリリース</span>
+                    </div>
+                </li>
+                <li class="news-list-item">
+                    <a href="https://dekiteru-web.vercel.app" target="_blank" rel="noopener noreferrer">
+                        <span class="news-date">2026.02.16</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">地域ビジネス向け自動LP生成システム「Dekiteru」をリリース</span>
+                    </a>
+                </li>
+                <li class="news-list-item">
+                    <div class="news-list-text">
+                        <span class="news-date">2026.02.14</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">中古マンション買い判断支援システムをリリース</span>
+                    </div>
+                </li>
+                <li class="news-list-item">
+                    <div class="news-list-text">
+                        <span class="news-date">2026.02.09</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">Instagram広告かんたん出稿ツールをリリース</span>
+                    </div>
+                </li>
+                <li class="news-list-item">
+                    <div class="news-list-text">
+                        <span class="news-date">2026.02.04</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">求人票AI分析ツールをリリース</span>
+                    </div>
+                </li>
+                <li class="news-list-item">
                     <a href="/news/ai-chatbot-lp-10/">
                         <span class="news-date">2026.01.21</span>
                         <span class="news-tag">実績</span>
@@ -279,6 +337,13 @@
                         <span class="news-tag">プレスリリース</span>
                         <span class="news-title">Google口コミAI返信システム「ふえるん」をリリース</span>
                     </a>
+                </li>
+                <li class="news-list-item">
+                    <div class="news-list-text">
+                        <span class="news-date">2025.12.03</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">運送マッチングプラットフォームをリリース</span>
+                    </div>
                 </li>
                 <li class="news-list-item">
                     <a href="/news/counseling-ai/">
@@ -309,11 +374,25 @@
                     </a>
                 </li>
                 <li class="news-list-item">
+                    <a href="https://halal-travel-japan-pwa.vercel.app" target="_blank" rel="noopener noreferrer">
+                        <span class="news-date">2025.07.18</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">ハラール対応飲食店・観光地検索アプリをリリース</span>
+                    </a>
+                </li>
+                <li class="news-list-item">
                     <a href="/news/btob-chatbot/">
                         <span class="news-date">2025.07.15</span>
                         <span class="news-tag">事例紹介</span>
                         <span class="news-title">BtoB企業の商談化率58%向上を実現</span>
                     </a>
+                </li>
+                <li class="news-list-item">
+                    <div class="news-list-text">
+                        <span class="news-date">2025.07.01</span>
+                        <span class="news-tag">プレスリリース</span>
+                        <span class="news-title">造園業向け統合業務管理システムをリリース</span>
+                    </div>
                 </li>
                 <li class="news-list-item">
                     <a href="/news/fleeks/">
