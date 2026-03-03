@@ -40,11 +40,6 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.2'
-
     - name: Install dependencies
       run: |
         npm install
@@ -101,13 +96,8 @@ jobs:
             exit 1
           fi
         fi
-    
-    - name: Build and deploy Jekyll site
-      if: success()
-      run: |
-        bundle install
-        bundle exec jekyll build
-        
+
+
     - name: Notify completion
       if: always()
       run: |
